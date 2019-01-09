@@ -9,14 +9,16 @@ const authRouter = require("./routers/auth");
 
 const app = express();
 
+// Serve secure cookies over https in production
+if (app.get('env') === 'production') {
+  sessionConfig.cookie.secure = true; 
+}
+
 // Initialize middlewares
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (app.get('env') === 'production') {
-  sess.cookie.secure = true; // serve secure cookies, requires https
-}
 
 app.use("/auth", authRouter);
 
