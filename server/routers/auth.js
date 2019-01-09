@@ -18,7 +18,7 @@ router.get("/callback", (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.redirect("/login");
+      return res.json({ err, user, info });
     }
 
     // Initialize a session for the user on the back end
