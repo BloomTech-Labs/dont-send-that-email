@@ -28,8 +28,9 @@ router.get("/callback", (req, res, next) => {
         return next(err);
       }
 
-      // Login was successful, send user-agent to the client
-      res.redirect(process.env.FRONT_END_URL);
+      // Redirects to /auth/profile for the time being
+      res.redirect("/auth/profile");
+      // res.redirect(process.env.FRONT_END_URL);
     });
   })(req, res, next);
 });
