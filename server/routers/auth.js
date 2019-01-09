@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/login", passport.authenticate("auth0", {
   scope: "openid email profile"
 }), (req, res) => {
-  res.redirect("/")
+  res.redirect("/auth/profile");
 });
 
 // Auth0 will redirect the user-agent here after authentication
