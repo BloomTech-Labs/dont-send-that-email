@@ -1,4 +1,6 @@
 // Update with your config settings.
+require('dotenv').config()
+console.log(process.env.DB_PASSWORD)
 
 module.exports = {
 //SQLite is for development. Using this just to start out.
@@ -19,9 +21,9 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: process.env.DATABASE,
+      user:     process.env.DB_USER,
+      password: process.env.DB_PASSWORD
     },
     pool: {
       min: 2,
@@ -33,12 +35,13 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    // connection: {
+    //   database: process.env.DATABASE_URL
+    //   // user:     process.env.DB_USER,
+    //   // password: process.env.DB_PASSWORD
+    // },
     pool: {
       min: 2,
       max: 10
