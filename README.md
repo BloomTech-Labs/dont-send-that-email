@@ -7,7 +7,7 @@ Don’t Send That Email helps users send business correspondence, family, or per
 This puts a barrier between you and a bad email or messaging experience. We'll help you avoid sending a good email that convey's the right emotional tone.
 
 
-##Collaborators
+#Collaborators
 
 [Tai Le](https://github.com/Ta1grr)
 
