@@ -2,7 +2,7 @@
   "name": "dont-send-that-email",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "npm install --prefix server && npm install --prefix client",
+    "postinstall": "cd server && npm install",
     "server": "npm start --prefix server",
     "client": "npm start --prefix client"
   }
