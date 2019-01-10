@@ -6,7 +6,8 @@ import AddDocument from './AddDocument';
 export default class DocumentList extends Component {
     constructor(props) {
         super(props);
-        this.AddDocument = this.AddDocument.bind(this);
+        this.createDocument = this.createDocument.bind(this);
+        this.addDocument = this.addDocument.bind(this);
         this.state = {
             hasDocument: false,
         }
@@ -16,8 +17,12 @@ export default class DocumentList extends Component {
         // bring data from back-end
     }
 
-    AddDocument() {
+    createDocument = e => {
         this.setState({ hasDocument: true })
+    }
+
+    addDocument = e => {
+        console.log("Document Added.")
     }
 
     render() {
@@ -26,7 +31,7 @@ export default class DocumentList extends Component {
         if(hasDocument === false) {
             return(
                 <div>
-                    <button onClick={this.AddDocument}>Create a Document</button>
+                    <button onClick={this.createDocument}>Create a Document</button>
                 </div>
             )
         }
@@ -35,7 +40,9 @@ export default class DocumentList extends Component {
             <div>
                 <div>
                     <Document />
-                    <AddDocument />
+                    <AddDocument 
+                        addDocument={this.addDocument}
+                    />
                 </div>
             </div>
         )

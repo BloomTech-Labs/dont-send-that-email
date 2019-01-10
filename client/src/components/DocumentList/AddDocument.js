@@ -8,7 +8,7 @@ export default class AddDocument extends Component {
     render() {
         return(
             <div>
-                <button>Add Document</button>
+                <button onClick={this.props.addDocument}>Add Document</button>
             </div>
         );
     }
