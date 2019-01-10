@@ -1,6 +1,6 @@
 const express = require("express")
 const passport = require("passport");
-
+const db = require("../data/dbconfig.js");
 const router = express.Router();
 
 // Beginning of login flow. Sends user to Auth0 to authenticate
@@ -21,6 +21,7 @@ router.get("/callback", (req, res, next) => {
       return res.json({ err, user, info });
     }
 
+
     // Initialize a session for the user on the back end
     // Subsequent requests from the user will have a `req.user` object
     req.logIn(user, (err) => {
@@ -28,8 +29,23 @@ router.get("/callback", (req, res, next) => {
         return next(err);
       }
 
+      db("users")
+      .where("emailaddress", user.emails)
+      .then(dbuser => {
+        if (dbuser.length === 0) {
+          db("users")
+          .insert({'username': user.names, 'emailaddress': user.emails})
+          .then(id => {
+            res.status(201).json(id);
+          })
+          .catch(err => res.status(500).json({ errorMsg: "Unable to add user to user database.", err}))
+        }
+        res.redirect('/auth/profile');
+
+      })
+
       // Redirects to /auth/profile for the time being
-      res.redirect("/auth/profile");
+      //res.redirect("/auth/profile");
       // res.redirect(process.env.FRONT_END_URL);
     });
   })(req, res, next);
