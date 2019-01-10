@@ -1,5 +1,6 @@
 const express = require("express")
 const passport = require("passport");
+const populateUser = require("../middlewares/populateUser");
 
 const router = express.Router();
 
@@ -37,8 +38,11 @@ router.get("/callback", (req, res, next) => {
 
 // Provides information about the user to the client app, which can then
 // determine what content to show the user
-router.get("/profile", (req, res) => {
+router.get("/profile", populateUser, (req, res) => {
   const data = {};
+  if (req.db_user) {
+    data.db_user = req.db_user;
+  }
   if (req.user) {
     data.user = req.user;
   } else {
