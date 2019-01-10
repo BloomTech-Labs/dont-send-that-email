@@ -1,9 +1,23 @@
+// Configure ENV variables immediately
+require("dotenv").config();
 
 const express = require("express");
+const session = require("express-session");
+const sessionConfig = require("./config/session")
+const passport = require("./config/passport");
+const db = require("./data/dbconfig.js");
+const authRouter = require("./routers/auth");
 
 const app = express();
+
+// Initialize middlewares
 app.use(express.json());
-const db = require("./data/dbconfig.js");
+app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
@@ -32,4 +46,4 @@ app.post("/users", (req, res) => {
     .catch(err => res.status(500).json({ errorMsg: "Unable to add user to user database.", err})
 )})
 
-app.listen(process.env.PORT || 3000, () => console.log("listening"))
+app.listen(process.env.PORT || 5000, () => console.log("listening"))
