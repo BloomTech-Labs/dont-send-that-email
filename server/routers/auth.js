@@ -29,6 +29,7 @@ router.get("/callback", (req, res, next) => {
         return next(err);
       }
 
+    // Verifying if user exist in database, if not in database then it'll add user.
       db("users")
       .where("emailaddress", user.emails)
       .then(dbuser => {
@@ -41,7 +42,6 @@ router.get("/callback", (req, res, next) => {
           .catch(err => res.status(500).json({ errorMsg: "Unable to add user to user database.", err}))
         }
         res.redirect('/auth/profile');
-
       })
 
       // Redirects to /auth/profile for the time being
