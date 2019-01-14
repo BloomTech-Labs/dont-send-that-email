@@ -6,7 +6,7 @@ export default class Sidebar extends Component {
     render() {
         return(
             <div className='sideBar'>
-                <Link to='/maincontent'>
+                <Link to='/documents'>
                     <button>
                         <strong>Home</strong>
                     </button>
