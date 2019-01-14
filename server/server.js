@@ -5,6 +5,7 @@ const express = require("express");
 const session = require("express-session");
 const sessionConfig = require("./config/session")
 const passport = require("./config/passport");
+const cors = require("./config/cors");
 const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
 
@@ -12,10 +13,10 @@ const app = express();
 
 // Initialize middlewares
 app.use(express.json());
+app.use(cors());
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use("/auth", authRouter);
 
