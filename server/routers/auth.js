@@ -1,11 +1,7 @@
 const express = require("express")
 const passport = require("passport");
-<<<<<<< HEAD
 const populateUser = require("../middlewares/populateUser");
-
-=======
 const db = require("../data/dbconfig.js");
->>>>>>> 207eb4fad65ebd3b0278a2b5630780879a165c57
 const router = express.Router();
 
 // Beginning of login flow. Sends user to Auth0 to authenticate
