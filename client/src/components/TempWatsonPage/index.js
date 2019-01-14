@@ -11,8 +11,7 @@ class WatsonDummy extends Component {
   }
 
   componentDidMount() {
-    console.log('this is the secret file', process.env.SERVICE_NAME_USERNAME)
-
+    console.log('this is the secret file', process.env.API_KEY)
   }
 
   render() {
