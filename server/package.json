@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,10 @@
     "passport-auth0": "^1.1.0"
   },
   "devDependencies": {
+    "chromedriver": "^2.45.0",
+    "geckodriver": "^1.14.1",
+    "jest": "^23.6.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "sqlite3": "^4.0.4"
   }
 }
