@@ -9,9 +9,9 @@ const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3')
 
-
+//this sets up the tone analyzer. We use it in the get request.
 const toneAnalyzer = new  ToneAnalyzerV3({
-  version: 'v3',
+  version: '2017-09-21',
   iam_apikey: process.env.API_KEY,
   url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
 })
@@ -26,6 +26,21 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.post('/api/watson', (req, res) => {
+  const toneParams = {
+    tone_input: {'text': req.body.text},
+    content_type: 'application/json'
+  };
+
+  toneAnalyzer.tone(toneParams, (err, data) => {
+    if(err) {
+      //add a better error message.
+      res.status(500).json({message: "Sorry, watson is not talking to us right now", err})
+    } else {
+      res.status(200).json(data)
+    }
+  })
+})
 
 app.use("/auth", authRouter);
 
@@ -33,18 +48,7 @@ app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-app.get('/watson', (req, res) => {
-  toneAnalyzer.tone({ tone_input: "Greeting from the watson developer. We would like to say hello"},
-      function(err, tone) {
-        if(err) {
-          console.log(err)
-        } else {
-          console.log('tone endpoint: ');
-          console.log(JSON.stringify(tone, null, 2));
-        }
-      }
-   )
-})
+
 
 
 app.get("/users", (req, res) => {
