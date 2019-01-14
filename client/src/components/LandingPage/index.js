@@ -4,8 +4,8 @@ const LandingPage = () => {
       return (
         <div>
             <nav>
-            <a>Sign In</a>
-            <a>Sign Up</a>
+            <a href={process.env.REACT_APP_LOGIN_URL}>Sign In</a>
+            <a href={process.env.REACT_APP_LOGIN_URL}>Sign Up</a>
             </nav>
             <div>
                 <img src="#" alt="image goes here"/>
