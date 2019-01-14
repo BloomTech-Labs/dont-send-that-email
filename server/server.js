@@ -7,9 +7,19 @@ const sessionConfig = require("./config/session")
 const passport = require("./config/passport");
 const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3')
+
+
+const toneAnalyzer = new  ToneAnalyzerV3({
+  version: 'v3',
+  iam_apikey: process.env.API_KEY,
+  url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+})
+
+
+
 
 const app = express();
-
 // Initialize middlewares
 app.use(express.json());
 app.use(session(sessionConfig));
@@ -22,6 +32,20 @@ app.use("/auth", authRouter);
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+
+app.get('/watson', (req, res) => {
+  toneAnalyzer.tone({ tone_input: "Greeting from the watson developer. We would like to say hello"},
+      function(err, tone) {
+        if(err) {
+          console.log(err)
+        } else {
+          console.log('tone endpoint: ');
+          console.log(JSON.stringify(tone, null, 2));
+        }
+      }
+   )
+})
+
 
 app.get("/users", (req, res) => {
   db("users")
