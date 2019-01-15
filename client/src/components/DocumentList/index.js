@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Document from './Document';
 import AddDocument from './AddDocument';
-
+import Sidebar from '../Navigation/Sidebar';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 export default class DocumentList extends Component {
     constructor(props) {
@@ -38,6 +39,11 @@ export default class DocumentList extends Component {
 
         return (
             <div>
+                <div>
+                    <Breadcrumb>
+                        <BreadcrumbItem active>Home</BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
                 <div>
                     <Document />
                     <AddDocument 
