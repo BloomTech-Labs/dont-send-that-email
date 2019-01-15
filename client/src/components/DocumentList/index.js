@@ -32,7 +32,16 @@ export default class DocumentList extends Component {
         if(hasDocument === false) {
             return(
                 <div>
-                    <button onClick={this.createDocument}>Create a Document</button>
+                    <div>
+                        <Breadcrumb>
+                            <BreadcrumbItem active>Home</BreadcrumbItem>
+                        </Breadcrumb>
+                        <button>Sign Out</button>
+                    </div>
+                    <div>
+                        <Sidebar />
+                        <button onClick={this.createDocument}>Create a Document</button>
+                    </div>
                 </div>
             )
         }
@@ -43,8 +52,10 @@ export default class DocumentList extends Component {
                     <Breadcrumb>
                         <BreadcrumbItem active>Home</BreadcrumbItem>
                     </Breadcrumb>
+                    <button>Sign Out</button>
                 </div>
                 <div>
+                    <Sidebar />
                     <Document />
                     <AddDocument 
                         addDocument={this.addDocument}
