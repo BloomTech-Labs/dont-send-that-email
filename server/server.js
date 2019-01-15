@@ -8,6 +8,8 @@ const passport = require("./config/passport");
 const cors = require("./config/cors");
 const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
+const versionsRouter = require("./routers/versions");
+const emailsRouter = require("./routers/emails");
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3')
 
 //this sets up the tone analyzer. We use it in the get request.
@@ -17,16 +19,18 @@ const toneAnalyzer = new  ToneAnalyzerV3({
   url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
 })
 
-
-
-
 const app = express();
+
 // Initialize middlewares
 app.use(express.json());
 app.use(cors());
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use("/auth", authRouter);
+app.use("/versions", versionsRouter);
+app.use("/emails", emailsRouter);
 
 app.post('/api/watson', (req, res) => {
   const toneParams = {
@@ -42,16 +46,11 @@ app.post('/api/watson', (req, res) => {
       res.status(200).json(data)
     }
   })
-})
-
-app.use("/auth", authRouter);
+});
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
-
-
-
 
 app.get("/users", (req, res) => {
   db("users")
