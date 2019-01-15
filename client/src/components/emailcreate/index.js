@@ -8,22 +8,22 @@ class NewEmail extends Component {
   constructor(props) {
     super(props)
       this.state = {
-        text: ''
+        text: '',
+        analysis: null,
+        error: ''
       }
   }
 
 
   handleInputChange = (e) => {
-    console.log(e.target.value)
     this.setState({text: e.target.value})
   }
 
   analyzeText = () => {
-    console.log(this.state.text)
     axios
       .post('http://localhost:5000/api/watson', {text: this.state.text})
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => this.setState({analysis: res.data.document_tone}))
+      .catch(err => this.setState({error: err}))
   }
 
 
