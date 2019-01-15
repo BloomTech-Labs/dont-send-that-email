@@ -11,7 +11,7 @@ router.use(populateUser);
 // }
 router.post("/", (req, res) => {
   const email = {
-    user_id: req.db_user.id,
+    user_id: req.user.id,
     ...req.body
   };
   
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const emails = await db("emails").where({ user_id: req.db_user.id });
+  const emails = await db("emails").where({ user_id: req.user.id });
   res.json({ emails });
 })
 

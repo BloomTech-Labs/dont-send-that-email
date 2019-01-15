@@ -54,9 +54,6 @@ router.get("/callback", (req, res, next) => {
 // determine what content to show the user
 router.get("/profile", populateUser, (req, res) => {
   const data = {};
-  if (req.db_user) {
-    data.db_user = req.db_user;
-  }
   if (req.user) {
     data.user = req.user;
   } else {
