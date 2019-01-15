@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Settings extends Component {
+class Billing extends Component {
     render() {
         return (
         <div>
@@ -9,11 +9,13 @@ class Settings extends Component {
                 <input type="text" name="credit card" />
                 <input type="text" name="expiration date" />
                 <input type="text" name="CVV" />
+                <input type="radio" name="subscription" value="oneyear"/>
+                <input type="radio" name="subscription" value="1month" />
+                <input type="submit"/>
             </form>
-
         </div>
         )
     }
 }
 
-export default Settings;
+export default Billing;
