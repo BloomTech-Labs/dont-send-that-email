@@ -8,25 +8,28 @@ import './mainContent.css'
 
 
 class MainContent extends Component {
+    constructor(props){
+        super(props);
+    }
     render() {
         return(
             <div>
                 <div className="topContent">
-                    <span>BreadCrumbs Placeholder</span>
+                    <span>Breadcrumbs Placeholder</span>
                     <button>Sign Out</button>
                 </div>
                 <div className="bodyContent">
                     <Sidebar />
                     <Switch>
-                    <Route exact path='/documents' render={props => (
+                    <Route exact path='/documents' name='Home' render={props => (
                         <DocumentList />
                     )}
                     />
-                    <Route exact path='/billing' render={props => (
+                    <Route exact path='/billing' name='Billing' render={props => (
                         <Billing />
                     )}  
                     />
-                    <Route exact path='/settings' render={props => (
+                    <Route exact path='/settings' name='Settings' render={props => (
                         <Settings />
                     )}
                     />
