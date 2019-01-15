@@ -1,9 +1,34 @@
-import React from 'react';
+import React, {Component }from 'react';
 import {NavItem, NavLink, Nav} from 'reactstrap';
+import axios from 'axios'
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './email.css';
 
-const NewEmail = () => {
+class NewEmail extends Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        text: '',
+        analysis: null,
+        error: ''
+      }
+  }
+
+
+  handleInputChange = (e) => {
+    this.setState({text: e.target.value})
+  }
+
+  analyzeText = () => {
+    axios
+      .post('http://localhost:5000/api/watson', {text: this.state.text})
+      .then(res => this.setState({analysis: res.data.document_tone}))
+      .catch(err => this.setState({error: err}))
+  }
+
+
+
+  render() {
     return (
    
 <div>
@@ -42,19 +67,19 @@ const NewEmail = () => {
       <label for="email">Name</label>
       <input  className="form-control"  placeholder="Name" name="Name" />
     </div>
-                     
 
     <div className="form-group">
       <label for="email">To</label>
       <input  className="form-control"  placeholder="To" name="To" />
+      <textarea value={this.state.text} onChange={this.handleInputChange}>hello world</textarea>
     </div>
 
     <div className="col-sm-8 text-left"> 
       <h1>Copy Edit</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>test text here</p>
       <hr />
       <h3>Test</h3>
-      <Button type="Analyze">Analyze</Button>
+      <Button type="Analyze" onClick={this.analyzeText}>Analyze</Button>
 
       <Button type="submit">Save</Button>
 
@@ -77,7 +102,10 @@ const NewEmail = () => {
 
 
     );
+  }
+
 }
+
 
 
 export default NewEmail;

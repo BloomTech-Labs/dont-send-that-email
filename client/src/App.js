@@ -4,6 +4,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
+import NewEmail from '../src/components/emailcreate';
 
 class App extends Component {
   state = {
@@ -35,6 +36,7 @@ class App extends Component {
     return (
       <div>
         <LandingPage/>
+        < NewEmail />
       </div>
     );
   }

@@ -76,4 +76,4 @@ app.post("/users", (req, res) => {
     .catch(err => res.status(500).json({ errorMsg: "Unable to add user to user database.", err})
 )})
 
-app.listen(process.env.PORT || 5000, () => console.log("listening"))
+app.listen(process.env.PORT || 5000, () => console.log("listening on port 5000"))
