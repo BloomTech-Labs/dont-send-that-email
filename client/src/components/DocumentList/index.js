@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Document from './Document';
-import AddDocument from './AddDocument';
 import Sidebar from '../Navigation/Sidebar';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import '../../index.css';
 
 export default class DocumentList extends Component {
     constructor(props) {
@@ -35,12 +35,16 @@ export default class DocumentList extends Component {
                     <div>
                         <Breadcrumb>
                             <BreadcrumbItem active>Home</BreadcrumbItem>
+                            <button>Sign Out</button>
                         </Breadcrumb>
-                        <button>Sign Out</button>
                     </div>
-                    <div>
+                    <div className="bodyContent">
                         <Sidebar />
-                        <button onClick={this.createDocument}>Create a Document</button>
+                        <Link to="/email">
+                            <button onClick={this.createDocument}>
+                                Create a Document
+                            </button>
+                        </Link>
                     </div>
                 </div>
             )
@@ -51,15 +55,12 @@ export default class DocumentList extends Component {
                 <div>
                     <Breadcrumb>
                         <BreadcrumbItem active>Home</BreadcrumbItem>
+                        <button>Sign Out</button>
                     </Breadcrumb>
-                    <button>Sign Out</button>
                 </div>
-                <div>
+                <div className="bodyContent">
                     <Sidebar />
-                    <Document />
-                    <AddDocument 
-                        addDocument={this.addDocument}
-                    />
+                    {/* Documents Here */}
                 </div>
             </div>
         )

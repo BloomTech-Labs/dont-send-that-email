@@ -3,18 +3,22 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Settings from '../Settings';
 import DocumentList from '../DocumentList';
 import Billing from '../Billing';
-import Sidebar from '../Navigation/Sidebar';
+import NewEmail from '../emailcreate';
 
 
 class MainContent extends Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     render() {
         return(
             <Switch>
                 <Route exact path='/documents' name='Home' render={props => (
                     <DocumentList />
+                )}
+                />
+                <Route exact path='/email' render={props => (
+                    <NewEmail />
                 )}
                 />
                 <Route exact path='/billing' name='Billing' render={props => (
