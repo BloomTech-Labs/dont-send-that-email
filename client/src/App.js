@@ -8,7 +8,8 @@ import NewEmail from '../src/components/emailcreate';
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
+    testLogin: false // Fred: Just for testing locally
   }
 
   updateUser = () => {
@@ -21,22 +22,27 @@ class App extends Component {
       });
   }
 
+  handleClick = e => {
+    this.setState({ testLogin: true });
+  }
+
   componentDidMount() {
     this.updateUser();
   }
 
   render() {
-    if (this.state.user) {
+    if (this.state.user || this.state.testLogin) {
       return (
         <div>
-          Logged in!
+          <MainContent />
         </div>
       )
     }
     return (
       <div>
-        <LandingPage/>
-        < NewEmail />
+        <LandingPage
+          handleClick={this.handleClick}
+        />
       </div>
     );
   }
