@@ -2,6 +2,9 @@ import React, {Component }from 'react';
 import {NavItem, NavLink, Nav} from 'reactstrap';
 import axios from 'axios'
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import Sidebar from '../Navigation/Sidebar';
+import { Link } from 'react-router-dom';
 import './email.css';
 
 class NewEmail extends Component {
@@ -34,13 +37,18 @@ class NewEmail extends Component {
 <div>
         <nav className="navbar navbar-inverse">
   <div className="container-fluid">
-    <div className="navbar-header">
-      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <div>
+      {/* className="navbar-header" */}
+      {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span className="icon-bar"></span>
         <span className="icon-bar"></span>
         <span className="icon-bar"></span>                        
       </button>
-      <a className="navbar-brand" href="#">DSTE</a>
+      <a className="navbar-brand" href="#">DSTE</a> */}
+      <Breadcrumb>
+          <BreadcrumbItem><Link to='documents'>Home</Link></BreadcrumbItem>
+          <BreadcrumbItem active>Document</BreadcrumbItem>
+      </Breadcrumb>
     </div>
     <div className="collapse navbar-collapse" id="myNavbar">
       <ul className="nav navbar-nav">
@@ -58,9 +66,7 @@ class NewEmail extends Component {
 <div className="container-fluid text-center">    
   <div className="row content">
     <div className="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <Sidebar />
     </div>
 
     <div className="form-group">

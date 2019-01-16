@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-const LandingPage = () => {
+class LandingPage extends Component {
+    // constructor(props) {
+    //     super(props);
+    // }
+    render() {
       return (
         <div>
             <nav>
-            <a href={process.env.REACT_APP_LOGIN_URL}>Sign In</a>
-            <a href={process.env.REACT_APP_LOGIN_URL}>Sign Up</a>
+                <Link to="/documents" onClick={this.props.handleClick}><a href={process.env.REACT_APP_LOGIN_URL}>Sign In</a></Link>
+                <a href={process.env.REACT_APP_LOGIN_URL}>Sign Up</a>
             </nav>
             <div>
                 <img src="#" alt="image goes here"/>
@@ -14,6 +19,7 @@ const LandingPage = () => {
         </div>
         
       );
+    }
   }
 
   export default LandingPage;
