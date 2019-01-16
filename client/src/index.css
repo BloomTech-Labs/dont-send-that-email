@@ -21,3 +21,18 @@ code {
 .bodyContent {
   display: flex;
 }
+
+.email-card {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.email-card h2 {
+  font-style: italic;
+}
