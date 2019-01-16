@@ -19,3 +19,5 @@ router.post("/", (req, res) => {
     .then(() => res.json({ msg: "Saved transaction to database." }))
     .catch(err => res.json(err));
 });
+
+module.exports = router;
