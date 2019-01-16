@@ -37,7 +37,8 @@ class NewEmail extends Component {
 <div>
         <nav className="navbar navbar-inverse">
   <div className="container-fluid">
-    <div className="navbar-header">
+    <div>
+      {/* className="navbar-header" */}
       {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span className="icon-bar"></span>
         <span className="icon-bar"></span>
