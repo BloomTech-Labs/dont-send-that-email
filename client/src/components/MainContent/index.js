@@ -1,17 +1,39 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import Billing from "../Billing";
 
-const MainContent = () => {
-    return (
-    <div>
-        <Switch>
-            {/* <Route exact path="/" component={EmailList} /> */}
-            <Route path="/billing" component={Billing} />
- 
-        </Switch>
-    </div>
-    )
-};
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import Settings from '../Settings';
+import DocumentList from '../DocumentList';
+import Billing from '../Billing';
+import NewEmail from '../emailcreate';
 
-export default MainContent;
+
+class MainContent extends Component {
+    // constructor(props){
+    //     super(props);
+    // }
+    render() {
+        return(
+            <Switch>
+                <Route exact path='/documents' name='Home' render={props => (
+                    <DocumentList />
+                )}
+                />
+                <Route exact path='/email' render={props => (
+                    <NewEmail />
+                )}
+                />
+                <Route exact path='/billing' name='Billing' render={props => (
+                    <Billing />
+                )}  
+                />
+                <Route exact path='/settings' name='Settings' render={props => (
+                    <Settings />
+                )}
+                />
+            </Switch>
+        )
+    }
+}
+
+export default withRouter(MainContent);
+

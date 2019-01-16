@@ -30,24 +30,22 @@ router.get("/callback", (req, res, next) => {
         return next(err);
       }
 
-    // Verifying if user exist in database, if not in database then it'll add user.
+      // Verifying if user exist in database, if not in database then it'll add user.
       db("users")
-      .where("emailaddress", user.emails)
+      .where("emailaddress", user.emails[0].value)
       .then(dbuser => {
         if (dbuser.length === 0) {
+          if (!user.username) {
+            user.username = user.nickname;
+          }
           db("users")
-          .insert({'username': user.names, 'emailaddress': user.emails})
-          .then(id => {
-            res.status(201).json(id);
-          })
-          .catch(err => res.status(500).json({ errorMsg: "Unable to add user to user database.", err}))
+          .insert({'username': user.username, 'emailaddress': user.emails[0].value})
+          .then(() => res.redirect(process.env.FRONT_END_URL))
+          .catch(err => { throw err });
+        } else {
+          res.redirect(process.env.FRONT_END_URL);
         }
-        res.redirect('/auth/profile');
       })
-
-      // Redirects to /auth/profile for the time being
-      //res.redirect("/auth/profile");
-      // res.redirect(process.env.FRONT_END_URL);
     });
   })(req, res, next);
 });
@@ -56,9 +54,6 @@ router.get("/callback", (req, res, next) => {
 // determine what content to show the user
 router.get("/profile", populateUser, (req, res) => {
   const data = {};
-  if (req.db_user) {
-    data.db_user = req.db_user;
-  }
   if (req.user) {
     data.user = req.user;
   } else {

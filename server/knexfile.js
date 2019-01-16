@@ -1,6 +1,5 @@
 // Update with your config settings.
 require('dotenv').config()
-console.log(process.env.DB_PASSWORD)
 
 module.exports = {
 //SQLite is for development. Using this just to start out.
@@ -48,7 +47,8 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: './data/migrations',
+      tableName: 'dbmigrations'
     }
   }
 
