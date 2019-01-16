@@ -4,7 +4,9 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import '../../index.css';
 
+
 class Settings extends Component {
+
 
     render() {
         return (
@@ -22,11 +24,13 @@ class Settings extends Component {
                 <input type="text" name="credit card" />
                 <input type="text" name="expiration date" />
                 <input type="text" name="CVV" />
+                <input type="radio" name="subscription" value="oneyear"/>
+                <input type="radio" name="subscription" value="1month" />
+                <input type="submit"/>
             </form>
-
         </div>
         )
     }
 }
 
-export default Settings;
+export default Billing;

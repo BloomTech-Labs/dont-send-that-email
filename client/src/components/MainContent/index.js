@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Settings from '../Settings';
@@ -35,3 +36,4 @@ class MainContent extends Component {
 }
 
 export default withRouter(MainContent);
+

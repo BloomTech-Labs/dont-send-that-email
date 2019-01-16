@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import './App.css';
 import Navigation from './components/Navigation';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import NewEmail from '../src/components/emailcreate';
+
 
 class App extends Component {
   state = {
@@ -31,6 +33,7 @@ class App extends Component {
   }
 
   render() {
+
     if (this.state.user || this.state.testLogin) {
       return (
         <div>
@@ -43,6 +46,7 @@ class App extends Component {
         <LandingPage
           handleClick={this.handleClick}
         />
+
       </div>
     );
   }
