@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 
 export default class Document extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
     render() {
+        const { title, addressee } = this.props.email;
         return(
-            <div>
-                <p>Title</p>
-                <p>To: </p>
-                <p>Body</p>
+            <div className="email-card">
+                <h1>{title}</h1>
+                <h2>{addressee}</h2>
                 <div>
-                    <span>Updated</span>
-                    <button>Copy</button>
+                    <button onClick={this.props.copy}>Copy</button>
                 </div>
             </div>
         );
