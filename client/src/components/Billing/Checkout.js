@@ -2,16 +2,13 @@ import React from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
-// import STRIPE_PUBLISHABLE from './constants/stripe';
-// import PAYMENT_SERVER_URL from './constants/server';
-
 const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
   ? 'http://myapidomain.com'
-  : 'http://localhost:8080';
+  : 'http://localhost:5000';
 
   const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? 'pk_test_aedLdpMqc4VoLYgiitkAg8wC'
-  : 'pk_test_aedLdpMqc4VoLYgiitkAg8wC';
+  ? process.env.STRIPE_API_PUBLISH_KEY
+  : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
 
 const CURRENCY = 'USD';
 

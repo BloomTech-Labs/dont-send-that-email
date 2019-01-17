@@ -41,7 +41,7 @@ app.use("/auth", authRouter);
 app.use("/versions", versionsRouter);
 app.use("/emails", emailsRouter);
 app.use("/subscriptions", subscriptionsRouter);
-app.use("/stripe", PaymentRouter);
+app.use("/billing", PaymentRouter);
 
 app.post('/api/watson', (req, res) => {
   const toneParams = {

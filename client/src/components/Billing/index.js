@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import '../../index.css';
+import Checkout from './Checkout';
 
 
 class Billing extends Component {
@@ -24,8 +25,17 @@ class Billing extends Component {
                 <input type="text" name="CVV" />
                 <input type="radio" name="subscription" value="oneyear"/>
                 <input type="radio" name="subscription" value="1month" />
-                <input type="submit"/>
             </form>
+            <Checkout
+                name={'One Month'}
+                description={"One Month subscription of Don't send that email"}
+                amount={5}
+            />
+            <Checkout 
+              name={'One Year'}
+              description={"One year subscription of Don't send that email"}
+              amount={50}
+            />
         </div>
         )
     }
