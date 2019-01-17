@@ -5,9 +5,7 @@ import Sidebar from '../Navigation/Sidebar';
 import '../../index.css';
 
 
-class Settings extends Component {
-
-
+class Billing extends Component {
     render() {
         return (
         <div>
