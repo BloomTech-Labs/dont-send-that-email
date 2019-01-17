@@ -62,9 +62,7 @@ export default class DocumentList extends Component {
         </div>
         <div className="bodyContent">
           <Sidebar />
-          {this.state.emails.length
-            ? this.emailElements()
-            : this.emailCreateButton()}
+            {this.emailElements()}{this.emailCreateButton()}
         </div>
       </div>
     );

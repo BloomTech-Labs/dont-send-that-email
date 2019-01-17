@@ -16,7 +16,9 @@ const populateUser = async (req, res, next) => {
     const subscription = await db("subscriptions")
     .orderBy("date_created", "desc")
     .first()
-    req.user.subscribed = isSubscriptionActive(subscription);
+    if(subscription){
+      req.user.subscribed = isSubscriptionActive(subscription);
+    }
     
     console.log("[populateUser] - found ", req.user);
     next();
