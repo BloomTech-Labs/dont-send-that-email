@@ -10,12 +10,9 @@ const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
 const versionsRouter = require("./routers/versions");
 const emailsRouter = require("./routers/emails");
-const subscriptionsRouter = require("./routers/subscriptions");
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3')
 const SERVER_CONFIGS = require('./constants/server');
 const paymentsRouter = require('./routers/payments');
-
-const configureServer = require('./config/corsforstripe.js');
 
 //this sets up the tone analyzer. We use it in the get request.
 const toneAnalyzer = new  ToneAnalyzerV3({
@@ -33,13 +30,9 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Stripe middleware
-// configureServer(app);
-
 app.use("/auth", authRouter);
 app.use("/versions", versionsRouter);
 app.use("/emails", emailsRouter);
-app.use("/subscriptions", subscriptionsRouter);
 app.use("/billing", paymentsRouter);
 
 app.post('/api/watson', (req, res) => {
