@@ -5,18 +5,31 @@ import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import { Link } from 'react-router-dom';
+import Editor from './Editor';
 import './email.css';
 
 class NewEmail extends Component {
-  constructor(props) {
-    super(props)
-      this.state = {
-        text: '',
-        analysis: null,
-        error: '',
-        title: '',
-        addressee: ''
-      }
+  state = {
+    title: "",
+    text: "hello world",
+    tone_analysis: null,
+    error: "",
+    addressee: ""
+  }
+
+  componentDidMount () {
+    const { id } = this.props.match.params;
+    if (id) {
+      this.fetchEmail(id);
+    }
+  }
+
+  fetchEmail = (id) => {
+    axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
+      .then(({ data }) => {
+        const { title, addressee } = data.email;
+        this.setState({ title, addressee });
+      });
   }
 
   handleInputChange = (e) => {
@@ -30,23 +43,37 @@ class NewEmail extends Component {
       .catch(err => this.setState({error: err}))
   }
 
-  handleSave = e => {
+  handleSave = async (e) => {
     e.preventDefault();
-    let data = {
-      title: this.state.title,
-      addressee: this.state.addressee
+    const body = {
+      email: {
+        title: this.state.title,
+        addressee: this.state.addressee
+      },
+      version: {
+        text: this.state.text,
+        tone_analysis: this.state.tone_analysis
+      }
     }
+
+    if (this.props.match.params.id) {
+      body.email.id = this.props.match.params.id;
+    }
+
     
     let headers = {
       withCredentials: true,
       headers: {'Authorization': process.env.USER_COOKIE}
     }
-    console.log("Hello");
-    console.log(data);
-    axios
-      .post(process.env.REACT_APP_EMAILS_URL, data, headers)
-      .then(response=> {console.log(response)})
-      .catch(err => console.log(err))
+
+    try {
+      const { data: { id } } = await axios.post(process.env.REACT_APP_EMAILS_URL, body, headers)
+      if (!this.props.match.params.id) {
+        this.props.history.push(`/email/${id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -88,14 +115,14 @@ class NewEmail extends Component {
     </div>
 
     <div className="form-group">
-      <label for="email">Name</label>
-      <input  className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+      <label htmlFor="email">Name</label>
+      <input className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
     </div>
 
     <div className="form-group">
-      <label for="email">To</label>
+      <label htmlFor="email">To</label>
       <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
-      <textarea value={this.state.text} onChange={this.handleInputChange}>hello world</textarea>
+      <Editor html={this.state.text} onChange={this.handleInputChange} />
     </div>
 
     <div className="col-sm-8 text-left"> 
