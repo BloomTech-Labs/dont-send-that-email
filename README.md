@@ -7,6 +7,25 @@ DSTE uses an AI to preview the emotional tone of a message. Users can avoid send
 This puts a barrier between you and a bad email or messaging experience. We'll help you sending a good email that convey's the right emotional tone.
 
 
+Tech Used:
+    Front End: React, React Router, Reactstrap, Axios
+
+    Back End : Express, Node, Passport, Knex, Bcrypt
+
+    APIs     : IBM Watson, Stripe, OAuth
+
+    Libraries: Paper Kit 2
+
+    Services : Netlify, Heroku
+
+
+Live Page URL: https://dont-send-that-email.netlify.com/
+
+
+Local Deployment Instructions:
+In Progress
+
+
 #Collaborators
 
 [Tai Le](https://github.com/Ta1grr)
