@@ -9,7 +9,7 @@ class LandingPage extends Component {
       return (
         <div>
             <nav>
-                <Link to="/documents" onClick={this.props.handleClick}><a href={process.env.REACT_APP_LOGIN_URL}>Sign In</a></Link>
+                <a href={process.env.REACT_APP_LOGIN_URL}>Sign In</a>
                 <a href={process.env.REACT_APP_LOGIN_URL}>Sign Up</a>
             </nav>
             <div>

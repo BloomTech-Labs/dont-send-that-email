@@ -9,15 +9,24 @@ router.use(populateUser);
 //    title,
 //    addressee
 // }
-router.post("/", (req, res) => {
-  const email = {
-    user_id: req.user.id,
-    ...req.body
-  };
-  db("emails")
-    .insert(email)
-    .then(() => res.json({ msg: "Saved a new email" }))
-    .catch(err => res.json({ err }));
+router.post("/", async (req, res) => {
+  try {
+    const { email, version } = req.body;
+    email.user_id = req.user.id;
+    if (email.id) {
+      const { title, addressee, id } = email;
+      await db("emails").where({ id }).update({ title, addressee });
+    } else {
+      email.id = (await db("emails").insert(email))[0];
+    } 
+
+    version.email_id = email.id;
+    await db("versions").insert(version);
+    res.json({ id: email.id });
+  } catch (err) {
+    res.json({ err });
+    throw err;
+  }
 });
 
 router.get("/:id", async (req, res) => {
