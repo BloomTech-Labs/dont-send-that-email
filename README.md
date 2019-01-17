@@ -23,7 +23,7 @@ Live Page URL: https://dont-send-that-email.netlify.com/
 
 
 Local Deployment Instructions:
-In Progress
+Sign Up, then add '/documents' to the url. The user can create a document that displays the title and addressee. Billing and Settings in progress.
 
 
 #Collaborators
