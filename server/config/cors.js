@@ -8,4 +8,5 @@ const config = {
   "credentials": true
 }
 
+
 module.exports = () => cors(config);
