@@ -5,6 +5,8 @@ import StripeCheckout from 'react-stripe-checkout';
 const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL;
 const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
 
+console.log("stripe key", STRIPE_PUBLISHABLE);
+
 const CURRENCY = 'USD';
 
 // All API requests expect amounts to be provided in a currency’s smallest unit. 
