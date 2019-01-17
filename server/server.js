@@ -34,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Stripe middleware
-configureServer(app);
+// configureServer(app);
 PaymentRouter(app);
 
 app.use("/auth", authRouter);
