@@ -18,10 +18,8 @@ class MainContent extends Component {
                     <DocumentList />
                 )}
                 />
-                <Route exact path='/email' render={props => (
-                    <NewEmail />
-                )}
-                />
+                <Route exact path='/email' component={NewEmail} />
+                <Route exact path='/email/:id' component={NewEmail} />
                 <Route exact path='/billing' name='Billing' render={props => (
                     <Billing />
                 )}  
