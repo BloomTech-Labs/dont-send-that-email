@@ -14,7 +14,6 @@ router.post("/", (req, res) => {
     user_id: req.user.id,
     ...req.body
   };
-  
   db("emails")
     .insert(email)
     .then(() => res.json({ msg: "Saved a new email" }))
