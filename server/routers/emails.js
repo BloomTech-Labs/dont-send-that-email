@@ -19,13 +19,13 @@ router.post("/", async (req, res) => {
     } else {
       email.id = (await db("emails").insert(email))[0];
     } 
+    console.log("email", email);
 
     version.email_id = email.id;
     await db("versions").insert(version);
     res.json({ id: email.id });
   } catch (err) {
     res.json({ err });
-    throw err;
   }
 });
 

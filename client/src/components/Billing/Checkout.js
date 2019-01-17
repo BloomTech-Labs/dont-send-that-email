@@ -2,13 +2,9 @@ import React from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
-const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'http://myapidomain.com'
-  : 'http://localhost:5000';
-
-  const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? process.env.STRIPE_API_PUBLISH_KEY
-  : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
+const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL;
+const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
+console.log(STRIPE_PUBLISHABLE);
 
 const CURRENCY = 'USD';
 
@@ -16,8 +12,6 @@ const CURRENCY = 'USD';
 // For example, to charge $10 USD, provide an amount value of 1000 (i.e, 1000 cents).
 
 const fromUSDToCent = amount => amount*100;
-
-
 
 const successPayment = data => {
     alert('Payment Successful');
@@ -36,7 +30,7 @@ const successPayment = data => {
         source: token.id,
         currency: CURRENCY,
         amount: fromUSDToCent(amount)
-      })
+      }, { withCredentials: true })
       .then(successPayment)
       .catch(errorPayment);
   

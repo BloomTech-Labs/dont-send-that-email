@@ -14,7 +14,7 @@ class MainContent extends Component {
     render() {
         return(
             <Switch>
-                <Route exact path='/documents' name='Home' render={props => (
+                <Route exact path='/' name='Home' render={props => (
                     <DocumentList />
                 )}
                 />
