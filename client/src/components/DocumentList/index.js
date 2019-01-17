@@ -35,9 +35,7 @@ export default class DocumentList extends Component {
     ));
 
   emailCreateButton = () => (
-    <Link to="/email">
-      <button onClick={this.createDocument}>Create a Document</button>
-    </Link>
+    <Link to="/email"><button>Create Email</button></Link>
   );
 
   createDocument = e => {
