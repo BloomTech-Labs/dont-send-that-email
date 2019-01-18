@@ -7,12 +7,17 @@ const db = require('../data/dbconfig');
 router.use(populateUser);
 
 const postStripeCharge = (user, res) => async (stripeErr, stripeRes) => {
-  console.log("response object", res);
   if (stripeErr) {
+    console.log(stripeErr);
     res.status(500).send({ error: stripeErr });
   } else {
-    const id = (await db("subscriptions").insert({ user_id: user.id, transaction_id: stripeRes.id, duration: 999 }))[0];
-    res.status(200).send({ success: stripeRes, id });
+    try {
+      const id = (await db("subscriptions").insert({ user_id: user.id, transaction_id: stripeRes.id, duration: 999 }))[0];
+      res.status(200).send({ success: stripeRes, id });
+    } catch (err) {
+      res.status(500).send({ err: "Unable to persist subscription data." });
+      throw err;
+    }
   }
 }
 
