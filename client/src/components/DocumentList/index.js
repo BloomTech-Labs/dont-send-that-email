@@ -8,7 +8,7 @@ import "../../index.css";
 
 export default class DocumentList extends Component {
   state = {
-    emails: [],
+    emails: []
   };
 
   componentDidMount = async () => {
@@ -27,25 +27,29 @@ export default class DocumentList extends Component {
           console.log(err);
         }
       });
-  }
+  };
 
   emailElements = () =>
     this.state.emails.map((e, i) => (
-      <Document key={i} email={e} copy={this.createDocument} />
+      <Document key={i} email={e} copy={this.copyEmail(e)} />
     ));
 
   emailCreateButton = () => (
-    <Link to="/email"><button>Create Email</button></Link>
+    <Link to="/email">
+      <button>Create Email</button>
+    </Link>
   );
 
-  createDocument = e => {
-    const newEmail = { title: "", addressee: "" };
-    axios.post(process.env.REACT_APP_EMAILS_URL, newEmail, { withCredentials: true })
+  copyEmail = ({ title, addressee }) => e => {
+    const body = { email: { title, addressee } }
+    console.log(body)
+    axios.post( process.env.REACT_APP_EMAILS_URL, body, { withCredentials: true })
       .then(({ data }) => {
-        if (data.err) {
-          return console.log("Email creation unsuccessful");
+        if (data.id) {
+          this.fetchEmails();
+        } else {
+          console.log("Email copy operation failed.", data.err)
         }
-        this.fetchEmails();
       });
   };
 
@@ -60,7 +64,8 @@ export default class DocumentList extends Component {
         </div>
         <div className="bodyContent">
           <Sidebar />
-            {this.emailElements()}{this.emailCreateButton()}
+          {this.emailElements()}
+          {this.emailCreateButton()}
         </div>
       </div>
     );
