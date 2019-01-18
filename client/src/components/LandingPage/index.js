@@ -54,7 +54,7 @@ class LandingPage extends Component {
     </nav>
         
     
-<div className="page-header computer" data-parallax="true" >
+<div className="page-header computer" data-parallax="false" >
     <div className="filter"></div>
         <div className="container">
             <div className="motto text-center">
@@ -85,7 +85,7 @@ class LandingPage extends Component {
                         <div className="description">
                             <h4 className="info-title">Family and friends</h4>
                             <p className="description">Our product can help you give the proper holiday wish or casual conversation.</p>
-                            <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+                            <a href="#pkp" className="btn btn-link btn-danger">See more</a>
                         </div>
                     </div>
                 </div>
@@ -152,10 +152,10 @@ class LandingPage extends Component {
                             Did you meet this week MVP yet?
                             </p>
                         </div>
-                        <div class="card-footer text-center">
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+                        <div className="card-footer text-center">
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
@@ -177,9 +177,9 @@ class LandingPage extends Component {
                             </p>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
@@ -196,14 +196,14 @@ class LandingPage extends Component {
                                     <h6 className="card-category">Developer</h6>
                                 </div>
                             </a>
-                            <p class="card-description text-center">
+                            <p className="card-description text-center">
                             We chose NodeJS because it is highly performant event-driven response cycle allows for high traffic.
                             </p>
                         </div>
                         <div className="card-footer text-center">
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
@@ -217,31 +217,31 @@ class LandingPage extends Component {
                     <div className="col-md-8 ml-auto mr-auto">
                         <h2 className="text-center">Keep in touch?</h2>
                         <form className="contact-form">
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div className="row">
+                                <div className="col-md-6">
                                     <label>Name</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="nc-icon nc-single-02"></i>
+                                    <div className="input-group">
+                                        <span className="input-group-addon">
+                                            <i className="nc-icon nc-single-02"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="Name"/>
+                                        <input type="text" className="form-control" placeholder="Name"/>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div className="col-md-6">
                                     <label>Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="nc-icon nc-email-85"></i>
+                                    <div className="input-group">
+                                        <span className="input-group-addon">
+                                            <i className="nc-icon nc-email-85"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="Email"/>
+                                        <input type="text" className="form-control" placeholder="Email"/>
                                     </div>
                                 </div>
                             </div>
                             <label>Message</label>
-                            <textarea class="form-control" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
-                            <div class="row">
-                                <div class="col-md-4 ml-auto mr-auto">
-                                    <button class="btn btn-danger btn-lg btn-fill">Send Message</button>
+                            <textarea className="form-control" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
+                            <div className="row">
+                                <div className="col-md-4 ml-auto mr-auto">
+                                    <button className="btn btn-danger btn-lg btn-fill">Send Message</button>
                                 </div>
                             </div>
                         </form>

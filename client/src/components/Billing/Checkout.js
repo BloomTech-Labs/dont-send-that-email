@@ -3,14 +3,12 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'https://dont-send-that-email.herokuapp.com'
+  ? 'http://myapidomain.com'
   : 'http://localhost:5000';
 
   const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? process.env.REACT_APP_STRIPE_API_PUBLISH_KEY
+  ? process.env.STRIPE_API_PUBLISH_KEY
   : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
-
-console.log("stripe key", STRIPE_PUBLISHABLE);
 
 const CURRENCY = 'USD';
 
@@ -18,6 +16,8 @@ const CURRENCY = 'USD';
 // For example, to charge $10 USD, provide an amount value of 1000 (i.e, 1000 cents).
 
 const fromUSDToCent = amount => amount*100;
+
+
 
 const successPayment = data => {
     alert('Payment Successful');
