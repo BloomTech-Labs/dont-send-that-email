@@ -2,13 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
-const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'https://dont-send-that-email.herokuapp.com'
-  : 'http://localhost:5000';
-
-  const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? process.env.REACT_APP_STRIPE_API_PUBLISH_KEY
-  : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
+const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL;
+const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
 
 console.log("stripe key", STRIPE_PUBLISHABLE);
 
@@ -24,30 +19,30 @@ const successPayment = data => {
     console.log(data);
   };
   
-  const errorPayment = data => {
-    alert('Payment Error');
-    console.log(data);
-  };
+const errorPayment = data => {
+  alert('Payment Error');
+  console.log(data);
+};
+
+const onToken = (amount, description) => token =>
+  axios.post(PAYMENT_SERVER_URL,
+    {
+      description,
+      source: token.id,
+      currency: CURRENCY,
+      amount: fromUSDToCent(amount)
+    }, { withCredentials: true })
+    .then(successPayment)
+    .catch(errorPayment);
   
-  const onToken = (amount, description) => token =>
-    axios.post(PAYMENT_SERVER_URL,
-      {
-        description,
-        source: token.id,
-        currency: CURRENCY,
-        amount: fromUSDToCent(amount)
-      })
-      .then(successPayment)
-      .catch(errorPayment);
+const Checkout = ({ name, description, amount }) =>
+  <StripeCheckout
+    name={name}
+    description={description}
+    amount={fromUSDToCent(amount)}
+    token={onToken(amount, description)}
+    currency={CURRENCY}
+    stripeKey={STRIPE_PUBLISHABLE}
+  />
   
-  const Checkout = ({ name, description, amount }) =>
-    <StripeCheckout
-      name={name}
-      description={description}
-      amount={fromUSDToCent(amount)}
-      token={onToken(amount, description)}
-      currency={CURRENCY}
-      stripeKey={STRIPE_PUBLISHABLE}
-    />
-  
-  export default Checkout;
+export default Checkout;
