@@ -14,7 +14,8 @@ class NewEmail extends Component {
     text: "hello world",
     tone_analysis: null,
     error: "",
-    addressee: ""
+    addressee: "",
+    versions: []
   }
 
   componentDidMount () {
@@ -27,8 +28,9 @@ class NewEmail extends Component {
   fetchEmail = (id) => {
     axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
       .then(({ data }) => {
-        const { title, addressee } = data.email;
-        this.setState({ title, addressee });
+        const { title, addressee, versions } = data.email;
+        const text = versions.pop().text;
+        this.setState({ title, addressee, versions, text });
       });
   }
 
