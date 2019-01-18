@@ -42,6 +42,7 @@ export default class DocumentList extends Component {
 
   copyEmail = ({ title, addressee }) => e => {
     const body = { email: { title, addressee } }
+    console.log(body)
     axios.post( process.env.REACT_APP_EMAILS_URL, body, { withCredentials: true })
       .then(({ data }) => {
         if (data.id) {

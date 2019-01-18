@@ -1,7 +1,6 @@
 import React, {Component }from 'react';
-import {NavItem, NavLink, Nav} from 'reactstrap';
 import axios from 'axios';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import { Link } from 'react-router-dom';
@@ -28,9 +27,13 @@ class NewEmail extends Component {
   fetchEmail = (id) => {
     axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
       .then(({ data }) => {
-        const { title, addressee, versions } = data.email;
-        const text = versions.pop().text;
-        this.setState({ title, addressee, versions, text });
+        const state = { ...this.state, ...data.email };
+        // Grab the latest version and set the text to match
+        // TODO: set the version number instead and let user navigate between versions
+        if (data.email.versions.length) {
+          state.text = data.email.versions.pop().text;
+        }
+        this.setState(state);
       });
   }
 
@@ -93,18 +96,18 @@ class NewEmail extends Component {
       </button>
       <a className="navbar-brand" href="#">DSTE</a> */}
       <Breadcrumb>
-          <BreadcrumbItem><Link to='documents'>Home</Link></BreadcrumbItem>
+          <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
           <BreadcrumbItem active>Document</BreadcrumbItem>
       </Breadcrumb>
     </div>
     <div className="collapse navbar-collapse" id="myNavbar">
       <ul className="nav navbar-nav">
-        <li className="active"><a href="#">Home</a></li>
-        {/* <li><a href="#">SignOut</a></li> */}
+        <li className="active"><a href="/">Home</a></li>
+        {/* <li><a href="/">SignOut</a></li> */}
  
       </ul>
       <ul className="nav navbar-nav navbar-right">
-        <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+        <li><a href="/"><span className="glyphicon glyphicon-log-in"></span> SignOut</a></li>
       </ul>
     </div>
   </div>
@@ -140,13 +143,13 @@ class NewEmail extends Component {
     </div>
     <div className="col-sm-2 sidenav">
       <div className="well">
-      <a href="#">Angry <span className="badge">5%</span></a><br />
+      <a href="/">Angry <span className="badge">5%</span></a><br />
       </div>
       <div className="well">
-      <a href="#">Sadness<span className="badge">10%</span></a>< br />
+      <a href="/">Sadness<span className="badge">10%</span></a>< br />
       </div>
       <div className="well">
-      <a href="#">Joy <span className="badge">5%</span></a><br />
+      <a href="/">Joy <span className="badge">5%</span></a><br />
       </div>
     </div>
   </div>
