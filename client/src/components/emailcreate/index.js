@@ -49,6 +49,7 @@ class NewEmail extends Component {
   }
 
   handleSave = async (e) => {
+    console.log('from handle save', e)
     e.preventDefault();
     const body = {
       email: {
