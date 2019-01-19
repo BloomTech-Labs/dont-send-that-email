@@ -123,13 +123,11 @@ class NewEmail extends Component {
       <div className="row align-items-start">
         <div className='col'>
           <div className='form-group'>
-            <label htmlFor="email">Name</label>
             <input className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
         </div>
         <div className='col'>
           <div className='form-group'>
-            <label htmlFor="email">To</label>
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
           </div>
         </div>
@@ -140,8 +138,20 @@ class NewEmail extends Component {
             <Editor className='editor' html={this.state.text} onChange={this.handleInputChange} />
           </div>
         </div>
+        {/*I thought we'd have a column next to the text where the analysis and colors pop up*/}
         <div className="analysis col-3">
-          analysis
+          <div className="row alert-danger">
+            Anger 50%
+          </div>
+          <div className="row alert-danger">
+            Anger 50%
+          </div>
+          <div className="row alert-primary">
+            Anger 50%
+          </div>
+          <div className="row alert-success">
+            Happiness 50%
+          </div>
         </div>
       </div>
       <div className='row align-items-center'>
@@ -154,19 +164,6 @@ class NewEmail extends Component {
         <div className="col">
           <Button type="submit">Cancel</Button>
         </div>
-      </div>
-    </div>
-
-
-    <div className="col-sm-2 sidenav">
-      <div className="well">
-      <a href="/">Angry <span className="badge">5%</span></a><br />
-      </div>
-      <div className="well">
-      <a href="/">Sadness<span className="badge">10%</span></a>< br />
-      </div>
-      <div className="well">
-      <a href="/">Joy <span className="badge">5%</span></a><br />
       </div>
     </div>
   </div>
