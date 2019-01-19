@@ -119,28 +119,45 @@ class NewEmail extends Component {
       <Sidebar />
     </div>
 
-    <div className="form-group">
-      <label htmlFor="email">Name</label>
-      <input className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+    <div className="container">
+      <div className="row align-items-start">
+        <div className='col'>
+          <div className='form-group'>
+            <label htmlFor="email">Name</label>
+            <input className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+          </div>
+        </div>
+        <div className='col'>
+          <div className='form-group'>
+            <label htmlFor="email">To</label>
+            <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
+          </div>
+        </div>
+      </div>
+      <div className='row align-items-center'>
+        <div className="col">
+          <div className="form-group">
+            <Editor className='editor' html={this.state.text} onChange={this.handleInputChange} />
+          </div>
+        </div>
+        <div className="analysis col-3">
+          analysis
+        </div>
+      </div>
+      <div className='row align-items-center'>
+        <div className="col">
+          <Button type="Analyze" onClick={this.analyzeText}>Analyze</Button>
+        </div>
+        <div className="col">
+          <Button type="submit" onClick={this.handleSave}>Save</Button>
+        </div>
+        <div className="col">
+          <Button type="submit">Cancel</Button>
+        </div>
+      </div>
     </div>
 
-    <div className="form-group">
-      <label htmlFor="email">To</label>
-      <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
-      <Editor html={this.state.text} onChange={this.handleInputChange} />
-    </div>
 
-    <div className="col-sm-8 text-left"> 
-      <h1>Copy Edit</h1>
-      <p>test text here</p>
-      <hr />
-      <h3>Test</h3>
-      <Button type="Analyze" onClick={this.analyzeText}>Analyze</Button>
-
-      <Button type="submit" onClick={this.handleSave}>Save</Button>
-
-      <Button type="submit">Cancel</Button>
-    </div>
     <div className="col-sm-2 sidenav">
       <div className="well">
       <a href="/">Angry <span className="badge">5%</span></a><br />

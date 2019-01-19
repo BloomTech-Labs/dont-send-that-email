@@ -11,7 +11,7 @@ import NewEmail from '../src/components/emailcreate';
 class App extends Component {
   state = {
     user: null,
-    testLogin: false // Fred: Just for testing locally
+    testLogin: true// Fred: Just for testing locally
   }
 
   updateUser = () => {
