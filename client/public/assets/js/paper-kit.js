@@ -135,7 +135,7 @@ pk = {
     }, 4),
 
     checkScrollForTransparentNavbar: debounce(function() {
-        	if($(document).scrollTop() > $(".navbar").attr("color-on-scroll") ) {
+        	if($(window).scrollTop() > $(".navbar").attr("color-on-scroll") ) {
                 if(transparent) {
                     transparent = false;
                     $('.navbar[color-on-scroll]').removeClass('navbar-transparent');

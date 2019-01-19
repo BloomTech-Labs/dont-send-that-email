@@ -6,6 +6,8 @@ import Navigation from './components/Navigation';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import NewEmail from '../src/components/emailcreate';
+import 'typeface-montserrat';
+
 
 
 class App extends Component {
