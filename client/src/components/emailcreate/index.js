@@ -132,7 +132,9 @@ class NewEmail extends Component {
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
           </div>
         </div>
-        <div className='col border border-danger' >
+        <div className='col' >
+{/* I CANNOT figure out how to center these buttons on the Y-axis. Driving me nuts   -Chad */}
+
 {/* version buttons go here. They need an arrow icon  -Chad */}
             <button type='button' className="btn btn-secondary mr-2">Older</button>
             <button type='button' className="btn btn-secondary ml-2">Newer</button>
