@@ -120,17 +120,26 @@ class NewEmail extends Component {
     </div>
 
     <div className="container">
-      <div className="row align-items-start">
+      <div className="row align-items-start ">
     {/* the subject line field -Chad */}
+        
         <div className='col'>
-          <div className='form-group mt-4'>
+          <div className='form-group mb-1 mt-4'>
             <input className="form-control"  placeholder="Subject Line" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
-        </div>
-        <div className='col'>
     {/* the addressee field -Chad*/}
-          <div className='form-group mt-4'>
+          <div className='form-group mt-1'>
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
+          </div>
+        </div>
+        <div className='col' >
+{/* version buttons go here. They need an arrow icon  -Chad */}
+          <div className="pt-6">
+            <button type='button' className="btn btn-secondary">Older</button>
+            <button type='button' className="btn btn-secondary">Newer</button>
+          </div>
+          <div className="row d-flex align-items-center">
+            Edit 4/458
           </div>
         </div>
       </div>
@@ -160,9 +169,10 @@ class NewEmail extends Component {
         </div>
       </div>
       <div className='row align-items-center d-flex justify-content-center mt-6'>
-          <Button className='ml-3 mr-3' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
-          <Button className='ml-3 mr-3' type="submit" onClick={this.handleSave}>Save</Button>
-          <Button className='ml-3 mr-3' type="submit">Cancel</Button>
+{/* i wrote some css to make the buttons the same width -Chad */}
+          <Button className='ml-3 mr-3 mt-3 action-buttons' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
+          <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit" onClick={this.handleSave}>Save</Button>
+          <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit">Cancel</Button>
       </div>
     </div>
   </div>
