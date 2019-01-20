@@ -171,7 +171,8 @@ class NewEmail extends Component {
       <div className='row d-flex justify-content-start mt-6'>
 {/* i wrote some css to make the buttons the same width -Chad */}
           <Button className='ml-3 mr-3 mt-3 action-buttons' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
-          <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit" onClick={this.handleSave}>Save</Button>
+{/* adding ternary operator for future use of save vs save as. We have to decide on how we identify the current version*/}
+          <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit" onClick={this.handleSave}>{this.state.versions ? "Save" : "Save As"}</Button>
           <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit">Cancel</Button>
       </div>
     </div>
