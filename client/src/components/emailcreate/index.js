@@ -123,7 +123,7 @@ class NewEmail extends Component {
       <div className="row align-items-start ">
     {/* the subject line field -Chad */}
         
-        <div className='col'>
+        <div className='col border border-sm-danger'>
           <div className='form-group mb-1 mt-4'>
             <input className="form-control"  placeholder="Subject Line" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
@@ -168,7 +168,7 @@ class NewEmail extends Component {
           </div>
         </div>
       </div>
-      <div className='row d-flex justify-content-start mt-6'>
+      <div className='row d-flex justify-content-start mt-6 '>
 {/* i wrote some css to make the buttons the same width -Chad */}
           <Button className='ml-3 mr-3 mt-3 action-buttons' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
 {/* adding ternary operator for future use of save vs save as. We have to decide on how we identify the current version*/}
