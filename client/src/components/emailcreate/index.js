@@ -132,12 +132,10 @@ class NewEmail extends Component {
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
           </div>
         </div>
-        <div className='col' >
+        <div className='col border border-danger' >
 {/* version buttons go here. They need an arrow icon  -Chad */}
-          <div className="pt-6">
-            <button type='button' className="btn btn-secondary">Older</button>
-            <button type='button' className="btn btn-secondary">Newer</button>
-          </div>
+            <button type='button' className="btn btn-secondary mr-2">Older</button>
+            <button type='button' className="btn btn-secondary ml-2">Newer</button>
           <div className="row d-flex align-items-center">
             Edit 4/458
           </div>
@@ -168,7 +166,7 @@ class NewEmail extends Component {
           </div>
         </div>
       </div>
-      <div className='row align-items-center d-flex justify-content-center mt-6'>
+      <div className='row d-flex justify-content-start mt-6'>
 {/* i wrote some css to make the buttons the same width -Chad */}
           <Button className='ml-3 mr-3 mt-3 action-buttons' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
           <Button className='ml-3 mr-3 mt-3 action-buttons' type="submit" onClick={this.handleSave}>Save</Button>
