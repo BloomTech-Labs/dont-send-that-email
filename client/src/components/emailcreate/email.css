@@ -7,11 +7,11 @@
   .action-buttons {
     width: 15%;
   }
-  
- 
+
+
   .row.content {height: 450px}
-  
- 
+
+
   .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
@@ -22,16 +22,16 @@
   .editor {
     border: lightgray 1px solid;
   }
-  
 
- 
+
+
   footer {
     background-color: #555;
     color: white;
     padding: 15px;
   }
-  
- 
+
+
   @media screen and (max-width: 767px) {
     /* .sidenav { */
     /*   height: auto; */
