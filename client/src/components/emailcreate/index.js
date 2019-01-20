@@ -10,7 +10,7 @@ import './email.css';
 class NewEmail extends Component {
   state = {
     title: "",
-    text: "hello world",
+    text: "hello world. Here's a bunch of text to give a more normal look to the way things will be in the real world. I like that we can have things here that will make a difference in the development process. That way we can have a clearer picture of whatr things will look like.",
     tone_analysis: null,
     error: "",
     addressee: "",
@@ -23,6 +23,7 @@ class NewEmail extends Component {
       this.fetchEmail(id);
     }
   }
+
 
   fetchEmail = (id) => {
     axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
@@ -85,9 +86,9 @@ class NewEmail extends Component {
     return (
    
 <div>
-        <nav className="navbar navbar-inverse">
-  <div className="container-fluid">
-    <div>
+ <nav className="navbar navbar-inverse">
+      {/* breadcrumb div right here*/}
+    <div >
       {/* className="navbar-header" */}
       {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span className="icon-bar"></span>
@@ -110,9 +111,8 @@ class NewEmail extends Component {
         <li><a href="/"><span className="glyphicon glyphicon-log-in"></span> SignOut</a></li>
       </ul>
     </div>
-  </div>
 </nav>
-  
+{/* The side nav menu*/}
 <div className="container-fluid text-center">    
   <div className="row content">
     <div className="col-sm-2 sidenav">
@@ -121,24 +121,29 @@ class NewEmail extends Component {
 
     <div className="container">
       <div className="row align-items-start">
+    {/* the subject line field -Chad */}
         <div className='col'>
-          <div className='form-group'>
-            <input className="form-control"  placeholder="Name" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+          <div className='form-group mt-4'>
+            <input className="form-control"  placeholder="Subject Line" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
         </div>
         <div className='col'>
-          <div className='form-group'>
+    {/* the addressee field -Chad*/}
+          <div className='form-group mt-4'>
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
           </div>
         </div>
       </div>
       <div className='row align-items-center'>
         <div className="col">
-          <div className="form-group">
-            <Editor className='editor' html={this.state.text} onChange={this.handleInputChange} />
+        {/*This editor component doesn't look like a form field. I'm not sure what's going on here -Chad*/}
+          <div className="border border-light form-group">
+            <Editor html={this.state.text} onChange={this.handleInputChange} />
           </div>
         </div>
-        {/*I thought we'd have a column next to the text where the analysis and colors pop up*/}
+        {/*I thought we'd have a column next to the text where the analysis and colors pop up
+        Also, we can have a CSS class that governs their behavior when they get added or changed as a result of the analysis
+           -Chad*/}
         <div className="analysis col-3">
           <div className="row alert-danger">
             Anger 50%
@@ -154,16 +159,10 @@ class NewEmail extends Component {
           </div>
         </div>
       </div>
-      <div className='row align-items-center'>
-        <div className="col">
-          <Button type="Analyze" onClick={this.analyzeText}>Analyze</Button>
-        </div>
-        <div className="col">
-          <Button type="submit" onClick={this.handleSave}>Save</Button>
-        </div>
-        <div className="col">
-          <Button type="submit">Cancel</Button>
-        </div>
+      <div className='row align-items-center d-flex justify-content-center mt-6'>
+          <Button className='ml-3 mr-3' type="Analyze" onClick={this.analyzeText}>Analyze</Button>
+          <Button className='ml-3 mr-3' type="submit" onClick={this.handleSave}>Save</Button>
+          <Button className='ml-3 mr-3' type="submit">Cancel</Button>
       </div>
     </div>
   </div>
