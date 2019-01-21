@@ -10,6 +10,7 @@ router.use(populateUser);
 //    addressee
 // }
 router.post("/", async (req, res) => {
+  console.log('from server post', req.body)
   try {
     const { email, version } = req.body;
     email.user_id = req.user.id;
