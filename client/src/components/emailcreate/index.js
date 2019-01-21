@@ -156,18 +156,7 @@ class NewEmail extends Component {
         Also, we can have a CSS class that governs their behavior when they get added or changed as a result of the analysis
            -Chad*/}
         <div className="analysis col-3">
-          <div className="row alert-danger">
-            Anger 50%
-          </div>
-          <div className="row alert-danger">
-            Anger 50%
-          </div>
-          <div className="row alert-primary">
-            Anger 50%
-          </div>
-          <div className="row alert-success">
-            Happiness 50%
-          </div>
+          <Analysis toneAnalysis={this.state.tone_analysis}/>
         </div>
       </div>
       <div className='row d-flex justify-content-start mt-6 '>

@@ -1,6 +1,6 @@
 import React, {Component }from 'react';
 const Analysis = props => {
-  if(props.tone_analysis === null) {
+  if(props.toneAnalysis === null) {
     return (
       <div>
         No analysis
@@ -11,8 +11,7 @@ const Analysis = props => {
   return (
       <div>
         should be analysis
-        {console.log(props.tone_analysis)}
-        {props.tone_analysis.sentences_tone.map(item => (
+        {props.toneAnalysis.sentences_tone.map(item => (
           item.tones.map(tone => (
             <p>{tone.tone_id}</p>
            ))
