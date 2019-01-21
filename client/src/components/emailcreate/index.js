@@ -5,6 +5,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import { Link } from 'react-router-dom';
 import Editor from './Editor';
+import Analysis from './Analysis';
 import './email.css';
 
 class NewEmail extends Component {
@@ -44,7 +45,7 @@ class NewEmail extends Component {
   analyzeText = () => {
     axios
       .post('http://localhost:5000/api/watson', {text: this.state.text})
-      .then(res => this.setState({tone_analysis: res.data.document_tone}))
+      .then(res => this.setState({tone_analysis: res.data}))
       .catch(err => this.setState({error: err}))
   }
 
@@ -143,15 +144,7 @@ class NewEmail extends Component {
       <Button type="submit">Cancel</Button>
     </div>
     <div className="col-sm-2 sidenav">
-      <div className="well">
-      <a href="/">Angry <span className="badge">5%</span></a><br />
-      </div>
-      <div className="well">
-      <a href="/">Sadness<span className="badge">10%</span></a>< br />
-      </div>
-      <div className="well">
-      <a href="/">Joy <span className="badge">5%</span></a><br />
-      </div>
+      <Analysis tone_analysis={this.state.tone_analysis}/>
     </div>
   </div>
 </div>
