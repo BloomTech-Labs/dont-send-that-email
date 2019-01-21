@@ -125,7 +125,7 @@ class NewEmail extends Component {
       <div className="row align-items-start ">
     {/* the subject line field -Chad */}
         
-        <div className='col border border-sm-danger'>
+        <div className='col'>
           <div className='form-group mb-1 mt-4'>
             <input className="form-control"  placeholder="Subject Line" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
