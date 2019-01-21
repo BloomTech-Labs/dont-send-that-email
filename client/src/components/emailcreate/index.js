@@ -10,7 +10,7 @@ import './email.css';
 class NewEmail extends Component {
   state = {
     title: "",
-    text: "hello world",
+    text: "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
     tone_analysis: null,
     error: "",
     addressee: "",
