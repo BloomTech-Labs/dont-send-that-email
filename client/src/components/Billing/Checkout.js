@@ -8,7 +8,7 @@ const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
   ? 'http://myapidomain.com'
   : 'http://localhost:5000';
 
-  const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
+const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
   ? process.env.STRIPE_API_PUBLISH_KEY
   : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
 
