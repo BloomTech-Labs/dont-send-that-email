@@ -5,12 +5,13 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import { Link } from 'react-router-dom';
 import Editor from './Editor';
+import Analysis from './Analysis';
 import './email.css';
 
 class NewEmail extends Component {
   state = {
     title: "",
-    text: "hello world. Here's a bunch of text to give a more normal look to the way things will be in the real world. I like that we can have things here that will make a difference in the development process. That way we can have a clearer picture of whatr things will look like.",
+    text: "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
     tone_analysis: null,
     error: "",
     addressee: "",
@@ -45,7 +46,7 @@ class NewEmail extends Component {
   analyzeText = () => {
     axios
       .post('http://localhost:5000/api/watson', {text: this.state.text})
-      .then(res => this.setState({analysis: res.data}))
+      .then(res => this.setState({tone_analysis: res.data}))
       .catch(err => this.setState({error: err}))
   }
 
@@ -125,7 +126,7 @@ class NewEmail extends Component {
       <div className="row align-items-start ">
     {/* the subject line field -Chad */}
         
-        <div className='col-6'>
+        <div className='col'>
           <div className='form-group mb-1 mt-4'>
             <input className="form-control"  placeholder="Subject Line" name="title" value={this.state.title} onChange={this.handleInputChange}/>
           </div>
@@ -158,18 +159,7 @@ class NewEmail extends Component {
         Also, we can have a CSS class that governs their behavior when they get added or changed as a result of the analysis
            -Chad*/}
         <div className="analysis col-3">
-          <div className="row alert-danger">
-            Anger 50%
-          </div>
-          <div className="row alert-danger">
-            Anger 50%
-          </div>
-          <div className="row alert-primary">
-            Anger 50%
-          </div>
-          <div className="row alert-success">
-            Happiness 50%
-          </div>
+          <Analysis toneAnalysis={this.state.tone_analysis}/>
         </div>
       </div>
       <div className='row d-flex justify-content-start mt-6 '>
