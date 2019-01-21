@@ -87,37 +87,46 @@ class NewEmail extends Component {
     return (
    
 <div>
- <nav className="navbar navbar-inverse">
-      {/* breadcrumb div right here*/}
-    <div className='container border border-danger' >
-      {/* className="navbar-header" */}
-      {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>                        
-      </button>
-      <a className="navbar-brand" href="#">DSTE</a> */}
-      <Breadcrumb>
-          <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
-          <BreadcrumbItem active>Document</BreadcrumbItem>
-      </Breadcrumb>
-    </div>
-    <div className="collapse navbar-collapse" id="myNavbar">
-      <ul className="nav navbar-nav">
-        <li className="active"><a href="/">Home</a></li>
-        {/* <li><a href="/">SignOut</a></li> */}
- 
-      </ul>
-      <ul className="nav navbar-nav navbar-right">
-        <li><a href="/"><span className="glyphicon glyphicon-log-in"></span> SignOut</a></li>
-      </ul>
-    </div>
-</nav>
-{/* The side nav menu*/}
-<div className="container-fluid text-center">    
-  <div className="row content">
-    <div className="col-sm-2 sidenav">
+ <div className='container'>
+   <div className="row">
+     <nav className="navbar navbar-inverse">
+          {/* breadcrumb div right here*/}
+        <div className='container border border-danger' >
+          {/* className="navbar-header" */}
+          {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>                        
+          </button>
+          <a className="navbar-brand" href="#">DSTE</a> */}
+          <Breadcrumb>
+              <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
+              <BreadcrumbItem active>Document</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="collapse navbar-collapse" id="myNavbar">
+          <ul className="nav navbar-nav">
+            <li className="active"><a href="/">Home</a></li>
+            {/* <li><a href="/">SignOut</a></li> */}
+     
+          </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <li><a href="/"><span className="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+          </ul>
+        </div>
+     </nav>
+     
+   </div>
+   <div className="row">
+     <div className="col">
       <Sidebar />
+     </div>
+   </div>
+ </div>
+{/* The side nav menu*/}
+    <div className="container-fluid text-center">    
+      <div className="row content">
+      <div className="col-sm-2 sidenav">
     </div>
 
 
