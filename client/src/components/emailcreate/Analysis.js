@@ -3,17 +3,17 @@ const Analysis = props => {
   if(props.toneAnalysis === null) {
     return (
       <div>
-        No analysis
+        <p>No analysis. Click the Analyze Button</p>
       </div>
 
         )
   }
   return (
       <div>
-        should be analysis
+      {/* Doing two map throughs here. There's propabley a better way to do this. - Chad */}
         {props.toneAnalysis.sentences_tone.map(item => (
           item.tones.map(tone => (
-            <p>{tone.tone_id}</p>
+            <p id={item.sentence_id}>{tone.tone_id}</p>
            ))
        ))}
 
