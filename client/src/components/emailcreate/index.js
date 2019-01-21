@@ -121,6 +121,7 @@ class NewEmail extends Component {
       <Sidebar />
     </div>
 
+
     <div className="container">
       <div className="row align-items-start ">
     {/* the subject line field -Chad */}
@@ -134,14 +135,16 @@ class NewEmail extends Component {
             <input  className="form-control"  placeholder="To" name="addressee" onChange={this.handleInputChange} value={this.state.addressee} />
           </div>
         </div>
-        <div className='col' >
+        <div className='col-6' >
 {/* I CANNOT figure out how to center these buttons on the Y-axis. Driving me nuts   -Chad */}
 
 {/* version buttons go here. They need an arrow icon  -Chad */}
+          <div className='row d-flex justify-content-center mt-4 mb-4'>
             <button type='button' className="btn btn-secondary mr-2">Older</button>
             <button type='button' className="btn btn-secondary ml-2">Newer</button>
-          <div className="row d-flex align-items-center">
-            Edit 4/458
+          </div>
+          <div className='row d-flex justify-content-center mb-3'>
+            edit 100/100
           </div>
         </div>
       </div>
