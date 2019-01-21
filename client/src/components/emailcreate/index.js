@@ -45,7 +45,7 @@ class NewEmail extends Component {
   analyzeText = () => {
     axios
       .post('http://localhost:5000/api/watson', {text: this.state.text})
-      .then(res => this.setState({tone_analysis: res.data.document_tone}))
+      .then(res => this.setState({analysis: res.data}))
       .catch(err => this.setState({error: err}))
   }
 
