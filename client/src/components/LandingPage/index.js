@@ -171,11 +171,11 @@ class LandingPage extends Component {
                                     <h6 className="card-category">Designer</h6>
                                 </div>
                             </a>
-                            <p class="card-description text-center">
+                            <p className="card-description text-center">
                             Hey.
                             </p>
                         </div>
-                        <div class="card-footer text-center">
+                        <div className="card-footer text-center">
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
