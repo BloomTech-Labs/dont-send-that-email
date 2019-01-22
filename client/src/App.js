@@ -11,7 +11,6 @@ import 'typeface-montserrat';
 class App extends Component {
   state = {
     user: null,
-    testLogin: false // Fred: Just for testing locally
   }
 
   updateUser = () => {
@@ -36,7 +35,7 @@ class App extends Component {
 
   render() {
 
-    if (this.state.user || this.state.testLogin) {
+    if (this.state.user) {
       return (
         <div>
           <MainContent />
