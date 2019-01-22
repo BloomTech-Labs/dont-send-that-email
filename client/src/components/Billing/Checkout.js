@@ -50,6 +50,10 @@ const Checkout = ({ name, description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
-  />
+  >
+  <button className="btn btn-danger btn-round">
+    Pay Here
+  </button>
+  </StripeCheckout>
   
 export default Checkout;

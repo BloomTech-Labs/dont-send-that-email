@@ -9,7 +9,7 @@ import Checkout from './Checkout';
 class Billing extends Component {
     render() {
         return (
-        <div>
+        <div className="container">
             <div>
                 <Breadcrumb>
                     <BreadcrumbItem><Link to='documents'>Home</Link></BreadcrumbItem>
@@ -18,6 +18,7 @@ class Billing extends Component {
                 </Breadcrumb>
             </div>
             <h1>Billing</h1>
+            <Sidebar />
             {/* <form className="bodyContent">
                 <Sidebar />
                 <input type="text" name="credit card" />
@@ -27,23 +28,25 @@ class Billing extends Component {
                 <input type="radio" name="subscription" value="1month" />
             </form> */}
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6 border rounded">
                     <h2>Free</h2>
                     <ul>
+                        <li>5 free analysis</li>
                         <li><s>Unlimited text analyze</s></li>
-                        <li>Unlimited Emails</li>
-                        <li>Sentence by sentence analysis</li>
+                        <li><s>Unlimited Emails</s></li>
+                        <li><s>Sentence by sentence analysis</s></li>
                     </ul>
-                    <Checkout
+                    {/* <Checkout
                     name={'One Month'}
                     description={"One Month subscription of Don't send that email"}
                     amount={5}
-            />
+            /> */}
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6 border rounded">
                     <h2>Paid</h2>
                     <ul>
-                        <li>Unlimited text analyze</li>
+                        <li>Ability to save versions</li>
+                        <li>Unlimited text analysis</li>
                         <li>Unlimited Emails</li>
                         <li>Sentence by sentence analysis</li>
                     </ul>

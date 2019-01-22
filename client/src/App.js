@@ -7,6 +7,7 @@ import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import NewEmail from '../src/components/emailcreate';
 import 'typeface-montserrat';
+import Sidebar from './components/Navigation/Sidebar';
 
 
 
