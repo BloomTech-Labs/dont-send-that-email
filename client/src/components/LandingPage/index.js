@@ -22,7 +22,7 @@ class LandingPage extends Component {
 	        <div className="collapse navbar-collapse" id="navbarToggler">
 	            <ul className="navbar-nav ml-auto">
 					<li className="nav-item">
-	                    <a href={process.env.REACT_APP_LOGIN_URL} class="nav-link"><i class="nc-icon nc-button-power"></i>Let's get started</a>
+                        <a href={process.env.REACT_APP_LOGIN_URL} class="nav-link"><i class="nc-icon nc-button-power"></i>Let's get started</a>
 	                </li>
 					<li className="nav-item">
                         <a className="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href={"#"} target="_blank">
