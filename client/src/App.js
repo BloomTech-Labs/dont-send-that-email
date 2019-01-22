@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 import './App.css';
-import Navigation from './components/Navigation';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
-import NewEmail from '../src/components/emailcreate';
 import 'typeface-montserrat';
 import Sidebar from './components/Navigation/Sidebar';
 
@@ -14,7 +12,6 @@ import Sidebar from './components/Navigation/Sidebar';
 class App extends Component {
   state = {
     user: null,
-    testLogin: true // Fred: Just for testing locally
   }
 
   updateUser = () => {
@@ -23,6 +20,8 @@ class App extends Component {
         const { user, err } = response.data;
         if (user) {
           this.setState({ user });
+        } else {
+          console.log(err);
         }
       });
   }
@@ -37,7 +36,7 @@ class App extends Component {
 
   render() {
 
-    if (this.state.user || this.state.testLogin) {
+    if (this.state.user) {
       return (
         <div>
           <MainContent />

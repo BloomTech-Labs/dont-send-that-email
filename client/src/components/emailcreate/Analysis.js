@@ -1,4 +1,4 @@
-import React, {Component }from 'react';
+import React from 'react';
 const Analysis = props => {
   if(props.toneAnalysis === null) {
     return (

@@ -11,7 +11,7 @@ const Settings = () => {
         <div>
             <div>
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to='documents'>Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Settings</BreadcrumbItem>
                 </Breadcrumb>
             </div>

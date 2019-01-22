@@ -15,7 +15,8 @@ class NewEmail extends Component {
     tone_analysis: null,
     error: "",
     addressee: "",
-    versions: []
+    versions: [],
+    selected_version: 0
   }
 
   componentDidMount () {
@@ -29,15 +30,57 @@ class NewEmail extends Component {
   fetchEmail = (id) => {
     axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
       .then(({ data }) => {
-        const state = { ...this.state, ...data.email };
-        // Grab the latest version and set the text to match
-        // TODO: set the version number instead and let user navigate between versions
-        if (data.email.versions.length) {
-          state.text = data.email.versions.pop().text;
+        const { email } = data;
+        if (email) {
+          const state = { ...this.state, ...data.email };
+          
+          // Set the latest version as selected
+          if (data.email.versions.length) {
+            state.selected_version = data.email.versions.length;
+          }
+
+          // Update the editor once new state is populated
+          this.setState(state, this.updateEditor);
         }
-        this.setState(state);
       });
   }
+
+  updateEditor = () => {
+    const { text } = this.selectedVersion();
+    this.setState({ text });
+  }
+
+  previousVersion = () => {
+    if (this.state.selected_version > 0) {
+      const selected_version = this.state.selected_version - 1
+      this.setState({ selected_version }, this.updateEditor);
+    } 
+  }
+
+  nextVersion = () => {
+    if (this.state.selected_version < this.state.versions.length) {
+      const selected_version = this.state.selected_version + 1;
+      this.setState({ selected_version }, this.updateEditor);
+    }
+  } 
+
+  selectedVersion = () => this.state.versions[this.state.selected_version - 1];
+
+  processTone = () => {
+    const selected = this.selectedVersion();
+    // TODO
+    // if (selected.tone_analysis) { }
+    if (selected) {
+      const { text } = selected;
+      const sentences = text.split(".");
+      const colors = ["red", "orange", "royalblue"]
+      return sentences.map((s, i) => this.tonalSentence(colors[i % colors.length], s)).join(".");
+    } else {
+      return "oops";
+    }
+  }
+
+  tonalSentence = (color, text) => (`<span style="color: ${color}">${text}</span>`);
 
   handleInputChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
@@ -140,11 +183,11 @@ class NewEmail extends Component {
 
 {/* version buttons go here. They need an arrow icon  -Chad */}
           <div className='row d-flex justify-content-center mt-4 mb-4'>
-            <button type='button' className="btn btn-secondary mr-2">Older</button>
-            <button type='button' className="btn btn-secondary ml-2">Newer</button>
+            <button type='button' className="btn btn-secondary mr-2" onClick={this.previousVersion}>Older</button>
+            <button type='button' className="btn btn-secondary ml-2" onClick={this.nextVersion}>Newer</button>
           </div>
           <div className='row d-flex justify-content-center mb-3'>
-            edit 100/100
+            edit {this.state.selected_version}/{this.state.versions.length}
           </div>
         </div>
       </div>
@@ -152,7 +195,7 @@ class NewEmail extends Component {
         <div className="col">
         {/*This editor component doesn't look like a form field. I'm not sure what's going on here -Chad*/}
           <div className="border border-light form-group">
-            <Editor html={this.state.text} onChange={this.handleInputChange} />
+            <Editor html={this.processTone(this.state.text)} onChange={this.handleInputChange} />
           </div>
         </div>
         {/*I thought we'd have a column next to the text where the analysis and colors pop up

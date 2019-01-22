@@ -12,7 +12,7 @@ class Billing extends Component {
         <div className="container">
             <div>
                 <Breadcrumb>
-                    <BreadcrumbItem><Link to='documents'>Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Billing</BreadcrumbItem>
                     <button>Sign Out</button>
                 </Breadcrumb>
