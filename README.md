@@ -14,7 +14,7 @@ Tech Used:
 
     APIs     : IBM Watson, Stripe, OAuth
 
-    Libraries: Paper Kit 2
+    Libraries: Paper Kit 2 (Bootstrap V4)
 
     Services : Netlify, Heroku
 
@@ -38,7 +38,9 @@ Sign Up, then add '/documents' to the url. The user can create a document that d
 
 [Chad Jemmett](https://github.com/ceejaay)
 
-[Thomas Greenhalgh](https://github.com/tgreenhalgh)
+[Will Kwon](https://github.com/wtkwon)
+
+Project Manager: [Thomas Greenhalgh](https://github.com/tgreenhalgh)
 
 
 
