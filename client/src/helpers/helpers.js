@@ -2,6 +2,7 @@
 //0.701269
 //0.865316
 ////0.54706
+//num is the number we get back from watson. It looke like the above numbers. It's usually to 6 or 7 decimal places.
 watsonNumberCrunch = (num) => {
   //If the number is 75 or greater. Then the emotional response is definitely there.
   //If the number is less than 50. Then it's undetected.
