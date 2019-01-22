@@ -2,9 +2,15 @@
 //0.701269
 //0.865316
 ////0.54706
-watsonNumberCrunch = (number) => {
-  //if the number is greater than 0.75  return the maximum amount
-  //if it's less than 50. Return the smallest amount
+watsonNumberCrunch = (num) => {
+  //If the number is 75 or greater. Then the emotional response is definitely there.
+  //If the number is less than 50. Then it's undetected.
+  //So the range is 25 points. We round the watson score. Times it by 100 to get a whole number.
+  //then divide by 75. 
+  //Then we only return the first two decimal places.
+  const number = Math.round(num * 100) / 75
+  return number.toFixed(2)
+
 }
 
 
