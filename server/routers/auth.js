@@ -11,6 +11,11 @@ router.get("/login", passport.authenticate("auth0", {
   res.redirect("/auth/profile");
 });
 
+router.get("/logout", (req, res) => {
+  req.logOut();
+  res.redirect(process.env.FRONT_END_URL);
+});
+
 // Auth0 will redirect the user-agent here after authentication
 // This route will redirect to the client homepage (or possibly client document list)
 router.get("/callback", (req, res, next) => {
