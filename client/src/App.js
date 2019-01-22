@@ -5,6 +5,7 @@ import './App.css';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import 'typeface-montserrat';
+import Sidebar from './components/Navigation/Sidebar';
 
 
 

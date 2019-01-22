@@ -10,7 +10,7 @@ const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
 
 const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
   ? process.env.STRIPE_API_PUBLISH_KEY
-  : 'pk_test_WoWSGAlGWFByrNP3bE3eG2NP'
+  : process.env.STRIPE_API_PUBLISH_KEY
 
 const CURRENCY = 'USD';
 
@@ -50,6 +50,10 @@ const Checkout = ({ name, description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
-  />
+  >
+  <button className="btn btn-danger btn-round">
+    Pay Here
+  </button>
+  </StripeCheckout>
   
 export default Checkout;
