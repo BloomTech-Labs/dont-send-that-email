@@ -9,7 +9,13 @@ watsonNumberCrunch = (num) => {
   //then divide by 75. 
   //Then we only return the first two decimal places.
   const number = Math.round(num * 100) / 75
-  return number.toFixed(2)
+  number.toFixed(2)
+
+  if(number.toFixed(2) > 1) {
+    return 1
+  } else {
+    return number.toFixed(2)
+  }
 
 }
 
@@ -24,6 +30,3 @@ module.exports = {
 
 }
 
-console.log(watsonNumberCrunch(0.54706))
-console.log(watsonNumberCrunch(0.865316))
-console.log(watsonNumberCrunch(0.701269))
