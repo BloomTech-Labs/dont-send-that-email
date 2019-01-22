@@ -9,19 +9,23 @@ watsonNumberCrunch = (num) => {
   //So the range is 25 points. We round the watson score. Times it by 100 to get a whole number.
   //then divide by 75. 
   //Then we only return the first two decimal places.
-  const number = Math.round(num * 100) / 75
-  number.toFixed(2)
-
-  if(number.toFixed(2) > 1) {
-    return 1
+  if(num < 0.50) {
+    return 0
   } else {
-    return number.toFixed(2)
+    const number = Math.round(num * 100) / 75
+    number.toFixed(2)
+    if(number.toFixed(2) > 1) {
+      return 1
+    } else {
+      return number.toFixed(2)
+    }
+
   }
 
 }
 
 
-
+console.log(watsonNumberCrunch(0.4988376))
 
 
 
