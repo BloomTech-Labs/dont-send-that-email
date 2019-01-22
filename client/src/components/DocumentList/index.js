@@ -59,7 +59,7 @@ export default class DocumentList extends Component {
         <div>
           <Breadcrumb>
             <BreadcrumbItem active>Home</BreadcrumbItem>
-            <button>Sign Out</button>
+            <a href={process.env.REACT_APP_BACKEND_URL + "/auth/logout"}><button>Sign Out</button></a>
           </Breadcrumb>
         </div>
         <div className="bodyContent">
