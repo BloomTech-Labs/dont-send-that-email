@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 import './App.css';
-import Navigation from './components/Navigation';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
-import NewEmail from '../src/components/emailcreate';
 import 'typeface-montserrat';
 
 
@@ -13,7 +11,7 @@ import 'typeface-montserrat';
 class App extends Component {
   state = {
     user: null,
-    testLogin: true // Fred: Just for testing locally
+    testLogin: false // Fred: Just for testing locally
   }
 
   updateUser = () => {
@@ -22,6 +20,8 @@ class App extends Component {
         const { user, err } = response.data;
         if (user) {
           this.setState({ user });
+        } else {
+          console.log(err);
         }
       });
   }

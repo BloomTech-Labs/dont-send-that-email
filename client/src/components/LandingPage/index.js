@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './index.css';
 
 class LandingPage extends Component {
@@ -22,28 +21,28 @@ class LandingPage extends Component {
 	        <div className="collapse navbar-collapse" id="navbarToggler">
 	            <ul className="navbar-nav ml-auto">
 					<li className="nav-item">
-	                    <a href={process.env.REACT_APP_LOGIN_URL} class="nav-link"><i class="nc-icon nc-button-power"></i>Let's get started</a>
+	                    <a href={process.env.REACT_APP_LOGIN_URL} className="nav-link"><i className="nc-icon nc-button-power"></i>Let's get started</a>
 	                </li>
 					<li className="nav-item">
-                        <a className="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href={"#"} target="_blank">
+                        <a className="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="http://google.com">
                             <i className="fa fa-twitter"></i>
                             <p className="d-lg-none">Twitter</p>
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href={"#"} target="_blank">
+                        <a className="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="http://google.com">
                             <i className="fa fa-facebook-square"></i>
                             <p className="d-lg-none">Facebook</p>
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href={"#"} target="_blank">
+                        <a className="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="http://google.com">
                             <i className="fa fa-instagram"></i>
                             <p className="d-lg-none">Instagram</p>
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href={"#"} target="_blank">
+                        <a className="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="http://google.com">
                             <i className="fa fa-github"></i>
                             <p className="d-lg-none">GitHub</p>
                         </a>
@@ -137,7 +136,7 @@ class LandingPage extends Component {
                 <div className="col-md-4">
                     <div className="card card-profile card-plain">
                         <div className="card-avatar">
-                            <a href={"#"}>
+                            <a href="http://google.com">
                                 <img src="./assets/img/faces/thomas.jpg" alt="..."/>
                             </a>
                         </div>
