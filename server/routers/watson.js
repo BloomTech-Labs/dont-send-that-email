@@ -13,7 +13,8 @@ const toneAnalyzer = new ToneAnalyzerV3({
   url: "https://gateway.watsonplatform.net/tone-analyzer/api"
 });
 
-router.post("/api/watson", (req, res) => {
+router.post("/", (req, res) => {
+  console.log(req.body);
   const toneParams = {
     tone_input: { text: req.body.text },
     content_type: "application/json"
