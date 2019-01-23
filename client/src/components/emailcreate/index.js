@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import striptags from "striptags";
 import { Button, Col, Container, Input, Row } from "reactstrap";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
@@ -14,7 +15,6 @@ class NewEmail extends Component {
     title: "",
     text:
       "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
-    tone_analysis: null,
     error: "",
     addressee: "",
     versions: [],
@@ -66,7 +66,12 @@ class NewEmail extends Component {
     }
   };
 
-  selectedVersion = () => this.state.versions[this.state.selected_version - 1];
+  selectedVersion = () => {
+    if (this.state.selected_version) {
+      return this.state.versions[this.state.selected_version - 1];
+    }
+    return { text: "", toneAnalysis: null };
+  };
 
   processTone = () => {
     const selected = this.selectedVersion();
@@ -91,10 +96,23 @@ class NewEmail extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  editorInput = e => {
+    const text = striptags(e.target.value);
+    this.setState({ text });
+  };
+
   analyzeText = () => {
     axios
-      .post("http://localhost:5000/api/watson", { text: this.state.text })
-      .then(res => this.setState({ tone_analysis: res.data }))
+      .post(
+        "http://localhost:5000/api/watson",
+        { text: this.state.text },
+        { withCredentials: true }
+      )
+      .then(res => {
+        const { versions } = this.state;
+        versions[this.state.selected_version - 1].toneAnalysis = res.data;
+        this.setState({ versions });
+      })
       .catch(err => this.setState({ error: err }));
   };
 
@@ -107,7 +125,7 @@ class NewEmail extends Component {
       },
       version: {
         text: this.state.text,
-        tone_analysis: this.state.tone_analysis
+        tone_analysis: this.selectedVersion().tone_analysis
       }
     };
 
@@ -130,6 +148,14 @@ class NewEmail extends Component {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  // Renames button to "save as" when editing a version that is not the latest
+  saveButton = () => {
+    if (this.state.selected_version === this.state.versions.length) {
+      return "Save";
+    }
+    return "Save as";
   };
 
   render() {
@@ -165,17 +191,19 @@ class NewEmail extends Component {
                 <Row>
                   <Col xs={{ size: 10, offset: 1 }}>
                     <Button onClick={this.analyzeText}>Analyze</Button>
-                    <Button onClick={this.handleSave}>Save</Button>
+                    <Button onClick={this.handleSave}>
+                      {this.saveButton()}
+                    </Button>
                   </Col>
                 </Row>
               </Col>
             </Row>
             <Row>
               <Col>
-                <Editor html={this.processTone()} onChange={this.handleInput} />
+                <Editor html={this.processTone()} onChange={this.editorInput} />
               </Col>
               <Col sm={{ order: 1 }}>
-                <Analysis toneAnalysis={this.state.tone_analysis} />
+                <Analysis toneAnalysis={this.selectedVersion().tone_analysis} />
               </Col>
             </Row>
           </Col>
