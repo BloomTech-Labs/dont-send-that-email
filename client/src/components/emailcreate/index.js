@@ -147,11 +147,13 @@ class NewEmail extends Component {
                   name="title"
                   value={this.state.title}
                   onChange={this.handleInput}
+                  spellCheck="false"
                 />
                 <Input
                   name="addressee"
                   value={this.state.addressee}
                   onChange={this.handleInput}
+                  spellCheck="false"
                 />
               </Col>
               <Col>

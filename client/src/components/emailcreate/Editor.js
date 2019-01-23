@@ -11,6 +11,7 @@ class ContentEditable extends React.Component {
         onBlur={this.emitChange}
         contentEditable
         dangerouslySetInnerHTML={{ __html: this.props.html }}
+        spellCheck="true"
       />
     );
   };
