@@ -14,9 +14,14 @@ class Analysis extends Component {
     axios
       .post ('http://localhost:5000/api/watson', {text: this.state.text})
       .then (res => {
+        //sentence by sentence analysis for percentage
+        //using an object as a hashmap in order to not make the big o runtime worse than it already is
         const toneAnalysis = {};
+        //loops through sentences in response
         for (let i = 0; i < res.data.sentences_tone.length; i++) {
+          //loops through the tones of the sentences in response
           for (let j = 0; j < res.data.sentences_tone[i].tones.length; j++) {
+            //if tone id is not in toneAnalysis add it to toneAnalysis as key with its score as its value
             if (
               toneAnalysis[res.data.sentences_tone[i].tones[j].tone_id] ===
               undefined
@@ -27,6 +32,8 @@ class Analysis extends Component {
               toneAnalysis[res.data.sentences_tone[i].tones[j].tone_id] !==
               undefined
             ) {
+              //if tone id is in toneAnalysis
+              //if current score is higher than score for the key in toneAnalysis then update score
               if (
                 res.data.sentences_tone[i].tones[j].score >
                 toneAnalysis[res.data.sentences_tone[i].tones[j].tone_id]
@@ -37,6 +44,7 @@ class Analysis extends Component {
             }
           }
         }
+        //make keys and loop through keys to make an object for data to be displayed convert current values to %
         const keys = Object.keys (toneAnalysis);
         const toneAnalysisArr = [];
         for (let i = 0; i < keys.length; i++) {
@@ -72,7 +80,6 @@ class Analysis extends Component {
           >
             Analyze
           </Button>
-          {/* Doing two map throughs here. There's propabley a better way to do this. - Chad */}
           {this.state.toneAnalysis.map ((item, i) => (
             <p key={i}>{Object.keys (item)[0]}: {Object.values (item)[0]}</p>
           ))}
