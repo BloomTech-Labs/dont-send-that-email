@@ -3,23 +3,17 @@ require("dotenv").config();
 
 const express = require("express");
 const session = require("express-session");
-const sessionConfig = require("./config/session")
+const sessionConfig = require("./config/session");
 const passport = require("./config/passport");
 const cors = require("./config/cors");
 const db = require("./data/dbconfig.js");
 const authRouter = require("./routers/auth");
 const versionsRouter = require("./routers/versions");
 const emailsRouter = require("./routers/emails");
-const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3')
 const SERVER_CONFIGS = require('./constants/server');
 const paymentsRouter = require('./routers/payments');
+const watsonRouter = require('./routers/watson');
 
-//this sets up the tone analyzer. We use it in the get request.
-const toneAnalyzer = new  ToneAnalyzerV3({
-  version: '2017-09-21',
-  iam_apikey: process.env.API_KEY,
-  url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
-})
 
 const app = express();
 
@@ -34,22 +28,8 @@ app.use("/auth", authRouter);
 app.use("/versions", versionsRouter);
 app.use("/emails", emailsRouter);
 app.use("/billing", paymentsRouter);
+app.use("/api/watson", watsonRouter);
 
-app.post('/api/watson', (req, res) => {
-  const toneParams = {
-    tone_input: {'text': req.body.text},
-    content_type: 'application/json'
-  };
-
-  toneAnalyzer.tone(toneParams, (err, data) => {
-    if(err) {
-      //add a better error message.
-      res.status(500).json({message: "Sorry, watson is not talking to us right now", err})
-    } else {
-      res.status(200).json(data)
-    }
-  })
-});
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

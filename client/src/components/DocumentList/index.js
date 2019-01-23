@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Sidebar from "../Navigation/Sidebar";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { CardColumns, Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import Document from "./Document";
+import BreadCrumb from "../BreadCrumb";
 import "../../index.css";
 
 export default class DocumentList extends Component {
@@ -55,19 +56,20 @@ export default class DocumentList extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <Breadcrumb>
-            <BreadcrumbItem active>Home</BreadcrumbItem>
-            <a href={process.env.REACT_APP_BACKEND_URL + "/auth/logout"}><button>Sign Out</button></a>
-          </Breadcrumb>
-        </div>
-        <div className="bodyContent">
-          <Sidebar />
-          {this.emailElements()}
-          {this.emailCreateButton()}
-        </div>
-      </div>
+      <Container>
+        <BreadCrumb crumbs={[{ name: "Home" }]} />
+        <Row>
+          <Col xs="3">
+            <Sidebar />
+          </Col>
+          <Col>
+            <CardColumns>
+              {this.emailElements()}
+            </CardColumns>
+            {this.emailCreateButton()}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

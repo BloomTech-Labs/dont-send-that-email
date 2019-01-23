@@ -13,10 +13,11 @@ class NewEmail extends Component {
     title: '',
     text: "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
     tone_analysis: null,
-    error: '',
-    addressee: '',
+    error: "",
+    addressee: "",
     versions: [],
-  };
+    selected_version: 0
+  }
 
   componentDidMount () {
     const {id} = this.props.match.params;
@@ -25,23 +26,71 @@ class NewEmail extends Component {
     }
   }
 
-  fetchEmail = id => {
-    axios
-      .get (process.env.REACT_APP_EMAILS_URL + id, {withCredentials: true})
-      .then (({data}) => {
-        const state = {...this.state, ...data.email};
-        // Grab the latest version and set the text to match
-        // TODO: set the version number instead and let user navigate between versions
-        if (data.email.versions.length) {
-          state.text = data.email.versions.pop ().text;
+  fetchEmail = (id) => {
+    axios.get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
+      .then(({ data }) => {
+        const { email } = data;
+        if (email) {
+          const state = { ...this.state, ...data.email };
+          
+          // Set the latest version as selected
+          if (data.email.versions.length) {
+            state.selected_version = data.email.versions.length;
+          }
+
+          // Update the editor once new state is populated
+          this.setState(state, this.updateEditor);
         }
-        this.setState (state);
       });
   };
 
-  handleInputChange = e => {
-    this.setState ({[e.target.name]: e.target.value});
-  };
+  updateEditor = () => {
+    const { text } = this.selectedVersion();
+    this.setState({ text });
+  }
+
+  previousVersion = () => {
+    if (this.state.selected_version > 0) {
+      const selected_version = this.state.selected_version - 1
+      this.setState({ selected_version }, this.updateEditor);
+    } 
+  }
+
+  nextVersion = () => {
+    if (this.state.selected_version < this.state.versions.length) {
+      const selected_version = this.state.selected_version + 1;
+      this.setState({ selected_version }, this.updateEditor);
+    }
+  } 
+
+  selectedVersion = () => this.state.versions[this.state.selected_version - 1];
+
+  processTone = () => {
+    const selected = this.selectedVersion();
+    // TODO
+    // if (selected.tone_analysis) { }
+    if (selected) {
+      const { text } = selected;
+      const sentences = text.split(".");
+      const colors = ["red", "orange", "royalblue"]
+      return sentences.map((s, i) => this.tonalSentence(colors[i % colors.length], s)).join(".");
+    } else {
+      return "oops";
+    }
+  }
+
+  tonalSentence = (color, text) => (`<span style="color: ${color}">${text}</span>`);
+
+  handleInputChange = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  analyzeText = () => {
+    axios
+      .post('http://localhost:5000/api/watson', {text: this.state.text})
+      .then(res => this.setState({tone_analysis: res.data}))
+      .catch(err => this.setState({error: err}))
+  }
 
   handleSave = async e => {
     console.log ('from handle save', e);
