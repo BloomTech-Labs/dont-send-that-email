@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Button} from 'reactstrap';
-import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import { Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import {Link} from 'react-router-dom';
 import Editor from './Editor';
@@ -92,9 +91,9 @@ class NewEmail extends Component {
       .catch(err => this.setState({error: err}))
   }
 
-  handleSave = async e => {
-    console.log ('from handle save', e);
-    e.preventDefault ();
+
+  handleSave = async (e) => {
+    e.preventDefault();
     const body = {
       email: {
         title: this.state.title,
@@ -151,7 +150,6 @@ class NewEmail extends Component {
             <ul className="nav navbar-nav">
               <li className="active"><a href="/">Home</a></li>
               {/* <li><a href="/">SignOut</a></li> */}
-
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
