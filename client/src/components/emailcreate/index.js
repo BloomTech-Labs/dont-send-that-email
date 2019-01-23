@@ -1,7 +1,6 @@
 import React, {Component }from 'react';
 import axios from 'axios';
-import { Button } from 'reactstrap';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
 import { Link } from 'react-router-dom';
 import Editor from './Editor';
@@ -94,7 +93,6 @@ class NewEmail extends Component {
   }
 
   handleSave = async (e) => {
-    console.log('from handle save', e)
     e.preventDefault();
     const body = {
       email: {
@@ -179,7 +177,6 @@ class NewEmail extends Component {
           </div>
         </div>
         <div className='col-6' >
-{/* I CANNOT figure out how to center these buttons on the Y-axis. Driving me nuts   -Chad */}
 
 {/* version buttons go here. They need an arrow icon  -Chad */}
           <div className='row d-flex justify-content-center mt-4 mb-4'>
