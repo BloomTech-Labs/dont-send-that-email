@@ -42,14 +42,15 @@ export default class DocumentList extends Component {
   );
 
   copyEmail = ({ title, addressee }) => e => {
-    const body = { email: { title, addressee } }
-    console.log(body)
-    axios.post( process.env.REACT_APP_EMAILS_URL, body, { withCredentials: true })
+    const body = { email: { title, addressee } };
+    console.log(body);
+    axios
+      .post(process.env.REACT_APP_EMAILS_URL, body, { withCredentials: true })
       .then(({ data }) => {
         if (data.id) {
           this.fetchEmails();
         } else {
-          console.log("Email copy operation failed.", data.err)
+          console.log("Email copy operation failed.", data.err);
         }
       });
   };
@@ -59,13 +60,11 @@ export default class DocumentList extends Component {
       <Container>
         <BreadCrumb crumbs={[{ name: "Home" }]} />
         <Row>
-          <Col xs="3">
+          <Col sm="3">
             <Sidebar />
           </Col>
           <Col>
-            <CardColumns>
-              {this.emailElements()}
-            </CardColumns>
+            <CardColumns>{this.emailElements()}</CardColumns>
             {this.emailCreateButton()}
           </Col>
         </Row>
