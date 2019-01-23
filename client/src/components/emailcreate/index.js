@@ -211,14 +211,11 @@ class NewEmail extends Component {
               </div>
               <div className="row align-items-center">
                 <div className="col">
-                  {/*This editor component doesn't look like a form field. I'm not sure what's going on here -Chad*/}
-                  <div className="border border-light form-group">
                     <Editor
                       html={this.state.text}
                       onChange={this.handleInputChange}
                     />
                   </div>
-                </div>
                 {/*I thought we'd have a column next to the text where the analysis and colors pop up
         Also, we can have a CSS class that governs their behavior when they get added or changed as a result of the analysis
            -Chad*/}
