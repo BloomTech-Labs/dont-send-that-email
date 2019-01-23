@@ -13,7 +13,7 @@ import 'typeface-montserrat';
 class App extends Component {
   state = {
     user: null,
-    testLogin: true // Fred: Just for testing locally
+    testLogin: false // Fred: Just for testing locally
   }
 
   updateUser = () => {
