@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { Card, CardBody, CardText, CardTitle, CardSubtitle } from 'reactstrap';
 
-export default class Document extends Component {
+class Document extends Component {
+  navigate = () => {
+    this.props.history.push(`/email/${this.props.email.id}`)
+  }
+
   render() {
     const { title, addressee } = this.props.email;
     return(
-      <div className="email-card">
-        <Link to={"/email/" + this.props.email.id}>
-          <h1>{title}</h1>
-          <h2>{addressee}</h2>
-        </Link>
-          <div>
-            <button onClick={this.props.copy}>Copy</button>
-          </div>
-      </div>
+      <Card onClick={this.navigate}>
+        <CardBody>
+          <CardTitle>{title}</CardTitle> 
+          <CardSubtitle>{addressee}</CardSubtitle>
+          <CardText>
+            <button className="btn btn-secondary" onClick={this.props.copy}>Copy</button>
+          </CardText>
+        </CardBody>
+      </Card>
     );
   }
 }
+
+export default withRouter(Document);
