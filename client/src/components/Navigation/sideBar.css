@@ -1,6 +1,13 @@
-.sideBar {
-    /* border: 1px solid blue; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* width: 20%; */
+
+.homeBtn, .settingBtn, .billingBtn{
+
+    margin: 5px;
 }
+
+.sideBar {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
