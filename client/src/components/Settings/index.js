@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Container, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from '../Navigation/Sidebar';
-import '../../index.css';
+// import '../../index.css';
+import './settings.css';
 
 
 const Settings = () => {
@@ -15,7 +16,7 @@ const Settings = () => {
                     <BreadcrumbItem active>Settings</BreadcrumbItem>
                 </Breadcrumb>
             </div>
-            <div className="bodyContent">
+            {/* <div className="bodyContent">
                 <Sidebar />
                 <Form>
                     <FormGroup row>
@@ -43,6 +44,36 @@ const Settings = () => {
                     </FormGroup>
                 </Form>
             </div>
+        </div> */}
+
+{/* //Using reactstrap left original form code above */}
+
+            <Container className="Setting">
+            <Sidebar />
+            <Form className="form">
+            <Col>
+                <FormGroup>
+                <Label>Email</Label>
+                <Input
+                    type="Name"
+                    name="name"
+                    placeholder="UserName"
+                />
+                </FormGroup>
+            </Col>
+            <Col>
+                <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input
+                    type="password"
+                    name="Password"
+                    placeholder="********"
+                />
+                </FormGroup>
+            </Col>
+            <Button>Submit</Button>
+            </Form>
+            </Container>
         </div>
     );
 }
