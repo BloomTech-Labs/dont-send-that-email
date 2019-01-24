@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Sidebar from '../Navigation/Sidebar';
-import { CardColumns, Col, Container, Row } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
-import Document from './Document';
-import BreadCrumb from '../BreadCrumb';
-import '../../index.css';
+import React, { Component } from "react";
+import axios from "axios";
+import Sidebar from "../Navigation/Sidebar";
+import { CardColumns, Col, Container, Row } from "reactstrap";
+import { withRouter } from "react-router-dom";
+import Document from "./Document";
+import BreadCrumb from "../BreadCrumb";
+import "../../index.css";
 
 class DocumentList extends Component {
   state = {
     emails: [],
     user: this.props.user,
-    componentState: 0,
+    componentState: 0
   };
 
   componentDidMount = async () => {
@@ -49,26 +49,26 @@ class DocumentList extends Component {
   );
   redirectToCreateEmailPage = () => {
     if (this.state.user.subscriber === true || this.state.emails.length < 100) {
-      this.props.history.push('/email');
+      this.props.history.push("/email");
     } else {
       this.setState({ componentState: 1 });
     }
   };
-  deleteEmail = (e) => {
+  deleteEmail = e => {
     axios
       .delete(`${process.env.REACT_APP_EMAILS_URL}${e.id}`, {
-        withCredentials: true,
+        withCredentials: true
       })
-      .then((res) => {
+      .then(res => {
         if (this.state.componentState === 1) {
           this.setState({ componentState: 0 }, () => this.fetchEmails());
         } else {
           this.fetchEmails();
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
-  copyEmail = ({ title, addressee }) => (e) => {
+  copyEmail = ({ title, addressee }) => e => {
     if (this.state.user.subscriber === true || this.state.emails.length < 100) {
       const body = { email: { title, addressee } };
       console.log(body);
@@ -78,7 +78,7 @@ class DocumentList extends Component {
           if (data.id) {
             this.fetchEmails();
           } else {
-            console.log('Email copy operation failed.', data.err);
+            console.log("Email copy operation failed.", data.err);
           }
         });
     } else {
@@ -88,8 +88,8 @@ class DocumentList extends Component {
 
   render() {
     return (
-      <Container>
-        <BreadCrumb crumbs={[{ name: 'Home' }]} />
+      <Container fluid>
+        <BreadCrumb crumbs={[{ name: "Home" }]} />
         <h6>Hello! {this.state.user.username}</h6>
         {this.state.componentState === 1 ? (
           <div class="alert alert-info" role="alert">
@@ -98,9 +98,7 @@ class DocumentList extends Component {
           </div>
         ) : null}
         <Row>
-          <Col sm="3">
-            <Sidebar />
-          </Col>
+          <Sidebar />
           <Col>
             <CardColumns>{this.emailElements()}</CardColumns>
             {this.emailCreateButton()}
