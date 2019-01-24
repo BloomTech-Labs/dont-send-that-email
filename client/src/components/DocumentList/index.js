@@ -9,7 +9,8 @@ import "../../index.css";
 
 export default class DocumentList extends Component {
   state = {
-    emails: []
+    emails: [],
+    user: this.props.user
   };
 
   componentDidMount = async () => {
@@ -29,6 +30,7 @@ export default class DocumentList extends Component {
         }
       });
   };
+
 
   emailElements = () =>
     this.state.emails.map((e, i) => (
@@ -59,6 +61,7 @@ export default class DocumentList extends Component {
     return (
       <Container>
         <BreadCrumb crumbs={[{ name: "Home" }]} />
+        <h6>Hello! {this.state.user.username}</h6>
         <Row>
           <Col sm="3">
             <Sidebar />
