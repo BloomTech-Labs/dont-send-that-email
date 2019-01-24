@@ -1,23 +1,38 @@
+
+body{
+
+ 
+}
+
+
+.Setting{
+   
+    height: 100vh;
+    background-image: url("typing3.jpg");
+}
+
 .App {
+    
     text-align: left;
     padding: 1em;
     margin: 1em;
-    border: 2px solid #d3d3d3;
+    border: 2px solid #f07676;
     border-radius: .5em;
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
-    width: 50px;
+    /* width: 100px; */
+    background-color: rgb(242, 234, 247);
     margin-top: 100px;
   }
   
   .form {
     padding: 1em;
+    width: 50%;
+    color: white;
   }
 
-  .form-control {
-      width: 50%;
-  }
+
   
   label {
     display: flex;
