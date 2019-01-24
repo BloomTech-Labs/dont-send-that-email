@@ -59,7 +59,13 @@ class DocumentList extends Component {
       .delete(`${process.env.REACT_APP_EMAILS_URL}${e.id}`, {
         withCredentials: true,
       })
-      .then((res) => this.fetchEmails())
+      .then((res) => {
+        if (this.state.componentState === 1) {
+          this.setState({ componentState: 0 }, () => this.fetchEmails());
+        } else {
+          this.fetchEmails();
+        }
+      })
       .catch((err) => console.log(err));
   };
   copyEmail = ({ title, addressee }) => (e) => {
@@ -86,21 +92,9 @@ class DocumentList extends Component {
         <BreadCrumb crumbs={[{ name: 'Home' }]} />
         <h6>Hello! {this.state.user.username}</h6>
         {this.state.componentState === 1 ? (
-          <div className="alert alert-info alert-with-icon">
-            <div className="alert-wrapper">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <i className="nc-icon nc-simple-remove" />
-              </button>
-              <div className="message">
-                Free users can only have 100 emails in their dashboard, please
-                clean up any unnecessary emails.
-              </div>
-            </div>
+          <div class="alert alert-info" role="alert">
+            Free users can only have 100 emails in their dashboard, please clean
+            up any unnecessary emails.
           </div>
         ) : null}
         <Row>
