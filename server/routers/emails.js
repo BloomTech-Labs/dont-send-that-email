@@ -11,7 +11,6 @@ router.use(populateUser);
 //    addressee
 // }
 router.post("/", async (req, res) => {
-  console.log("from server post", req.body);
   try {
     const { email, version } = req.body;
     email.user_id = req.user.id;
@@ -25,7 +24,9 @@ router.post("/", async (req, res) => {
     }
 
     if (version) {
+      delete version.id; // For saving a new copy of an edited version
       version.email_id = email.id;
+      version.tone_analysis = JSON.stringify(version.tone_analysis);
       await db("versions").insert(version);
     }
 
@@ -49,7 +50,15 @@ router.get("/:id", async (req, res) => {
   const email = await db("emails")
     .where({ id })
     .first();
-  email.versions = await db("versions").where({ email_id: id });
+  // Fetch all versions, and parse their tone analyses
+  email.versions = await db("versions")
+    .where({ email_id: id })
+    .then(vs =>
+      vs.map(v => {
+        v.tone_analysis = JSON.parse(v.tone_analysis);
+        return v;
+      })
+    );
   res.json({ email });
 });
 
