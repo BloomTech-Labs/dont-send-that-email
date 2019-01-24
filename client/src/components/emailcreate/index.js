@@ -13,11 +13,8 @@ class NewEmail extends Component {
   crumbs = [{ name: "Home", path: "/" }, { name: "Document" }];
   state = {
     title: "",
-    text:
-      "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
-    error: "",
     addressee: "",
-    versions: [],
+    versions: [{ text: "", tone_analysis: null }],
     selected_version: 1
   };
 
@@ -25,10 +22,6 @@ class NewEmail extends Component {
     const { id } = this.props.match.params;
     if (id) {
       this.fetchEmail(id);
-    } else {
-      const versions = this.state.versions.slice();
-      versions.push({ title: "", addressee: "", tone_analysis: null });
-      this.setState({ versions: versions });
     }
   }
 
@@ -46,18 +39,13 @@ class NewEmail extends Component {
           }
 
           // Update the editor once new state is populated
-          this.setState(state, this.updateEditor);
+          this.setState(state);
         }
       });
   };
 
-  updateEditor = () => {
-    const { text } = this.selectedVersion();
-    this.setState({ text });
-  };
-
   previousVersion = () => {
-    if (this.state.selected_version > 0) {
+    if (this.state.selected_version > 1) {
       const selected_version = this.state.selected_version - 1;
       this.setState({ selected_version }, this.updateEditor);
     }
@@ -70,27 +58,40 @@ class NewEmail extends Component {
     }
   };
 
+  // Return the selected version, or a blank one if none have been made.
   selectedVersion = () => {
-    if (this.state.versions[this.state.selected_version - 1]) {
-      return this.state.versions[this.state.selected_version - 1];
-    }
-    return { text: "", tone_analysis: null };
+    return this.state.versions[this.state.selected_version - 1];
   };
 
+  // Apply watson analysis to the version's text
   processTone = () => {
-    const selected = this.selectedVersion();
-    // TODO
-    // if (selected.tone_analysis) { }
-    if (selected && selected.text) {
-      const { text } = selected;
-      const sentences = text.split(".");
-      const colors = ["red", "orange", "royalblue"];
-      return sentences
-        .map((s, i) => this.tonalSentence(colors[i % colors.length], s))
-        .join(".");
-    } else {
-      return "oops";
+    let { text, tone_analysis } = this.selectedVersion();
+    if (text) {
+      if (tone_analysis && tone_analysis.sentences_tone) {
+        const colors = {
+          Joy: "success",
+          Anger: "danger",
+          Fear: "warning",
+          Sadness: "info",
+          Confident: "success",
+          Analytical: "primary",
+          Tentative: "warning"
+        };
+        tone_analysis.sentences_tone
+          .filter(({ tones }) => tones.length) // Ignore sentences with no tones
+          .forEach(({ text: sentence, tones }) => {
+            const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
+            const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
+            text = text.replace(re, match => {
+              console.log("Matched");
+              return `<span class="label-${color}">${match}</span>`;
+            });
+            console.log(text);
+          });
+      }
+      return text;
     }
+    return "";
   };
 
   tonalSentence = (color, text) =>
@@ -100,16 +101,19 @@ class NewEmail extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // This is expensive
   editorInput = e => {
     const text = striptags(e.target.value);
-    this.setState({ text });
+    const versions = this.state.versions;
+    versions[this.state.selected_version - 1].text = text;
+    this.setState({ versions });
   };
 
   analyzeText = () => {
     axios
       .post(
         "http://localhost:5000/api/watson",
-        { text: this.state.text },
+        { text: this.selectedVersion().text },
         { withCredentials: true }
       )
       .then(res => {
@@ -127,10 +131,7 @@ class NewEmail extends Component {
         title: this.state.title,
         addressee: this.state.addressee
       },
-      version: {
-        text: this.state.text,
-        tone_analysis: this.selectedVersion().tone_analysis
-      }
+      version: this.selectedVersion()
     };
 
     if (this.props.match.params.id) {
@@ -148,6 +149,8 @@ class NewEmail extends Component {
       } = await axios.post(process.env.REACT_APP_EMAILS_URL, body, headers);
       if (!this.props.match.params.id) {
         this.props.history.push(`/email/${id}`);
+      } else {
+        this.fetchEmail(id);
       }
     } catch (err) {
       console.log(err);
