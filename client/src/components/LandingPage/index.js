@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './index.css';
+import './assets/css/index.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class LandingPage extends Component {
     // constructor(props) {
     //     super(props);
     // }
+
     render() {
       return (
 <div>
@@ -25,25 +27,25 @@ class LandingPage extends Component {
 	                </li>
 					<li className="nav-item">
                         <a className="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="http://google.com">
-                            <i className="fa fa-twitter"></i>
+                            <FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" />
                             <p className="d-lg-none">Twitter</p>
                         </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="http://google.com">
-                            <i className="fa fa-facebook-square"></i>
+                            <FontAwesomeIcon icon={["fab", "facebook"]} className="fa fa-facebook-square"/>
                             <p className="d-lg-none">Facebook</p>
                         </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="http://google.com">
-                            <i className="fa fa-instagram"></i>
+                            <FontAwesomeIcon icon={["fab", "instagram"]} className="fa fa-instagram"/>
                             <p className="d-lg-none">Instagram</p>
                         </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="http://google.com">
-                            <i className="fa fa-github"></i>
+                            <FontAwesomeIcon icon={["fab", "github"]} className="fa fa-github"/>
                             <p className="d-lg-none">GitHub</p>
                         </a>
                     </li>
@@ -152,9 +154,9 @@ class LandingPage extends Component {
                             </p>
                         </div>
                         <div className="card-footer text-center">
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
@@ -176,9 +178,9 @@ class LandingPage extends Component {
                             </p>
                         </div>
                         <div className="card-footer text-center">
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
@@ -200,9 +202,9 @@ class LandingPage extends Component {
                             </p>
                         </div>
                         <div className="card-footer text-center">
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-twitter"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-google-plus"></i></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><i className="fa fa-linkedin"></i></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
