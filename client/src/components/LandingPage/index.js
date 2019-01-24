@@ -11,7 +11,7 @@ class LandingPage extends Component {
     <nav className="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="300">
         <div className="container">
 			<div className="navbar-translate">
-				<a className="navbar-brand" href="https://www.creative-tim.com">Don't send that email</a>
+				<a className="navbar-brand" href="#">Don't send that email</a>
 	            <button className="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-bar"></span>
 					<span className="navbar-toggler-bar"></span>

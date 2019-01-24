@@ -8,14 +8,14 @@ import NewEmail from '../emailcreate';
 
 
 class MainContent extends Component {
-    // constructor(props){
-    //     super(props);
-    // }
+
     render() {
         return(
             <Switch>
                 <Route exact path='/' name='Home' render={props => (
-                    <DocumentList />
+                    <DocumentList 
+                        user={this.props.user}
+                    />
                 )}
                 />
                 <Route exact path='/email' component={NewEmail} />

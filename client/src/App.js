@@ -5,7 +5,6 @@ import './App.css';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import 'typeface-montserrat';
-import Sidebar from './components/Navigation/Sidebar';
 
 
 
@@ -27,7 +26,7 @@ class App extends Component {
   }
 
   handleClick = e => {
-    this.setState({ testLogin: true });
+    this.setState({ testLogin: false });
   }
 
   componentDidMount() {
@@ -39,7 +38,9 @@ class App extends Component {
     if (this.state.user) {
       return (
         <div>
-          <MainContent />
+          <MainContent 
+            user={this.state.user}
+          />
         </div>
       )
     }
