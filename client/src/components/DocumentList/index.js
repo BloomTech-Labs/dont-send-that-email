@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Sidebar from "../Navigation/Sidebar";
-import { CardColumns, Col, Container, Row } from "reactstrap";
-import { withRouter } from "react-router-dom";
-import Document from "./Document";
-import BreadCrumb from "../BreadCrumb";
-import "../../index.css";
+
+import React, { Component } from 'react';
+import axios from 'axios';
+import Sidebar from '../Navigation/Sidebar';
+import { CardColumns, Col, Container, Row, Button } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+import Document from './Document';
+import BreadCrumb from '../BreadCrumb';
+import '../../index.css';
+
 
 class DocumentList extends Component {
   state = {
     emails: [],
-    user: this.props.user,
-    componentState: 0
+    componentState: 0,
   };
 
   componentDidMount = async () => {
@@ -43,9 +44,9 @@ class DocumentList extends Component {
     ));
 
   emailCreateButton = () => (
-    <button onClick={() => this.redirectToCreateEmailPage()}>
+    <Button color="info" onClick={() => this.redirectToCreateEmailPage()}>
       Create Email
-    </button>
+    </Button>
   );
   redirectToCreateEmailPage = () => {
     if (this.state.user.subscriber === true || this.state.emails.length < 100) {
@@ -86,7 +87,26 @@ class DocumentList extends Component {
     }
   };
 
+
   render() {
+    if (this.state.emails.length === 0) {
+      return (
+        <Container-fluid>
+          <Container>
+          <BreadCrumb crumbs={[{ name: 'Home' }]} user={this.props.user}/>
+        <h6>Hello! {this.props.user.username}</h6>
+        <Row>
+          <Col sm="3">
+            <Sidebar />
+          </Col>
+          <Col>
+            {this.emailCreateButton()}
+          </Col>
+        </Row>
+          </Container>
+      </Container-fluid>
+      )
+    };
     return (
       <Container fluid>
         <BreadCrumb crumbs={[{ name: "Home" }]} />
@@ -101,6 +121,8 @@ class DocumentList extends Component {
           <Sidebar />
           <Col>
             <CardColumns>{this.emailElements()}</CardColumns>
+          </Col>
+          <Col>
             {this.emailCreateButton()}
           </Col>
         </Row>
