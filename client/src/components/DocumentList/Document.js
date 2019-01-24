@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Card, CardBody, CardText, CardTitle, CardSubtitle } from 'reactstrap';
+import { Card, CardBody, CardText, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
 
 class Document extends Component {
   navigate = () => {
@@ -15,7 +15,9 @@ class Document extends Component {
           <CardTitle>{title}</CardTitle>
           <CardSubtitle>{addressee}</CardSubtitle>
           <CardText>
-            <button
+            <Row>
+              <Col>
+              <button
               className="btn btn-secondary"
               onClick={(e) => {
                 e.stopPropagation();
@@ -33,6 +35,8 @@ class Document extends Component {
             >
               Delete
             </button>
+              </Col>
+            </Row>
           </CardText>
         </CardBody>
       </Card>
