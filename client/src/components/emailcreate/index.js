@@ -27,7 +27,9 @@ class NewEmail extends Component {
 
   fetchEmail = id => {
     axios
-      .get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
+      .get(process.env.REACT_APP_BACKEND_URL + `/emails/${id}`, {
+        withCredentials: true
+      })
       .then(({ data }) => {
         const { email } = data;
         if (email) {
@@ -112,7 +114,7 @@ class NewEmail extends Component {
   analyzeText = () => {
     axios
       .post(
-        "http://localhost:5000/api/watson",
+        process.env.REACT_APP_BACKEND_URL + "/api/watson",
         { text: this.selectedVersion().text },
         { withCredentials: true }
       )
