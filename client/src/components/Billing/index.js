@@ -10,18 +10,16 @@ class Billing extends Component {
   render() {
     return (
       <Container>
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <Link to="/">Home</Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem active>Billing</BreadcrumbItem>
-            <button>Sign Out</button>
-          </Breadcrumb>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/">Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>Billing</BreadcrumbItem>
+          <button>Sign Out</button>
+        </Breadcrumb>
         <h1>Billing</h1>
         <Row>
-          <Col sm="3">
-            <Sidebar />
-          </Col>
+          <Sidebar />
           <Col className="border rounded">
             <h2>Free</h2>
             <ul>
