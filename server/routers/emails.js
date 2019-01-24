@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment");
 const populateUser = require("../middlewares/populateUser");
 const db = require("../data/dbconfig.js");
 const router = express.Router();
@@ -35,6 +36,7 @@ router.post("/", async (req, res) => {
     throw err;
   }
 });
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   const count = await db("emails")
@@ -48,7 +50,6 @@ router.get("/:id", async (req, res) => {
   const email = await db("emails")
     .where({ id })
     .first();
-
   // Fetch all versions, and parse their tone analyses
   email.versions = await db("versions")
     .where({ email_id: id })
@@ -58,14 +59,32 @@ router.get("/:id", async (req, res) => {
         return v;
       })
     );
-
-  console.log(email.versions);
   res.json({ email });
 });
 
 router.get("/", async (req, res) => {
-  const emails = await db("emails").where({ user_id: req.user.id });
+  const emails = await db("emails")
+    .leftJoin("versions", "versions.email_id", "emails.id")
+    .orderBy("versions.date_created", "desc")
+    .select(
+      "emails.id",
+      "title",
+      "addressee",
+      "versions.date_created as updated"
+    )
+    .then(emails => emails.map(processEmail));
   res.json({ emails });
 });
+
+processEmail = email => {
+  const { updated } = email;
+  const m = moment(updated);
+  if (m.isValid()) {
+    email.updated = m.calendar();
+  } else {
+    email.updated = "No versions.";
+  }
+  return email;
+};
 
 module.exports = router;
