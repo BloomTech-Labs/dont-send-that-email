@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { slide as Menu } from "react-burger-menu";
 import './sideBar.css'
 
 export default class Sidebar extends Component {
     render() {
         return(
             <div className='sideBar'>
-             
+             <Menu>
                 <Link to='/'>
                   <div className='homeBtn'> 
                     <button>
@@ -29,7 +30,7 @@ export default class Sidebar extends Component {
                     </div>
                 
                 </Link>
-                
+              </Menu>
             </div>
         )
     }
