@@ -1,34 +1,38 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Button, Col, Container, Input, Row } from "reactstrap";
-import BreadCrumb from "../BreadCrumb";
-import Sidebar from "../Navigation/Sidebar";
-import { Link } from "react-router-dom";
-import Editor from "./Editor";
-import Analysis from "./Analysis";
-import "./email.css";
+import React, { Component } from 'react';
+import axios from 'axios';
+import striptags from 'striptags';
+import { Button, Col, Container, Input, Row } from 'reactstrap';
+import BreadCrumb from '../BreadCrumb';
+import Sidebar from '../Navigation/Sidebar';
+import { Link } from 'react-router-dom';
+import Editor from './Editor';
+import Analysis from './Analysis';
+import './email.css';
 
 class NewEmail extends Component {
-  crumbs = [{ name: "Home", path: "/" }, { name: "Document" }];
+  crumbs = [{ name: 'Home', path: '/' }, { name: 'Document' }];
   state = {
-    title: "",
+    title: '',
     text:
       "I hate ice cream. I love to go to the park. I'm worried that I will have to eat ice cream at the park. Would you like to go to the park and eat my ice cream?",
-    tone_analysis: null,
-    error: "",
-    addressee: "",
+    error: '',
+    addressee: '',
     versions: [],
-    selected_version: 0
+    selected_version: 1,
   };
 
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) {
       this.fetchEmail(id);
+    } else {
+      const versions = this.state.versions.slice();
+      versions.push({ title: '', addressee: '', tone_analysis: null });
+      this.setState({ versions: versions });
     }
   }
 
-  fetchEmail = id => {
+  fetchEmail = (id) => {
     axios
       .get(process.env.REACT_APP_EMAILS_URL + id, { withCredentials: true })
       .then(({ data }) => {
@@ -66,49 +70,67 @@ class NewEmail extends Component {
     }
   };
 
-  selectedVersion = () => this.state.versions[this.state.selected_version - 1];
+  selectedVersion = () => {
+    if (this.state.versions[this.state.selected_version - 1]) {
+      return this.state.versions[this.state.selected_version - 1];
+    }
+    return { text: '', tone_analysis: null };
+  };
 
   processTone = () => {
     const selected = this.selectedVersion();
     // TODO
     // if (selected.tone_analysis) { }
-    if (selected) {
+    if (selected && selected.text) {
       const { text } = selected;
-      const sentences = text.split(".");
-      const colors = ["red", "orange", "royalblue"];
+      const sentences = text.split('.');
+      const colors = ['red', 'orange', 'royalblue'];
       return sentences
         .map((s, i) => this.tonalSentence(colors[i % colors.length], s))
-        .join(".");
+        .join('.');
     } else {
-      return "oops";
+      return 'oops';
     }
   };
 
   tonalSentence = (color, text) =>
     `<span style="color: ${color}">${text}</span>`;
 
-  handleInput = e => {
+  handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  editorInput = (e) => {
+    const text = striptags(e.target.value);
+    this.setState({ text });
   };
 
   analyzeText = () => {
     axios
-      .post("http://localhost:5000/api/watson", { text: this.state.text })
-      .then(res => this.setState({ tone_analysis: res.data }))
-      .catch(err => this.setState({ error: err }));
+      .post(
+        'http://localhost:5000/api/watson',
+        { text: this.state.text },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        const { versions } = this.state;
+        versions[this.state.selected_version - 1].tone_analysis = res.data;
+        this.setState({ versions });
+      })
+      .catch((err) => this.setState({ error: err }));
   };
 
-  handleSave = async e => {
+  handleSave = async (e) => {
     e.preventDefault();
     const body = {
       email: {
         title: this.state.title,
-        addressee: this.state.addressee
+        addressee: this.state.addressee,
       },
       version: {
         text: this.state.text,
-        tone_analysis: this.state.tone_analysis
-      }
+        tone_analysis: this.selectedVersion().tone_analysis,
+      },
     };
 
     if (this.props.match.params.id) {
@@ -117,19 +139,29 @@ class NewEmail extends Component {
 
     let headers = {
       withCredentials: true,
-      headers: { Authorization: process.env.USER_COOKIE }
+      headers: { Authorization: process.env.USER_COOKIE },
     };
 
     try {
-      const {
-        data: { id }
-      } = await axios.post(process.env.REACT_APP_EMAILS_URL, body, headers);
+      const { data: { id } } = await axios.post(
+        process.env.REACT_APP_EMAILS_URL,
+        body,
+        headers
+      );
       if (!this.props.match.params.id) {
         this.props.history.push(`/email/${id}`);
       }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  // Renames button to "save as" when editing a version that is not the latest
+  saveButton = () => {
+    if (this.state.selected_version === this.state.versions.length) {
+      return 'Save';
+    }
+    return 'Save as';
   };
 
   render() {
@@ -167,17 +199,19 @@ class NewEmail extends Component {
                 <Row>
                   <Col xs={{ size: 10, offset: 1 }}>
                     <Button onClick={this.analyzeText}>Analyze</Button>
-                    <Button onClick={this.handleSave}>Save</Button>
+                    <Button onClick={this.handleSave}>
+                      {this.saveButton()}
+                    </Button>
                   </Col>
                 </Row>
               </Col>
             </Row>
             <Row>
               <Col>
-                <Editor html={this.processTone()} onChange={this.handleInput} />
+                <Editor html={this.processTone()} onChange={this.editorInput} />
               </Col>
               <Col sm={{ order: 1 }}>
-                <Analysis toneAnalysis={this.state.tone_analysis} />
+                <Analysis toneAnalysis={this.selectedVersion().tone_analysis} />
               </Col>
             </Row>
           </Col>
