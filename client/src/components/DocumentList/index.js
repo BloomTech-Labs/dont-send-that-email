@@ -1,18 +1,16 @@
-
-import React, { Component } from 'react';
-import axios from 'axios';
-import Sidebar from '../Navigation/Sidebar';
-import { CardColumns, Col, Container, Row, Button } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
-import Document from './Document';
-import BreadCrumb from '../BreadCrumb';
-import '../../index.css';
-
+import React, { Component } from "react";
+import axios from "axios";
+import Sidebar from "../Navigation/Sidebar";
+import { CardColumns, Col, Container, Row, Button } from "reactstrap";
+import { withRouter } from "react-router-dom";
+import Document from "./Document";
+import BreadCrumb from "../BreadCrumb";
+import "../../index.css";
 
 class DocumentList extends Component {
   state = {
     emails: [],
-    componentState: 0,
+    componentState: 0
   };
 
   componentDidMount = async () => {
@@ -49,7 +47,7 @@ class DocumentList extends Component {
     </Button>
   );
   redirectToCreateEmailPage = () => {
-    if (this.state.user.subscriber === true || this.state.emails.length < 100) {
+    if (this.props.user.subscriber === true || this.state.emails.length < 100) {
       this.props.history.push("/email");
     } else {
       this.setState({ componentState: 1 });
@@ -70,7 +68,7 @@ class DocumentList extends Component {
       .catch(err => console.log(err));
   };
   copyEmail = ({ title, addressee }) => e => {
-    if (this.state.user.subscriber === true || this.state.emails.length < 100) {
+    if (this.props.user.subscriber === true || this.state.emails.length < 100) {
       const body = { email: { title, addressee } };
       console.log(body);
       axios
@@ -87,30 +85,27 @@ class DocumentList extends Component {
     }
   };
 
-
   render() {
     if (this.state.emails.length === 0) {
       return (
         <Container-fluid>
           <Container>
-          <BreadCrumb crumbs={[{ name: 'Home' }]} user={this.props.user}/>
-        <h6>Hello! {this.props.user.username}</h6>
-        <Row>
-          <Col sm="3">
-            <Sidebar />
-          </Col>
-          <Col>
-            {this.emailCreateButton()}
-          </Col>
-        </Row>
+            <BreadCrumb crumbs={[{ name: "Home" }]} user={this.props.user} />
+            <h6>Hello! {this.props.user.username}</h6>
+            <Row>
+              <Col sm="3">
+                <Sidebar />
+              </Col>
+              <Col>{this.emailCreateButton()}</Col>
+            </Row>
           </Container>
-      </Container-fluid>
-      )
-    };
+        </Container-fluid>
+      );
+    }
     return (
       <Container fluid>
         <BreadCrumb crumbs={[{ name: "Home" }]} />
-        <h6>Hello! {this.state.user.username}</h6>
+        <h6>Hello! {this.props.user.username}</h6>
         {this.state.componentState === 1 ? (
           <div class="alert alert-info" role="alert">
             Free users can only have 100 emails in their dashboard, please clean
@@ -122,9 +117,7 @@ class DocumentList extends Component {
           <Col>
             <CardColumns>{this.emailElements()}</CardColumns>
           </Col>
-          <Col>
-            {this.emailCreateButton()}
-          </Col>
+          <Col>{this.emailCreateButton()}</Col>
         </Row>
       </Container>
     );
