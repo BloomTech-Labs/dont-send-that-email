@@ -1,48 +1,43 @@
-import React from 'react'
-import axios from 'axios';
-import StripeCheckout from 'react-stripe-checkout';
+import React from "react";
+import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 
-// const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL;
-// const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
-const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'http://myapidomain.com'
-  : 'http://localhost:5000/billing';
+const PAYMENT_SERVER_URL = process.env.REACT_APP_PAYMENT_SERVER_URL;
+const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
 
-const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
-  ? process.env.STRIPE_API_PUBLISH_KEY
-  : process.env.STRIPE_API_PUBLISH_KEY;
+const CURRENCY = "USD";
 
-const CURRENCY = 'USD';
-
-// All API requests expect amounts to be provided in a currency’s smallest unit. 
+// All API requests expect amounts to be provided in a currency’s smallest unit.
 // For example, to charge $10 USD, provide an amount value of 1000 (i.e, 1000 cents).
 
-const fromUSDToCent = amount => amount*100;
-
-
+const fromUSDToCent = amount => amount * 100;
 
 const successPayment = data => {
-    alert('Payment Successful');
-    console.log(data);
-  };
-  
+  alert("Payment Successful");
+  console.log(data);
+};
+
 const errorPayment = data => {
-  alert('Payment Error');
+  alert("Payment Error");
   console.log(data);
 };
 
 const onToken = (amount, description) => token =>
-  axios.post(PAYMENT_SERVER_URL,
-    {
-      description,
-      source: token.id,
-      currency: CURRENCY,
-      amount: fromUSDToCent(amount)
-    }, { withCredentials: true })
+  axios
+    .post(
+      PAYMENT_SERVER_URL,
+      {
+        description,
+        source: token.id,
+        currency: CURRENCY,
+        amount: fromUSDToCent(amount)
+      },
+      { withCredentials: true }
+    )
     .then(successPayment)
     .catch(errorPayment);
-  
-const Checkout = ({ name, description, amount }) =>
+
+const Checkout = ({ name, description, amount }) => (
   <StripeCheckout
     name={name}
     description={description}
@@ -51,9 +46,8 @@ const Checkout = ({ name, description, amount }) =>
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
   >
-  <button className="btn btn-danger btn-round">
-    Pay Here
-  </button>
+    <button className="btn btn-danger btn-round">Pay Here</button>
   </StripeCheckout>
-  
+);
+
 export default Checkout;
