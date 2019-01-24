@@ -1,18 +1,23 @@
 import React from 'react';
 
 const Analysis = (props) => {
-  if (
-    props.toneAnalysis === null ||
-    props.toneAnalysis.document_tone.tones.length === 0
-  ) {
+  console.log(props.toneAnalysis);
+  if (props.toneAnalysis === null) {
     return (
       <div>
         <p>No analysis. Click the Analyze Button</p>
       </div>
     );
+  } else if (props.toneAnalysis.document_tone.tones.length === 0) {
+    return (
+      <div>
+        <p>The document does not have a tone to it.</p>
+      </div>
+    );
   } else {
     return (
       <div>
+        <p>Document tones:</p>
         {props.toneAnalysis.document_tone.tones.map((e, i) => {
           return (
             <p key={i}>
