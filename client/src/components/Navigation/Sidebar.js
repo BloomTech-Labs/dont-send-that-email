@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { pushRotate as Menu } from "react-burger-menu";
-import './sideBar.css'
+import "./sideBar.css";
 
 export default class Sidebar extends Component {
-    render() {
-        return(
-            <div className='sideBar'>
-             <Menu pageWrapId={ "page-wrap" }>
-                <Link to='/'>
-                  <div className='homeBtn'> 
-                    <button>
-                        <strong>Home</strong>
-                    </button>
-                  </div>
-                </Link>
-                <Link to='/billing'>
-                  <div className='billingBtn'>
-                    <button>
-                        <strong>Billing</strong>
-                    </button>
-                  </div>
-                </Link>
-                <Link to='settings'>
-                   <div className='settingBtn'>
-                    <button>
-                        <strong>Settings</strong>
-                    </button>
-                    </div>
-                
-                </Link>
-              </Menu>
-            </div>
-        )
-    }
+  logoutUrl = process.env.REACT_APP_BACKEND_URL + "/auth/logout";
+  render() {
+    return (
+      <div className="sideBar">
+        <Menu pageWrapId={"page-wrap"}>
+          <Link to="/" className="btn btn-secondary">
+            Home
+          </Link>
+          <Link to="/billing" className="btn btn-secondary">
+            Billing
+          </Link>
+          <Link to="settings" className="btn btn-secondary">
+            Settings
+          </Link>
+          <a className="btn btn-secondary" href={this.logoutUrl}>
+            Sign Out
+          </a>
+        </Menu>
+      </div>
+    );
+  }
 }
