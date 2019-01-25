@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import axios from "axios";
-import striptags from "striptags";
-import { Button, Col, Container, Input, Row } from "reactstrap";
-import BreadCrumb from "../BreadCrumb";
-import Sidebar from "../Navigation/Sidebar";
-import { Link } from "react-router-dom";
-import Editor from "./Editor";
-import Analysis from "./Analysis";
-import "./email.css";
+import React, { Component } from 'react';
+import axios from 'axios';
+import striptags from 'striptags';
+import { Button, Col, Container, Input, Row } from 'reactstrap';
+import BreadCrumb from '../BreadCrumb';
+import Sidebar from '../Navigation/Sidebar';
+import { Link } from 'react-router-dom';
+import Editor from './Editor';
+import Analysis from './Analysis';
+import './email.css';
 
 class NewEmail extends Component {
-  crumbs = [{ name: "Home", path: "/" }, { name: "Document" }];
+  crumbs = [{ name: 'Home', path: '/' }, { name: 'Document' }];
   state = {
-    title: "",
-    addressee: "",
-    versions: [{ text: "", tone_analysis: null }],
-    selected_version: 1
+    title: '',
+    addressee: '',
+    versions: [{ text: '', tone_analysis: null }],
+    selected_version: 1,
   };
 
   componentDidMount() {
@@ -25,10 +25,10 @@ class NewEmail extends Component {
     }
   }
 
-  fetchEmail = id => {
+  fetchEmail = (id) => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + `/emails/${id}`, {
-        withCredentials: true
+        withCredentials: true,
       })
       .then(({ data }) => {
         const { email } = data;
@@ -71,21 +71,21 @@ class NewEmail extends Component {
     if (text) {
       if (tone_analysis && tone_analysis.sentences_tone) {
         const colors = {
-          Joy: "success",
-          Anger: "danger",
-          Fear: "warning",
-          Sadness: "info",
-          Confident: "success",
-          Analytical: "primary",
-          Tentative: "warning"
+          Joy: 'success',
+          Anger: 'danger',
+          Fear: 'warning',
+          Sadness: 'info',
+          Confident: 'success',
+          Analytical: 'primary',
+          Tentative: 'warning',
         };
         tone_analysis.sentences_tone
           .filter(({ tones }) => tones.length) // Ignore sentences with no tones
           .forEach(({ text: sentence, tones }) => {
             const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
-            text = text.replace(re, match => {
-              console.log("Matched");
+            text = text.replace(re, (match) => {
+              console.log('Matched');
               return `<span class="label-${color}">${match}</span>`;
             });
             console.log(text);
@@ -93,18 +93,18 @@ class NewEmail extends Component {
       }
       return text;
     }
-    return "";
+    return '';
   };
 
   tonalSentence = (color, text) =>
     `<span style="color: ${color}">${text}</span>`;
 
-  handleInput = e => {
+  handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   // This is expensive
-  editorInput = e => {
+  editorInput = (e) => {
     const text = striptags(e.target.value);
     const versions = this.state.versions;
     versions[this.state.selected_version - 1].text = text;
@@ -114,26 +114,26 @@ class NewEmail extends Component {
   analyzeText = () => {
     axios
       .post(
-        process.env.REACT_APP_BACKEND_URL + "/api/watson",
+        process.env.REACT_APP_BACKEND_URL + '/api/watson',
         { text: this.selectedVersion().text },
         { withCredentials: true }
       )
-      .then(res => {
+      .then((res) => {
         const { versions } = this.state;
         versions[this.state.selected_version - 1].tone_analysis = res.data;
-        this.setState({ versions });
+        this.setState({ versions, error: false });
       })
-      .catch(err => this.setState({ error: err }));
+      .catch((err) => this.setState({ error: true }));
   };
 
-  handleSave = async e => {
+  handleSave = async (e) => {
     e.preventDefault();
     const body = {
       email: {
         title: this.state.title,
-        addressee: this.state.addressee
+        addressee: this.state.addressee,
       },
-      version: this.selectedVersion()
+      version: this.selectedVersion(),
     };
 
     if (this.props.match.params.id) {
@@ -142,13 +142,15 @@ class NewEmail extends Component {
 
     let headers = {
       withCredentials: true,
-      headers: { Authorization: process.env.USER_COOKIE }
+      headers: { Authorization: process.env.USER_COOKIE },
     };
 
     try {
-      const {
-        data: { id }
-      } = await axios.post(process.env.REACT_APP_EMAILS_URL, body, headers);
+      const { data: { id } } = await axios.post(
+        process.env.REACT_APP_EMAILS_URL,
+        body,
+        headers
+      );
       if (!this.props.match.params.id) {
         this.props.history.push(`/email/${id}`);
       } else {
@@ -162,9 +164,9 @@ class NewEmail extends Component {
   // Renames button to "save as" when editing a version that is not the latest
   saveButton = () => {
     if (this.state.selected_version === this.state.versions.length) {
-      return "Save";
+      return 'Save';
     }
-    return "Save as";
+    return 'Save as';
   };
 
   render() {
@@ -212,7 +214,10 @@ class NewEmail extends Component {
                 <Editor html={this.processTone()} onChange={this.editorInput} />
               </Col>
               <Col sm={{ order: 1 }}>
-                <Analysis toneAnalysis={this.selectedVersion().tone_analysis} />
+                <Analysis
+                  error={this.state.error}
+                  toneAnalysis={this.selectedVersion().tone_analysis}
+                />
               </Col>
             </Row>
           </Col>

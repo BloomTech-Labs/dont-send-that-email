@@ -8,7 +8,10 @@ const Analysis = (props) => {
         <p>No analysis. Click the Analyze Button</p>
       </div>
     );
-  } else if (props.toneAnalysis.document_tone.tones.length === 0) {
+  } else if (
+    props.toneAnalysis.document_tone.tones.length === 0 ||
+    props.error
+  ) {
     return (
       <div>
         <p>The document does not have a tone to it.</p>
