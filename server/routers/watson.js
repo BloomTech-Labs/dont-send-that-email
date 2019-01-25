@@ -1,10 +1,8 @@
 const express = require('express');
-const populateUser = require('../middlewares/populateUser');
+const validateUserRequest = require('../middlewares/validateUserRequest');
 const db = require('../data/dbconfig.js');
 const router = express.Router();
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-
-router.use(populateUser);
 
 //this sets up the tone analyzer. We use it in the get request.
 const toneAnalyzer = new ToneAnalyzerV3({
@@ -13,8 +11,7 @@ const toneAnalyzer = new ToneAnalyzerV3({
   url: 'https://gateway.watsonplatform.net/tone-analyzer/api',
 });
 
-router.post('/', (req, res) => {
-  console.log(req.body);
+router.post('/', validateUserRequest, (req, res) => {
   const toneParams = {
     tone_input: { text: req.body.text },
     content_type: 'application/json',
@@ -23,9 +20,7 @@ router.post('/', (req, res) => {
   toneAnalyzer.tone(toneParams, (err, data) => {
     if (err) {
       //add a better error message.
-      res
-        .status(500)
-        .json({ message: 'Sorry, watson is not talking to us right now', err });
+      res.status(500).json(err);
     } else {
       res.status(200).json(data);
     }

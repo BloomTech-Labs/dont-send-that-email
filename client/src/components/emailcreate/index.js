@@ -4,24 +4,28 @@ import striptags from 'striptags';
 import { Button, Col, Container, Input, Row } from 'reactstrap';
 import BreadCrumb from '../BreadCrumb';
 import Sidebar from '../Navigation/Sidebar';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Editor from './Editor';
 import Analysis from './Analysis';
 import './email.css';
 
 class NewEmail extends Component {
   crumbs = [{ name: 'Home', path: '/' }, { name: 'Document' }];
-  state = {
-    title: '',
-    addressee: '',
-    versions: [{ text: '', tone_analysis: null }],
-    selected_version: 1,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      addressee: '',
+      versions: [{ text: '', tone_analysis: null }],
+      selected_version: 1,
+      user: this.props.user,
+      makingCall: false,
+    };
+  }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    if (id) {
-      this.fetchEmail(id);
+    if (this.props.id) {
+      this.fetchEmail(this.props.id);
     }
   }
 
@@ -112,18 +116,47 @@ class NewEmail extends Component {
   };
 
   analyzeText = () => {
-    axios
-      .post(
-        process.env.REACT_APP_BACKEND_URL + '/api/watson',
-        { text: this.selectedVersion().text },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        const { versions } = this.state;
-        versions[this.state.selected_version - 1].tone_analysis = res.data;
-        this.setState({ versions, error: false });
-      })
-      .catch((err) => this.setState({ error: true }));
+    if (this.state.makingCall === false) {
+      this.setState({ makingCall: true }, () => {
+        const user = Object.assign({}, this.state.user);
+        const month = 2629746000;
+        if (!this.state.user.subscribed) {
+          if (
+            user.currentCycleStart === null ||
+            Date.now() - user.currentCycleStart > month
+          ) {
+            user.currentCycleStart = Date.now();
+            user.analysesCount = 0;
+          }
+        }
+        if (this.state.user.subscribed || user.analysesCount < 100) {
+          axios
+            .post(
+              process.env.REACT_APP_BACKEND_URL + '/api/watson',
+              { text: this.selectedVersion().text, user: user },
+              { withCredentials: true }
+            )
+            .then((res) => {
+              const { versions } = this.state;
+              versions[this.state.selected_version - 1].tone_analysis =
+                res.data;
+              user.analysesCount += 1;
+              this.setState({
+                versions,
+                error: false,
+                user: user,
+                makingCall: false,
+              });
+            })
+            .catch((err) => this.setState({ error: err, makingCall: false }));
+        } else {
+          this.setState({
+            error: 'Error: Request failed with status code 429',
+            makingCall: false,
+          });
+        }
+      });
+    }
   };
 
   handleSave = async (e) => {
@@ -136,8 +169,8 @@ class NewEmail extends Component {
       version: this.selectedVersion(),
     };
 
-    if (this.props.match.params.id) {
-      body.email.id = this.props.match.params.id;
+    if (this.props.id) {
+      body.email.id = this.props.id;
     }
 
     let headers = {
@@ -151,7 +184,7 @@ class NewEmail extends Component {
         body,
         headers
       );
-      if (!this.props.match.params.id) {
+      if (!this.props.id) {
         this.props.history.push(`/email/${id}`);
       } else {
         this.fetchEmail(id);
@@ -227,4 +260,4 @@ class NewEmail extends Component {
   }
 }
 
-export default NewEmail;
+export default withRouter(NewEmail);
