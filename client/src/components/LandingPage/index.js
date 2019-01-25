@@ -155,8 +155,8 @@ class LandingPage extends Component {
                         </div>
                         <div className="card-footer text-center">
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus-g"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin-in"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
@@ -179,8 +179,8 @@ class LandingPage extends Component {
                         </div>
                         <div className="card-footer text-center">
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus-g"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin-in"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
@@ -203,8 +203,8 @@ class LandingPage extends Component {
                         </div>
                         <div className="card-footer text-center">
                             <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "twitter"]} className="fa fa-twitter" /></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus"]} className="fa fa-google-plus"/></a>
-                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin"]} className="fa fa-linkedin" /></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "google-plus-g"]} className="fa fa-google-plus"/></a>
+                            <a href="#pablo" className="btn btn-link btn-just-icon btn-neutral"><FontAwesomeIcon icon={["fab", "linkedin-in"]} className="fa fa-linkedin" /></a>
                         </div>
                     </div>
                 </div>
