@@ -191,7 +191,7 @@ class NewEmail extends Component {
               </Col>
               <Col>
                 <Row>
-                  <Col xs={{ size: 10, offset: 1 }}>
+                  <Col xs={{ size: 10, offset: 3 }}>
                     <Button onClick={this.previousVersion}>Previous</Button>
                     {this.state.selected_version} / {this.state.versions.length}
                     <Button onClick={this.nextVersion}>Next</Button>
