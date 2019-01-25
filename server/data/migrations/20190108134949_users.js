@@ -6,6 +6,8 @@ exports.up = function(knex, Promise) {
     table.string('password', 128);
     //We may not need password. But if so, we need it in the db.
     //.notNullable()
+    table.timestamp('currentCycleStart');
+    table.integer('analysesCount');
   });
 };
 
