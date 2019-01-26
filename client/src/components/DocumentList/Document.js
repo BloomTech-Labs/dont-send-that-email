@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Card, CardBody, CardText, CardTitle, CardSubtitle, Row, Col } from 'reactstrap';
+import {
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col,
+} from 'reactstrap';
 
 class Document extends Component {
   navigate = () => {
@@ -12,29 +20,34 @@ class Document extends Component {
     return (
       <Card onClick={this.navigate}>
         <CardBody>
-          <CardTitle>{title}</CardTitle>
-          <CardSubtitle>{addressee}</CardSubtitle>
+          <CardTitle>Title: {title}</CardTitle>
+          <CardSubtitle>
+            Addressee: {addressee}
+            {this.props.email.updated !== 'No versions.' ? (
+              <div>Updated: {this.props.email.updated}</div>
+            ) : null}
+          </CardSubtitle>
           <CardText>
             <Row>
               <Col>
-              <button
-              className="btn btn-secondary"
-              onClick={(e) => {
-                e.stopPropagation();
-                this.props.copy();
-              }}
-            >
-              Copy
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={(e) => {
-                e.stopPropagation();
-                this.props.delete();
-              }}
-            >
-              Delete
-            </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.props.copy();
+                  }}
+                >
+                  Copy
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.props.delete();
+                  }}
+                >
+                  Delete
+                </button>
               </Col>
             </Row>
           </CardText>

@@ -88,40 +88,35 @@ class DocumentList extends Component {
   };
 
   render() {
-    if (this.state.emails.length === 0) {
-      return (
-        <Container-fluid>
-          <Container>
-            <BreadCrumb crumbs={[{ name: 'Home' }]} user={this.props.user} />
-            <h6>Hello! {this.props.user.username}</h6>
+    return (
+      <Container-fluid>
+        <Container>
+          <BreadCrumb crumbs={[{ name: 'Home' }]} user={this.props.user} />
+          <h6>Hello! {this.props.user.username}</h6>
+          {this.state.componentState === 1 ? (
+            <div class="alert alert-info" role="alert">
+              Free users can only have 5 emails in their dashboard, please clean
+              up any unnecessary emails.
+            </div>
+          ) : null}
+          {this.state.emails.length === 0 ? (
             <Row>
               <Col sm="3">
                 <Sidebar />
               </Col>
               <Col>{this.emailCreateButton()}</Col>
             </Row>
-          </Container>
-        </Container-fluid>
-      );
-    }
-    return (
-      <Container fluid>
-        <BreadCrumb crumbs={[{ name: 'Home' }]} />
-        <h6>Hello! {this.props.user.username}</h6>
-        {this.state.componentState === 1 ? (
-          <div class="alert alert-info" role="alert">
-            Free users can only have 100 emails in their dashboard, please clean
-            up any unnecessary emails.
-          </div>
-        ) : null}
-        <Row>
-          <Sidebar />
-          <Col>
-            <CardColumns>{this.emailElements()}</CardColumns>
-          </Col>
-          <Col>{this.emailCreateButton()}</Col>
-        </Row>
-      </Container>
+          ) : (
+            <Row>
+              <Sidebar />
+              <Col>
+                <CardColumns>{this.emailElements()}</CardColumns>
+              </Col>
+              <Col>{this.emailCreateButton()}</Col>
+            </Row>
+          )}
+        </Container>
+      </Container-fluid>
     );
   }
 }
