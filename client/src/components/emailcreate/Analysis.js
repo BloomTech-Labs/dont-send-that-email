@@ -1,12 +1,14 @@
 import React from 'react';
 
-const Analysis = props => {
-  console.log (props.error);
-  console.log (props.toneAnalysis);
+const Analysis = (props) => {
+  console.log(props.error);
+  console.log(props.toneAnalysis);
   if (props.error == 'Error: Request failed with status code 429') {
     return (
       <div>
-        <p>Free users are capped at 100 email analyses.</p>
+        <p>
+          Free users are capped at 100 email analyses and cannot send emails.
+        </p>
       </div>
     );
   } else if (
@@ -29,10 +31,10 @@ const Analysis = props => {
     return (
       <div>
         <p>Document tones:</p>
-        {props.toneAnalysis.document_tone.tones.map ((e, i) => {
+        {props.toneAnalysis.document_tone.tones.map((e, i) => {
           return (
             <p key={i}>
-              {e.tone_id}: {(e.score * 100).toFixed () + '%'}
+              {e.tone_id}: {(e.score * 100).toFixed() + '%'}
             </p>
           );
         })}

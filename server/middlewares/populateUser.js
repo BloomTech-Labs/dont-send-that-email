@@ -22,7 +22,11 @@ const populateUser = async (req, res, next) => {
     }
     console.log('[populateUser] - found ', req.user);
     if (req.body.reqType === 'send') {
-      req.body.username = req.user.username;
+      if (req.user.subscribed) {
+        req.body.username = req.user.username;
+      } else {
+        throw 'Request failed with status code 429';
+      }
     }
     if (req.body.reqType === 'analyze') {
       if (req.user.subscribed) {
