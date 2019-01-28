@@ -52,7 +52,7 @@ class DocumentList extends Component {
     ));
 
   emailCreateButton = () => (
-    <Card onClick={this.redirectToCreateEmailPage}>
+    <Card onClick={this.redirectToCreateEmailPage} style={{ width: "100%" }}>
       <CardBody style={{ textAlign: "center" }}>
         <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
           <h3>Create New E-mail</h3>
@@ -105,6 +105,32 @@ class DocumentList extends Component {
     }
   };
 
+  emailCountAlert = () => {
+    if (this.state.componentState === 1) {
+      return (
+        <div class="alert alert-info" role="alert">
+          Free users can only have 5 emails in their dashboard, please clean up
+          any unnecessary emails.
+        </div>
+      );
+    }
+    return null;
+  };
+
+  emailCards = () => {
+    if (this.state.emails.length === 0) {
+      return <Col xs={{ size: 6, offset: 3 }}>{this.emailCreateButton()}</Col>;
+    }
+    return (
+      <Col>
+        <CardColumns>
+          {this.emailCreateButton()}
+          {this.emailElements()}
+        </CardColumns>
+      </Col>
+    );
+  };
+
   render() {
     return (
       <Container fluid>
@@ -112,23 +138,10 @@ class DocumentList extends Component {
           <Sidebar />
           <Col xs={12}>
             <BreadCrumb crumbs={[{ name: "Home" }]} user={this.props.user} />
-            {this.state.componentState === 1 && (
-              <div class="alert alert-info" role="alert">
-                Free users can only have 5 emails in their dashboard, please
-                clean up any unnecessary emails.
-              </div>
-            )}
+            {this.emailCountAlert()}
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <CardColumns>
-              {this.emailCreateButton()}
-              {this.emailElements()}
-            </CardColumns>
-          </Col>
-        </Row>
-        )}
+        <Row>{this.emailCards()}</Row>
       </Container>
     );
   }
