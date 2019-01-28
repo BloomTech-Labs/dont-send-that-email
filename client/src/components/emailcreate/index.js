@@ -115,7 +115,7 @@ class NewEmail extends Component {
     axios
       .post(
         process.env.REACT_APP_BACKEND_URL + '/api/watson',
-        { text: this.selectedVersion().text },
+        { text: this.selectedVersion().text, reqType:'analyze'},
         { withCredentials: true }
       )
       .then((res) => {
