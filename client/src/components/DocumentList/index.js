@@ -1,16 +1,26 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Sidebar from '../Navigation/Sidebar';
-import { CardColumns, Col, Container, Row, Button } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
-import Document from './Document';
-import BreadCrumb from '../BreadCrumb';
-import '../../index.css';
+import React, { Component } from "react";
+import axios from "axios";
+import Sidebar from "../Navigation/Sidebar";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardColumns,
+  Col,
+  Container,
+  Row,
+  Button
+} from "reactstrap";
+import { withRouter } from "react-router-dom";
+import Document from "./Document";
+import BreadCrumb from "../BreadCrumb";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../index.css";
 
 class DocumentList extends Component {
   state = {
     emails: [],
-    componentState: 0,
+    componentState: 0
   };
 
   componentDidMount = async () => {
@@ -42,33 +52,41 @@ class DocumentList extends Component {
     ));
 
   emailCreateButton = () => (
-    <Button color="info" onClick={() => this.redirectToCreateEmailPage()}>
-      Create Email
-    </Button>
+    <Card onClick={this.redirectToCreateEmailPage}>
+      <CardBody style={{ textAlign: "center" }}>
+        <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
+          <h3>Create New E-mail</h3>
+        </CardTitle>
+        <Button size="lg" color="danger">
+          <FontAwesomeIcon icon="plus-circle" size="3x" />
+        </Button>
+      </CardBody>
+    </Card>
   );
+
   redirectToCreateEmailPage = () => {
     if (this.props.user.subscribed === true || this.state.emails.length < 5) {
       console.log(this.props.user.subscribed);
-      this.props.history.push('/email');
+      this.props.history.push("/email");
     } else {
       this.setState({ componentState: 1 });
     }
   };
-  deleteEmail = (e) => {
+  deleteEmail = e => {
     axios
       .delete(`${process.env.REACT_APP_EMAILS_URL}${e.id}`, {
-        withCredentials: true,
+        withCredentials: true
       })
-      .then((res) => {
+      .then(res => {
         if (this.state.componentState === 1) {
           this.setState({ componentState: 0 }, () => this.fetchEmails());
         } else {
           this.fetchEmails();
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
-  copyEmail = ({ title, addressee }) => (e) => {
+  copyEmail = ({ title, addressee }) => e => {
     if (this.props.user.subscribed === true || this.state.emails.length < 5) {
       console.log(this.props.user.subscribed);
       const body = { email: { title, addressee } };
@@ -79,7 +97,7 @@ class DocumentList extends Component {
           if (data.id) {
             this.fetchEmails();
           } else {
-            console.log('Email copy operation failed.', data.err);
+            console.log("Email copy operation failed.", data.err);
           }
         });
     } else {
@@ -89,34 +107,29 @@ class DocumentList extends Component {
 
   render() {
     return (
-      <Container-fluid>
-        <Container>
-          <BreadCrumb crumbs={[{ name: 'Home' }]} user={this.props.user} />
-          <h6>Hello! {this.props.user.username}</h6>
-          {this.state.componentState === 1 ? (
-            <div class="alert alert-info" role="alert">
-              Free users can only have 5 emails in their dashboard, please clean
-              up any unnecessary emails.
-            </div>
-          ) : null}
-          {this.state.emails.length === 0 ? (
-            <Row>
-              <Col sm="3">
-                <Sidebar />
-              </Col>
-              <Col>{this.emailCreateButton()}</Col>
-            </Row>
-          ) : (
-            <Row>
-              <Sidebar />
-              <Col>
-                <CardColumns>{this.emailElements()}</CardColumns>
-              </Col>
-              <Col>{this.emailCreateButton()}</Col>
-            </Row>
-          )}
-        </Container>
-      </Container-fluid>
+      <Container fluid>
+        <Row>
+          <Sidebar />
+          <Col xs={12}>
+            <BreadCrumb crumbs={[{ name: "Home" }]} user={this.props.user} />
+            {this.state.componentState === 1 && (
+              <div class="alert alert-info" role="alert">
+                Free users can only have 5 emails in their dashboard, please
+                clean up any unnecessary emails.
+              </div>
+            )}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CardColumns>
+              {this.emailCreateButton()}
+              {this.emailElements()}
+            </CardColumns>
+          </Col>
+        </Row>
+        )}
+      </Container>
     );
   }
 }
