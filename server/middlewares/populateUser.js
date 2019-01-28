@@ -54,17 +54,18 @@ const populateUser = async (req, res, next) => {
         }
         if (verified === 1) {
           next ();
+        } else {
+          throw 'Request failed with status code 429';
         }
       }
     } else {
       next ();
     }
   } catch (err) {
-    if (req.body.reqType === 'analyze') {
-      res.status (429).json ({err});
+    if (err == 'Request failed with status code 429') {
+      res.status (429).json (err);
     } else {
-      res.status (500).json ({err});
-      throw err;
+      res.status (500).json (err);
     }
   }
 };

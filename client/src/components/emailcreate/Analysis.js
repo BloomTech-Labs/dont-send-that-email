@@ -2,19 +2,27 @@ import React from 'react';
 
 const Analysis = props => {
   console.log (props.error);
-  if (props.toneAnalysis === null) {
+  console.log (props.toneAnalysis);
+  if (props.error == 'Error: Request failed with status code 429') {
     return (
       <div>
-        <p>No analysis. Click the Analyze Button</p>
+        <p>Free users are capped at 100 email analyses.</p>
       </div>
     );
   } else if (
-    props.toneAnalysis.document_tone.tones.length === 0 ||
-    props.error
+    (props.toneAnalysis &&
+      props.toneAnalysis.document_tone.tones.length === 0) ||
+    props.error == 'Error: Request failed with status code 500'
   ) {
     return (
       <div>
         <p>The document does not have a tone to it.</p>
+      </div>
+    );
+  } else if (props.toneAnalysis === null) {
+    return (
+      <div>
+        <p>No analysis. Click the Analyze Button</p>
       </div>
     );
   } else {
