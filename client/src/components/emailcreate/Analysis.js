@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Analysis = (props) => {
-  console.log(props.toneAnalysis);
+const Analysis = props => {
+  console.log (props.error);
   if (props.toneAnalysis === null) {
     return (
       <div>
@@ -21,10 +21,10 @@ const Analysis = (props) => {
     return (
       <div>
         <p>Document tones:</p>
-        {props.toneAnalysis.document_tone.tones.map((e, i) => {
+        {props.toneAnalysis.document_tone.tones.map ((e, i) => {
           return (
             <p key={i}>
-              {e.tone_id}: {(e.score * 100).toFixed() + '%'}
+              {e.tone_id}: {(e.score * 100).toFixed () + '%'}
             </p>
           );
         })}

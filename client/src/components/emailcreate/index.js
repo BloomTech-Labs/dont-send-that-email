@@ -17,6 +17,7 @@ class NewEmail extends Component {
     versions: [{text: '', tone_analysis: null}],
     selected_version: 1,
     makingCall: false,
+    error: false,
   };
 
   componentDidMount () {
@@ -126,7 +127,7 @@ class NewEmail extends Component {
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState ({versions, error: false, makingCall: false});
           })
-          .catch (err => this.setState ({error: true, makingCall: false}));
+          .catch (err => this.setState ({error: err, makingCall: false}));
       });
     }
   };
