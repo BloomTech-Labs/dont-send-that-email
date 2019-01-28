@@ -5,12 +5,12 @@ import './App.css';
 import MainContent from './components/MainContent';
 import LandingPage from './components/LandingPage';
 import 'typeface-montserrat';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faIgloo } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faIgloo } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faIgloo, fab)
+library.add(faIgloo, fab);
 
 class App extends Component {
   state = {
@@ -19,7 +19,9 @@ class App extends Component {
 
   updateUser = () => {
     axios
-      .get(process.env.REACT_APP_PROFILE_URL, { withCredentials: true })
+      .get(process.env.REACT_APP_BACKEND_URL + '/auth/profile', {
+        withCredentials: true,
+      })
       .then((response) => {
         const { user, err } = response.data;
         if (user) {

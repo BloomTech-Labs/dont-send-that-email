@@ -147,7 +147,7 @@ class NewEmail extends Component {
 
     try {
       const { data: { id } } = await axios.post(
-        process.env.REACT_APP_EMAILS_URL,
+        process.env.REACT_APP_BACKEND_URL + '/emails',
         body,
         headers
       );

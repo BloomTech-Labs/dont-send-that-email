@@ -24,7 +24,7 @@ const Analysis = (props) => {
         {props.toneAnalysis.document_tone.tones.map((e, i) => {
           return (
             <p key={i}>
-              {e.tone_id}: {(e.score * 100).toFixed(2) + '%'}
+              {e.tone_id}: {(e.score * 100).toFixed() + '%'}
             </p>
           );
         })}
