@@ -67,16 +67,17 @@ class NewEmail extends Component {
     return this.state.versions[this.state.selected_version - 1];
   };
   sendEmail = () => {
+    console.log('hello world');
     axios
       .post(
         process.env.REACT_APP_BACKEND_URL + '/sendemail',
-        { withCredentials: true },
         {
           title: this.state.title,
           text: this.selectedVersion().text,
           addressee: this.state.addressee,
           reqType: 'send',
-        }
+        },
+        { withCredentials: true }
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

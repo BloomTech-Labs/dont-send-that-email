@@ -14,18 +14,19 @@ const options = {
 };
 const client = nodemailer.createTransport(sgTransport(options));
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   const email = {
     from: req.body.username,
     to: req.body.addressee,
     subject: req.body.title,
     text: req.body.text,
   };
-  client.sendEmail(email, (err, info) => {
+
+  client.sendMail(email, (err, info) => {
     if (err) {
-      console.log(err);
+      res.status(500).json(err);
     } else {
-      console.log('Message sent ' + info.response);
+      res.status(200).json(`Message sent.`);
     }
   });
 });
