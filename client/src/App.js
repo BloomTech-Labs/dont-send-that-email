@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import axios from 'axios';
-import './App.css';
-import MainContent from './components/MainContent';
-import LandingPage from './components/LandingPage';
-import 'typeface-montserrat';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faIgloo } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
+import "./App.css";
+import MainContent from "./components/MainContent";
+import LandingPage from "./components/LandingPage";
+import "typeface-montserrat";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faIgloo,
+  faPlusCircle,
+  faCopy,
+  faTrash
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faIgloo, fab);
+library.add(faIgloo, faPlusCircle, faCopy, faTrash, fab);
 
 class App extends Component {
   state = {
-    user: null,
+    user: null
   };
 
   updateUser = () => {
@@ -32,7 +37,7 @@ class App extends Component {
       });
   };
 
-  handleClick = (e) => {
+  handleClick = e => {
     this.setState({ testLogin: false });
   };
 
