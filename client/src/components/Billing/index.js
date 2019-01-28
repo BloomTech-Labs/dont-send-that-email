@@ -15,7 +15,7 @@ class Billing extends Component {
             <Link to="/">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbItem active>Billing</BreadcrumbItem>
-          <button>Sign Out</button>
+          {/* <button>Sign Out</button> */}
         </Breadcrumb>
         <h1>Billing</h1>
         <Row>
