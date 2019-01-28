@@ -5,6 +5,10 @@
   }
   .row.content {height: 450px}
 
+  .btn{
+    margin: 10px;
+    
+    }
 
   .sidenav {
     padding-top: 20px;

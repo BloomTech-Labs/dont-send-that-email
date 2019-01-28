@@ -1,6 +1,6 @@
 const moment = require('moment');
 const db = require('../data/dbconfig');
-
+const month = 2628000000;
 const populateUser = async (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ err: 'No user logged in.' });
@@ -20,12 +20,60 @@ const populateUser = async (req, res, next) => {
     if (subscription) {
       req.user.subscribed = isSubscriptionActive(subscription);
     }
-
     console.log('[populateUser] - found ', req.user);
-    next();
+    if (req.body.reqType === 'send') {
+      if (req.user.subscribed) {
+        req.body.username = req.user.username;
+      } else {
+        throw 'Request failed with status code 429';
+      }
+    }
+    if (req.body.reqType === 'analyze') {
+      if (req.user.subscribed) {
+        next();
+      } else {
+        let verified;
+        if (
+          req.user.currentCycleStart === null &&
+          req.user.analysesCount === null
+        ) {
+          verified = await db('users')
+            .where({ id: req.user.id })
+            .update({ analysesCount: 1, currentCycleStart: Date.now() });
+        } else {
+          if (req.user.analysesCount < 100) {
+            if (Date.now() - req.user.currentCycleStart >= month) {
+              verified = await db('users')
+                .where({ id: req.user.id })
+                .update({ analysesCount: 1, currentCycleStart: Date.now() });
+            } else {
+              verified = await db('users')
+                .where({ id: req.user.id })
+                .update({ analysesCount: req.user.analysesCount + 1 });
+            }
+          } else {
+            if (Date.now() - req.user.currentCycleStart >= month) {
+              verified = await db('users')
+                .where({ id: req.user.id })
+                .update({ analysesCount: 1, currentCycleStart: Date.now() });
+            }
+          }
+        }
+        if (verified === 1) {
+          next();
+        } else {
+          throw 'Request failed with status code 429';
+        }
+      }
+    } else {
+      next();
+    }
   } catch (err) {
-    res.status(500).json({ err });
-    throw err;
+    if (err == 'Request failed with status code 429') {
+      res.status(429).json(err);
+    } else {
+      res.status(500).json(err);
+    }
   }
 };
 
