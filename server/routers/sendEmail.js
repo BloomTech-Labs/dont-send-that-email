@@ -14,7 +14,7 @@ const options = {
 };
 const client = nodemailer.createTransport(sgTransport(options));
 
-axios.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const email = {
     from: req.body.username,
     to: req.body.addressee,
