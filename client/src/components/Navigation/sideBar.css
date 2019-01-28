@@ -14,7 +14,7 @@ body {
   text-align: center;
 
   /* Prevent sidebar from showing a scrollbar on page */
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 /* Individual item */
@@ -28,6 +28,20 @@ body {
   transition: color 0.2s;
 }
 
+.bm-item button {
+  width: 100%;
+  margin-left: -3px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bm-item button span {
+  width: 70%;
+  text-align: left;
+}
+
 /* Change color on hover */
 .bm-item:hover {
   color: #ff8282;
@@ -38,16 +52,16 @@ body {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
- 
+
   width: 36px;
   height: 30px;
-  right: 36px;
-  top: 36px;
+  right: 30px;
+  top: 10px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #5470eb;
+  background: #f5593d;
 }
 
 /* Position and sizing of clickable cross button */
@@ -63,9 +77,10 @@ body {
 
 /* General sidebar styles */
 .bm-menu {
-  background: #405ddb;
+  background: #fff;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  overflow: hidden !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -83,8 +98,6 @@ body {
   background: rgba(69, 43, 214, 0.7);
 }
 
-
-
 /* 
 .homeBtn, .settingBtn, .billingBtn{
 
@@ -97,4 +110,3 @@ body {
     flex-direction: column;
     width: 50%;
 } */
-
