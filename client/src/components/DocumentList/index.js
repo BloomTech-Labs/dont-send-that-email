@@ -111,8 +111,8 @@ class DocumentList extends Component {
               <Sidebar />
               <Col>
                 <CardColumns>{this.emailElements()}</CardColumns>
+                {this.emailCreateButton()}
               </Col>
-              <Col>{this.emailCreateButton()}</Col>
             </Row>
           )}
         </Container>
