@@ -29,7 +29,9 @@ class DocumentList extends Component {
 
   fetchEmails = () => {
     axios
-      .get(process.env.REACT_APP_EMAILS_URL, { withCredentials: true })
+      .get(process.env.REACT_APP_BACKEND_URL + '/emails', {
+        withCredentials: true,
+      })
       .then(({ data }) => {
         const { emails, err } = data;
         if (emails) {
@@ -74,8 +76,8 @@ class DocumentList extends Component {
   };
   deleteEmail = e => {
     axios
-      .delete(`${process.env.REACT_APP_EMAILS_URL}${e.id}`, {
-        withCredentials: true
+      .delete(`${process.env.REACT_APP_BACKEND_URL + '/emails/'}${e.id}`, {
+        withCredentials: true,
       })
       .then(res => {
         if (this.state.componentState === 1) {
@@ -92,7 +94,9 @@ class DocumentList extends Component {
       const body = { email: { title, addressee } };
       console.log(body);
       axios
-        .post(process.env.REACT_APP_EMAILS_URL, body, { withCredentials: true })
+        .post(process.env.REACT_APP_BACKEND_URL + '/emails', body, {
+          withCredentials: true,
+        })
         .then(({ data }) => {
           if (data.id) {
             this.fetchEmails();

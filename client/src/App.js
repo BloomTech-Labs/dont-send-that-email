@@ -24,8 +24,10 @@ class App extends Component {
 
   updateUser = () => {
     axios
-      .get(process.env.REACT_APP_PROFILE_URL, { withCredentials: true })
-      .then(response => {
+      .get(process.env.REACT_APP_BACKEND_URL + '/auth/profile', {
+        withCredentials: true,
+      })
+      .then((response) => {
         const { user, err } = response.data;
         if (user) {
           this.setState({ user }, () => console.log(this.state.user));
