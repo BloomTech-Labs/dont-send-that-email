@@ -16,6 +16,8 @@ class NewEmail extends Component {
     addressee: '',
     versions: [{ text: '', tone_analysis: null }],
     selected_version: 1,
+    makingCall: false,
+    error: false,
   };
 
   componentDidMount() {
@@ -64,7 +66,22 @@ class NewEmail extends Component {
   selectedVersion = () => {
     return this.state.versions[this.state.selected_version - 1];
   };
-
+  sendEmail = () => {
+    console.log('hello world');
+    axios
+      .post(
+        process.env.REACT_APP_BACKEND_URL + '/sendemail',
+        {
+          title: this.state.title,
+          text: this.selectedVersion().text,
+          addressee: this.state.addressee,
+          reqType: 'send',
+        },
+        { withCredentials: true }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   // Apply watson analysis to the version's text
   processTone = () => {
     let { text, tone_analysis } = this.selectedVersion();
@@ -112,18 +129,22 @@ class NewEmail extends Component {
   };
 
   analyzeText = () => {
-    axios
-      .post(
-        process.env.REACT_APP_BACKEND_URL + '/api/watson',
-        { text: this.selectedVersion().text },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        const { versions } = this.state;
-        versions[this.state.selected_version - 1].tone_analysis = res.data;
-        this.setState({ versions, error: false });
-      })
-      .catch((err) => this.setState({ error: true }));
+    if (!this.state.makingCall) {
+      this.setState({ makingCall: true }, () => {
+        axios
+          .post(
+            process.env.REACT_APP_BACKEND_URL + '/api/watson',
+            { text: this.selectedVersion().text, reqType: 'analyze' },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            const { versions } = this.state;
+            versions[this.state.selected_version - 1].tone_analysis = res.data;
+            this.setState({ versions, error: false, makingCall: false });
+          })
+          .catch((err) => this.setState({ error: err, makingCall: false }));
+      });
+    }
   };
 
   handleSave = async (e) => {
@@ -205,6 +226,7 @@ class NewEmail extends Component {
                     <Button onClick={this.handleSave}>
                       {this.saveButton()}
                     </Button>
+                    <Button onClick={this.sendEmail}>Send</Button>
                   </Col>
                 </Row>
               </Col>
