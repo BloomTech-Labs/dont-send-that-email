@@ -12,10 +12,20 @@ import {
   faIgloo,
   faPlusCircle,
   faCopy,
-  faTrash
+  faTrash,
+  faArrowLeft,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faIgloo, faPlusCircle, faCopy, faTrash, fab);
+library.add(
+  faIgloo, 
+  faPlusCircle, 
+  faCopy, 
+  faTrash, 
+  faArrowLeft, 
+  faArrowRight, 
+  fab
+);
 
 class App extends Component {
   state = {
