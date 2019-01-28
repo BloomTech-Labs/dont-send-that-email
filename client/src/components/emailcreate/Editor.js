@@ -6,7 +6,7 @@ class ContentEditable extends React.Component {
     return (
       <div
         className="form-control"
-        style={{ height: "auto", minHeight: "150px", maxWidth: "65%", minWidth: "355px" }}
+        style={{ height: "auto", minHeight: "150px" }}
         onInput={this.emitChange}
         onBlur={this.emitChange}
         contentEditable
