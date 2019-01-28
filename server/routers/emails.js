@@ -70,7 +70,8 @@ router.get("/", async (req, res) => {
       "emails.id",
       "title",
       "addressee",
-      "versions.date_created as updated"
+      "versions.date_created as updated",
+      "versions.text as text"
     )
     .then(emails => emails.map(processEmail));
   res.json({ emails });
