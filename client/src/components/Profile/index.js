@@ -11,7 +11,10 @@ const Profile = (props) => {
       <Row>
         <Sidebar />
         <Col xs={12}>
-          <BreadCrumb crumbs={[{ name: "Profile" }]} user={props.user} />
+          <BreadCrumb
+            crumbs={[{ name: "Home", path: "/" }, { name: "Profile" }]}
+            user={props.user}
+          />
         </Col>
       </Row>
       <Row>
