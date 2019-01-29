@@ -4,12 +4,11 @@ import Settings from "../Settings";
 import Billing from "../Billing";
 import Sidebar from "../Navigation/Sidebar";
 import BreadCrumb from "../BreadCrumb";
+import Navigation from "../Navigation";
 
 const Profile = (props) => {
   return (
-    <Container fluid>
-    <Sidebar />
-      <Container >
+    <Container>
         <Row>
           <Col xs={12}>
             <BreadCrumb crumbs={[{ name: "Profile" }]} user={props.user} />
@@ -23,7 +22,6 @@ const Profile = (props) => {
             <Billing user={props.user} />
           </Col>
         </Row>
-      </Container>
     </Container>
   );
 };

@@ -4,9 +4,6 @@ import "../../index.css";
 import Checkout from "./Checkout";
 
 class Billing extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Container className="billing-component">

@@ -227,10 +227,8 @@ class NewEmail extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Sidebar />
+      <Container>
         <BreadCrumb crumbs={this.crumbs} />
-        <Container >
         <Row>
           <Col>
             <Row>
@@ -278,7 +276,6 @@ class NewEmail extends Component {
             </Row>
           </Col>
         </Row>
-        </Container>
       </Container>
     );
   }
