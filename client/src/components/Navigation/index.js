@@ -33,6 +33,7 @@ export default class Example extends React.Component {
         <Sidebar />
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Don't Send That Email!</NavbarBrand>
+          <h6>Hello! {this.props.user.username}</h6>
         </Navbar>
       </div>
     );
