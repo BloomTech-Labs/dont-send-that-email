@@ -13,17 +13,23 @@ import {
   faPlusCircle,
   faCopy,
   faTrash,
+  faHome,
+  faUser,
+  faSignOutAlt,
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
-  faIgloo, 
-  faPlusCircle, 
-  faCopy, 
-  faTrash, 
+  faIgloo,
+  faPlusCircle,
+  faCopy,
+  faTrash,
+  faHome,
+  faUser,
+  faSignOutAlt,
   faArrowLeft, 
-  faArrowRight, 
+  faArrowRight,
   fab
 );
 
@@ -34,10 +40,10 @@ class App extends Component {
 
   updateUser = () => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + '/auth/profile', {
-        withCredentials: true,
+      .get(process.env.REACT_APP_BACKEND_URL + "/auth/profile", {
+        withCredentials: true
       })
-      .then((response) => {
+      .then(response => {
         const { user, err } = response.data;
         if (user) {
           this.setState({ user }, () => console.log(this.state.user));
