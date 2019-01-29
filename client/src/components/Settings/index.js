@@ -2,6 +2,10 @@ import React from "react";
 import { Container, Col } from "reactstrap";
 import "./settings.css";
 
+const dateFormat = (dateString) => {
+  let formattedDateString = dateString.slice(0, 10);
+  return formattedDateString;
+};
 const Settings = (props) => {
   console.log(props.user);
   if (!props.user.subscribed) {
@@ -9,7 +13,7 @@ const Settings = (props) => {
       <div>
         <p>Username: {props.user.username}</p>
         <p>Email: {props.user.emailaddress}</p>
-        <p>Tier: Free</p>
+        <p>Tier: free</p>
       </div>
     );
   } else {
@@ -17,7 +21,8 @@ const Settings = (props) => {
       <div>
         <p>Username: {props.user.username}</p>
         <p>Email: {props.user.emailaddress}</p>
-        <p>Tier: Paid</p>
+        <p>Tier: subscribed</p>
+        <p>Subscription End Date: {dateFormat(props.user.subscriptionEnd)}</p>
       </div>
     );
   }
