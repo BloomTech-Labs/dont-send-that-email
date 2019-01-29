@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import striptags from "striptags";
 import { Button, Col, Container, Input, Row } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
 import { Link } from "react-router-dom";
@@ -224,7 +225,8 @@ class NewEmail extends Component {
                       onClick={this.previousVersion}
                     />
                     <Button className="disabled">
-                      {this.state.selected_version} / {this.state.versions.length}
+                      {this.state.selected_version} /{" "}
+                      {this.state.versions.length}
                     </Button>
                     {/* <Button onClick={this.nextVersion}>Next</Button> */}
                     <FontAwesomeIcon
