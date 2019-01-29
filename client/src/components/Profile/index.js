@@ -18,10 +18,10 @@ const Profile = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col xs={12} sm={6}>
+        <Col xs={12} md={6}>
           <Settings user={props.user} />
         </Col>
-        <Col xs={12} sm={6}>
+        <Col xs={12} md={6}>
           <Billing user={props.user} />
         </Col>
       </Row>
