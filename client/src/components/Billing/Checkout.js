@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
-
+import { withRouter } from "react-router-dom";
 const PAYMENT_SERVER_URL = process.env.REACT_APP_BACKEND_URL + "/billing";
 const STRIPE_PUBLISHABLE = process.env.REACT_APP_STRIPE_API_PUBLISH_KEY;
 
@@ -13,7 +13,7 @@ const CURRENCY = "USD";
 const fromUSDToCent = (amount) => amount * 100;
 
 const successPayment = (data) => {
-  alert("Payment Successful");
+  window.location.reload();
   console.log(data);
 };
 
