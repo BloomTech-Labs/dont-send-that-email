@@ -46,9 +46,7 @@ const Checkout = ({ name, description, amount }) => (
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
   >
-    <button className="btn btn-danger btn-round mb-4 mt-1">
-      Subscribe 30 Days
-    </button>
+    <button className="btn btn-danger btn-round ml-3">Subscribe 30 Days</button>
   </StripeCheckout>
 );
 
