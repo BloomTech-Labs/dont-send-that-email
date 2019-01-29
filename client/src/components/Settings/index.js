@@ -12,7 +12,7 @@ const Settings = (props) => {
     <Container className="settings-component">
       <Row>
         <Col className="border rounded pl-3 pt-3 mb-4">
-          <p>Username: {props.user.username}</p>
+          <p><b>Username:</b> {props.user.username}</p>
           <p>Email: {props.user.emailaddress}</p>
           <p>{props.user.subscribed ? "Tier: paid" : "Tier: free"}</p>
           {props.user.subscribed ? (
