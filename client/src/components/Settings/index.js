@@ -13,11 +13,11 @@ const Settings = (props) => {
       <Row>
         <Col className="border rounded pl-3 pt-3 mb-4">
           <p><b>Username:</b> {props.user.username}</p>
-          <p>Email: {props.user.emailaddress}</p>
-          <p>{props.user.subscribed ? "Tier: paid" : "Tier: free"}</p>
+          <p><b>Email:</b> {props.user.emailaddress}</p>
+          {props.user.subscribed ? <p><b>Tier:</b> Paid</p> : <p><b>Tier:</b> Free</p>}
           {props.user.subscribed ? (
             <p>
-              Subscription End Date: {dateFormat(props.user.subscriptionEnd)}
+              <b>Subscription End Date:</b> {dateFormat(props.user.subscriptionEnd)}
             </p>
           ) : null}
         </Col>
