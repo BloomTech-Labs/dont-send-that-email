@@ -3,21 +3,34 @@ import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
 
 const Analysis = ({ toneAnalysis, error }) => {
   let toneResult;
+  const colors = {
+    Joy: "success",
+    Anger: "danger",
+    Fear: "warning",
+    Sadness: "info",
+    Confident: "success",
+    Analytical: "primary",
+    Tentative: "warning"
+  };
   if (error == "Error: Request failed with status code 429") {
     toneResult =
       "Free users are capped at 100 email analyses and cannot send emails.";
   }
   if (toneAnalysis && toneAnalysis.document_tone.tones.length) {
-    toneResult = toneAnalysis.document_tone.tones.map((e, i) => (
-      <p key={i}>
-        {e.tone_id}: {(e.score * 100).toFixed() + "%"}
-      </p>
-    ));
+    toneResult = toneAnalysis.document_tone.tones.map((e, i) => {
+      const color = colors[e.tone_name];
+      const score = (e.score * 100).toFixed() + "%";
+      return (
+        <p key={i} className={`label-${color} tone`} style={{ width: score }}>
+          {e.tone_id}: {score}
+        </p>
+      );
+    });
   } else {
     toneResult = "The document does not have a tone to it.";
   }
   return (
-    <Card style={{ transition: null }}>
+    <Card className="no-transition">
       <CardHeader>Emotional Analysis</CardHeader>
       <CardBody>{toneResult}</CardBody>
     </Card>
