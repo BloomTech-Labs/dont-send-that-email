@@ -1,5 +1,14 @@
 import React from "react";
-import { Container, Col, Row } from "reactstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Badge,
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+} from "reactstrap";
 import "../../index.css";
 
 const dateFormat = (dateString) => {
@@ -12,6 +21,7 @@ const Settings = (props) => {
     <Container className="settings-component">
       <Row>
         <Col className="border rounded pl-3 pt-3 mb-4">
+          <h3>User Info:</h3>
           <p>Username: {props.user.username}</p>
           <p>Email: {props.user.emailaddress}</p>
           <p>{props.user.subscribed ? "Tier: paid" : "Tier: free"}</p>
