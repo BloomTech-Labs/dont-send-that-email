@@ -14,8 +14,14 @@ const Profile = (props) => {
           <BreadCrumb crumbs={[{ name: "Profile" }]} user={props.user} />
         </Col>
       </Row>
-      <Settings user={props.user} />
-      <Billing user={props.user} />
+      <Row>
+        <Col xs={12} sm={6}>
+          <Settings user={props.user} />
+        </Col>
+        <Col xs={12} sm={6}>
+          <Billing user={props.user} />
+        </Col>
+      </Row>
     </Container>
   );
 };

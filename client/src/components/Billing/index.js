@@ -9,18 +9,17 @@ class Billing extends Component {
   }
   render() {
     return (
-      <Container>
+      <Container className="billing-component">
         <Row>
-          <Col className="border rounded">
-            <h2>Free users are limited to:</h2>
+          <Col xs={12} className="border rounded mb-4 pl-3 pt-3">
+            <h3>Free user privileges:</h3>
             <ul>
               <li>100 email analyses per 30 days</li>
               <li>Storage for 5 emails in home page</li>
-              <li>Cannot send emails through our email service provider</li>
             </ul>
           </Col>
-          <Col className="border rounded">
-            <h2>Paid users have access to:</h2>
+          <Col xs={12} className="border rounded pl-3 pt-3">
+            <h3>Paid user privileges:</h3>
             <ul>
               <li>Unlimited email analyses</li>
               <li>Storage for unlimited emails in home page</li>
