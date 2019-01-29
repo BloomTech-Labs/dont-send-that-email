@@ -8,24 +8,16 @@ const dateFormat = (dateString) => {
 };
 const Settings = (props) => {
   console.log(props.user);
-  if (!props.user.subscribed) {
-    return (
-      <div>
-        <p>Username: {props.user.username}</p>
-        <p>Email: {props.user.emailaddress}</p>
-        <p>Tier: free</p>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <p>Username: {props.user.username}</p>
-        <p>Email: {props.user.emailaddress}</p>
-        <p>Tier: subscribed</p>
+  return (
+    <div>
+      <p>Username: {props.user.username}</p>
+      <p>Email: {props.user.emailaddress}</p>
+      <p>{props.user.subscribed ? "Tier: paid" : "Tier: free"}</p>
+      {props.user.subscribed ? (
         <p>Subscription End Date: {dateFormat(props.user.subscriptionEnd)}</p>
-      </div>
-    );
-  }
+      ) : null}
+    </div>
+  );
 };
 
 export default Settings;

@@ -15,7 +15,7 @@ const Profile = (props) => {
         </Col>
       </Row>
       <Settings user={props.user} />
-      <Billing />
+      <Billing user={props.user} />
     </Container>
   );
 };

@@ -4,6 +4,9 @@ import "../../index.css";
 import Checkout from "./Checkout";
 
 class Billing extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <Container>
@@ -23,11 +26,13 @@ class Billing extends Component {
               <li>Storage for unlimited emails in home page</li>
               <li>Can send emails through our email service provider</li>
             </ul>
-            <Checkout
-              name={"30 Days"}
-              description={"30 Days subscription of Don't send that email"}
-              amount={5}
-            />
+            {!this.props.user.subscribed ? (
+              <Checkout
+                name={"30 Days"}
+                description={"30 Days subscription of Don't send that email"}
+                amount={5}
+              />
+            ) : null}
           </Col>
         </Row>
       </Container>
