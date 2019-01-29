@@ -1,6 +1,6 @@
 const moment = require("moment");
 const db = require("../data/dbconfig");
-const month = 2628000000;
+const month = 2592000000;
 const populateUser = async (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ err: "No user logged in." });

@@ -11,7 +11,7 @@ class Billing extends Component {
           <Col className="border rounded">
             <h2>Free users are limited to:</h2>
             <ul>
-              <li>100 email analyses per month</li>
+              <li>100 email analyses per 30 days</li>
               <li>Storage for 5 emails in home page</li>
               <li>Cannot send emails through our email service provider</li>
             </ul>
@@ -24,8 +24,8 @@ class Billing extends Component {
               <li>Can send emails through our email service provider</li>
             </ul>
             <Checkout
-              name={"One month"}
-              description={"One month subscription of Don't send that email"}
+              name={"30 Days"}
+              description={"30 Days subscription of Don't send that email"}
               amount={5}
             />
           </Col>
