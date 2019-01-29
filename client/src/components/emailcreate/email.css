@@ -21,7 +21,9 @@
     border: lightgray 1px solid;
   }
 
-
+  .version-icon:hover {
+    cursor: pointer
+  }
 
   footer {
     background-color: #555;
