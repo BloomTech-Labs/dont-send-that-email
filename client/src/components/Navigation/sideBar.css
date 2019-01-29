@@ -26,6 +26,11 @@ body {
   transition: color 0.2s;
 }
 
+/* Remove blue outline when clicked */
+.bm-item:focus, .bm-item:active {
+  outline: none;
+}
+
 .bm-item button {
   width: 100%;
   margin-left: -3px;
@@ -50,11 +55,15 @@ body {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-
   width: 36px;
   height: 30px;
   right: 30px;
   top: 10px;
+}
+
+/* Remove blue outline when clicked */
+.bm-burger-button button:focus, .bm-burger-button button:active {
+  outline: none;
 }
 
 /* Color/shape of burger icon bars */
