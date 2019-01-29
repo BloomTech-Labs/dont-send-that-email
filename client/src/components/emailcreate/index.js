@@ -4,9 +4,9 @@ import striptags from 'striptags';
 import { Button, Col, Container, Input, Row } from 'reactstrap';
 import BreadCrumb from '../BreadCrumb';
 import Sidebar from '../Navigation/Sidebar';
-import { Link } from 'react-router-dom';
 import Editor from './Editor';
 import Analysis from './Analysis';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './email.css';
 
 class NewEmail extends Component {
@@ -215,9 +215,21 @@ class NewEmail extends Component {
               <Col>
                 <Row>
                   <Col xs={{ size: 10, offset: 3 }}>
-                    <Button onClick={this.previousVersion}>Previous</Button>
-                    {this.state.selected_version} / {this.state.versions.length}
-                    <Button onClick={this.nextVersion}>Next</Button>
+                    {/* <Button onClick={this.previousVersion}>Previous</Button> */}
+                    <FontAwesomeIcon
+                      icon="arrow-left"
+                      className="fa-lg version-icon"
+                      onClick={this.previousVersion}
+                    />
+                    <Button className="disabled">
+                      {this.state.selected_version} / {this.state.versions.length}
+                    </Button>
+                    {/* <Button onClick={this.nextVersion}>Next</Button> */}
+                    <FontAwesomeIcon
+                      icon="arrow-right"
+                      className="fa-lg version-icon"
+                      onClick={this.nextVersion}
+                    />
                   </Col>
                 </Row>
                 <Row>
