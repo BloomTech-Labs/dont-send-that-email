@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Col,
-  Container,
-  Row,
-  Badge,
-  Card,
-  CardBody,
-  CardHeader,
-} from "reactstrap";
+import { Col, Container, Row, Card, CardBody, CardHeader } from "reactstrap";
 import "../../index.css";
 import Checkout from "./Checkout";
 
@@ -21,7 +13,7 @@ class Billing extends Component {
         <Row>
           <Col xs={12}>
             <Card style={{ transition: null }}>
-              <CardHeader>Free User Privileges:</CardHeader>
+              <CardHeader>Free User Privileges</CardHeader>
               <CardBody>
                 <ul>
                   <li>100 email analyses per 30 days</li>
@@ -32,7 +24,7 @@ class Billing extends Component {
           </Col>
           <Col xs={12}>
             <Card style={{ transition: null }}>
-              <CardHeader>Paid User Privileges:</CardHeader>
+              <CardHeader>Paid User Privileges</CardHeader>
               <CardBody>
                 <ul>
                   <li>Unlimited email analyses</li>
