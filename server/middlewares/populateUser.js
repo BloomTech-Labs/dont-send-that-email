@@ -19,8 +19,10 @@ const populateUser = async (req, res, next) => {
       .first();
     if (subscription) {
       const subscriptionDetails = isSubscriptionActive(subscription);
-      req.user.subscribed = subscriptionDetails[0];
-      req.user.subscriptionEnd = subscriptionDetails[1];
+      if (subscriptionDetails[0]) {
+        req.user.subscribed = subscriptionDetails[0];
+        req.user.subscriptionEnd = subscriptionDetails[1];
+      }
     }
     console.log("[populateUser] - found ", req.user);
     if (req.body.reqType === "send") {
