@@ -15,12 +15,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Editor from "./Editor";
 import Analysis from "./Analysis";
 import "./email.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class NewEmail extends Component {
   crumbs = [{ name: "Home", path: "/" }, { name: "Document" }];
