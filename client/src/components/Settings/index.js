@@ -1,81 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import Sidebar from '../Navigation/Sidebar';
-// import '../../index.css';
-import './settings.css';
+import React from "react";
+import { Container, Col, Row } from "reactstrap";
+import "../../index.css";
 
-
-const Settings = () => {
-    return(
-        <div>
-            <div>
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to='/'>Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Settings</BreadcrumbItem>
-                </Breadcrumb>
-            </div>
-            {/* <div className="bodyContent">
-                <Sidebar />
-                <Form>
-                    <FormGroup row>
-                        <Label sm={3}>Name</Label>
-                        <Col sm={5}>
-                            <Input />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label sm={3}>Old Password</Label>
-                        <Col sm={5}>
-                            <Input />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label sm={3}>New Password</Label>
-                        <Col sm={5}>
-                            <Input />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Col>
-                            <Button>Save</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </div>
-        </div> */}
-
-{/* //Using reactstrap left original form code above */}
-
-            <Container className="Setting">
-            <Sidebar />
-            <Form className="form">
-            <Col>
-                <FormGroup>
-                <Label>Email</Label>
-                <Input
-                    type="Name"
-                    name="name"
-                    placeholder="UserName"
-                />
-                </FormGroup>
-            </Col>
-            <Col>
-                <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input
-                    type="password"
-                    name="Password"
-                    placeholder="********"
-                />
-                </FormGroup>
-            </Col>
-            <Button>Submit</Button>
-            </Form>
-            </Container>
-        </div>
-    );
-}
+const dateFormat = (dateString) => {
+  let formattedDateString = dateString.slice(0, 10);
+  return formattedDateString;
+};
+const Settings = (props) => {
+  console.log(props.user);
+  return (
+    <Container className="settings-component">
+      <Row>
+        <Col className="border rounded pl-3 pt-3 mb-4">
+          <p>Username: {props.user.username}</p>
+          <p>Email: {props.user.emailaddress}</p>
+          <p>{props.user.subscribed ? "Tier: paid" : "Tier: free"}</p>
+          {props.user.subscribed ? (
+            <p>
+              Subscription End Date: {dateFormat(props.user.subscriptionEnd)}
+            </p>
+          ) : null}
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default Settings;

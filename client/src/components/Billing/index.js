@@ -1,53 +1,37 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import { Col, Container, Row } from 'reactstrap';
-import Sidebar from '../Navigation/Sidebar';
-import '../../index.css';
-import Checkout from './Checkout';
+import React, { Component } from "react";
+import { Col, Container, Row } from "reactstrap";
+import "../../index.css";
+import Checkout from "./Checkout";
 
 class Billing extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
-      <Container>
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <Link to="/">Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem active>Billing</BreadcrumbItem>
-          {/* <button>Sign Out</button> */}
-        </Breadcrumb>
-        <h1>Billing</h1>
+      <Container className="billing-component">
         <Row>
-          <Sidebar />
-          <Col className="border rounded">
-            <h2>Free</h2>
+          <Col xs={12} className="border rounded mb-4 pl-3 pt-3">
+            <h3>Free user privileges:</h3>
             <ul>
-              <li>5 free analysis</li>
-              <li>
-                <s>Unlimited text analyze</s>
-              </li>
-              <li>
-                <s>Unlimited Emails</s>
-              </li>
-              <li>
-                <s>Sentence by sentence analysis</s>
-              </li>
+              <li>100 email analyses per 30 days</li>
+              <li>Storage for 5 emails in home page</li>
             </ul>
           </Col>
-          <Col className="border rounded">
-            <h2>Paid</h2>
+          <Col xs={12} className="border rounded pl-3 pt-3">
+            <h3>Paid user privileges:</h3>
             <ul>
-              <li>Ability to save versions</li>
-              <li>Unlimited text analysis</li>
-              <li>Unlimited Emails</li>
-              <li>Sentence by sentence analysis</li>
+              <li>Unlimited email analyses</li>
+              <li>Storage for unlimited emails in home page</li>
+              <li>Can send emails through our email service provider</li>
             </ul>
-            <Checkout
-              name={'One Year'}
-              description={"One year subscription of Don't send that email"}
-              amount={50}
-            />
+            {!this.props.user.subscribed ? (
+              <Checkout
+                name={"30 Days"}
+                description={"30 Days subscription of Don't send that email"}
+                amount={5}
+              />
+            ) : null}
           </Col>
         </Row>
       </Container>
