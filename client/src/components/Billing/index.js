@@ -12,7 +12,7 @@ class Billing extends Component {
       <Container className="billing-component">
         <Row>
           <Col xs={12}>
-            <Card style={{ transition: null }}>
+            <Card className="no-transition">
               <CardHeader>Free User Privileges</CardHeader>
               <CardBody>
                 <ul>
@@ -23,7 +23,7 @@ class Billing extends Component {
             </Card>
           </Col>
           <Col xs={12}>
-            <Card style={{ transition: null }}>
+            <Card className="no-transition">
               <CardHeader>Paid User Privileges</CardHeader>
               <CardBody>
                 <ul>

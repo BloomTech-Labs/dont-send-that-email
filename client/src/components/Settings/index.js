@@ -20,7 +20,7 @@ const Settings = (props) => {
     <Container className="settings-component">
       <Row>
         <Col xs={12}>
-          <Card style={{ transition: null }}>
+          <Card className="no-transition">
             <CardHeader>User Info</CardHeader>
             <CardBody>
               <p>
