@@ -20,7 +20,7 @@ class MainContent extends Component {
           exact
           path="/profile"
           name="Profile"
-          render={(props) => <Profile />}
+          render={(props) => <Profile user={this.props.user} />}
         />
         />
       </Switch>
