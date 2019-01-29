@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import striptags from "striptags";
-import { Button, Col, Container, Input, Row } from "reactstrap";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Input,
+  Row,
+  Card,
+  InputGroup,
+  InputGroupAddon
+} from "reactstrap";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Editor from "./Editor";
 import Analysis from "./Analysis";
@@ -192,57 +203,65 @@ class NewEmail extends Component {
     return "Save as";
   };
 
+  navigationButtons = () => (
+    <ButtonGroup>
+      <Button color="danger" onClick={this.previousVersion}>
+        <FontAwesomeIcon icon="arrow-left" className="fa-lg version-icon" />
+      </Button>
+      <Button color="danger" disabled>
+        {this.state.selected_version} / {this.state.versions.length}
+      </Button>
+      <Button color="danger" onClick={this.nextVersion}>
+        <FontAwesomeIcon icon="arrow-right" className="fa-lg version-icon" />
+      </Button>
+    </ButtonGroup>
+  );
+
+  actionButtons = () => (
+    <ButtonGroup>
+      <Button onClick={this.analyzeText}>Analyze</Button>
+      <Button onClick={this.handleSave}>{this.saveButton()}</Button>
+      <Button onClick={this.sendEmail}>Send</Button>
+    </ButtonGroup>
+  );
+
   render() {
     return (
       <Container fluid>
+        <Sidebar />
         <BreadCrumb crumbs={this.crumbs} />
         <Row>
-          <Sidebar />
           <Col>
             <Row>
-              <Col sm="auto">
-                <Input
-                  name="title"
-                  value={this.state.title}
-                  onChange={this.handleInput}
-                  spellCheck="false"
-                />
-                <Input
-                  name="addressee"
-                  value={this.state.addressee}
-                  onChange={this.handleInput}
-                  spellCheck="false"
-                />
+              <Col xs={12} sm={{ order: 0, size: 8 }}>
+                <InputGroup className="email-fields">
+                  <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+                  <Input
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.handleInput}
+                    spellCheck="false"
+                  />
+                </InputGroup>
+                <InputGroup className="email-fields">
+                  <InputGroupAddon addOnType="prepend">
+                    Addressee
+                  </InputGroupAddon>
+                  <Input
+                    name="addressee"
+                    value={this.state.addressee}
+                    onChange={this.handleInput}
+                    spellCheck="false"
+                  />
+                </InputGroup>
               </Col>
-              <Col>
-                <Row>
-                  <Col xs={{ size: 10, offset: 3 }}>
-                    {/* <Button onClick={this.previousVersion}>Previous</Button> */}
-                    <FontAwesomeIcon
-                      icon="arrow-left"
-                      className="fa-lg version-icon"
-                      onClick={this.previousVersion}
-                    />
-                    <Button className="disabled">
-                      {this.state.selected_version} / {this.state.versions.length}
-                    </Button>
-                    {/* <Button onClick={this.nextVersion}>Next</Button> */}
-                    <FontAwesomeIcon
-                      icon="arrow-right"
-                      className="fa-lg version-icon"
-                      onClick={this.nextVersion}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={{ size: 10, offset: 1 }}>
-                    <Button onClick={this.analyzeText}>Analyze</Button>
-                    <Button onClick={this.handleSave}>
-                      {this.saveButton()}
-                    </Button>
-                    <Button onClick={this.sendEmail}>Send</Button>
-                  </Col>
-                </Row>
+              <Col xs={12} sm={{ size: 4 }}>
+                <Card className="no-transition" body>
+                  <ButtonGroup vertical>
+                    {this.navigationButtons()}
+                    {this.actionButtons()}
+                  </ButtonGroup>
+                </Card>
               </Col>
             </Row>
             <Row>
