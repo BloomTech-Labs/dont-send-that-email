@@ -1,3 +1,7 @@
+.tone {
+  padding: 3px 8px;
+  width: 100%;
+}
 
   .navbar {
     margin-bottom: 0;
@@ -5,11 +9,14 @@
   }
   .row.content {height: 450px}
 
-  .btn{
-    margin: 10px;
-    
-    }
-
+.email-fields {
+  margin-bottom: 10px;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;

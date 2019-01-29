@@ -29,8 +29,8 @@ class DocumentList extends Component {
 
   fetchEmails = () => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + '/emails', {
-        withCredentials: true,
+      .get(process.env.REACT_APP_BACKEND_URL + "/emails", {
+        withCredentials: true
       })
       .then(({ data }) => {
         const { emails, err } = data;
@@ -54,7 +54,10 @@ class DocumentList extends Component {
     ));
 
   emailCreateButton = () => (
-    <Card onClick={this.redirectToCreateEmailPage} style={{ width: "100%" }}>
+    <Card
+      onClick={this.redirectToCreateEmailPage}
+      style={{ width: "100%", height: 182.5 }}
+    >
       <CardBody style={{ textAlign: "center" }}>
         <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
           <h3>Create New E-mail</h3>
@@ -76,8 +79,8 @@ class DocumentList extends Component {
   };
   deleteEmail = e => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND_URL + '/emails/'}${e.id}`, {
-        withCredentials: true,
+      .delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
+        withCredentials: true
       })
       .then(res => {
         if (this.state.componentState === 1) {
@@ -94,8 +97,8 @@ class DocumentList extends Component {
       const body = { email: { title, addressee } };
       console.log(body);
       axios
-        .post(process.env.REACT_APP_BACKEND_URL + '/emails', body, {
-          withCredentials: true,
+        .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
+          withCredentials: true
         })
         .then(({ data }) => {
           if (data.id) {

@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 import striptags from "striptags";
-import { Button, Col, Container, Input, Row } from "reactstrap";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Input,
+  Row,
+  Card,
+  InputGroup,
+  InputGroupAddon
+} from "reactstrap";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
 import { Link } from "react-router-dom";
@@ -18,7 +28,7 @@ class NewEmail extends Component {
     versions: [{ text: "", tone_analysis: null }],
     selected_version: 1,
     makingCall: false,
-    error: false,
+    error: false
   };
 
   componentDidMount() {
@@ -28,10 +38,10 @@ class NewEmail extends Component {
     }
   }
 
-  fetchEmail = (id) => {
+  fetchEmail = id => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + `/emails/${id}`, {
-        withCredentials: true,
+        withCredentials: true
       })
       .then(({ data }) => {
         const { email } = data;
@@ -76,12 +86,12 @@ class NewEmail extends Component {
           title: this.state.title,
           text: this.selectedVersion().text,
           addressee: this.state.addressee,
-          reqType: "send",
+          reqType: "send"
         },
         { withCredentials: true }
       )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
   // Apply watson analysis to the version's text
   processTone = () => {
@@ -95,14 +105,14 @@ class NewEmail extends Component {
           Sadness: "info",
           Confident: "success",
           Analytical: "primary",
-          Tentative: "warning",
+          Tentative: "warning"
         };
         tone_analysis.sentences_tone
           .filter(({ tones }) => tones.length) // Ignore sentences with no tones
           .forEach(({ text: sentence, tones }) => {
             const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
-            text = text.replace(re, (match) => {
+            text = text.replace(re, match => {
               console.log("Matched");
               return `<span class="label-${color}">${match}</span>`;
             });
@@ -117,12 +127,12 @@ class NewEmail extends Component {
   tonalSentence = (color, text) =>
     `<span style="color: ${color}">${text}</span>`;
 
-  handleInput = (e) => {
+  handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   // This is expensive
-  editorInput = (e) => {
+  editorInput = e => {
     const text = striptags(e.target.value);
     const versions = this.state.versions;
     versions[this.state.selected_version - 1].text = text;
@@ -138,24 +148,24 @@ class NewEmail extends Component {
             { text: this.selectedVersion().text, reqType: "analyze" },
             { withCredentials: true }
           )
-          .then((res) => {
+          .then(res => {
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState({ versions, error: false, makingCall: false });
           })
-          .catch((err) => this.setState({ error: err, makingCall: false }));
+          .catch(err => this.setState({ error: err, makingCall: false }));
       });
     }
   };
 
-  handleSave = async (e) => {
+  handleSave = async e => {
     e.preventDefault();
     const body = {
       email: {
         title: this.state.title,
-        addressee: this.state.addressee,
+        addressee: this.state.addressee
       },
-      version: this.selectedVersion(),
+      version: this.selectedVersion()
     };
 
     if (this.props.match.params.id) {
@@ -164,11 +174,13 @@ class NewEmail extends Component {
 
     let headers = {
       withCredentials: true,
-      headers: { Authorization: process.env.USER_COOKIE },
+      headers: { Authorization: process.env.USER_COOKIE }
     };
 
     try {
-      const { data: { id } } = await axios.post(
+      const {
+        data: { id }
+      } = await axios.post(
         process.env.REACT_APP_BACKEND_URL + "/emails",
         body,
         headers
@@ -191,58 +203,65 @@ class NewEmail extends Component {
     return "Save as";
   };
 
+  navigationButtons = () => (
+    <ButtonGroup>
+      <Button color="danger" onClick={this.previousVersion}>
+        <FontAwesomeIcon icon="arrow-left" className="fa-lg version-icon" />
+      </Button>
+      <Button color="danger" disabled>
+        {this.state.selected_version} / {this.state.versions.length}
+      </Button>
+      <Button color="danger" onClick={this.nextVersion}>
+        <FontAwesomeIcon icon="arrow-right" className="fa-lg version-icon" />
+      </Button>
+    </ButtonGroup>
+  );
+
+  actionButtons = () => (
+    <ButtonGroup>
+      <Button onClick={this.analyzeText}>Analyze</Button>
+      <Button onClick={this.handleSave}>{this.saveButton()}</Button>
+      <Button onClick={this.sendEmail}>Send</Button>
+    </ButtonGroup>
+  );
+
   render() {
     return (
       <Container fluid>
+        <Sidebar />
         <BreadCrumb crumbs={this.crumbs} />
         <Row>
-          <Sidebar />
           <Col>
             <Row>
-              <Col sm="auto">
-                <Input
-                  name="title"
-                  value={this.state.title}
-                  onChange={this.handleInput}
-                  spellCheck="false"
-                />
-                <Input
-                  name="addressee"
-                  value={this.state.addressee}
-                  onChange={this.handleInput}
-                  spellCheck="false"
-                />
+              <Col xs={12} sm={{ order: 0, size: 8 }}>
+                <InputGroup className="email-fields">
+                  <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+                  <Input
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.handleInput}
+                    spellCheck="false"
+                  />
+                </InputGroup>
+                <InputGroup className="email-fields">
+                  <InputGroupAddon addOnType="prepend">
+                    Addressee
+                  </InputGroupAddon>
+                  <Input
+                    name="addressee"
+                    value={this.state.addressee}
+                    onChange={this.handleInput}
+                    spellCheck="false"
+                  />
+                </InputGroup>
               </Col>
-              <Col>
-                <Row>
-                  <Col xs={{ size: 10, offset: 3 }}>
-                    {/* <Button onClick={this.previousVersion}>Previous</Button> */}
-                    <FontAwesomeIcon
-                      icon="arrow-left"
-                      className="fa-lg version-icon"
-                      onClick={this.previousVersion}
-                    />
-                    <Button className="disabled">
-                      {this.state.selected_version} /{" "}
-                      {this.state.versions.length}
-                    </Button>
-                    {/* <Button onClick={this.nextVersion}>Next</Button> */}
-                    <FontAwesomeIcon
-                      icon="arrow-right"
-                      className="fa-lg version-icon"
-                      onClick={this.nextVersion}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={{ size: 10, offset: 1 }}>
-                    <Button onClick={this.analyzeText}>Analyze</Button>
-                    <Button onClick={this.handleSave}>
-                      {this.saveButton()}
-                    </Button>
-                    <Button onClick={this.sendEmail}>Send</Button>
-                  </Col>
-                </Row>
+              <Col xs={12} sm={{ size: 4 }}>
+                <Card className="no-transition" body>
+                  <ButtonGroup vertical>
+                    {this.navigationButtons()}
+                    {this.actionButtons()}
+                  </ButtonGroup>
+                </Card>
               </Col>
             </Row>
             <Row>

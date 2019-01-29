@@ -38,7 +38,7 @@ class Document extends Component {
               )}
             </Row>
           </CardTitle>
-          <CardText>{text}</CardText>
+          <CardText className="text-truncate">{text}</CardText>
           <Row>
             <Col xs={12}>
               <Button
