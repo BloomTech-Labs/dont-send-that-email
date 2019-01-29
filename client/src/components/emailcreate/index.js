@@ -12,6 +12,7 @@ import {
   InputGroup,
   InputGroupAddon
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
