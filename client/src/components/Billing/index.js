@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "reactstrap";
-import Sidebar from "../Navigation/Sidebar";
 import "../../index.css";
 import Checkout from "./Checkout";
 
@@ -9,7 +8,6 @@ class Billing extends Component {
     return (
       <Container>
         <Row>
-          <Sidebar />
           <Col className="border rounded">
             <h2>Free users are limited to:</h2>
             <ul>
