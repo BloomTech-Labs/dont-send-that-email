@@ -29,7 +29,7 @@ class Billing extends Component {
               <Checkout
                 name={"30 Days"}
                 description={"30 Days subscription of Don't send that email"}
-                amount={5}
+                amount={10}
               />
             ) : null}
           </Col>
