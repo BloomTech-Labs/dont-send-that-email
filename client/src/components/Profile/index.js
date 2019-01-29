@@ -2,10 +2,10 @@ import React from "react";
 import Settings from "../Settings";
 import Billing from "../Billing";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div>
-      <Settings />
+      <Settings user={props.user} />
       <Billing />
     </div>
   );
