@@ -126,13 +126,13 @@ class DocumentList extends Component {
 
   emailCards = () => {
     if (this.state.emails.length === 0) {
-      return <Col xs={{ size: 6, offset: 3 }}>{this.emailCreateButton()}</Col>;
+      return <Container fluid className="button-center"><div>{this.emailCreateButton()}</div></Container>
     }
     return (
       <Col>
         <CardColumns>
-          {this.emailCreateButton()}
           {this.emailElements()}
+          {this.emailCreateButton()}
         </CardColumns>
       </Col>
     );
@@ -143,7 +143,6 @@ class DocumentList extends Component {
       <Container>
         <Row>
           <Col xs={12}>
-            <BreadCrumb crumbs={[{ name: "Home" }]} user={this.props.user} />
             {this.emailCountAlert()}
           </Col>
         </Row>

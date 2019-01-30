@@ -31,7 +31,7 @@ export default class Example extends React.Component {
             <NavbarBrand href="/" >Don't Send That Email!</NavbarBrand>
             <Nav>
                 <NavItem>
-                    <NavLink disabled href="#"><p>Hello! {this.props.user.username}</p></NavLink>
+                    <NavLink disabled href="#"><p className="greeting">Hello! {this.props.user.username}</p></NavLink>
                 </NavItem>
             </Nav>
         </Navbar>
