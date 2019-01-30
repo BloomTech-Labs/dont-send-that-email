@@ -2,6 +2,43 @@
     align-content: center;
 }
 
+.container-fluid .button-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 88vh;
+}
+
+.card .card-body .card-title h3{
+    font-size: 1.25em;
+}
+
+/* 
+@media (min-width: 768px) { 
+    .container-fluid .button-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 625px;
+    }
+ } */
+
+/* Iphone 5/Iphone XS */
+/* @media (min-width: 320px) { 
+    .container-fluid .button-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .card .card-body .card-title h3{
+        font-size: 1.25em;
+    }
+ } */
+
+
+
 /* Testing */
 
 /*!

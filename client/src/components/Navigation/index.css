@@ -1,4 +1,8 @@
 .nav {
     margin-left: auto;
     margin-right: 55px;
+};
+
+nav ul li .nav-item {
+    color: null;
 }
