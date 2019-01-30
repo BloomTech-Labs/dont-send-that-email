@@ -131,8 +131,8 @@ class DocumentList extends Component {
     return (
       <Col>
         <CardColumns>
-          {this.emailElements()}
           {this.emailCreateButton()}
+          {this.emailElements()}
         </CardColumns>
       </Col>
     );
