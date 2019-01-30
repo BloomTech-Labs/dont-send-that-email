@@ -24,7 +24,7 @@ const populateUser = async (req, res, next) => {
         req.user.subscriptionEnd = subscriptionDetails[1];
       }
     }
-    console.log("[populateUser] - found ", req.user);
+    // console.log("Delete this: [populateUser] - found ", req.user);
     if (req.body.reqType === "send") {
       if (req.user.subscribed) {
         req.body.username = req.user.username;
