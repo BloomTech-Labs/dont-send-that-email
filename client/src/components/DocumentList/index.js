@@ -34,6 +34,7 @@ class DocumentList extends Component {
       })
       .then(({ data }) => {
         const { emails, err } = data;
+        console.log(data)
         if (emails) {
           this.setState({ emails }, () => console.log(this.state.emails));
         }
