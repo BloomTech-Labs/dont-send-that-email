@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "reactstrap";
-import "../../index.css";
+import "./index.css";
 import Checkout from "./Checkout";
 
 class Billing extends Component {
@@ -9,18 +9,18 @@ class Billing extends Component {
       <Container className="billing-component">
         <Row>
           <Col xs={12} className="border rounded mb-4 pl-3 pt-3">
-            <h3>Free user privileges:</h3>
+            <h3 className="h3">Free user privileges:</h3>
             <ul>
-              <li>100 email analyses per 30 days</li>
-              <li>Storage for 5 emails in home page</li>
+              <li><p>100 email analyses per 30 days</p></li>
+              <li><p>Storage for 5 emails in home page</p></li>
             </ul>
           </Col>
           <Col xs={12} className="border rounded pl-3 pt-3">
-            <h3>Paid user privileges:</h3>
+            <h3 className="h3">Paid user privileges:</h3>
             <ul>
-              <li>Unlimited email analyses</li>
-              <li>Storage for unlimited emails in home page</li>
-              <li>Can send emails through our email service provider</li>
+              <li><p>Unlimited email analyses</p></li>
+              <li><p>Storage for unlimited emails in home page</p></li>
+              <li><p>Can send emails through our email service provider</p></li>
             </ul>
             {!this.props.user.subscribed ? (
               <Checkout

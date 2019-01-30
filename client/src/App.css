@@ -30,3 +30,8 @@
     transform: rotate(360deg);
   }
 }
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
