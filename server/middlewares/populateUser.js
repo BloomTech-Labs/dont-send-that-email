@@ -43,23 +43,17 @@ const populateUser = async (req, res, next) => {
         ) {
           verified = await db("users")
             .where({ id: req.user.id })
-            .update({ analysesCount: 1, currentCycleStart: Date.now() });
+            .update({ analysesCount: 1, currentCycleStart: new Date() });
         } else {
-          if (req.user.analysesCount < 100) {
-            if (Date.now() - req.user.currentCycleStart >= month) {
-              verified = await db("users")
-                .where({ id: req.user.id })
-                .update({ analysesCount: 1, currentCycleStart: Date.now() });
-            } else {
+          if (Date.now() - req.user.currentCycleStart >= month) {
+            verified = await db("users")
+              .where({ id: req.user.id })
+              .update({ analysesCount: 1, currentCycleStart: new Date() });
+          } else {
+            if (req.user.analysesCount < 100) {
               verified = await db("users")
                 .where({ id: req.user.id })
                 .update({ analysesCount: req.user.analysesCount + 1 });
-            }
-          } else {
-            if (Date.now() - req.user.currentCycleStart >= month) {
-              verified = await db("users")
-                .where({ id: req.user.id })
-                .update({ analysesCount: 1, currentCycleStart: Date.now() });
             }
           }
         }
@@ -81,7 +75,7 @@ const populateUser = async (req, res, next) => {
   }
 };
 
-const isSubscriptionActive = (subscription) => {
+const isSubscriptionActive = subscription => {
   // Force moment to treat datestring from the database as UTC
   // TODO: fix this in the knex configuration
   const datestring = subscription.date_created + "+0000";
