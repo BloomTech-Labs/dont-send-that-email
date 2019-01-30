@@ -67,7 +67,7 @@ class App extends Component {
     if (this.state.user) {
       return (
         <Container fluid>
-          <Navigation />
+          <Navigation user={this.state.user}/>
           <MainContent user={this.state.user} />
         </Container>
       );

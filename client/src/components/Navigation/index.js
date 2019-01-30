@@ -1,17 +1,13 @@
 import React from "react";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from "reactstrap";
+  Nav
+ } from "reactstrap";
 import Sidebar from "./Sidebar";
+import "./index.css";
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -32,7 +28,12 @@ export default class Example extends React.Component {
       <div>
         <Sidebar />
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Don't Send That Email!</NavbarBrand>
+            <NavbarBrand href="/" >Don't Send That Email!</NavbarBrand>
+            <Nav>
+                <NavItem>
+                    <NavLink disabled href="#"><p>Hello! {this.props.user.username}</p></NavLink>
+                </NavItem>
+            </Nav>
         </Navbar>
       </div>
     );
