@@ -15,7 +15,7 @@ import { withRouter } from "react-router-dom";
 import Document from "./Document";
 import BreadCrumb from "../BreadCrumb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../../index.css";
+import "./index.css";
 
 class DocumentList extends Component {
   state = {
