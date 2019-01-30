@@ -46,12 +46,14 @@ class DocumentList extends Component {
   emailElements = () =>
     /* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
     this.state.emails.map((e, i) => (
+          console.log('email id: ', e.id),
       <Document
         key={i}
         email={e}
         copy={this.copyEmail(e)}
         delete={() => this.deleteEmail(e)}
       />
+      
     ));
 
   emailCreateButton = () => (
