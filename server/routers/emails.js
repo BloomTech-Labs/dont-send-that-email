@@ -3,7 +3,7 @@ const moment = require("moment");
 const populateUser = require("../middlewares/populateUser");
 const db = require("../data/dbconfig.js");
 const router = express.Router();
-
+const timezone = require('moment-timezone');
 router.use(populateUser);
 
 // Required fields: {
@@ -66,6 +66,7 @@ router.get("/", async (req, res) => {
   const emails = await db("emails")
     .leftJoin("versions", "versions.email_id", "emails.id")
     .orderBy("versions.date_created", "desc")
+    .where({ "emails.user_id": req.user.id })
     .select(
       "emails.id",
       "title",
@@ -79,9 +80,12 @@ router.get("/", async (req, res) => {
 
 processEmail = email => {
   const { updated } = email;
+ 
   const m = moment(updated);
   if (m.isValid()) {
     email.updated = m.calendar();
+    
+    
   } else {
     email.updated = "No versions.";
   }
