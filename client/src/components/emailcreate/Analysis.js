@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
 
 const Analysis = ({ toneAnalysis, error }) => {
+  console.log(error, toneAnalysis);
   let toneResult;
   const colors = {
     Joy: "success",
@@ -10,13 +11,15 @@ const Analysis = ({ toneAnalysis, error }) => {
     Sadness: "info",
     Confident: "success",
     Analytical: "primary",
-    Tentative: "warning"
+    Tentative: "warning",
   };
   if (error == "Error: Request failed with status code 429") {
-    toneResult =
-      "Free users are capped at 100 email analyses and cannot send emails.";
-  }
-  if (toneAnalysis && toneAnalysis.document_tone.tones.length) {
+    toneResult = "Free users are capped at 100 email analyses.";
+  } else if (error == "Error: Request failed with status code 500") {
+    toneResult = "The document does not have a tone to it.";
+  } else if (toneAnalysis === null) {
+    toneResult = "No analysis click the analyze button.";
+  } else if (toneAnalysis && toneAnalysis.document_tone.tones.length) {
     toneResult = toneAnalysis.document_tone.tones.map((e, i) => {
       const color = colors[e.tone_name];
       const score = (e.score * 100).toFixed() + "%";
@@ -29,6 +32,7 @@ const Analysis = ({ toneAnalysis, error }) => {
   } else {
     toneResult = "The document does not have a tone to it.";
   }
+
   return (
     <Card className="no-transition">
       <CardHeader>Emotional Analysis</CardHeader>
