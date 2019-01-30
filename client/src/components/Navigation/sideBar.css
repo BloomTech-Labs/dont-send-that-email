@@ -27,7 +27,8 @@ body {
 }
 
 /* Remove blue outline when clicked */
-.bm-item:focus, .bm-item:active {
+.bm-item:focus,
+.bm-item:active {
   outline: none;
 }
 
@@ -54,7 +55,7 @@ body {
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
+  position: absolute;
   width: 36px;
   height: 30px;
   right: 50px;
@@ -62,7 +63,8 @@ body {
 }
 
 /* Remove blue outline when clicked */
-.bm-burger-button button:focus, .bm-burger-button button:active {
+.bm-burger-button button:focus,
+.bm-burger-button button:active {
   outline: none;
 }
 
@@ -118,5 +120,5 @@ body {
     width: 50%;
 } */
 button {
-  outline:none!important;
+  outline: none !important;
 }
