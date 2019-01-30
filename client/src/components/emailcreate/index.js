@@ -11,7 +11,7 @@ import {
   Row,
   Card,
   InputGroup,
-  InputGroupAddon,
+  InputGroupAddon
 } from "reactstrap";
 import BreadCrumb from "../BreadCrumb";
 import Sidebar from "../Navigation/Sidebar";
@@ -28,7 +28,7 @@ class NewEmail extends Component {
     versions: [{ text: "", tone_analysis: null }],
     selected_version: 1,
     makingCall: false,
-    error: false,
+    error: false
   };
 
   componentDidMount() {
@@ -38,10 +38,10 @@ class NewEmail extends Component {
     }
   }
 
-  fetchEmail = (id) => {
+  fetchEmail = id => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + `/emails/${id}`, {
-        withCredentials: true,
+        withCredentials: true
       })
       .then(({ data }) => {
         const { email } = data;
@@ -86,12 +86,12 @@ class NewEmail extends Component {
           title: this.state.title,
           text: this.selectedVersion().text,
           addressee: this.state.addressee,
-          reqType: "send",
+          reqType: "send"
         },
         { withCredentials: true }
       )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
   // Apply watson analysis to the version's text
   processTone = () => {
@@ -105,14 +105,14 @@ class NewEmail extends Component {
           Sadness: "info",
           Confident: "success",
           Analytical: "primary",
-          Tentative: "warning",
+          Tentative: "warning"
         };
         tone_analysis.sentences_tone
           .filter(({ tones }) => tones.length) // Ignore sentences with no tones
           .forEach(({ text: sentence, tones }) => {
             const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
-            text = text.replace(re, (match) => {
+            text = text.replace(re, match => {
               console.log("Matched");
               return `<span class="label-${color}">${match}</span>`;
             });
@@ -127,12 +127,12 @@ class NewEmail extends Component {
   tonalSentence = (color, text) =>
     `<span style="color: ${color}">${text}</span>`;
 
-  handleInput = (e) => {
+  handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   // This is expensive
-  editorInput = (e) => {
+  editorInput = e => {
     const text = striptags(e.target.value);
     const versions = this.state.versions;
     versions[this.state.selected_version - 1].text = text;
@@ -148,24 +148,24 @@ class NewEmail extends Component {
             { text: this.selectedVersion().text, reqType: "analyze" },
             { withCredentials: true }
           )
-          .then((res) => {
+          .then(res => {
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState({ versions, error: false, makingCall: false });
           })
-          .catch((err) => this.setState({ error: err, makingCall: false }));
+          .catch(err => this.setState({ error: err, makingCall: false }));
       });
     }
   };
 
-  handleSave = async (e) => {
+  handleSave = async e => {
     e.preventDefault();
     const body = {
       email: {
         title: this.state.title,
-        addressee: this.state.addressee,
+        addressee: this.state.addressee
       },
-      version: this.selectedVersion(),
+      version: this.selectedVersion()
     };
 
     if (this.props.match.params.id) {
@@ -174,11 +174,13 @@ class NewEmail extends Component {
 
     let headers = {
       withCredentials: true,
-      headers: { Authorization: process.env.USER_COOKIE },
+      headers: { Authorization: process.env.USER_COOKIE }
     };
 
     try {
-      const { data: { id } } = await axios.post(
+      const {
+        data: { id }
+      } = await axios.post(
         process.env.REACT_APP_BACKEND_URL + "/emails",
         body,
         headers
@@ -230,7 +232,7 @@ class NewEmail extends Component {
         <Row>
           <Col>
             <Row>
-              <Col xs={12} sm={{ order: 0, size: 8 }}>
+              <Col md={12} lg={{ order: 0, size: 8 }}>
                 <InputGroup className="email-fields">
                   <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
                   <Input
@@ -252,7 +254,7 @@ class NewEmail extends Component {
                   />
                 </InputGroup>
               </Col>
-              <Col xs={12} sm={{ size: 4 }}>
+              <Col md={12} lg={{ size: 4 }}>
                 <Card className="no-transition" body>
                   <ButtonGroup vertical>
                     {this.navigationButtons()}
@@ -262,10 +264,10 @@ class NewEmail extends Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={{ order: 2 }} sm={{ order: 0, size: 8 }}>
+              <Col md={{ order: 2 }} lg={{ order: 0, size: 8 }}>
                 <Editor html={this.processTone()} onChange={this.editorInput} />
               </Col>
-              <Col xs={{ order: 1 }} sm={{ size: 4 }}>
+              <Col md={{ order: 1 }} lg={{ size: 4 }}>
                 <Analysis
                   error={this.state.error}
                   toneAnalysis={this.selectedVersion().tone_analysis}
