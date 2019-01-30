@@ -2,8 +2,10 @@ import React, { Component } from "react";
 
 import axios from "axios";
 import "./App.css";
+import Navigation from "./components/Navigation";
 import MainContent from "./components/MainContent";
 import LandingPage from "./components/LandingPage";
+import { Container } from "reactstrap";
 import "typeface-montserrat";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -64,9 +66,10 @@ class App extends Component {
   render() {
     if (this.state.user) {
       return (
-        <div>
+        <Container fluid>
+          <Navigation />
           <MainContent user={this.state.user} />
-        </div>
+        </Container>
       );
     }
     return (

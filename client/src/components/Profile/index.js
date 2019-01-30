@@ -4,10 +4,11 @@ import Settings from "../Settings";
 import Billing from "../Billing";
 import Sidebar from "../Navigation/Sidebar";
 import BreadCrumb from "../BreadCrumb";
+import Navigation from "../Navigation";
 
 const Profile = (props) => {
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <Sidebar />
         <Col xs={12}>

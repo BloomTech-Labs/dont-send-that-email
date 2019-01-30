@@ -224,8 +224,7 @@ class NewEmail extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Sidebar />
+      <Container>
         <BreadCrumb crumbs={this.crumbs} />
         <Row>
           <Col>

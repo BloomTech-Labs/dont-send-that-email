@@ -140,9 +140,8 @@ class DocumentList extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Sidebar />
           <Col xs={12}>
             <BreadCrumb crumbs={[{ name: "Home" }]} user={this.props.user} />
             {this.emailCountAlert()}

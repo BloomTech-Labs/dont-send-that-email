@@ -1,13 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from "reactstrap";
+import Sidebar from "./Sidebar";
 
-const Navigation = () => {
-  return (
-    <div>
-      <Link to="/">Emails</Link> <br />
-      <Link to="/profile">Profile</Link> <br />
-    </div>
-  );
-};
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default Navigation;
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Sidebar />
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Don't Send That Email!</NavbarBrand>
+        </Navbar>
+      </div>
+    );
+  }
+}
