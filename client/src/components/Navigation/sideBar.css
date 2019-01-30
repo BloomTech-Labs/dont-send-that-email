@@ -117,3 +117,6 @@ body {
     flex-direction: column;
     width: 50%;
 } */
+button {
+  outline:none!important;
+}

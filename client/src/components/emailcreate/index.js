@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import striptags from "striptags";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
   ButtonGroup,
