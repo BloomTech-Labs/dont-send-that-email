@@ -9,19 +9,23 @@ import Navigation from "../Navigation";
 const Profile = (props) => {
   return (
     <Container>
-        <Row>
-          <Col xs={12}>
-            <BreadCrumb crumbs={[{ name: "Profile" }]} user={props.user} />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} sm={6}>
-            <Settings user={props.user} />
-          </Col>
-          <Col xs={12} sm={6}>
-            <Billing user={props.user} />
-          </Col>
-        </Row>
+      <Row>
+        <Sidebar />
+        <Col xs={12}>
+          <BreadCrumb
+            crumbs={[{ name: "Home", path: "/" }, { name: "Profile" }]}
+            user={props.user}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} md={6}>
+          <Settings user={props.user} />
+        </Col>
+        <Col xs={12} md={6}>
+          <Billing user={props.user} />
+        </Col>
+      </Row>
     </Container>
   );
 };
