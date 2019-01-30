@@ -9,7 +9,7 @@ import {
   Col,
   Container,
   Row,
-  Button
+  Button,
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import Document from "./Document";
@@ -20,7 +20,7 @@ import "../../index.css";
 class DocumentList extends Component {
   state = {
     emails: [],
-    componentState: 0
+    componentState: 0,
   };
 
   componentDidMount = async () => {
@@ -30,7 +30,7 @@ class DocumentList extends Component {
   fetchEmails = () => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/emails", {
-        withCredentials: true
+        withCredentials: true,
       })
       .then(({ data }) => {
         const { emails, err } = data;
@@ -77,28 +77,28 @@ class DocumentList extends Component {
       this.setState({ componentState: 1 });
     }
   };
-  deleteEmail = e => {
+  deleteEmail = (e) => {
     axios
       .delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
-        withCredentials: true
+        withCredentials: true,
       })
-      .then(res => {
+      .then((res) => {
         if (this.state.componentState === 1) {
           this.setState({ componentState: 0 }, () => this.fetchEmails());
         } else {
           this.fetchEmails();
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
-  copyEmail = ({ title, addressee }) => e => {
+  copyEmail = ({ title, addressee }) => (e) => {
     if (this.props.user.subscribed === true || this.state.emails.length < 5) {
       console.log(this.props.user.subscribed);
       const body = { email: { title, addressee } };
       console.log(body);
       axios
         .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
-          withCredentials: true
+          withCredentials: true,
         })
         .then(({ data }) => {
           if (data.id) {

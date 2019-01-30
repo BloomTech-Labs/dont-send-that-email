@@ -10,7 +10,7 @@ import {
   CardTitle,
   CardSubtitle,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class Document extends Component {
@@ -43,7 +43,7 @@ class Document extends Component {
             <Col xs={12}>
               <Button
                 color="secondary"
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation();
                   this.props.copy();
                 }}
@@ -52,7 +52,7 @@ class Document extends Component {
               </Button>
               <Button
                 color="danger"
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation();
                   this.props.delete();
                 }}
