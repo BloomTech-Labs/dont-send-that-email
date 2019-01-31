@@ -6,15 +6,15 @@ import {
   Badge,
   Card,
   CardBody,
-  CardHeader,
+  CardHeader
 } from "reactstrap";
-import "../../index.css";
+import "./settings.css";
 
-const dateFormat = (dateString) => {
+const dateFormat = dateString => {
   let formattedDateString = dateString.slice(0, 10);
   return formattedDateString;
 };
-const Settings = (props) => {
+const Settings = props => {
   console.log(props.user);
   return (
     <Container className="settings-component">
@@ -24,19 +24,36 @@ const Settings = (props) => {
             <CardHeader>User Info</CardHeader>
             <CardBody>
               <p>
-                <Badge>Username</Badge> {props.user.username}
+                <span className="user-info-left">
+                  <Badge>Username</Badge>
+                </span>
+                <span className="user-info-right">{props.user.username}</span>
               </p>
               <p>
-                <Badge>Email</Badge> {props.user.emailaddress}
+                <span className="user-info-left">
+                  <Badge>Email</Badge>
+                </span>
+                <span className="user-info-right">
+                  {props.user.emailaddress}
+                </span>
               </p>
               <p>
-                <Badge>Tier</Badge>
-                {props.user.subscribed ? " paid" : " free"}
+                <span className="user-info-left">
+                  <Badge>Tier</Badge>
+                </span>
+                <span className="user-info-right">
+                  {props.user.subscribed ? "Paid" : "Free"}
+                </span>
               </p>
               {props.user.subscribed ? (
                 <p>
-                  <Badge>Subscription End Date</Badge>
-                  {" " + dateFormat(props.user.subscriptionEnd)}
+                  <span className="user-info-left">
+                    <Badge>Subscription End Date</Badge>
+                  </span>
+                  ,
+                  <span className="user-info-right">
+                    {" " + dateFormat(props.user.subscriptionEnd)}
+                  </span>
                 </p>
               ) : null}
             </CardBody>
