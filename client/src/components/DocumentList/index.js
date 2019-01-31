@@ -91,11 +91,10 @@ class DocumentList extends Component {
       })
       .catch(err => console.log(err));
   };
+
   copyEmail = ({ title, addressee }) => e => {
     if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-      console.log(this.props.user.subscribed);
       const body = { email: { title, addressee } };
-      console.log(body);
       axios
         .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
           withCredentials: true

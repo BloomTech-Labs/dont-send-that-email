@@ -45,6 +45,8 @@ class Document extends Component {
                 color="secondary"
                 onClick={e => {
                   e.stopPropagation();
+                  console.log('copied data', this.props.copy())
+                    //the problem is when we copy the card. Text gets set to null. Instead of a string.
                   this.props.copy();
                 }}
               >
