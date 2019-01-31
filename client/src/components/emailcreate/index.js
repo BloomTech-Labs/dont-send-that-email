@@ -102,7 +102,11 @@ class NewEmail extends Component {
           {withCredentials: true}
         )
         .then (res => this.setState ({componentState: 1}))
-        .catch (err => this.setState ({componentState: 3}));
+        .catch (err => {
+          err == 'Error: Request failed with status code 429'
+            ? this.setState ({componentState: 3})
+            : this.setState ({componentState: 4});
+        });
     }
   };
   resetComponentState = () => {
@@ -238,21 +242,37 @@ class NewEmail extends Component {
     </ButtonGroup>
   );
   sendEmailAlert = () => {
+    let response;
+    if (this.state.componentState === 1) {
+      response = 'Email Sent.';
+    } else if (this.state.componentState === 2) {
+      response = 'To send an email you need a title, addressee, and text.';
+    } else if (this.state.componentState === 3) {
+      response = 'Free users cannot send emails.';
+    } else if (this.state.componentState === 4) {
+      response = 'Something went wrong while trying to send email.';
+    }
     if (this.state.componentState === 1) {
       return (
         <UncontrolledAlert
           color="success"
           onClick={() => this.resetComponentState ()}
         >
-          Email Sent.
+          {response}
         </UncontrolledAlert>
       );
-    } else if (this.state.componentState === 2) {
+    } else if (
+      this.state.componentState === 2 ||
+      this.state.componentState === 3 ||
+      this.state.componentState === 4
+    ) {
       return (
         <UncontrolledAlert
           color="danger"
           onClick={() => this.resetComponentState ()}
-        />
+        >
+          {response}
+        </UncontrolledAlert>
       );
     }
     return null;
