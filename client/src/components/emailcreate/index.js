@@ -13,10 +13,9 @@ import {
   InputGroup,
   InputGroupAddon
 } from "reactstrap";
-import BreadCrumb from "../BreadCrumb";
-import Sidebar from "../Navigation/Sidebar";
 import { Link } from "react-router-dom";
-import Editor from "./Editor";
+// import Editor from "./Editor";
+import ContentEditable from "react-contenteditable";
 import Analysis from "./Analysis";
 import "./email.css";
 
@@ -107,10 +106,11 @@ class NewEmail extends Component {
           Analytical: "primary",
           Tentative: "warning"
         };
+        text = text.replace(/[()]/g,''); // Removes parentheses from text
         tone_analysis.sentences_tone
           .filter(({ tones }) => tones.length) // Ignore sentences with no tones
           .forEach(({ text: sentence, tones }) => {
-            const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
+            const re = new RegExp(sentence.replace(/[()]/g,'').trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
             text = text.replace(re, match => {
               console.log("Matched");
@@ -133,7 +133,7 @@ class NewEmail extends Component {
 
   // This is expensive
   editorInput = e => {
-    const text = striptags(e.target.value);
+    const text = e.target.value;
     const versions = this.state.versions;
     versions[this.state.selected_version - 1].text = text;
     this.setState({ versions });
@@ -145,7 +145,10 @@ class NewEmail extends Component {
         axios
           .post(
             process.env.REACT_APP_BACKEND_URL + "/api/watson",
-            { text: this.selectedVersion().text, reqType: "analyze" },
+            {
+              text: striptags(this.selectedVersion().text),
+              reqType: "analyze"
+            },
             { withCredentials: true }
           )
           .then(res => {
@@ -167,6 +170,8 @@ class NewEmail extends Component {
       },
       version: this.selectedVersion()
     };
+
+    body.version.text = striptags(body.version.text);
 
     if (this.props.match.params.id) {
       body.email.id = this.props.match.params.id;
@@ -228,7 +233,6 @@ class NewEmail extends Component {
   render() {
     return (
       <Container>
-        <BreadCrumb crumbs={this.crumbs} />
         <Row>
           <Col>
             <Row>
@@ -265,7 +269,12 @@ class NewEmail extends Component {
             </Row>
             <Row>
               <Col md={{ order: 2 }} lg={{ order: 0, size: 8 }}>
-                <Editor html={this.processTone()} onChange={this.editorInput} />
+                <ContentEditable
+                  html={this.processTone()}
+                  onChange={this.editorInput}
+                  className="form-control"
+                  style={{ height: "auto", minHeight: "150px" }}
+                />
               </Col>
               <Col md={{ order: 1 }} lg={{ size: 4 }}>
                 <Analysis
