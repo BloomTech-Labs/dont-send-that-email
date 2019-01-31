@@ -115,6 +115,7 @@ class LandingPage extends Component {
                 emails.
               </h3>
               <br />
+              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's get started</a>
             </div>
           </div>
         </div>
