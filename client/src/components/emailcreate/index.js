@@ -17,6 +17,8 @@ import {
 import ContentEditable from "react-contenteditable";
 import Analysis from "./Analysis";
 import "./email.css";
+import Analysis from "./Analysis";
+import "./email.css";
 
 class NewEmail extends Component {
 	crumbs = [ { name: "Home", path: "/" }, { name: "Document" } ];
@@ -222,6 +224,9 @@ class NewEmail extends Component {
 			return "Save";
 		}
 		return "Save as";
+	};
+	handleInput = e => {
+		this.setState({ [e.target.name]: e.target.value });
 	};
 
 	navigationButtons = () => (
