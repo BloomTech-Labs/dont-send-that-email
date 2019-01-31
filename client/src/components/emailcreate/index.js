@@ -4,6 +4,7 @@ import striptags from 'striptags';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   Button,
+  UncontrolledAlert,
   ButtonGroup,
   Col,
   Container,
@@ -80,19 +81,29 @@ class NewEmail extends Component {
   };
   sendEmail = () => {
     console.log ('hello world');
-    axios
-      .post (
-        process.env.REACT_APP_BACKEND_URL + '/sendemail',
-        {
-          title: this.state.title,
-          text: this.selectedVersion ().text,
-          addressee: this.state.addressee,
-          reqType: 'send',
-        },
-        {withCredentials: true}
-      )
-      .then (res => this.setState ({componentState: 1}))
-      .catch (err => this.setState ({componentState: 2}));
+    if (
+      !this.state.title ||
+      !this.selectedVersion ().text ||
+      !this.state.addressee
+    ) {
+      {
+        this.setState ({componentState: 2});
+      }
+    } else {
+      axios
+        .post (
+          process.env.REACT_APP_BACKEND_URL + '/sendemail',
+          {
+            title: this.state.title,
+            text: this.selectedVersion ().text,
+            addressee: this.state.addressee,
+            reqType: 'send',
+          },
+          {withCredentials: true}
+        )
+        .then (res => this.setState ({componentState: 1}))
+        .catch (err => this.setState ({componentState: 3}));
+    }
   };
   resetComponentState = () => {
     this.setState ({componentState: 0});
@@ -226,10 +237,30 @@ class NewEmail extends Component {
       <Button onClick={this.sendEmail}>Send</Button>
     </ButtonGroup>
   );
-
+  sendEmailAlert = () => {
+    if (this.state.componentState === 1) {
+      return (
+        <UncontrolledAlert
+          color="success"
+          onClick={() => this.resetComponentState ()}
+        >
+          Email Sent.
+        </UncontrolledAlert>
+      );
+    } else if (this.state.componentState === 2) {
+      return (
+        <UncontrolledAlert
+          color="danger"
+          onClick={() => this.resetComponentState ()}
+        />
+      );
+    }
+    return null;
+  };
   render () {
     return (
-      <Container className="mt-5">
+      <Container>
+        {this.sendEmailAlert ()}
         <Row>
           <Col>
             <Row>
