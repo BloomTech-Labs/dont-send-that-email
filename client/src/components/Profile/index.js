@@ -10,7 +10,6 @@ const Profile = (props) => {
   return (
     <Container>
       <Row>
-        <Sidebar />
         <Col xs={12}>
           <BreadCrumb
             crumbs={[{ name: "Home", path: "/" }, { name: "Profile" }]}
