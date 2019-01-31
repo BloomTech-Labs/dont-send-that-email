@@ -3,7 +3,7 @@ const moment = require("moment");
 const populateUser = require("../middlewares/populateUser");
 const db = require("../data/dbconfig.js");
 const router = express.Router();
-const timezone = require('moment-timezone');
+const timezone = require("moment-timezone");
 router.use(populateUser);
 
 // Required fields: {
@@ -19,13 +19,18 @@ router.post("/", async (req, res) => {
       await db("emails")
         .where({ id })
         .update({ title, addressee });
+      console.log("had an id", id);
     } else {
-      email.id = (await db("emails").insert(email))[0];
+      email.id = (await db("emails")
+        .insert(email)
+        .returning("id"))[0];
+      console.log("made a new id", email.id);
     }
 
     if (version) {
       delete version.id; // For saving a new copy of an edited version
       version.email_id = email.id;
+      console.log("inserting version with email_id: ", version.email_id);
       version.tone_analysis = JSON.stringify(version.tone_analysis);
       await db("versions").insert(version);
     }
@@ -53,12 +58,19 @@ router.get("/:id", async (req, res) => {
   // Fetch all versions, and parse their tone analyses
   email.versions = await db("versions")
     .where({ email_id: id })
-    .then(vs =>
-      vs.map(v => {
-        v.tone_analysis = JSON.parse(v.tone_analysis);
-        return v;
-      })
-    );
+    .then(vs => {
+      console.log(`versions for email ${id}`);
+      return vs.map(v => {
+        console.log("versiondata:");
+        console.log(v.tone_analysis);
+        // Postgres will give us an already-parsed JSON object, but SQLite will not
+        try {
+          v.tone_analysis = JSON.parse(v.tone_analysis);
+        } finally {
+          return v;
+        }
+      });
+    });
   res.json({ email });
 });
 
@@ -80,12 +92,10 @@ router.get("/", async (req, res) => {
 
 processEmail = email => {
   const { updated } = email;
- 
+
   const m = moment(updated);
   if (m.isValid()) {
     email.updated = m.calendar();
-    
-    
   } else {
     email.updated = "No versions.";
   }
