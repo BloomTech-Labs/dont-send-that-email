@@ -4,7 +4,8 @@ import {
   NavbarBrand,
   NavItem,
   NavLink,
-  Nav
+  Nav,
+  Container
  } from "reactstrap";
 import Sidebar from "./Sidebar";
 import "./index.css";
@@ -26,14 +27,15 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Sidebar />
-        <Navbar color="light" light expand="md">
-            <NavbarBrand href="/" >Don't Send That Email!</NavbarBrand>
-            <Nav>
-                <NavItem>
-                    <NavLink disabled href="#"><p className="greeting">Hello! {this.props.user.username}</p></NavLink>
-                </NavItem>
-            </Nav>
+        <Navbar color="dark" light expand="md">
+            <Container>
+                <NavbarBrand href="/" >Don't Send That Email!</NavbarBrand>
+                <Nav>
+                    <NavItem>
+                        <NavLink disabled href="#"><p className="greeting">Hello! {this.props.user.username}</p></NavLink>
+                    </NavItem>
+                </Nav>
+            </Container>
         </Navbar>
       </div>
     );

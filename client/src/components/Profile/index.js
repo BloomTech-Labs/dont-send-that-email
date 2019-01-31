@@ -8,7 +8,6 @@ const Profile = (props) => {
   return (
     <Container className='mt-5'>
       <Row>
-        <Sidebar />
         <Col xs={12}>
         </Col>
       </Row>
