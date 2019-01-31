@@ -52,48 +52,53 @@ class DocumentList extends Component {
 		</Card>
 	);
 
-	redirectToCreateEmailPage = () => {
-		if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-			console.log(this.props.user.subscribed);
-			this.props.history.push("/email");
-		} else {
-			this.setState({ componentState: 1 });
-		}
-	};
-	deleteEmail = e => {
-		axios
-			.delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
-				withCredentials: true
-			})
-			.then(res => {
-				if (this.state.componentState === 1) {
-					this.setState({ componentState: 0 }, () => this.fetchEmails());
-				} else {
-					this.fetchEmails();
-				}
-			})
-			.catch(err => console.log(err));
-	};
-	copyEmail = ({ title, addressee }) => e => {
-		if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-			console.log(this.props.user.subscribed);
-			const body = { email: { title, addressee } };
-			console.log(body);
-			axios
-				.post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
-					withCredentials: true
-				})
-				.then(({ data }) => {
-					if (data.id) {
-						this.fetchEmails();
-					} else {
-						console.log("Email copy operation failed.", data.err);
-					}
-				});
-		} else {
-			this.setState({ componentState: 1 });
-		}
-	};
+  redirectToCreateEmailPage = () => {
+    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+      console.log(this.props.user.subscribed);
+      this.props.history.push("/email");
+    } else {
+      this.setState({ componentState: 1 });
+    }
+  };
+  deleteEmail = e => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
+        withCredentials: true
+      })
+      .then(res => {
+        if (this.state.componentState === 1) {
+          this.setState({ componentState: 0 }, () => this.fetchEmails());
+        } else {
+          this.fetchEmails();
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
+  copyEmail = ({ title, addressee, text }) => e => {
+
+    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+      console.log(this.props.user.subscribed);
+      text = text || ""
+      const version = { text }
+      const body = { email: { title, addressee }, version: version };
+      console.log(body)
+      axios
+        .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
+          withCredentials: true
+        })
+        .then(({ data }) => {
+          if (data.id) {
+            this.fetchEmails();
+          } else {
+            console.log("Email copy operation failed.", data.err);
+          }
+        });
+    } else {
+      this.setState({ componentState: 1 });
+    }
+  };
+
 	resetComponentState = () => {
 		this.setState({ componentState: 0 });
 	};

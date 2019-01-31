@@ -80,8 +80,6 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const emails = await db("emails")
     .leftJoin("versions", "versions.email_id", "emails.id")
-    .orderBy("versions.date_created", "desc")
-    .groupBy("emails.id")
     .where({ "emails.user_id": req.user.id })
     .select(
       "emails.id",
@@ -90,6 +88,26 @@ router.get("/", async (req, res) => {
       "versions.date_created as updated",
       "versions.text as text"
     )
+    // Postgres doesn't like groupBy, so we will group them ourselves
+    .then(emails => {
+      // Convert the list of emails into a hashtable indexed by email ID
+      const hashed = {};
+      emails.forEach(email => {
+        if (!hashed[email.id]) {
+          hashed[email.id] = email;
+        } else {
+          // Replace the existing entry if the associated version is newer
+          const updated = moment(email.updated);
+          const hashed_updated = moment(hashed[email.id].updated);
+          if (updated.isAfter(hashed_updated)) {
+            hashed[email.id] = email;
+          }
+        }
+      });
+      // Return a list of emails
+      return Object.values(hashed);
+    })
+    // Convert database dates into something readable
     .then(emails => emails.map(processEmail));
   res.json({ emails });
 });
