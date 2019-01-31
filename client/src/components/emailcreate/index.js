@@ -80,15 +80,12 @@ class NewEmail extends Component {
     return this.state.versions[this.state.selected_version - 1];
   };
   sendEmail = () => {
-    console.log ('hello world');
     if (
       !this.state.title ||
       !this.selectedVersion ().text ||
       !this.state.addressee
     ) {
-      {
-        this.setState ({componentState: 2});
-      }
+      this.setState ({componentState: 2});
     } else {
       axios
         .post (
@@ -179,37 +176,45 @@ class NewEmail extends Component {
 
   handleSave = async e => {
     e.preventDefault ();
-    const body = {
-      email: {
-        title: this.state.title,
-        addressee: this.state.addressee,
-      },
-      version: this.selectedVersion (),
-    };
-
-    if (this.props.match.params.id) {
-      body.email.id = this.props.match.params.id;
-    }
-
-    let headers = {
-      withCredentials: true,
-      headers: {Authorization: process.env.USER_COOKIE},
-    };
-
-    try {
-      const {data: {id}} = await axios.post (
-        process.env.REACT_APP_BACKEND_URL + '/emails',
-        body,
-        headers
-      );
-      if (!this.props.match.params.id) {
-        this.props.history.push (`/email/${id}`);
-      } else {
-        this.fetchEmail (id);
-      }
-      this.setState ({componentState: 5});
-    } catch (err) {
+    if (
+      !this.state.title ||
+      this.state.addressee ||
+      this.selectedVersion ().text
+    ) {
       this.setState ({componentState: 6});
+    } else {
+      const body = {
+        email: {
+          title: this.state.title,
+          addressee: this.state.addressee,
+        },
+        version: this.selectedVersion (),
+      };
+
+      if (this.props.match.params.id) {
+        body.email.id = this.props.match.params.id;
+      }
+
+      let headers = {
+        withCredentials: true,
+        headers: {Authorization: process.env.USER_COOKIE},
+      };
+
+      try {
+        const {data: {id}} = await axios.post (
+          process.env.REACT_APP_BACKEND_URL + '/emails',
+          body,
+          headers
+        );
+        if (!this.props.match.params.id) {
+          this.props.history.push (`/email/${id}`);
+        } else {
+          this.fetchEmail (id);
+        }
+        this.setState ({componentState: 5});
+      } catch (err) {
+        this.setState ({componentState: 7});
+      }
     }
   };
 
@@ -243,32 +248,20 @@ class NewEmail extends Component {
     </ButtonGroup>
   );
   sendEmailAlert = () => {
-    let response;
-    if (this.state.componentState === 1) {
-      response = 'Email sent.';
-    } else if (this.state.componentState === 2) {
-      response = 'To send an email you need a title, addressee, and text.';
-    } else if (this.state.componentState === 3) {
-      response = 'Free users cannot send emails.';
-    } else if (this.state.componentState === 4) {
-      response = 'Something went wrong while trying to send email.';
-    }
-    if (this.state.componentState === 1) {
+    if (this.state.componentState >= 1 && this.state.componentState <= 4) {
+      let response;
+      if (this.state.componentState === 1) {
+        response = 'Email sent.';
+      } else if (this.state.componentState === 2) {
+        response = 'To send an email you need a title, addressee, and text.';
+      } else if (this.state.componentState === 3) {
+        response = 'Free users cannot send emails.';
+      } else if (this.state.componentState === 4) {
+        response = 'Something went wrong while trying to send email.';
+      }
       return (
         <UncontrolledAlert
-          color="success"
-          onClick={() => this.resetComponentState ()}
-        >
-          {response}
-        </UncontrolledAlert>
-      );
-    } else if (
-      this.state.componentState >= 2 &&
-      this.state.componentState <= 4
-    ) {
-      return (
-        <UncontrolledAlert
-          color="danger"
+          color={this.state.componentState === 1 ? 'success' : 'danger'}
           onClick={() => this.resetComponentState ()}
         >
           {response}
@@ -278,22 +271,15 @@ class NewEmail extends Component {
     return null;
   };
   saveEmailAlert = () => {
-    if (this.state.componentState === 5) {
+    if (this.state.componentState === 5 || this.state.componentState === 6) {
       return (
         <UncontrolledAlert
-          color="success"
+          color={this.state.componentState === 5 ? 'success' : 'danger'}
           onClick={() => this.resetComponentState ()}
         >
-          Saved Email.
-        </UncontrolledAlert>
-      );
-    } else if (this.state.componentState === 6) {
-      return (
-        <UncontrolledAlert
-          color="danger"
-          onClick={() => this.resetComponentState ()}
-        >
-          Something went wrong while trying to save email.
+          {this.state.componentState === 5
+            ? 'Saved Email'
+            : 'Something went wrong while trying to save email.'}
         </UncontrolledAlert>
       );
     }
