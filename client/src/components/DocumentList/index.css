@@ -2,6 +2,7 @@
     align-content: center;
 }
 
+/* Center button when there's no emails */
 .container-fluid .button-center {
     display: flex;
     justify-content: center;
@@ -23,11 +24,12 @@
   }
 }
 
+/* For smooth transition on the Create-button */
 @media (max-width: 472px) {
     .container-fluid .button-center {
         height: 79vh;
     }
-
+    /* Remove user's name in mobile view */
     .nav .nav-item {
         display: none;
     }
