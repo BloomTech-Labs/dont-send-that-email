@@ -14,7 +14,7 @@ const toneAnalyzer = new ToneAnalyzerV3({
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const toneParams = {
     tone_input: { text: req.body.text },
     content_type: 'application/json',

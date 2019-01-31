@@ -1,6 +1,5 @@
 const moment = require("moment");
 const db = require("../data/dbconfig");
-const month = 2592000000;
 const populateUser = async (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ err: "No user logged in." });
@@ -24,7 +23,7 @@ const populateUser = async (req, res, next) => {
         req.user.subscriptionEnd = subscriptionDetails[1];
       }
     }
-    console.log("[populateUser] - found ", req.user);
+    // console.log("Delete this: [populateUser] - found ", req.user);
     if (req.body.reqType === "send") {
       if (req.user.subscribed) {
         req.body.username = req.user.username;
@@ -43,23 +42,19 @@ const populateUser = async (req, res, next) => {
         ) {
           verified = await db("users")
             .where({ id: req.user.id })
-            .update({ analysesCount: 1, currentCycleStart: Date.now() });
+            .update({ analysesCount: 1, currentCycleStart: new Date() });
         } else {
-          if (req.user.analysesCount < 100) {
-            if (Date.now() - req.user.currentCycleStart >= month) {
-              verified = await db("users")
-                .where({ id: req.user.id })
-                .update({ analysesCount: 1, currentCycleStart: Date.now() });
-            } else {
+          const cycleStart = moment(req.user.cycleStart);
+          const cycleEnd = moment(req.user.cycleStart).add(30, "days");
+          if (moment().isBetween(cycleStart, cycleEnd)) {
+            verified = await db("users")
+              .where({ id: req.user.id })
+              .update({ analysesCount: 1, currentCycleStart: new Date() });
+          } else {
+            if (req.user.analysesCount < 100) {
               verified = await db("users")
                 .where({ id: req.user.id })
                 .update({ analysesCount: req.user.analysesCount + 1 });
-            }
-          } else {
-            if (Date.now() - req.user.currentCycleStart >= month) {
-              verified = await db("users")
-                .where({ id: req.user.id })
-                .update({ analysesCount: 1, currentCycleStart: Date.now() });
             }
           }
         }
@@ -81,7 +76,7 @@ const populateUser = async (req, res, next) => {
   }
 };
 
-const isSubscriptionActive = (subscription) => {
+const isSubscriptionActive = subscription => {
   // Force moment to treat datestring from the database as UTC
   // TODO: fix this in the knex configuration
   const datestring = subscription.date_created + "+0000";
