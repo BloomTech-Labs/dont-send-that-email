@@ -79,7 +79,7 @@ const populateUser = async (req, res, next) => {
 const isSubscriptionActive = subscription => {
   // Force moment to treat datestring from the database as UTC
   // TODO: fix this in the knex configuration
-  const datestring = subscription.date_created + "+0000";
+  const datestring = subscription.date_created;
 
   // Check to see if user is within the subscription window
   const start = moment(datestring);
