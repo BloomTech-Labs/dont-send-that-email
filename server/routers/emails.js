@@ -44,6 +44,9 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
+  await db("versions")
+    .where({ email_id: id })
+    .del();
   const count = await db("emails")
     .where({ id })
     .del();
