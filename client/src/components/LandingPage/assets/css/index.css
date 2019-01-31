@@ -2,3 +2,14 @@
 .computer {
     background-image: url('../img/computer.jpg');
 };
+
+.navbar.fixed-top .nav-link i {
+    top: 4px;
+}
+
+.navbar .nav-link i {
+    font-size: 16px;
+    position: relative;
+    top: 4px;
+    right: 3px;
+}
