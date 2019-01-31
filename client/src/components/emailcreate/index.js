@@ -245,7 +245,7 @@ class NewEmail extends Component {
   sendEmailAlert = () => {
     let response;
     if (this.state.componentState === 1) {
-      response = 'Email Sent.';
+      response = 'Email sent.';
     } else if (this.state.componentState === 2) {
       response = 'To send an email you need a title, addressee, and text.';
     } else if (this.state.componentState === 3) {
@@ -263,9 +263,8 @@ class NewEmail extends Component {
         </UncontrolledAlert>
       );
     } else if (
-      this.state.componentState === 2 ||
-      this.state.componentState === 3 ||
-      this.state.componentState === 4
+      this.state.componentState >= 2 &&
+      this.state.componentState <= 4
     ) {
       return (
         <UncontrolledAlert
@@ -278,7 +277,28 @@ class NewEmail extends Component {
     }
     return null;
   };
-  saveEmailAlert = () => {};
+  saveEmailAlert = () => {
+    if (this.state.componentState === 5) {
+      return (
+        <UncontrolledAlert
+          color="success"
+          onClick={() => this.resetComponentState ()}
+        >
+          Saved Email.
+        </UncontrolledAlert>
+      );
+    } else if (this.state.componentState === 6) {
+      return (
+        <UncontrolledAlert
+          color="danger"
+          onClick={() => this.resetComponentState ()}
+        >
+          Something went wrong while trying to save email.
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
   render () {
     return (
       <Container>
