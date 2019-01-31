@@ -34,6 +34,7 @@ class DocumentList extends Component {
       })
       .then(({ data }) => {
         const { emails, err } = data;
+        console.log(data)
         if (emails) {
           this.setState({ emails }, () => console.log(this.state.emails));
         }
@@ -44,6 +45,7 @@ class DocumentList extends Component {
   };
 
   emailElements = () =>
+    /* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
     this.state.emails.map((e, i) => (
       <Document
         key={i}
@@ -51,6 +53,7 @@ class DocumentList extends Component {
         copy={this.copyEmail(e)}
         delete={() => this.deleteEmail(e)}
       />
+      
     ));
 
   emailCreateButton = () => (
@@ -130,8 +133,8 @@ class DocumentList extends Component {
     return (
       <Col>
         <CardColumns>
-          {this.emailElements()}
           {this.emailCreateButton()}
+          {this.emailElements()}
         </CardColumns>
       </Col>
     );

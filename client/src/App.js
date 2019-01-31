@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import Navigation from "./components/Navigation";
+import Sidebar from "./components/Navigation/Sidebar";
 import MainContent from "./components/MainContent";
 import LandingPage from "./components/LandingPage";
 import { Container } from "reactstrap";
@@ -37,7 +38,7 @@ library.add(
 
 class App extends Component {
   state = {
-    user: null
+    user: null 
   };
 
   updateUser = () => {
@@ -67,7 +68,8 @@ class App extends Component {
     if (this.state.user) {
       return (
         <Container fluid>
-          <Navigation user={this.state.user}/>
+          <Navigation user={this.state.user} class="navbar-transparent"/>
+          <Sidebar />
           <MainContent user={this.state.user} />
         </Container>
       );
