@@ -1,8 +1,10 @@
-
+/* Landing page background image */
 .computer {
     background-image: url('../img/computer.jpg');
 };
 
+
+/* Nucleo Power Icon styles */
 .navbar.fixed-top .nav-link i {
     top: 4px;
 }
