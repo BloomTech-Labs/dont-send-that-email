@@ -1,6 +1,5 @@
 const moment = require("moment");
 const db = require("../data/dbconfig");
-const month = 2592000000;
 const populateUser = async (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ err: "No user logged in." });
@@ -45,7 +44,9 @@ const populateUser = async (req, res, next) => {
             .where({ id: req.user.id })
             .update({ analysesCount: 1, currentCycleStart: new Date() });
         } else {
-          if (Date.now() - req.user.currentCycleStart >= month) {
+          const cycleStart = moment(req.user.cycleStart);
+          const cycleEnd = moment(req.user.cycleStart).add(30, "days");
+          if (moment().isBetween(cycleStart, cycleEnd)) {
             verified = await db("users")
               .where({ id: req.user.id })
               .update({ analysesCount: 1, currentCycleStart: new Date() });
