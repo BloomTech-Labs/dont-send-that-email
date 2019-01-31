@@ -107,10 +107,11 @@ class NewEmail extends Component {
           Analytical: "primary",
           Tentative: "warning",
         };
+        text = text.replace(/[()]/g,''); // Removes parentheses from text
         tone_analysis.sentences_tone
           .filter(({ tones }) => tones.length) // Ignore sentences with no tones
           .forEach(({ text: sentence, tones }) => {
-            const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights
+            const re = new RegExp(sentence.replace(/[()]/g,'').trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
             text = text.replace(re, (match) => {
               console.log("Matched");
