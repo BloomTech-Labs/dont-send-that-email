@@ -207,8 +207,9 @@ class NewEmail extends Component {
       } else {
         this.fetchEmail (id);
       }
+      this.setState ({componentState: 5});
     } catch (err) {
-      console.log (err);
+      this.setState ({componentState: 6});
     }
   };
 
@@ -277,10 +278,12 @@ class NewEmail extends Component {
     }
     return null;
   };
+  saveEmailAlert = () => {};
   render () {
     return (
       <Container>
         {this.sendEmailAlert ()}
+        {this.saveEmailAlert ()}
         <Row>
           <Col>
             <Row>
