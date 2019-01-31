@@ -178,8 +178,8 @@ class NewEmail extends Component {
     e.preventDefault ();
     if (
       !this.state.title ||
-      this.state.addressee ||
-      this.selectedVersion ().text
+      !this.state.addressee ||
+      !this.selectedVersion ().text
     ) {
       this.setState ({componentState: 6});
     } else {
@@ -256,7 +256,7 @@ class NewEmail extends Component {
         response = 'To send an email you need a title, addressee, and text.';
       } else if (this.state.componentState === 3) {
         response = 'Free users cannot send emails.';
-      } else if (this.state.componentState === 4) {
+      } else {
         response = 'Something went wrong while trying to send email.';
       }
       return (
@@ -271,15 +271,22 @@ class NewEmail extends Component {
     return null;
   };
   saveEmailAlert = () => {
-    if (this.state.componentState === 5 || this.state.componentState === 6) {
+    if (this.state.componentState >= 5 && this.state.componentState <= 7) {
+      let response;
+      if (this.state.componentState === 5) {
+        response = 'Saved email.';
+      } else if (this.state.componentState === 6) {
+        response =
+          'To save an email, one must include a title, addressee, and text.';
+      } else {
+        response = 'Something went wrong trying to save email.';
+      }
       return (
         <UncontrolledAlert
           color={this.state.componentState === 5 ? 'success' : 'danger'}
           onClick={() => this.resetComponentState ()}
         >
-          {this.state.componentState === 5
-            ? 'Saved Email'
-            : 'Something went wrong while trying to save email.'}
+          {response}
         </UncontrolledAlert>
       );
     }
