@@ -81,9 +81,9 @@ class NewEmail extends Component {
   };
   sendEmail = () => {
     if (
-      !this.state.title ||
-      !this.selectedVersion ().text ||
-      !this.state.addressee
+      this.state.title.trim () === '' ||
+      this.selectedVersion ().text.trim () === '' ||
+      this.state.addressee.trim () === ''
     ) {
       this.setState ({componentState: 2});
     } else {
@@ -177,9 +177,9 @@ class NewEmail extends Component {
   handleSave = async e => {
     e.preventDefault ();
     if (
-      !this.state.title ||
-      !this.state.addressee ||
-      !this.selectedVersion ().text
+      this.state.title.trim () === '' ||
+      this.state.addressee.trim () === '' ||
+      this.selectedVersion ().text.trim () === ''
     ) {
       this.setState ({componentState: 6});
     } else {
