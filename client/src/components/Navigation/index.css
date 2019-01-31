@@ -1,28 +1,28 @@
 /* Ipad greeting user name position */
 @media (min-width: 768px) {
-    .nav {
-        margin-left: auto;
-        margin-right: 50px;
-    }
+	.nav {
+		margin-left: auto;
+		margin-right: 50px;
+	}
 }
 
 /* Ipad Pro hamburger position */
 @media (min-width: 1024px) {
-    .nav {
-        margin-left: auto;
-        margin-right: 45px;
-    }
+	.nav {
+		margin-left: auto;
+		margin-right: 45px;
+	}
 }
 
 .nav {
-    margin-left: auto;
-    margin-right: 0px;
-};
+	margin-left: auto;
+	margin-right: 0px;
+}
 
 nav .navbar {
-    /* margin-bottom: 15px; */
+	/*margin-bottom: 15px;*/
 }
 
 nav ul li .nav-item {
-    color: null;
+	color: null;
 }

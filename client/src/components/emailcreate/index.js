@@ -264,6 +264,7 @@ class NewEmail extends Component {
 				<UncontrolledAlert
 					color={this.state.componentState === 1 ? "success" : "danger"}
 					onClick={() => this.resetComponentState()}
+					className="mt-2"
 				>
 					{response}
 				</UncontrolledAlert>
@@ -285,6 +286,7 @@ class NewEmail extends Component {
 				<UncontrolledAlert
 					color={this.state.componentState === 5 ? "success" : "danger"}
 					onClick={() => this.resetComponentState()}
+					className="mt-2"
 				>
 					{response}
 				</UncontrolledAlert>
@@ -294,57 +296,50 @@ class NewEmail extends Component {
 	};
 	render() {
 		return (
-			<Container>
+			<Container className="mt-3">
 				{this.sendEmailAlert()}
 				{this.saveEmailAlert()}
 				<Row>
-					<Col>
-						<Row>
-							<Col md={12} lg={{ order: 0, size: 8 }}>
-								<InputGroup className="email-fields">
-									<InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
-									<Input
-										name="title"
-										value={this.state.title}
-										onChange={this.handleInput}
-										spellCheck="false"
-									/>
-								</InputGroup>
-								<InputGroup className="email-fields">
-									<InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
-									<Input
-										name="addressee"
-										value={this.state.addressee}
-										onChange={this.handleInput}
-										spellCheck="false"
-									/>
-								</InputGroup>
-							</Col>
-							<Col md={12} lg={{ size: 4 }}>
-								<Card className="no-transition" body>
-									<ButtonGroup vertical>
-										{this.navigationButtons()}
-										{this.actionButtons()}
-									</ButtonGroup>
-								</Card>
-							</Col>
-						</Row>
-						<Row>
-							<Col md={{ order: 2 }} lg={{ order: 0, size: 8 }}>
-								<ContentEditable
-									html={this.processTone()}
-									onChange={this.editorInput}
-									className="form-control"
-									style={{ height: "auto", minHeight: "150px" }}
-								/>
-							</Col>
-							<Col md={{ order: 1 }} lg={{ size: 4 }}>
-								<Analysis
-									error={this.state.error}
-									toneAnalysis={this.selectedVersion().tone_analysis}
-								/>
-							</Col>
-						</Row>
+					<Col md={12} lg={{ order: 0, size: 8 }}>
+						<InputGroup className="email-fields">
+							<InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+							<Input
+								name="title"
+								value={this.state.title}
+								onChange={this.handleInput}
+								spellCheck="false"
+							/>
+						</InputGroup>
+						<InputGroup className="email-fields">
+							<InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
+							<Input
+								name="addressee"
+								value={this.state.addressee}
+								onChange={this.handleInput}
+								spellCheck="false"
+							/>
+						</InputGroup>
+					</Col>
+					<Col md={12} lg={{ size: 4 }}>
+						<Card className="no-transition" body>
+							<ButtonGroup vertical>
+								{this.navigationButtons()}
+								{this.actionButtons()}
+							</ButtonGroup>
+						</Card>
+					</Col>
+				</Row>
+				<Row>
+					<Col md={{ order: 2 }} lg={{ order: 0, size: 8 }}>
+						<ContentEditable
+							html={this.processTone()}
+							onChange={this.editorInput}
+							className="form-control"
+							style={{ height: "auto", minHeight: "150px" }}
+						/>
+					</Col>
+					<Col md={{ order: 1 }} lg={{ size: 4 }}>
+						<Analysis error={this.state.error} toneAnalysis={this.selectedVersion().tone_analysis} />
 					</Col>
 				</Row>
 			</Container>

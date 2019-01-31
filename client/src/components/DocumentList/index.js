@@ -100,7 +100,7 @@ class DocumentList extends Component {
 	emailCountAlert = () => {
 		if (this.state.componentState === 1) {
 			return (
-				<UncontrolledAlert color="danger" onClick={() => this.resetComponentState()}>
+				<UncontrolledAlert color="danger" onClick={() => this.resetComponentState()} className="mt-2">
 					Free users can only have 5 emails in their dashboard, please clean up any unnecessary emails.
 				</UncontrolledAlert>
 			);
@@ -128,7 +128,7 @@ class DocumentList extends Component {
 
 	render() {
 		return (
-			<Container>
+			<Container className="mt-3">
 				<Row>
 					<Col xs={12}>{this.emailCountAlert()}</Col>
 				</Row>

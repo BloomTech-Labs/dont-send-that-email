@@ -1,39 +1,39 @@
 .tone {
-  padding: 3px 8px;
-  width: 100%;
+	padding: 3px 8px;
+	width: 100%;
 }
-
-  .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-  }
-  .row.content {height: 450px}
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+.row.content {
+	height: 450px;
+}
 
 .email-fields {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-  .sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
+.sidenav {
+	padding-top: 20px;
+	background-color: #f1f1f1;
+	height: 100%;
+}
 
-  }
+.editor {
+	border: lightgray 1px solid;
+}
 
-  .editor {
-    border: lightgray 1px solid;
-  }
+.version-icon:hover {
+	cursor: pointer;
+}
 
-  .version-icon:hover {
-    cursor: pointer
-  }
-
-  footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-  }
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
+}
