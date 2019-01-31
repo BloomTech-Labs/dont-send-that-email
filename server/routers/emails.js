@@ -66,6 +66,7 @@ router.get("/", async (req, res) => {
   const emails = await db("emails")
     .leftJoin("versions", "versions.email_id", "emails.id")
     .orderBy("versions.date_created", "desc")
+    .groupBy("emails.id")
     .where({ "emails.user_id": req.user.id })
     .select(
       "emails.id",

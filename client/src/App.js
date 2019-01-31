@@ -38,7 +38,7 @@ library.add(
 
 class App extends Component {
   state = {
-    user: null
+    user: null 
   };
 
   updateUser = () => {
