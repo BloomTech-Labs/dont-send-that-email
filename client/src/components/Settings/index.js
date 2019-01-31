@@ -48,9 +48,8 @@ const Settings = props => {
               {props.user.subscribed ? (
                 <p>
                   <span className="user-info-left">
-                    <Badge>Subscription End Date</Badge>
+                    <Badge>Expiration</Badge>
                   </span>
-                  ,
                   <span className="user-info-right">
                     {" " + dateFormat(props.user.subscriptionEnd)}
                   </span>
