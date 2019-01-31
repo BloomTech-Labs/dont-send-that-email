@@ -3,10 +3,11 @@ import { Col, Container, Row } from "reactstrap";
 import Settings from "../Settings";
 import Billing from "../Billing";
 import "./index.css";
+import Sidebar from "../Navigation/Sidebar";
 
 const Profile = (props) => {
   return (
-    <Container>
+    <Container className='mt-5'>
       <Row>
         <Col xs={12}>
         </Col>
