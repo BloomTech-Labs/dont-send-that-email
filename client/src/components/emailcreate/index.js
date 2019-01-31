@@ -13,8 +13,6 @@ import {
   InputGroup,
   InputGroupAddon
 } from "reactstrap";
-import BreadCrumb from "../BreadCrumb";
-import Sidebar from "../Navigation/Sidebar";
 import { Link } from "react-router-dom";
 import Editor from "./Editor";
 import Analysis from "./Analysis";
@@ -228,7 +226,6 @@ class NewEmail extends Component {
   render() {
     return (
       <Container>
-        <BreadCrumb crumbs={this.crumbs} />
         <Row>
           <Col>
             <Row>
