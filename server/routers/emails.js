@@ -3,7 +3,6 @@ const moment = require("moment");
 const populateUser = require("../middlewares/populateUser");
 const db = require("../data/dbconfig.js");
 const router = express.Router();
-const timezone = require("moment-timezone");
 router.use(populateUser);
 
 // Required fields: {
@@ -115,9 +114,9 @@ router.get("/", async (req, res) => {
 processEmail = email => {
   const { updated } = email;
 
-  const m = moment(updated);
+  const m = moment.utc(updated);
   if (m.isValid()) {
-    email.updated = m.calendar();
+    email.updated = m.toISOString();
   } else {
     email.updated = "No versions.";
   }
