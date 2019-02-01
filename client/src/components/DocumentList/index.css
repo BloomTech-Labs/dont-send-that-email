@@ -1,5 +1,14 @@
-.btn {
+.copyBtn {
     align-content: center;
+    background-color: #FFFFFF;
+    border-color: #66615B;
+    color: #4d4141;
+}
+
+.trashBtn {
+    background-color: #FFFFFF;
+     border-color: #f5593d; 
+    color: #f5593d;
 }
 
 /* Center button when there's no emails */
