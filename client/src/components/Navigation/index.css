@@ -23,3 +23,7 @@
 nav ul li .nav-item {
     color: null;
 }
+
+.nav-item {
+  border: dotted green 8px;
+}
