@@ -59,15 +59,15 @@ body {
   width: 24px;
   height: 18px;
   right: 50px;
-  top: 20px;
+  top: 25px;
 }
 
 /* Iphone 5/SE hamburger position */
 @media (min-width: 320px) {
   .bm-burger-button {
     position: absolute;
-    width: 30px;
-    height: 24px;
+    width: 24px;
+    height: 18px;
     right: 15px;
     top: 25px;
   }
@@ -126,7 +126,7 @@ body {
     width: 24px;
     height: 18px;
     right: 50px;
-    top: 20px;
+    top: 25px;
   }
 }
 
@@ -137,7 +137,7 @@ body {
     width: 24px;
     height: 18px;
     right: 55px;
-    top: 20px;
+    top: 25px;
   }
 }
 
