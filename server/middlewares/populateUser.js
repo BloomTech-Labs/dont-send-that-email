@@ -43,7 +43,7 @@ const populateUser = async (req, res, next) => {
                         .update({ analysesCount: 1, currentCycleStart: Date.now() });
                 } else {
                     const now = Date.now();
-                    const currentCycleEnd = req.user.currentCycleStart + month;
+                    const currentCycleEnd = parseInt(req.user.currentCycleStart) + month;
                     if (now >= currentCycleEnd) {
                         verified = await db("users")
                             .where({ id: req.user.id })
@@ -77,9 +77,9 @@ const populateUser = async (req, res, next) => {
 const isSubscriptionActive = subscription => {
     // Force moment to treat datestring from the database as UTC
     // TODO: fix this in the knex configuration
-    const start = subscription.date_created;
+    const start = parseInt(subscription.date_created);
     // Check to see if user is within the subscription window
-    const end = subscription.date_created + subscription.duration;
+    const end = start + parseInt(subscription.duration);
     const now = Date.now();
     return [ now >= start && now <= end, end ];
 };

@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
         table.string("password", 128);
         //We may not need password. But if so, we need it in the db.
         //.notNullable()
-        table.integer("currentCycleStart");
+        table.bigInteger("currentCycleStart");
         table.integer("analysesCount");
     });
 };
