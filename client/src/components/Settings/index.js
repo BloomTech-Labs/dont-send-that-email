@@ -1,10 +1,10 @@
 import React from "react";
 import { Col, Container, Row, Badge, Card, CardBody, CardHeader } from "reactstrap";
 import "./settings.css";
+import moment from "moment-timezone";
 
-const dateFormat = dateString => {
-    let formattedDateString = dateString;
-    return formattedDateString;
+const dateFormat = date => {
+    return moment(date).calendar();
 };
 const Settings = props => {
     console.log(props.user);
