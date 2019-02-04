@@ -52,9 +52,7 @@ class Document extends Component {
                 }}
               >
                 <FontAwesomeIcon icon="copy" size="2x" />
-                  <UncontrolledTooltip placement="left" target="copy">
-                    Copy
-                  </UncontrolledTooltip>
+                  
               </Button>
              
             
@@ -68,9 +66,7 @@ class Document extends Component {
                 style={{ marginLeft: 7 }}
               >
                 <FontAwesomeIcon icon="trash" size="2x" />
-                <UncontrolledTooltip placement="right" target="Trash">
-                  Trash
-                </UncontrolledTooltip>
+                
               </Button>
            
             </Col>
