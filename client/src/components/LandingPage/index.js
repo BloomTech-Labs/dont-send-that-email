@@ -25,7 +25,11 @@ class LandingPage extends Component {
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href={"#"}>
+              <FontAwesomeIcon 
+                icon={['fas', 'at']}
+                class="fa btn-just-icon"
+              />
                 Don't send that email
               </a>
               <button
@@ -37,6 +41,7 @@ class LandingPage extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
+                {/* The Hamburger in tablet/mobile view */}
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />

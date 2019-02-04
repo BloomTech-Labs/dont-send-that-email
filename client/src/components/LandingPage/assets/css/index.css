@@ -3,6 +3,10 @@
     background-image: url('../img/computer.jpg');
 };
 
+/* Spacing between Brand Logo and Brand */
+.fa .space {
+    margin-right: 3px;
+}
 
 /* Nucleo Power Icon styles */
 .navbar.fixed-top .nav-link i {
@@ -238,10 +242,6 @@ p {
 .btn-just-icon svg {
     font-size: 20px;
     padding: 2px 0;
-}
-.fa {
-    width: 18px;
-    text-align: center;
 }
 
 /* Let's talk prices section */
