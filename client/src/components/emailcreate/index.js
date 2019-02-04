@@ -128,7 +128,7 @@ class NewEmail extends Component {
             const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
             text = text.replace(re, match => {
               console.log("Matched");
-              return `<span class="label-${color}">${match}</span>`;
+              return `<span class="label-${color} analyzed">${match}</span>`;
             });
             console.log(text);
           });

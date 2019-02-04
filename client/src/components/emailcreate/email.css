@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+  .analyzed {
+    font-weight: bold;
+    color: white;
+  }
+
   .navbar {
     margin-bottom: 0;
     border-radius: 0;
@@ -37,3 +42,4 @@
     color: white;
     padding: 15px;
   }
+
