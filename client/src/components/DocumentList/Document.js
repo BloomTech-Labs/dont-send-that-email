@@ -16,13 +16,14 @@ import {
 } from "reactstrap";
 
 class Document extends Component {
-	navigate = () => {
-		this.props.history.push(`/email/${this.props.email.id}`);
-	};
+  navigate = () => {
+    this.props.history.push(`/email/${this.props.email.id}`);
+  };
 
   render() {
     let { title, addressee, updated, text } = this.props.email;
     updated = moment(updated).calendar();
+    console.log(updated);
     return (
       <Card onClick={this.navigate}>
         <CardBody>
