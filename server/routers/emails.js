@@ -3,7 +3,6 @@ const moment = require("moment");
 const populateUser = require("../middlewares/populateUser");
 const db = require("../data/dbconfig.js");
 const router = express.Router();
-const timezone = require("moment-timezone");
 router.use(populateUser);
 
 // Required fields: {
@@ -16,14 +15,10 @@ router.post("/", async (req, res) => {
     email.user_id = req.user.id;
     if (email.id) {
       const { title, addressee, id } = email;
-      await db("emails")
-        .where({ id })
-        .update({ title, addressee });
+      await db("emails").where({ id }).update({ title, addressee });
       console.log("had an id", id);
     } else {
-      email.id = (await db("emails")
-        .insert(email)
-        .returning("id"))[0];
+      email.id = (await db("emails").insert(email).returning("id"))[0];
       console.log("made a new id", email.id);
     }
 
@@ -44,36 +39,28 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  await db("versions")
-    .where({ email_id: id })
-    .del();
-  const count = await db("emails")
-    .where({ id })
-    .del();
+  await db("versions").where({ email_id: id }).del();
+  const count = await db("emails").where({ id }).del();
   res.json({ count });
 });
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const email = await db("emails")
-    .where({ id })
-    .first();
+  const email = await db("emails").where({ id }).first();
   // Fetch all versions, and parse their tone analyses
-  email.versions = await db("versions")
-    .where({ email_id: id })
-    .then(vs => {
-      console.log(`versions for email ${id}`);
-      return vs.map(v => {
-        console.log("versiondata:");
-        console.log(v.tone_analysis);
-        // Postgres will give us an already-parsed JSON object, but SQLite will not
-        try {
-          v.tone_analysis = JSON.parse(v.tone_analysis);
-        } finally {
-          return v;
-        }
-      });
+  email.versions = await db("versions").where({ email_id: id }).then(vs => {
+    console.log(`versions for email ${id}`);
+    return vs.map(v => {
+      console.log("versiondata:");
+      console.log(v.tone_analysis);
+      // Postgres will give us an already-parsed JSON object, but SQLite will not
+      try {
+        v.tone_analysis = JSON.parse(v.tone_analysis);
+      } finally {
+        return v;
+      }
     });
+  });
   res.json({ email });
 });
 
@@ -115,9 +102,9 @@ router.get("/", async (req, res) => {
 processEmail = email => {
   const { updated } = email;
 
-  const m = moment(updated);
+  const m = moment.utc(updated);
   if (m.isValid()) {
-    email.updated = m.calendar();
+    email.updated = m.toISOString();
   } else {
     email.updated = "No versions.";
   }

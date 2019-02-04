@@ -1,5 +1,5 @@
-const moment = require("moment");
 const db = require("../data/dbconfig");
+
 const populateUser = async (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ err: "No user logged in." });
@@ -42,14 +42,15 @@ const populateUser = async (req, res, next) => {
         ) {
           verified = await db("users")
             .where({ id: req.user.id })
-            .update({ analysesCount: 1, currentCycleStart: new Date() });
+            .update({ analysesCount: 1, currentCycleStart: Date.now() });
         } else {
-          const cycleStart = moment(req.user.cycleStart);
-          const cycleEnd = moment(req.user.cycleStart).add(30, "days");
-          if (moment().isBetween(cycleStart, cycleEnd)) {
+          const now = Date.now();
+          const month = 2592000000;
+          const currentCycleEnd = parseInt(req.user.currentCycleStart) + month;
+          if (now >= currentCycleEnd) {
             verified = await db("users")
               .where({ id: req.user.id })
-              .update({ analysesCount: 1, currentCycleStart: new Date() });
+              .update({ analysesCount: 1, currentCycleStart: now });
           } else {
             if (req.user.analysesCount < 100) {
               verified = await db("users")
@@ -79,12 +80,11 @@ const populateUser = async (req, res, next) => {
 const isSubscriptionActive = subscription => {
   // Force moment to treat datestring from the database as UTC
   // TODO: fix this in the knex configuration
-  const datestring = subscription.date_created;
-
+  const start = parseInt(subscription.date_created);
   // Check to see if user is within the subscription window
-  const start = moment(datestring);
-  const end = moment(datestring).add(subscription.duration, "days");
-  return [moment().isBetween(start, end), end];
+  const end = start + parseInt(subscription.duration);
+  const now = Date.now();
+  return [now >= start && now <= end, end];
 };
 
 module.exports = populateUser;

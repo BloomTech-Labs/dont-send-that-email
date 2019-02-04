@@ -3,14 +3,13 @@ import { Col, Container, Row } from "reactstrap";
 import Settings from "../Settings";
 import Billing from "../Billing";
 import "./index.css";
-import Sidebar from "../Navigation/Sidebar";
 
-const Profile = (props) => {
+const Profile = props => {
+
   return (
-    <Container className='mt-5'>
+    <Container className="mt-3">
       <Row>
-        <Col xs={12}>
-        </Col>
+        <Col xs={12} />
       </Row>
       <Row>
         <Col xs={12} md={6}>
@@ -22,5 +21,6 @@ const Profile = (props) => {
       </Row>
     </Container>
   );
+
 };
 export default Profile;
