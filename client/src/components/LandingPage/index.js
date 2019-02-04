@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './assets/css/index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tai from "./assets/img/faces/tai.png";
+import Chad from "./assets/img/faces/chad.jpg";
+import Richard from "./assets/img/faces/richard.jpeg";
+import Will from "./assets/img/faces/willsmith.jpeg";
 
 class LandingPage extends Component {
 
   render() {
     return (
       <div>
+        {/* Navbar */}  
         <nav
           className="navbar navbar-expand-lg fixed-top navbar-transparent"
           color-on-scroll="300"
@@ -46,7 +51,7 @@ class LandingPage extends Component {
                     rel="tooltip"
                     title="Follow us on Twitter"
                     data-placement="bottom"
-                    href="http://google.com"
+                    href="#"
                   >
                     <FontAwesomeIcon
                       icon={['fab', 'twitter']}
@@ -61,7 +66,7 @@ class LandingPage extends Component {
                     rel="tooltip"
                     title="Like us on Facebook"
                     data-placement="bottom"
-                    href="http://google.com"
+                    href="https://www.facebook.com"
                   >
                     <FontAwesomeIcon
                       icon={['fab', 'facebook']}
@@ -76,7 +81,7 @@ class LandingPage extends Component {
                     rel="tooltip"
                     title="Follow us on Instagram"
                     data-placement="bottom"
-                    href="http://google.com"
+                    href="https://www.instagram.com"
                   >
                     <FontAwesomeIcon
                       icon={['fab', 'instagram']}
@@ -91,7 +96,7 @@ class LandingPage extends Component {
                     rel="tooltip"
                     title="Star on GitHub"
                     data-placement="bottom"
-                    href="http://google.com"
+                    href="https://github.com/Lambda-School-Labs/dont-send-that-email"
                   >
                     <FontAwesomeIcon
                       icon={['fab', 'github']}
@@ -104,7 +109,7 @@ class LandingPage extends Component {
             </div>
           </div>
         </nav>
-
+        {/* Centered Text */}
         <div className="page-header computer" data-parallax="false">
           <div className="filter" />
           <div className="container">
@@ -115,9 +120,11 @@ class LandingPage extends Component {
                 emails.
               </h3>
               <br />
+              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's get started</a>
             </div>
           </div>
         </div>
+        {/* Let's Talk Product Section */}
         <div className="main">
           <div className="section text-center">
             <div className="container">
@@ -127,9 +134,7 @@ class LandingPage extends Component {
                   <h5 className="description">
                     Our product can help you in many situations, want that job
                     and need someone to ensure you give the proper tone or
-                    convey the right emotions? We got you covered. Working for a
-                    non-profit organization and need to bring awareness? We got
-                    you covered.
+                    convey the right emotions? We got you covered. 
                   </h5>
                   <br />
                   <a href="#paper-kit" className="btn btn-danger btn-round">
@@ -140,6 +145,7 @@ class LandingPage extends Component {
               <br />
               <br />
               <div className="row">
+                {/* Family and friends card */}
                 <div className="col-md-3">
                   <div className="info">
                     <div className="icon icon-danger">
@@ -157,6 +163,7 @@ class LandingPage extends Component {
                     </div>
                   </div>
                 </div>
+                {/* Intuitive card */}
                 <div className="col-md-3">
                   <div className="info">
                     <div className="icon icon-danger">
@@ -174,6 +181,7 @@ class LandingPage extends Component {
                     </div>
                   </div>
                 </div>
+                {/* Promotions card */}
                 <div className="col-md-3">
                   <div className="info">
                     <div className="icon icon-danger">
@@ -181,13 +189,14 @@ class LandingPage extends Component {
                     </div>
                     <div className="description">
                       <h4 className="info-title">Promotions</h4>
-                      <p>Our product can help you achieve.</p>
+                      <p>Sometime knowing the proper tone can help reach new potential customers.</p>
                       <a href="#pkp" className="btn btn-link btn-danger">
                         See more
                       </a>
                     </div>
                   </div>
                 </div>
+                {/* Efficiency card */}
                 <div className="col-md-3">
                   <div className="info">
                     <div className="icon icon-danger">
@@ -196,8 +205,7 @@ class LandingPage extends Component {
                     <div className="description">
                       <h4 className="info-title">Efficiency</h4>
                       <p>
-                        Always in a hurry? We got you covered, One click away to
-                        prevent offensive emails.
+                        Our product utilize IBM Tone analyzer to ensure you get proper and accurate details.
                       </p>
                       <a href="#pkp" className="btn btn-link btn-danger">
                         See more
@@ -209,161 +217,277 @@ class LandingPage extends Component {
             </div>
           </div>
 
-          <div className="section section-dark text-center">
-            <div className="container">
-              <h2 className="title">Let's talk about us</h2>
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="card card-profile card-plain">
-                    <div className="card-avatar">
-                      <a href="http://google.com">
-                        <img src="./assets/img/faces/thomas.jpg" alt="..." />
-                      </a>
-                    </div>
-                    <div className="card-body">
-                      <a href="#paper-kit">
-                        <div className="author">
-                          <h4 className="card-title">Thomas</h4>
-                          <h6 className="card-category">Project Manager</h6>
-                        </div>
-                      </a>
-                      <p className="card-description text-center">
-                        Did you meet this week MVP yet?
-                      </p>
-                    </div>
-                    <div className="card-footer text-center">
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'twitter']}
-                          className="fa fa-twitter"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'google-plus-g']}
-                          className="fa fa-google-plus"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'linkedin-in']}
-                          className="fa fa-linkedin"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-md-4">
-                  <div className="card card-profile card-plain">
-                    <div className="card-avatar">
-                      <a href="#avatar">
-                        <img src="./assets/img/faces/Fred.jpg" alt="..." />
-                      </a>
-                    </div>
-                    <div className="card-body">
-                      <a href="#paper-kit">
-                        <div className="author">
-                          <h4 className="card-title">Fred</h4>
-                          <h6 className="card-category">Designer</h6>
-                        </div>
-                      </a>
-                      <p className="card-description text-center">Hey.</p>
-                    </div>
-                    <div className="card-footer text-center">
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'twitter']}
-                          className="fa fa-twitter"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'google-plus-g']}
-                          className="fa fa-google-plus"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'linkedin-in']}
-                          className="fa fa-linkedin"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-md-4">
-                  <div className="card card-profile card-plain">
-                    <div className="card-avatar">
-                      <a href="#avatar">
-                        <img src="./assets/img/faces/jared.jpg" alt="..." />
-                      </a>
-                    </div>
-                    <div className="card-body">
-                      <a href="#paper-kit">
-                        <div className="author">
-                          <h4 className="card-title">Jared</h4>
-                          <h6 className="card-category">Developer</h6>
-                        </div>
-                      </a>
-                      <p className="card-description text-center">
-                        We chose NodeJS because it is highly performant
-                        event-driven response cycle allows for high traffic.
-                      </p>
-                    </div>
-                    <div className="card-footer text-center">
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'twitter']}
-                          className="fa fa-twitter"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'google-plus-g']}
-                          className="fa fa-google-plus"
-                        />
-                      </a>
-                      <a
-                        href="#pablo"
-                        className="btn btn-link btn-just-icon btn-neutral"
-                      >
-                        <FontAwesomeIcon
-                          icon={['fab', 'linkedin-in']}
-                          className="fa fa-linkedin"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    {/* Let's talk about us Section */}
+    <div className="section section-dark text-center team-3">
+        <div className="container">
+            <div className="row">
+            <div className="col-md-8 ml-auto mr-auto text-center">
+                <h2 className="title">Let's talk about us</h2>
+                <h5 className="description">Six Web Developers from variety of background, met each other for the first time to create a full scale application together.</h5>
             </div>
-          </div>
+            </div>
+            <div className="space-top"></div>
+            <div className="row">
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src={Richard} alt={"Richard Pryor"} />
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Richard Verdier</h4>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
+                        <p className="card-description">
+                          I think we did well.
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src="./assets/img/faces/Fred.jpg"/>
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Fred Kohn</h4>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
+                        <p className="card-description">
+                          Hello darkness my old friend.
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src={Will} alt={"Will Smith"} />
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Will Kwon</h4>
+                        <h6 className="card-category">Web Designer</h6>
+                        <p className="card-description">
+                          Wait is the timezone issue related to stripe?
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src="./assets/img/faces/jared.jpg"/>
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Jared Cuffe</h4>
+                        <h6 className="card-category">Web Designer</h6>
+                        <p className="card-description">
+                        Debugging timezones with Richard. Almost, but not quite
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src={Tai} alt={"me"}/>
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Tai Le</h4>
+                        <h6 className="card-category">Web Designer</h6>
+                        <p className="card-description">
+                          I love you like Kanye loves Kanye. Don't be scared of the truth. Kanye loves himself like Kanye loves Kanye.
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="card card-profile card-plain">
+                <div className="row">
+                    <div className="col-md-5">
+                    <div className="card-img-top">
+                        <a href="#pablo">
+                        <img className="img" src={Chad} alt={"Chad"}/>
+                        </a>
+                    </div>
+                    </div>
+                    <div className="col-md-7">
+                    <div className="card-body text-left">
+                        <h4 className="card-title">Chad Jemmet</h4>
+                        <h6 className="card-category">Web Designer</h6>
+                        <p className="card-description">
+                          I don't have any signal out here.
+                        </p>
+                        <div className="card-footer pull-left">
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
+                            <FontAwesomeIcon
+                            icon={['fab', 'twitter']}
+                            className="fa fa-twitter"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
+                            <FontAwesomeIcon
+                                icon={['fab', 'linkedin-in']}
+                                className="fa fa-linkedin"
+                            />
+                        </a>
+                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
+                            <FontAwesomeIcon 
+                                icon={['fab', 'google-plus-g']}
+                                className="fa fa-google-plus"
+                            />
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+
+
+
+            </div>
+        </div>
+        </div>
+
 
           <div className="section landing-section">
             <div className="container">

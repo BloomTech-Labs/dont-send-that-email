@@ -72,71 +72,72 @@ class NewEmail extends Component {
 		}
 	};
 
-	// Return the selected version, or a blank one if none have been made.
-	selectedVersion = () => {
-		return this.state.versions[this.state.selected_version - 1];
-	};
-	sendEmail = () => {
-		if (
-			this.state.title.trim() === "" ||
-			this.selectedVersion().text.trim() === "" ||
-			this.state.addressee.trim() === ""
-		) {
-			this.setState({ componentState: 2 });
-		} else {
-			axios
-				.post(
-					process.env.REACT_APP_BACKEND_URL + "/sendemail",
-					{
-						title: this.state.title,
-						text: this.selectedVersion().text,
-						addressee: this.state.addressee,
-						reqType: "send"
-					},
-					{ withCredentials: true }
-				)
-				.then(res => this.setState({ componentState: 1 }))
-				.catch(err => {
-					err == "Error: Request failed with status code 429"
-						? this.setState({ componentState: 3 })
-						: this.setState({ componentState: 4 });
-				});
-		}
-	};
-	resetComponentState = () => {
-		this.setState({ componentState: 0 });
-	};
-	// Apply watson analysis to the version's text
-	processTone = () => {
-		let { text, tone_analysis } = this.selectedVersion();
-		if (text) {
-			if (tone_analysis && tone_analysis.sentences_tone) {
-				const colors = {
-					Joy: "success",
-					Anger: "danger",
-					Fear: "warning",
-					Sadness: "info",
-					Confident: "success",
-					Analytical: "primary",
-					Tentative: "warning"
-				};
-				text = text.replace(/[()]/g, ""); // Removes parentheses from text
-				tone_analysis.sentences_tone
-					.filter(({ tones }) => tones.length) // Ignore sentences with no tones
-					.forEach(({ text: sentence, tones }) => {
-						const re = new RegExp(sentence.replace(/[()]/g, "").trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
-						const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
-						text = text.replace(re, match => {
-							console.log("Matched");
-							return `<span class="label-${color}">${match}</span>`;
-						});
-						console.log(text);
-					});
-			}
-			return text;
-		}
-		return "";
-	};
+
+  // Return the selected version, or a blank one if none have been made.
+  selectedVersion = () => {
+    return this.state.versions[this.state.selected_version - 1];
+  };
+  sendEmail = () => {
+    if (
+      this.state.title.trim() === "" ||
+      this.selectedVersion().text.trim() === "" ||
+      this.state.addressee.trim() === ""
+    ) {
+      this.setState({ componentState: 2 });
+    } else {
+      axios
+        .post(
+          process.env.REACT_APP_BACKEND_URL + "/sendemail",
+          {
+            title: this.state.title,
+            text: this.selectedVersion().text,
+            addressee: this.state.addressee,
+            reqType: "send"
+          },
+          { withCredentials: true }
+        )
+        .then(res => this.setState({ componentState: 1 }))
+        .catch(err => {
+          err == "Error: Request failed with status code 429"
+            ? this.setState({ componentState: 3 })
+            : this.setState({ componentState: 4 });
+        });
+    }
+  };
+  resetComponentState = () => {
+    this.setState({ componentState: 0 });
+  };
+  // Apply watson analysis to the version's text
+  processTone = () => {
+    let { text, tone_analysis } = this.selectedVersion();
+    if (text) {
+      if (tone_analysis && tone_analysis.sentences_tone) {
+        const colors = {
+          Joy: "success",
+          Anger: "danger",
+          Fear: "warning",
+          Sadness: "info",
+          Confident: "success",
+          Analytical: "primary",
+          Tentative: "warning"
+        };
+        text = text.replace(/[()]/g, ""); // Removes parentheses from text
+        tone_analysis.sentences_tone
+          .filter(({ tones }) => tones.length) // Ignore sentences with no tones
+          .forEach(({ text: sentence, tones }) => {
+            const re = new RegExp(sentence.replace(/[()]/g, "").trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
+            const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
+            text = text.replace(re, match => {
+              console.log("Matched");
+              return `<span class="label-${color} analyzed">${match}</span>`;
+            });
+            console.log(text);
+          });
+      }
+      return text;
+    }
+    return "";
+  };
 
 	tonalSentence = (color, text) => `<span style="color: ${color}">${text}</span>`;
 
