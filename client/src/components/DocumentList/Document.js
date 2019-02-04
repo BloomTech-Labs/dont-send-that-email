@@ -20,7 +20,6 @@ class Document extends Component {
 		this.props.history.push(`/email/${this.props.email.id}`);
 	};
 
-
   render() {
     let { title, addressee, updated, text } = this.props.email;
     updated = moment(updated).calendar();

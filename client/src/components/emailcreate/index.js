@@ -65,12 +65,14 @@ class NewEmail extends Component {
 		}
 	};
 
+
 	nextVersion = () => {
 		if (this.state.selected_version < this.state.versions.length) {
 			const selected_version = this.state.selected_version + 1;
 			this.setState({ selected_version }, this.updateEditor);
 		}
 	};
+
 
 
   // Return the selected version, or a blank one if none have been made.
