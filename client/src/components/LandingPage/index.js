@@ -28,8 +28,8 @@ class LandingPage extends Component {
               <a className="navbar-brand" href={"#"}>
               <FontAwesomeIcon 
                 icon={['fas', 'at']}
-                class="fa btn-just-icon"
-              />
+                class="space"
+                />
                 Don't send that email
               </a>
               <button

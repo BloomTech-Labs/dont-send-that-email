@@ -3,11 +3,6 @@
     background-image: url('../img/computer.jpg');
 };
 
-/* Spacing between Brand Logo and Brand */
-.fa .space {
-    margin-right: 3px;
-}
-
 /* Nucleo Power Icon styles */
 .navbar.fixed-top .nav-link i {
     top: 4px;
@@ -215,7 +210,7 @@ img {
 
 .card .card-description {
     color: #9a9a9a;
-    margin-bottom: 5px;
+    margin-bottom: 20%;
     margin-top: 15px;
 }
 p {
@@ -372,6 +367,8 @@ p {
 
 .card-testimonial .card-body .card-description {
     font-style: italic;
+    margin-bottom: 20%;
+    margin-top: 0px;
 }
 
 .card-testimonial .card-body .card-category {
@@ -419,4 +416,11 @@ p {
 .input-group-addon:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+/* Spacing between Brand Logo and Brand */
+.navbar-translate .navbar-brand .space {
+    padding-right: 3px;
+    width: 20px;
+    vertical-align: text-bottom;
 }
