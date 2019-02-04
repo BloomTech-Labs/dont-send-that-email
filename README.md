@@ -27,16 +27,14 @@ Local Deployment Instructions:
 
 Click 'Get Started' on the Landing Page.
 
-Sign Up or Log In if you have a registered account already.
+Log in with a google account.
 
 This takes us to the home page, where documents are displayed. We can navigate to the create email page by clicking the 'Create Email' button. 
 
 On the create email page, there are three input fields. From top to bottom, they are: the title of the email; the addressee of the email; and the body of the email.
-We can click the 'Previous' or 'Next' buttons to switch between versions of emails we have written. We can click on the 'Analyze' button to have our email analyzed for emotion analysis. Lastly, we can click on the 'Save' button to save any changes made to their email.
+We can click the 'Previous' or 'Next' arrow buttons to switch between versions of emails we have written. We can click on the 'Analyze' button to have our email analyzed for emotion analysis. We can click on the 'Save' button to save any changes made to their email. Lastly, we can send an email using the 'Send' button.
 
-We can navigate to the Billing page to see comparisons between free and paid services for the app. The 'Pay Here' button can be clicked to add payment details and pay for subscriptions.
-
-We can navigate to the Settings page, where we will see Future Updates.
+We can navigate to the Profile page to see user info and comparisons between free and paid services for the app. The 'Subscribe 30 Days' button can be clicked to add payment details and pay for a month of subscription.
 
 
 #Collaborators
