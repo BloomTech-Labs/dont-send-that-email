@@ -7,6 +7,7 @@ import {
   UncontrolledAlert,
   ButtonGroup,
   Col,
+  Label,
   Container,
   Input,
   Row,
@@ -340,6 +341,7 @@ class NewEmail extends Component {
         </Row>
         <Row>
           <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
+            <Label>Text</Label>
             <ContentEditable
               html={this.state.editorText}
               onChange={this.editorInput}
