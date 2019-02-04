@@ -25,23 +25,29 @@ This is how you get an API key for Watson.
 
 3. From the list of resources on the left-hand side click `AI` 
 
-![list of resources](list_of_resources.png)
+  ![list of resources](list_of_resources.png)
+
 4. Find Tone Analyzer in the group of tiles.
-  After you click the Tone Analyzer card. You will see a list a page that offers options. You can choose a region that is closest to you. You will also see the limitations of the free version of the IBM Watson service. In this case, you will get 2500 API calls a month.
+  
+    After you click the Tone Analyzer card. You will see a list a page that offers options. You can choose a region that is closest to you. You will also see the limitations of the free version of the IBM Watson service. In this case, you will get 2500 API calls a month.
 
 5. At the bottom of the screen there is a `create` button. Click it.
-This will bring you to a `Getting started` tutorial. On the left hand side you will see a sidebar menu. 
-![Sidebar menu](sidebar_menu.png)
+   This will bring you to a `Getting started` tutorial. On the left hand side you will see a sidebar menu.  
+
+
+  ![Sidebar menu](sidebar_menu.png)
 
 6. Click on the `Service Credentials` option.
 
-7. On this page you will see a `New Credential` button. Click it. You'll be given a pop-out window for options. You won't need to do anything but click `Add`.
+7. On this page you will see a `New Credential` button. Click it. 
+  You'll be given a pop-out window for options. You won't need to do anything but click `Add`.
 
 8. After that you will see a screen that lists your credentials. You have to click the `view credentials` button to see your API key.
    The API key data will look like this:
    ![api key data](api_key_data.png)
 
 9. Copy and paste this API key into your `.env` file located in the root of the `server` directory.
+
 
 Tech Used:
     
