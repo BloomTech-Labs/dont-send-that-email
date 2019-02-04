@@ -57,7 +57,7 @@ class DocumentList extends Component {
   emailCreateButton = () => (
     <Card
       onClick={this.redirectToCreateEmailPage}
-      style={{ width: "100%", height: 174.5 }}
+      style={{ width: "100%", height: 188.5 }}
     >
       <CardBody style={{ textAlign: "center" }}>
         <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
