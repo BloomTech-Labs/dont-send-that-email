@@ -4,7 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tai from "./assets/img/faces/tai.png";
 import Chad from "./assets/img/faces/chad.jpg";
 import Richard from "./assets/img/faces/richard.jpeg";
-import Will from "./assets/img/faces/willsmith.jpeg";
+import Will from "./assets/img/faces/willkwon.png";
+import Fred from "./assets/img/faces/Fred.jpg";
+import Joshua from "./assets/img/faces/Joshua.png";
+import Brian from "./assets/img/faces/Brian.png";
+import Thomas from "./assets/img/faces/thomas.jpg";
+import Nightsky1 from "./assets/img/gabriele.jpg";
+import Nightsky from "./assets/img/timothee.jpg";
+
 
 class LandingPage extends Component {
 
@@ -120,7 +127,7 @@ class LandingPage extends Component {
                 emails.
               </h3>
               <br />
-              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's get started</a>
+              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's Get Started</a>
             </div>
           </div>
         </div>
@@ -276,7 +283,7 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src="./assets/img/faces/Fred.jpg"/>
+                        <img className="img" src={Fred} alt={"Fred"}/>
                         </a>
                     </div>
                     </div>
@@ -318,7 +325,7 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src={Will} alt={"Will Smith"} />
+                        <img className="img" src={Will} alt={"Will Kwon"} />
                         </a>
                     </div>
                     </div>
@@ -480,15 +487,174 @@ class LandingPage extends Component {
                 </div>
                 </div>
             </div>
-            
-
-
-
             </div>
         </div>
         </div>
+        {/* Pricing Section */}
+        <div className="pricing-2">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 ml-auto mr-auto text-center">
+                <h2 className="title">Pick the best plan for you</h2>
+                <h5 className="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
+                <br/>
+                <ul className="nav nav-pills nav-pills-danger justify-content-center">
+                  <li className="nav-item">
+                    <a className="nav-link active show" data-toggle="pill" href="#month" role="tab" aria-selected="true">Monthly</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" data-toggle="pill" href="#year" role="tab" aria-selected="false">Yearly</a>
+                  </li>
+                </ul>
+            {/* Pill panes */}
+            <div className="tab-content">
+              <div className="tab-pane active show" id="month" role="tabpanel"></div>
+              <div className="tab-pane" id="year" role="tabpanel"></div>
+            </div>
+          </div>
+        </div>
+        <div className="space-top"></div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky})`}}>
+              <div className="card-body">
+                <h6 className="card-category">Free</h6>
+                <h1 className="card-title">
+                  <small>$</small>0
+                  <small>/mo</small>
+                </h1>
+                <ul>
+                  <li>
+                    <b>100</b> email analyses per 30 days
+                  </li>
+                  <li>
+                    <b>5</b> emails in storage at one time.</li>
+                  <li>
+                    <b>No</b> Sending Emails</li>
+                  {/* <li>
+                    <b>2</b> Personal Brand
+                  </li> */}
+                </ul>
+                <a href="#pablo" className="btn btn-danger btn-round ">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
 
+          <div className="col-md-4">
+            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky1})`}}>
+              <div className="card-body">
+                <h6 className="card-category">Premium</h6>
+                <h1 className="card-title">
+                  <small>$</small>9
+                  <small>/mo</small>
+                </h1>
+                <ul>
+                  <li>
+                    <b>Unlimited</b> Email analysis</li>
+                  <li>
+                    <b>Unlimited</b> Email storage</li>
+                  <li>
+                    <b>Unlimited</b> Sending Emails</li>
+                </ul>
+                <a href="#pablo" className="btn btn-danger btn-round">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Testimonials */}
+    <div className="testimonials-1 section-image" style={{backgroundImage: `url(${Nightsky1})`}}>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 ml-auto mr-auto text-center">
+            <h2 className="title">Our Clients Love Us</h2>
+            <h5 className="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
+          </div>
+        </div>
+        <div className="space-top"></div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+                <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                "Best product ever! I use 'Don't Send Your Email' everytime I check my students weekly sprint for their emotional tones."
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Thomas Greenhalgh</h4>
+                  <h6 className="card-category">@BestPMEver</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Thomas} alt={"Thomas"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+              <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                  "This is the best team ever, three stars across the board!"
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Joshua Howland</h4>
+                  <h6 className="card-category">@JHowler</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Joshua} alt={"Joshua Howland"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+              <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                  "This product is the embodient of Lambda School's heart, mind, body and soul."
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Brian Doyle</h4>
+                  <h6 className="card-category">@Bdoy</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Brian} alt={"Brian"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+          {/* Contact Us */}
           <div className="section landing-section">
             <div className="container">
               <div className="row">

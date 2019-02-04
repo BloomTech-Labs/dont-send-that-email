@@ -1,6 +1,8 @@
 .tone {
   padding: 3px 8px;
   width: 100%;
+  font-weight: bold;
+  color: white;
 }
 
   .analyzed {

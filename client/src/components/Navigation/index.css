@@ -1,3 +1,9 @@
+
+.nav {
+    margin-left: auto;
+    margin-right: 0px;
+};
+
 /* Ipad greeting user name position */
 @media (min-width: 768px) {
     .nav {
@@ -14,10 +20,6 @@
     }
 }
 
-.nav {
-    margin-left: auto;
-    margin-right: 0px;
-};
 
 
 nav ul li .nav-item {
