@@ -20,6 +20,8 @@ In the upper right corner, click the button that says `Create a resource`
 ![Create a resource button](create_a_resource.png)
 
 From the list of resources on the left-hand side click `AI`
+
+![list of resources](list_of_resources.png)
 Find Tone Analyzer in the group of tiles.
 After you click the Tone Analyzer card. You will see a list a page that offers options. You can choose a region that is closest to you. You will also see the limitations of the free version of the IBM Watson service. In this case, you will get 2500 API calls a month.
 At the bottom of the screen there is a `create` button. Click it.
