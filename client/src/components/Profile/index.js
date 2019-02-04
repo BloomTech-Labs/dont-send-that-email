@@ -5,6 +5,7 @@ import Billing from "../Billing";
 import "./index.css";
 
 const Profile = props => {
+
   return (
     <Container className="mt-3">
       <Row>
@@ -20,5 +21,6 @@ const Profile = props => {
       </Row>
     </Container>
   );
+
 };
 export default Profile;

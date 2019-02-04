@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
 
 const Analysis = ({ toneAnalysis, error }) => {
-  console.log(error, toneAnalysis);
+
   let toneResult;
   const colors = {
     Joy: "success",
@@ -33,11 +33,13 @@ const Analysis = ({ toneAnalysis, error }) => {
     toneResult = "The document does not have a tone to it.";
   }
 
+
   return (
     <Card className="no-transition">
       <CardHeader>Document Tone Analysis</CardHeader>
       <CardBody>{toneResult}</CardBody>
     </Card>
   );
+
 };
 export default Analysis;
