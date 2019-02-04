@@ -7,7 +7,6 @@ import {
   Nav,
   Container
  } from "reactstrap";
-import Sidebar from "./Sidebar";
 import "./index.css";
 
 export default class Example extends React.Component {
