@@ -23,7 +23,7 @@ class Document extends Component {
   render() {
     let { title, addressee, updated, text } = this.props.email;
     updated = moment(updated).calendar();
-    console.log(updated);
+
     return (
       <Card onClick={this.navigate}>
         <CardBody>
