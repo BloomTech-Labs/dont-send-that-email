@@ -210,9 +210,10 @@ img {
 
 .card .card-description {
     color: #9a9a9a;
-    margin-bottom: 20%;
+    margin-bottom: 5px;
     margin-top: 15px;
 }
+
 p {
     font-size: 15px;
     margin-bottom: 5px;
