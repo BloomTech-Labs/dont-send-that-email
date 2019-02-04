@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardHeader } from "reactstrap";
+import { Card, CardBody, CardHeader } from "reactstrap";
 
 const Analysis = ({ toneAnalysis, error }) => {
 
@@ -11,7 +11,7 @@ const Analysis = ({ toneAnalysis, error }) => {
     Sadness: "info",
     Confident: "success",
     Analytical: "primary",
-    Tentative: "warning",
+    Tentative: "warning"
   };
   if (error == "Error: Request failed with status code 429") {
     toneResult = "Free users are capped at 100 email analyses.";
@@ -33,11 +33,13 @@ const Analysis = ({ toneAnalysis, error }) => {
     toneResult = "The document does not have a tone to it.";
   }
 
-	return (
-		<Card className="no-transition">
-			<CardHeader>Document Tone Analysis</CardHeader>
-			<CardBody>{toneResult}</CardBody>
-		</Card>
-	);
+
+  return (
+    <Card className="no-transition">
+      <CardHeader>Document Tone Analysis</CardHeader>
+      <CardBody>{toneResult}</CardBody>
+    </Card>
+  );
+
 };
 export default Analysis;

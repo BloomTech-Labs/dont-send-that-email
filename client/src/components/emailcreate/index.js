@@ -205,19 +205,25 @@ class NewEmail extends Component {
 				headers: { Authorization: process.env.USER_COOKIE }
 			};
 
-			try {
-				const { data: { id } } = await axios.post(process.env.REACT_APP_BACKEND_URL + "/emails", body, headers);
-				if (!this.props.match.params.id) {
-					this.props.history.push(`/email/${id}`);
-				} else {
-					this.fetchEmail(id);
-				}
-				this.setState({ componentState: 5 });
-			} catch (err) {
-				this.setState({ componentState: 7 });
-			}
-		}
-	};
+
+      try {
+        const { data: { id } } = await axios.post(
+          process.env.REACT_APP_BACKEND_URL + "/emails",
+          body,
+          headers
+        );
+        if (!this.props.match.params.id) {
+          this.props.history.push(`/email/${id}`);
+        } else {
+          this.fetchEmail(id);
+        }
+        this.setState({ componentState: 5 });
+      } catch (err) {
+        this.setState({ componentState: 7 });
+      }
+    }
+  };
+
 
 	// Renames button to "save as" when editing a version that is not the latest
 	saveButton = () => {
@@ -244,110 +250,115 @@ class NewEmail extends Component {
 		</ButtonGroup>
 	);
 
-	actionButtons = () => (
-		<ButtonGroup>
-			<Button onClick={this.analyzeText}>Analyze</Button>
-			<Button onClick={this.handleSave}>{this.saveButton()}</Button>
-			<Button onClick={this.sendEmail}>Send</Button>
-		</ButtonGroup>
-	);
-	sendEmailAlert = () => {
-		if (this.state.componentState >= 1 && this.state.componentState <= 4) {
-			let response;
-			if (this.state.componentState === 1) {
-				response = "Email sent.";
-			} else if (this.state.componentState === 2) {
-				response = "To send an email you need a title, addressee, and text.";
-			} else if (this.state.componentState === 3) {
-				response = "Free users cannot send emails.";
-			} else {
-				response = "Something went wrong while trying to send email.";
-			}
-			return (
-				<UncontrolledAlert
-					color={this.state.componentState === 1 ? "success" : "danger"}
-					onClick={() => this.resetComponentState()}
-					className="mt-2"
-				>
-					{response}
-				</UncontrolledAlert>
-			);
-		}
-		return null;
-	};
-	saveEmailAlert = () => {
-		if (this.state.componentState >= 5 && this.state.componentState <= 7) {
-			let response;
-			if (this.state.componentState === 5) {
-				response = "Saved email.";
-			} else if (this.state.componentState === 6) {
-				response = "To save an email, one must include a title, addressee, and text.";
-			} else {
-				response = "Something went wrong trying to save email.";
-			}
-			return (
-				<UncontrolledAlert
-					color={this.state.componentState === 5 ? "success" : "danger"}
-					onClick={() => this.resetComponentState()}
-					className="mt-2"
-				>
-					{response}
-				</UncontrolledAlert>
-			);
-		}
-		return null;
-	};
-	render() {
-		return (
-			<Container className="mt-3">
-				{this.sendEmailAlert()}
-				{this.saveEmailAlert()}
-				<Row>
-					<Col md={12} lg={{ order: 0, size: 8 }}>
-						<InputGroup className="email-fields">
-							<InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
-							<Input
-								name="title"
-								value={this.state.title}
-								onChange={this.handleInput}
-								spellCheck="false"
-							/>
-						</InputGroup>
-						<InputGroup className="email-fields">
-							<InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
-							<Input
-								name="addressee"
-								value={this.state.addressee}
-								onChange={this.handleInput}
-								spellCheck="false"
-							/>
-						</InputGroup>
-					</Col>
-					<Col md={12} lg={{ size: 4 }}>
-						<Card className="no-transition" body>
-							<ButtonGroup vertical>
-								{this.navigationButtons()}
-								{this.actionButtons()}
-							</ButtonGroup>
-						</Card>
-					</Col>
-				</Row>
-				<Row>
-					<Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
-						<ContentEditable
-							html={this.processTone()}
-							onChange={this.editorInput}
-							className="form-control"
-							style={{ height: "auto", minHeight: "150px" }}
-						/>
-					</Col>
-					<Col xs={{ order: 1 }} lg={{ size: 4 }} style={{ marginBottom: 10 }}>
-						<Analysis error={this.state.error} toneAnalysis={this.selectedVersion().tone_analysis} />
-					</Col>
-				</Row>
-			</Container>
-		);
-	}
+
+  actionButtons = () => (
+    <ButtonGroup>
+      <Button onClick={this.analyzeText}>Analyze</Button>
+      <Button onClick={this.handleSave}>{this.saveButton()}</Button>
+      <Button onClick={this.sendEmail}>Send</Button>
+    </ButtonGroup>
+  );
+  sendEmailAlert = () => {
+    if (this.state.componentState >= 1 && this.state.componentState <= 4) {
+      let response;
+      if (this.state.componentState === 1) {
+        response = "Email sent.";
+      } else if (this.state.componentState === 2) {
+        response = "To send an email you need a title, addressee, and text.";
+      } else if (this.state.componentState === 3) {
+        response = "Free users cannot send emails.";
+      } else {
+        response = "Something went wrong while trying to send email.";
+      }
+      return (
+        <UncontrolledAlert
+          color={this.state.componentState === 1 ? "success" : "danger"}
+          onClick={() => this.resetComponentState()}
+          className="mt-2"
+        >
+          {response}
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
+  saveEmailAlert = () => {
+    if (this.state.componentState >= 5 && this.state.componentState <= 7) {
+      let response;
+      if (this.state.componentState === 5) {
+        response = "Saved email.";
+      } else if (this.state.componentState === 6) {
+        response =
+          "To save an email, one must include a title, addressee, and text.";
+      } else {
+        response = "Something went wrong trying to save email.";
+      }
+      return (
+        <UncontrolledAlert
+          color={this.state.componentState === 5 ? "success" : "danger"}
+          onClick={() => this.resetComponentState()}
+          className="mt-2"
+        >
+          {response}
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
+  render() {
+    return (
+      <Container className="mt-3">
+        {this.sendEmailAlert()}
+        {this.saveEmailAlert()}
+        <Row>
+          <Col md={12} lg={{ order: 0, size: 8 }}>
+            <InputGroup className="email-fields">
+              <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+              <Input
+                name="title"
+                value={this.state.title}
+                onChange={this.handleInput}
+                spellCheck="false"
+              />
+            </InputGroup>
+            <InputGroup className="email-fields">
+              <InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
+              <Input
+                name="addressee"
+                value={this.state.addressee}
+                onChange={this.handleInput}
+                spellCheck="false"
+              />
+            </InputGroup>
+          </Col>
+          <Col md={12} lg={{ size: 4 }}>
+            <Card className="no-transition" body>
+              <ButtonGroup vertical>
+                {this.navigationButtons()}
+                {this.actionButtons()}
+              </ButtonGroup>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
+            <ContentEditable
+              html={this.processTone()}
+              onChange={this.editorInput}
+              className="form-control"
+              style={{ height: "auto", minHeight: "150px" }}
+            />
+          </Col>
+          <Col xs={{ order: 1 }} lg={{ size: 4 }} style={{ marginBottom: 10 }}>
+            <Analysis
+              error={this.state.error}
+              toneAnalysis={this.selectedVersion().tone_analysis}
+            />
+          </Col>
+        </Row>
+      </Container>
+    );
+}
 }
 
 export default NewEmail;

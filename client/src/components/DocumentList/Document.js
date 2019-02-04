@@ -39,9 +39,15 @@ class Document extends Component {
                   <Badge>Updated</Badge> {updated}
                 </Col>
               )}
-              <Col xl={6} lg={12} style={{ marginTop: 5, marginBottom: 5 }} className="text-truncate">
-								<Badge>Text</Badge> {text}
-							</Col>
+
+              <Col
+                xl={6}
+                lg={12}
+                style={{ marginTop: 5, marginBottom: 5 }}
+                className="text-truncate"
+              >
+                <Badge>Text</Badge> {text}
+              </Col>
             </Row>
           </CardTitle>
           <Row>

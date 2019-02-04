@@ -7,6 +7,7 @@ const dateFormat = date => {
     return moment(date).calendar();
 };
 const Settings = props => {
+
     return (
         <Container className="settings-component">
             <Row>
