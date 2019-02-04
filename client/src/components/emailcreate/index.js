@@ -117,13 +117,13 @@ class NewEmail extends Component {
 
     if (text && tone_analysis && tone_analysis.sentences_tone) {
       const colors = {
-        Joy: "success",
+        Joy: "joy",
         Anger: "danger",
         Fear: "warning",
         Sadness: "info",
         Confident: "success",
         Analytical: "primary",
-        Tentative: "warning"
+        Tentative: "tentative"
       };
       let editorText = text.replace(/[()]/g, ""); // Removes parentheses from text
       tone_analysis.sentences_tone
