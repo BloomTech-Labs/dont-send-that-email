@@ -50,9 +50,7 @@ class App extends Component {
       .then(response => {
         const { user, err } = response.data;
         if (user) {
-          this.setState({ user }, () => console.log(this.state.user));
-        } else {
-          console.log(err);
+          this.setState({ user });
         }
       });
   };

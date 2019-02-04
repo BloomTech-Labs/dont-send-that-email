@@ -23,31 +23,30 @@ class Document extends Component {
   render() {
     let { title, addressee, updated, text } = this.props.email;
     updated = moment(updated).calendar();
-    console.log(updated);
+
     return (
       <Card onClick={this.navigate}>
         <CardBody>
           <CardTitle>
             <Row>
-              <Col xl={6} lg={12} style={{ marginBottom: 3 }}>
-                <Badge>Title</Badge> {title}
+              <Col xs={12} style={{ marginBottom: 3 }}>
+                <Badge className="titleBadge">Title</Badge> {title}
               </Col>
-              <Col xl={6} lg={12}>
-                <Badge>Addressee</Badge> {addressee}
+              <Col xs={12}>
+                <Badge className="addresseeBadge">Addressee</Badge> {addressee}
               </Col>
               {updated !== "No versions." && (
                 <Col xs={12} style={{ marginTop: 3 }}>
-                  <Badge>Updated</Badge> {updated}
+                  <Badge className="updatedBadge">Updated</Badge> {updated}
                 </Col>
               )}
 
               <Col
-                xl={6}
-                lg={12}
-                style={{ marginTop: 5, marginBottom: 5 }}
+                xs={12}
+                style={{ marginTop: 3, marginBottom: 3 }}
                 className="text-truncate"
               >
-                <Badge>Text</Badge> {text}
+                <Badge className="textBadge">Text</Badge> {text}
               </Col>
             </Row>
           </CardTitle>
