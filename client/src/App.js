@@ -34,7 +34,6 @@ library.add(
   faArrowLeft,
   faArrowRight,
   faQuoteRight,
-  faAt,
   fab
 );
 
