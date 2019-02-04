@@ -382,14 +382,12 @@ p {
     color: #444;
 }
 
-.section-testimonials .card img {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-}
 
 .card-testimonial .card-footer .card-avatar .img {
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12), 0 5px 5px -3px rgba(0,0,0,.2);
 }
 
 /* Contact Us CSS */
