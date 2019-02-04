@@ -1,144 +1,167 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { UncontrolledAlert, Card, CardBody, CardTitle, CardColumns, Col, Container, Row, Button } from "reactstrap";
+import {
+  UncontrolledAlert,
+  Card,
+  CardBody,
+  CardTitle,
+  CardColumns,
+  Col,
+  Container,
+  Row,
+  Button
+} from "reactstrap";
 import { withRouter } from "react-router-dom";
 import Document from "./Document";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./index.css";
 
 class DocumentList extends Component {
-	state = {
-		emails: [],
-		componentState: 0
-	};
+  state = {
+    emails: [],
+    componentState: 0
+  };
 
-	componentDidMount = async () => {
-		this.fetchEmails();
-	};
+  componentDidMount = async () => {
+    this.fetchEmails();
+  };
 
-	fetchEmails = () => {
-		axios
-			.get(process.env.REACT_APP_BACKEND_URL + "/emails", {
-				withCredentials: true
-			})
-			.then(({ data }) => {
-				const { emails, err } = data;
-				console.log(data);
-				if (emails) {
-					this.setState({ emails }, () => console.log(this.state.emails));
-				}
-				if (err) {
-					console.log(err);
-				}
-			});
-	};
+  fetchEmails = () => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/emails", {
+        withCredentials: true
+      })
+      .then(({ data }) => {
+        const { emails, err } = data;
+        console.log(data);
+        if (emails) {
+          this.setState({ emails }, () => console.log(this.state.emails));
+        }
+        if (err) {
+          console.log(err);
+        }
+      });
+  };
 
-	emailElements = () =>
-		/* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
-		this.state.emails.map((e, i) => (
-			<Document key={i} email={e} copy={this.copyEmail(e)} delete={() => this.deleteEmail(e)} />
-		));
+  emailElements = () =>
+    /* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
+    this.state.emails.map((e, i) => (
+      <Document
+        key={i}
+        email={e}
+        copy={this.copyEmail(e)}
+        delete={() => this.deleteEmail(e)}
+      />
+    ));
 
-	emailCreateButton = () => (
-		<Card onClick={this.redirectToCreateEmailPage} style={{ width: "100%", height: 182.5 }}>
-			<CardBody style={{ textAlign: "center" }}>
-				<CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
-					<h3>Create New E-mail</h3>
-				</CardTitle>
-				<Button size="lg" color="danger">
-					<FontAwesomeIcon icon="plus-circle" size="3x" />
-				</Button>
-			</CardBody>
-		</Card>
-	);
+  emailCreateButton = () => (
+    <Card
+      onClick={this.redirectToCreateEmailPage}
+      style={{ width: "100%", height: 174.5 }}
+    >
+      <CardBody style={{ textAlign: "center" }}>
+        <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
+          <h3>Create New E-mail</h3>
+        </CardTitle>
+        <Button size="lg" color="danger">
+          <FontAwesomeIcon icon="plus-circle" size="3x" />
+        </Button>
+      </CardBody>
+    </Card>
+  );
 
-	redirectToCreateEmailPage = () => {
-		if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-			console.log(this.props.user.subscribed);
-			this.props.history.push("/email");
-		} else {
-			this.setState({ componentState: 1 });
-		}
-	};
-	deleteEmail = e => {
-		axios
-			.delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
-				withCredentials: true
-			})
-			.then(res => {
-				if (this.state.componentState === 1) {
-					this.setState({ componentState: 0 }, () => this.fetchEmails());
-				} else {
-					this.fetchEmails();
-				}
-			})
-			.catch(err => console.log(err));
-	};
+  redirectToCreateEmailPage = () => {
+    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+      console.log(this.props.user.subscribed);
+      this.props.history.push("/email");
+    } else {
+      this.setState({ componentState: 1 });
+    }
+  };
+  deleteEmail = e => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL + "/emails/"}${e.id}`, {
+        withCredentials: true
+      })
+      .then(res => {
+        if (this.state.componentState === 1) {
+          this.setState({ componentState: 0 }, () => this.fetchEmails());
+        } else {
+          this.fetchEmails();
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
-	copyEmail = ({ title, addressee, text }) => e => {
-		if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-			console.log(this.props.user.subscribed);
-			text = text || "";
-			const version = { text };
-			const body = { email: { title, addressee }, version: version };
-			console.log(body);
-			axios
-				.post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
-					withCredentials: true
-				})
-				.then(({ data }) => {
-					if (data.id) {
-						this.fetchEmails();
-					} else {
-						console.log("Email copy operation failed.", data.err);
-					}
-				});
-		} else {
-			this.setState({ componentState: 1 });
-		}
-	};
+  copyEmail = ({ title, addressee, text }) => e => {
+    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+      console.log(this.props.user.subscribed);
+      text = text || "";
+      const version = { text };
+      const body = { email: { title, addressee }, version: version };
+      console.log(body);
+      axios
+        .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
+          withCredentials: true
+        })
+        .then(({ data }) => {
+          if (data.id) {
+            this.fetchEmails();
+          } else {
+            console.log("Email copy operation failed.", data.err);
+          }
+        });
+    } else {
+      this.setState({ componentState: 1 });
+    }
+  };
 
-	resetComponentState = () => {
-		this.setState({ componentState: 0 });
-	};
-	emailCountAlert = () => {
-		if (this.state.componentState === 1) {
-			return (
-				<UncontrolledAlert color="danger" onClick={() => this.resetComponentState()} className="mt-2">
-					Free users can only have 5 emails in their dashboard, please clean up any unnecessary emails.
-				</UncontrolledAlert>
-			);
-		}
-		return null;
-	};
+  resetComponentState = () => {
+    this.setState({ componentState: 0 });
+  };
+  emailCountAlert = () => {
+    if (this.state.componentState === 1) {
+      return (
+        <UncontrolledAlert
+          color="danger"
+          onClick={() => this.resetComponentState()}
+          className="mt-2"
+        >
+          Free users can only have 5 emails in their dashboard, please clean up
+          any unnecessary emails.
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
 
-	emailCards = () => {
-		if (this.state.emails.length === 0) {
-			return (
-				<Container fluid className="button-center">
-					<div>{this.emailCreateButton()}</div>
-				</Container>
-			);
-		}
-		return (
-			<Col>
-				<CardColumns>
-					{this.emailCreateButton()}
-					{this.emailElements()}
-				</CardColumns>
-			</Col>
-		);
-	};
+  emailCards = () => {
+    if (this.state.emails.length === 0) {
+      return (
+        <Container fluid className="button-center">
+          <div>{this.emailCreateButton()}</div>
+        </Container>
+      );
+    }
+    return (
+      <Col>
+        <CardColumns>
+          {this.emailCreateButton()}
+          {this.emailElements()}
+        </CardColumns>
+      </Col>
+    );
+  };
 
-	render() {
-		return (
-			<Container className="mt-3">
-				<Row>
-					<Col xs={12}>{this.emailCountAlert()}</Col>
-				</Row>
-				<Row>{this.emailCards()}</Row>
-			</Container>
-		);
-	}
+  render() {
+    return (
+      <Container className="mt-3">
+        <Row>
+          <Col xs={12}>{this.emailCountAlert()}</Col>
+        </Row>
+        <Row>{this.emailCards()}</Row>
+      </Container>
+    );
+  }
 }
 export default withRouter(DocumentList);
