@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { UncontrolledTooltip } from 'reactstrap';
+import { UncontrolledTooltip } from "reactstrap";
+import moment from "moment-timezone";
 import {
   Badge,
   Button,
@@ -20,7 +21,8 @@ class Document extends Component {
   };
 
   render() {
-    const { title, addressee, updated, text } = this.props.email;
+    let { title, addressee, updated, text } = this.props.email;
+    updated = moment(updated).calendar();
     return (
       <Card onClick={this.navigate}>
         <CardBody>
@@ -42,7 +44,8 @@ class Document extends Component {
           <CardText className="text-truncate">{text}</CardText>
           <Row>
             <Col xs={12}>
-              <Button id="copy"
+              <Button
+                id="copy"
                 color="secondary"
                 onClick={e => {
                   e.stopPropagation();
@@ -54,7 +57,8 @@ class Document extends Component {
                   Copy
                 </UncontrolledTooltip>
               </Button>
-              <Button id="Trash"
+              <Button
+                id="Trash"
                 color="danger"
                 onClick={e => {
                   e.stopPropagation();
