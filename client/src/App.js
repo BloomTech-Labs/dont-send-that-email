@@ -9,7 +9,6 @@ import LandingPage from "./components/LandingPage";
 import { Container } from "reactstrap";
 import "typeface-montserrat";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faIgloo,
@@ -20,7 +19,7 @@ import {
   faUser,
   faSignOutAlt,
   faArrowLeft,
-  faArrowRight,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -31,14 +30,14 @@ library.add(
   faHome,
   faUser,
   faSignOutAlt,
-  faArrowLeft, 
+  faArrowLeft,
   faArrowRight,
   fab
 );
 
 class App extends Component {
   state = {
-    user: null 
+    user: null
   };
 
   updateUser = () => {
@@ -68,7 +67,7 @@ class App extends Component {
     if (this.state.user) {
       return (
         <Container fluid>
-          <Navigation user={this.state.user} class="navbar-transparent"/>
+          <Navigation user={this.state.user} class="navbar-transparent" />
           <Sidebar />
           <MainContent user={this.state.user} />
         </Container>
