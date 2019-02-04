@@ -47,7 +47,7 @@ const populateUser = async (req, res, next) => {
                     if (now >= currentCycleEnd) {
                         verified = await db("users")
                             .where({ id: req.user.id })
-                            .update({ analysesCount: 1, currentCycleStart: Date.now() });
+                            .update({ analysesCount: 1, currentCycleStart: now });
                     } else {
                         if (req.user.analysesCount < 100) {
                             verified = await db("users")
@@ -81,7 +81,7 @@ const isSubscriptionActive = subscription => {
     // Check to see if user is within the subscription window
     const end = start + parseInt(subscription.duration);
     const now = Date.now();
-    return [ now >= start && now <= end, end ];
+    return [now >= start && now <= end, end];
 };
 
 module.exports = populateUser;
