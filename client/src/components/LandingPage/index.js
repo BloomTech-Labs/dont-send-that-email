@@ -9,6 +9,7 @@ import Fred from "./assets/img/faces/Fred.jpg";
 import Joshua from "./assets/img/faces/Joshua.png";
 import Brian from "./assets/img/faces/Brian.png";
 import Thomas from "./assets/img/faces/thomas.jpg";
+import Jared from "./assets/img/faces/jared.jpg";
 import Nightsky1 from "./assets/img/gabriele.jpg";
 import Nightsky from "./assets/img/timothee.jpg";
 
@@ -25,7 +26,11 @@ class LandingPage extends Component {
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href={"#"}>
+              <FontAwesomeIcon 
+                icon={['fas', 'at']}
+                class="space"
+                />
                 Don't send that email
               </a>
               <button
@@ -37,6 +42,7 @@ class LandingPage extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
+                {/* The Hamburger in tablet/mobile view */}
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />
@@ -332,7 +338,7 @@ class LandingPage extends Component {
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Will Kwon</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           Wait is the timezone issue related to stripe?
                         </p>
@@ -367,14 +373,14 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src="./assets/img/faces/jared.jpg"/>
+                        <img className="img" src={Jared} alt={"Jared"}/>
                         </a>
                     </div>
                     </div>
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Jared Cuffe</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                         Debugging timezones with Richard. Almost, but not quite
                         </p>
@@ -416,7 +422,7 @@ class LandingPage extends Component {
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Tai Le</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           I love you like Kanye loves Kanye. Don't be scared of the truth. Kanye loves himself like Kanye loves Kanye.
                         </p>
@@ -458,7 +464,7 @@ class LandingPage extends Component {
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Chad Jemmet</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           I don't have any signal out here.
                         </p>
@@ -498,19 +504,6 @@ class LandingPage extends Component {
                 <h2 className="title">Pick the best plan for you</h2>
                 <h5 className="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
                 <br/>
-                <ul className="nav nav-pills nav-pills-danger justify-content-center">
-                  <li className="nav-item">
-                    <a className="nav-link active show" data-toggle="pill" href="#month" role="tab" aria-selected="true">Monthly</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-toggle="pill" href="#year" role="tab" aria-selected="false">Yearly</a>
-                  </li>
-                </ul>
-            {/* Pill panes */}
-            <div className="tab-content">
-              <div className="tab-pane active show" id="month" role="tabpanel"></div>
-              <div className="tab-pane" id="year" role="tabpanel"></div>
-            </div>
           </div>
         </div>
         <div className="space-top"></div>

@@ -3,7 +3,6 @@
     background-image: url('../img/computer.jpg');
 };
 
-
 /* Nucleo Power Icon styles */
 .navbar.fixed-top .nav-link i {
     top: 4px;
@@ -214,6 +213,7 @@ img {
     margin-bottom: 5px;
     margin-top: 15px;
 }
+
 p {
     font-size: 15px;
     margin-bottom: 5px;
@@ -238,10 +238,6 @@ p {
 .btn-just-icon svg {
     font-size: 20px;
     padding: 2px 0;
-}
-.fa {
-    width: 18px;
-    text-align: center;
 }
 
 /* Let's talk prices section */
@@ -372,6 +368,8 @@ p {
 
 .card-testimonial .card-body .card-description {
     font-style: italic;
+    margin-bottom: 20%;
+    margin-top: 0px;
 }
 
 .card-testimonial .card-body .card-category {
@@ -382,14 +380,12 @@ p {
     color: #444;
 }
 
-.section-testimonials .card img {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-}
 
 .card-testimonial .card-footer .card-avatar .img {
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12), 0 5px 5px -3px rgba(0,0,0,.2);
 }
 
 /* Contact Us CSS */
@@ -421,4 +417,11 @@ p {
 .input-group-addon:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+/* Spacing between Brand Logo and Brand */
+.navbar-translate .navbar-brand .space {
+    padding-right: 3px;
+    width: 20px;
+    vertical-align: text-bottom;
 }
