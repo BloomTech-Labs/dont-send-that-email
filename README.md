@@ -10,14 +10,17 @@ This puts a barrier between you and a bad email or messaging experience. We'll h
 ##### Set up instructions
 
 Keys needed
-1. Watson API key
-This is how you get an API key for Watson.
-[Go to the IBM site and make an account](https://www.ibm.com/watson/services/tone-analyzer/)
 
-1. You have to create an account, confirm it via email then log in.
+
+This is how you get an API key for Watson.
+
+
+
+1. You have to create an account, confirm it via email then log in. [Go to the IBM site and make an account](https://www.ibm.com/watson/services/tone-analyzer/)
 
 2. After you have created an account and logged in you will see the dashboard.
   In the upper right corner, click the button that says `Create a resource`
+
   ![Create a resource button](create_a_resource.png)
 
 3. From the list of resources on the left-hand side click `AI` 
