@@ -16,9 +16,9 @@ import {
 } from "reactstrap";
 
 class Document extends Component {
-  navigate = () => {
-    this.props.history.push(`/email/${this.props.email.id}`);
-  };
+	navigate = () => {
+		this.props.history.push(`/email/${this.props.email.id}`);
+	};
 
   render() {
     let { title, addressee, updated, text } = this.props.email;
@@ -39,9 +39,11 @@ class Document extends Component {
                   <Badge>Updated</Badge> {updated}
                 </Col>
               )}
+              <Col xl={6} lg={12} style={{ marginTop: 5, marginBottom: 5 }} className="text-truncate">
+								<Badge>Text</Badge> {text}
+							</Col>
             </Row>
           </CardTitle>
-          <CardText className="text-truncate">{text}</CardText>
           <Row>
             <Col xs={12}>
               <Button
