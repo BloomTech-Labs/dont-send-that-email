@@ -24,6 +24,7 @@ class NewEmail extends Component {
     title: "",
     addressee: "",
     versions: [{ text: "", tone_analysis: null }],
+    editorText: "",
     selected_version: 1,
     makingCall: false,
     error: false,
@@ -53,7 +54,7 @@ class NewEmail extends Component {
           }
 
           // Update the editor once new state is populated
-          this.setState(state);
+          this.setState(state, this.processTone);
         }
       });
   };
@@ -61,14 +62,14 @@ class NewEmail extends Component {
   previousVersion = () => {
     if (this.state.selected_version > 1) {
       const selected_version = this.state.selected_version - 1;
-      this.setState({ selected_version }, this.updateEditor);
+      this.setState({ selected_version }, this.processTone);
     }
   };
 
   nextVersion = () => {
     if (this.state.selected_version < this.state.versions.length) {
       const selected_version = this.state.selected_version + 1;
-      this.setState({ selected_version }, this.updateEditor);
+      this.setState({ selected_version }, this.processTone);
     }
   };
 
@@ -76,6 +77,7 @@ class NewEmail extends Component {
   selectedVersion = () => {
     return this.state.versions[this.state.selected_version - 1];
   };
+
   sendEmail = () => {
     if (
       this.state.title.trim() === "" ||
@@ -103,54 +105,55 @@ class NewEmail extends Component {
         });
     }
   };
+
   resetComponentState = () => {
     this.setState({ componentState: 0 });
   };
+
   // Apply watson analysis to the version's text
   processTone = () => {
+    console.log("processing tone");
     let { text, tone_analysis } = this.selectedVersion();
-    if (text) {
-      if (tone_analysis && tone_analysis.sentences_tone) {
-        const colors = {
-          Joy: "success",
-          Anger: "danger",
-          Fear: "warning",
-          Sadness: "info",
-          Confident: "success",
-          Analytical: "primary",
-          Tentative: "warning"
-        };
-        text = text.replace(/[()]/g, ""); // Removes parentheses from text
-        tone_analysis.sentences_tone
-          .filter(({ tones }) => tones.length) // Ignore sentences with no tones
-          .forEach(({ text: sentence, tones }) => {
-            const re = new RegExp(sentence.replace(/[()]/g, "").trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
-            const color = colors[tones[0].tone_name]; // Currently selects the first tone, not necessarily the best/strongest
-            text = text.replace(re, match => {
-              console.log("Matched");
-              return `<span class="label-${color}">${match}</span>`;
-            });
-            console.log(text);
+    console.log(text);
+    console.log(tone_analysis);
+    if (text && tone_analysis && tone_analysis.sentences_tone) {
+      const colors = {
+        Joy: "success",
+        Anger: "danger",
+        Fear: "warning",
+        Sadness: "info",
+        Confident: "success",
+        Analytical: "primary",
+        Tentative: "warning"
+      };
+      let editorText = text.replace(/[()]/g, ""); // Removes parentheses from text
+      tone_analysis.sentences_tone
+        .filter(({ tones }) => tones.length) // Ignore sentences with no tones
+        .forEach(({ text: sentence, tones }) => {
+          const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
+          const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
+          const color = colors[tone.tone_name];
+          editorText = editorText.replace(re, match => {
+            return this.tonalSentence(color, match);
           });
-      }
-      return text;
+        });
+      this.setState({ editorText });
     }
-    return "";
   };
 
   tonalSentence = (color, text) =>
-    `<span style="color: ${color}">${text}</span>`;
+    `<span class="label-${color} analyzed">${text}</span>`;
 
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  // This is expensive
   editorInput = e => {
-    const text = e.target.value;
+    let editorText = e.target.value;
+    let text = striptags(e.target.value);
     const versions = this.state.versions;
     versions[this.state.selected_version - 1].text = text;
-    this.setState({ versions });
+    this.setState({ versions, editorText });
   };
 
   analyzeText = () => {
@@ -160,7 +163,7 @@ class NewEmail extends Component {
           .post(
             process.env.REACT_APP_BACKEND_URL + "/api/watson",
             {
-              text: striptags(this.selectedVersion().text),
+              text: this.selectedVersion().text,
               reqType: "analyze"
             },
             { withCredentials: true }
@@ -168,7 +171,10 @@ class NewEmail extends Component {
           .then(res => {
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
-            this.setState({ versions, error: false, makingCall: false });
+            this.setState(
+              { versions, error: false, makingCall: false },
+              this.processTone
+            );
           })
           .catch(err => this.setState({ error: err, makingCall: false }));
       });
@@ -191,8 +197,6 @@ class NewEmail extends Component {
         },
         version: this.selectedVersion()
       };
-
-      body.version.text = striptags(body.version.text);
 
       if (this.props.match.params.id) {
         body.email.id = this.props.match.params.id;
@@ -230,6 +234,7 @@ class NewEmail extends Component {
     }
     return "Save as";
   };
+
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -271,6 +276,7 @@ class NewEmail extends Component {
         <UncontrolledAlert
           color={this.state.componentState === 1 ? "success" : "danger"}
           onClick={() => this.resetComponentState()}
+          className="mt-2"
         >
           {response}
         </UncontrolledAlert>
@@ -293,6 +299,7 @@ class NewEmail extends Component {
         <UncontrolledAlert
           color={this.state.componentState === 5 ? "success" : "danger"}
           onClick={() => this.resetComponentState()}
+          className="mt-2"
         >
           {response}
         </UncontrolledAlert>
@@ -302,63 +309,53 @@ class NewEmail extends Component {
   };
   render() {
     return (
-      <Container>
+      <Container className="mt-3">
         {this.sendEmailAlert()}
         {this.saveEmailAlert()}
         <Row>
-          <Col>
-            <Row>
-              <Col md={12} lg={{ order: 0, size: 8 }}>
-                <InputGroup className="email-fields">
-                  <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
-                  <Input
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.handleInput}
-                    spellCheck="false"
-                  />
-                </InputGroup>
-                <InputGroup className="email-fields">
-                  <InputGroupAddon addOnType="prepend">
-                    Addressee
-                  </InputGroupAddon>
-                  <Input
-                    name="addressee"
-                    value={this.state.addressee}
-                    onChange={this.handleInput}
-                    spellCheck="false"
-                  />
-                </InputGroup>
-              </Col>
-              <Col md={12} lg={{ size: 4 }}>
-                <Card className="no-transition" body>
-                  <ButtonGroup vertical>
-                    {this.navigationButtons()}
-                    {this.actionButtons()}
-                  </ButtonGroup>
-                </Card>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
-                <ContentEditable
-                  html={this.processTone()}
-                  onChange={this.editorInput}
-                  className="form-control"
-                  style={{ height: "auto", minHeight: "150px" }}
-                />
-              </Col>
-              <Col
-                xs={{ order: 1 }}
-                lg={{ size: 4 }}
-                style={{ marginBottom: 10 }}
-              >
-                <Analysis
-                  error={this.state.error}
-                  toneAnalysis={this.selectedVersion().tone_analysis}
-                />
-              </Col>
-            </Row>
+          <Col md={12} lg={{ order: 0, size: 8 }}>
+            <InputGroup className="email-fields">
+              <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+              <Input
+                name="title"
+                value={this.state.title}
+                onChange={this.handleInput}
+                spellCheck="false"
+              />
+            </InputGroup>
+            <InputGroup className="email-fields">
+              <InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
+              <Input
+                name="addressee"
+                value={this.state.addressee}
+                onChange={this.handleInput}
+                spellCheck="false"
+              />
+            </InputGroup>
+          </Col>
+          <Col md={12} lg={{ size: 4 }}>
+            <Card className="no-transition" body>
+              <ButtonGroup vertical>
+                {this.navigationButtons()}
+                {this.actionButtons()}
+              </ButtonGroup>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
+            <ContentEditable
+              html={this.state.editorText}
+              onChange={this.editorInput}
+              className="form-control"
+              style={{ height: "auto", minHeight: "150px" }}
+            />
+          </Col>
+          <Col xs={{ order: 1 }} lg={{ size: 4 }} style={{ marginBottom: 10 }}>
+            <Analysis
+              error={this.state.error}
+              toneAnalysis={this.selectedVersion().tone_analysis}
+            />
           </Col>
         </Row>
       </Container>
