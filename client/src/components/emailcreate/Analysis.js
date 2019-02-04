@@ -18,7 +18,7 @@ const Analysis = ({ toneAnalysis, error }) => {
   } else if (error == "Error: Request failed with status code 500") {
     toneResult = "The document does not have a tone to it.";
   } else if (toneAnalysis === null) {
-    toneResult = "No analysis click the analyze button.";
+    toneResult = "No analysis. Click the analyze button.";
   } else if (toneAnalysis && toneAnalysis.document_tone.tones.length) {
     toneResult = toneAnalysis.document_tone.tones.map((e, i) => {
       const color = colors[e.tone_name];

@@ -2,7 +2,18 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UncontrolledTooltip } from "reactstrap";
-import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from "reactstrap";
+import moment from "moment-timezone";
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardText,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col
+} from "reactstrap";
 
 class Document extends Component {
   navigate = () => {
@@ -10,7 +21,8 @@ class Document extends Component {
   };
 
   render() {
-    const { title, addressee, updated, text } = this.props.email;
+    let { title, addressee, updated, text } = this.props.email;
+    updated = moment(updated).calendar();
     return (
       <Card onClick={this.navigate}>
         <CardBody>
