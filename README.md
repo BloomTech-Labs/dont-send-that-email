@@ -58,7 +58,7 @@ To clone the app to your local machine, follow these instructions.
 
 
 5. You will need to make three accounts for three keys. See below on how to get these keys.
-  * [IBM Watson Tone Analysis API key](docs/watson_instructions.md)
+  * [IBM Watson Tone Analysis API key](docs/watson_key_instructions.md)
   * [The Stripe key]()
   * [Auth0 key](docs/auth0)
 
