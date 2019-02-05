@@ -4,7 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tai from "./assets/img/faces/tai.png";
 import Chad from "./assets/img/faces/chad.jpg";
 import Richard from "./assets/img/faces/richard.jpeg";
-import Will from "./assets/img/faces/willsmith.jpeg";
+import Will from "./assets/img/faces/willkwon.png";
+import Fred from "./assets/img/faces/Fred.jpg";
+import Joshua from "./assets/img/faces/Joshua.png";
+import Brian from "./assets/img/faces/Brian.png";
+import Thomas from "./assets/img/faces/thomas.jpg";
+import Jared from "./assets/img/faces/jared.jpg";
+import Nightsky1 from "./assets/img/gabriele.jpg";
+import Nightsky from "./assets/img/timothee.jpg";
+
 
 class LandingPage extends Component {
 
@@ -18,7 +26,11 @@ class LandingPage extends Component {
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href="#">
+              <a className="navbar-brand" href={"#"}>
+              <FontAwesomeIcon 
+                icon={['fas', 'at']}
+                class="space"
+                />
                 Don't send that email
               </a>
               <button
@@ -30,6 +42,7 @@ class LandingPage extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
+                {/* The Hamburger in tablet/mobile view */}
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />
                 <span className="navbar-toggler-bar" />
@@ -120,7 +133,7 @@ class LandingPage extends Component {
                 emails.
               </h3>
               <br />
-              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's get started</a>
+              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's Get Started</a>
             </div>
           </div>
         </div>
@@ -276,7 +289,7 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src="./assets/img/faces/Fred.jpg"/>
+                        <img className="img" src={Fred} alt={"Fred"}/>
                         </a>
                     </div>
                     </div>
@@ -318,14 +331,14 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src={Will} alt={"Will Smith"} />
+                        <img className="img" src={Will} alt={"Will Kwon"} />
                         </a>
                     </div>
                     </div>
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Will Kwon</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           Wait is the timezone issue related to stripe?
                         </p>
@@ -360,14 +373,14 @@ class LandingPage extends Component {
                     <div className="col-md-5">
                     <div className="card-img-top">
                         <a href="#pablo">
-                        <img className="img" src="./assets/img/faces/jared.jpg"/>
+                        <img className="img" src={Jared} alt={"Jared"}/>
                         </a>
                     </div>
                     </div>
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Jared Cuffe</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                         Debugging timezones with Richard. Almost, but not quite
                         </p>
@@ -409,7 +422,7 @@ class LandingPage extends Component {
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Tai Le</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           I love you like Kanye loves Kanye. Don't be scared of the truth. Kanye loves himself like Kanye loves Kanye.
                         </p>
@@ -451,7 +464,7 @@ class LandingPage extends Component {
                     <div className="col-md-7">
                     <div className="card-body text-left">
                         <h4 className="card-title">Chad Jemmet</h4>
-                        <h6 className="card-category">Web Designer</h6>
+                        <h6 className="card-category">Full Stack Web Developer</h6>
                         <p className="card-description">
                           I don't have any signal out here.
                         </p>
@@ -480,15 +493,161 @@ class LandingPage extends Component {
                 </div>
                 </div>
             </div>
-            
-
-
-
             </div>
         </div>
         </div>
+        {/* Pricing Section */}
+        <div className="pricing-2">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 ml-auto mr-auto text-center">
+                <h2 className="title">Pick the best plan for you</h2>
+                <h5 className="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
+                <br/>
+          </div>
+        </div>
+        <div className="space-top"></div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky})`}}>
+              <div className="card-body">
+                <h6 className="card-category">Free</h6>
+                <h1 className="card-title">
+                  <small>$</small>0
+                  <small>/mo</small>
+                </h1>
+                <ul>
+                  <li>
+                    <b>100</b> email analyses per 30 days
+                  </li>
+                  <li>
+                    <b>5</b> emails in storage at one time.</li>
+                  <li>
+                    <b>No</b> Sending Emails</li>
+                  {/* <li>
+                    <b>2</b> Personal Brand
+                  </li> */}
+                </ul>
+                <a href="#pablo" className="btn btn-danger btn-round ">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
 
+          <div className="col-md-4">
+            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky1})`}}>
+              <div className="card-body">
+                <h6 className="card-category">Premium</h6>
+                <h1 className="card-title">
+                  <small>$</small>9
+                  <small>/mo</small>
+                </h1>
+                <ul>
+                  <li>
+                    <b>Unlimited</b> Email analysis</li>
+                  <li>
+                    <b>Unlimited</b> Email storage</li>
+                  <li>
+                    <b>Unlimited</b> Sending Emails</li>
+                </ul>
+                <a href="#pablo" className="btn btn-danger btn-round">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Testimonials */}
+    <div className="testimonials-1 section-image" style={{backgroundImage: `url(${Nightsky1})`}}>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 ml-auto mr-auto text-center">
+            <h2 className="title">Our Clients Love Us</h2>
+            <h5 className="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
+          </div>
+        </div>
+        <div className="space-top"></div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+                <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                "Best product ever! I use 'Don't Send Your Email' everytime I check my students weekly sprint for their emotional tones."
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Thomas Greenhalgh</h4>
+                  <h6 className="card-category">@BestPMEver</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Thomas} alt={"Thomas"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+              <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                  "This is the best team ever, three stars across the board!"
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Joshua Howland</h4>
+                  <h6 className="card-category">@JHowler</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Joshua} alt={"Joshua Howland"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card card-testimonial">
+              <div className="card-icon">
+              <FontAwesomeIcon
+                icon={['fas', 'quote-right']}
+                className="fa fa-quote-right" aria-hidden="true"
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-description">
+                  "This product is the embodient of Lambda School's heart, mind, body and soul."
+                </p>
+                <div className="card-footer">
+                  <h4 className="card-title">Brian Doyle</h4>
+                  <h6 className="card-category">@Bdoy</h6>
+                  <div className="card-avatar">
+                    <a href="#pablo">
+                      <img className="img" src={Brian} alt={"Brian"}/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+          {/* Contact Us */}
           <div className="section landing-section">
             <div className="container">
               <div className="row">

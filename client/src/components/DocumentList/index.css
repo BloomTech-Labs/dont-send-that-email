@@ -1,36 +1,63 @@
 .btn {
-    align-content: center;
+  align-content: center;
 }
 
+@media (max-width: 500px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 18%;
+    margin-right: 2%;
+    text-align: center;
+  }
+}
+@media (min-width: 501px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 12.5%;
+    margin-right: 2%;
+    text-align: center;
+  }
+}
 /* Center button when there's no emails */
 .container-fluid .button-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88vh;
 }
 
-.card .card-body .card-title h3{
-    font-size: 1.25em;
+.card .card-body .card-title h3 {
+  font-size: 1.25em;
 }
 
 .card-columns {
-    column-count: 2 !important;
+  column-count: 1 !important;
 }
 
-@media (max-width: 768px) {
-  .card-columns{
-    column-count: 1 !important;
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 2 !important;
+  }
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 13%;
+    text-align: center;
   }
 }
 
 /* For smooth transition on the Create-button */
 @media (max-width: 472px) {
-    .container-fluid .button-center {
-        height: 79vh;
-    }
-    /* Remove user's name in mobile view */
-    .nav .nav-item {
-        display: none;
-    }
+  .container-fluid .button-center {
+    height: 79vh;
+  }
+  /* Remove user's name in mobile view */
+  .nav .nav-item {
+    display: none;
+  }
 }

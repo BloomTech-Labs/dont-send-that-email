@@ -19,7 +19,8 @@ import {
   faUser,
   faSignOutAlt,
   faArrowLeft,
-  faArrowRight
+  faArrowRight,
+  faQuoteRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -32,6 +33,7 @@ library.add(
   faSignOutAlt,
   faArrowLeft,
   faArrowRight,
+  faQuoteRight,
   fab
 );
 
@@ -48,9 +50,7 @@ class App extends Component {
       .then(response => {
         const { user, err } = response.data;
         if (user) {
-          this.setState({ user }, () => console.log(this.state.user));
-        } else {
-          console.log(err);
+          this.setState({ user });
         }
       });
   };

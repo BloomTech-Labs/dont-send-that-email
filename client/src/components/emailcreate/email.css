@@ -1,18 +1,27 @@
 .tone {
   padding: 3px 8px;
   width: 100%;
+  font-weight: bold;
+  color: white;
 }
 
-  .analyzed {
-    font-weight: bold;
-    color: white;
-  }
-
-  .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-  }
-  .row.content {height: 450px}
+.analyzed {
+  font-weight: bold;
+  color: white;
+}
+.label-joy {
+  background-color: #98fb98;
+}
+.label-tentative {
+  background-color: #ffdf00;
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.row.content {
+  height: 450px;
+}
 
 .email-fields {
   margin-bottom: 10px;
@@ -22,24 +31,22 @@
   justify-content: center;
   align-items: center;
 }
-  .sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
 
-  }
+.editor {
+  border: lightgray 1px solid;
+}
 
-  .editor {
-    border: lightgray 1px solid;
-  }
+.version-icon:hover {
+  cursor: pointer;
+}
 
-  .version-icon:hover {
-    cursor: pointer
-  }
-
-  footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-  }
-
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
