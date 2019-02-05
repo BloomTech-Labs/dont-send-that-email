@@ -7,6 +7,7 @@ import {
   UncontrolledAlert,
   ButtonGroup,
   Col,
+  Label,
   Container,
   Input,
   Row,
@@ -112,19 +113,17 @@ class NewEmail extends Component {
 
   // Apply watson analysis to the version's text
   processTone = () => {
-    console.log("processing tone");
     let { text, tone_analysis } = this.selectedVersion();
-    console.log(text);
-    console.log(tone_analysis);
+
     if (text && tone_analysis && tone_analysis.sentences_tone) {
       const colors = {
-        Joy: "success",
+        Joy: "joy",
         Anger: "danger",
         Fear: "warning",
         Sadness: "info",
         Confident: "success",
         Analytical: "primary",
-        Tentative: "warning"
+        Tentative: "tentative"
       };
       let editorText = text.replace(/[()]/g, ""); // Removes parentheses from text
       tone_analysis.sentences_tone
@@ -208,9 +207,7 @@ class NewEmail extends Component {
       };
 
       try {
-        const {
-          data: { id }
-        } = await axios.post(
+        const { data: { id } } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
@@ -346,6 +343,7 @@ class NewEmail extends Component {
         </Row>
         <Row>
           <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
+            <Label>Text</Label>
             <ContentEditable
               html={this.state.editorText}
               onChange={this.editorInput}
