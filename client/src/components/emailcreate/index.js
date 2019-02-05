@@ -114,29 +114,31 @@ class NewEmail extends Component {
   // Apply watson analysis to the version's text
   processTone = () => {
     let { text, tone_analysis } = this.selectedVersion();
-
-    if (text && tone_analysis && tone_analysis.sentences_tone) {
-      const colors = {
-        Joy: "joy",
-        Anger: "danger",
-        Fear: "warning",
-        Sadness: "info",
-        Confident: "success",
-        Analytical: "primary",
-        Tentative: "tentative"
-      };
-      let editorText = text.replace(/[()]/g, ""); // Removes parentheses from text
-      tone_analysis.sentences_tone
-        .filter(({ tones }) => tones.length) // Ignore sentences with no tones
-        .forEach(({ text: sentence, tones }) => {
-          const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
-          const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
-          const color = colors[tone.tone_name];
-          editorText = editorText.replace(re, match => {
-            return this.tonalSentence(color, match);
+    if (text) {
+      if (tone_analysis && tone_analysis.sentences_tone) {
+        const colors = {
+          Joy: "success",
+          Anger: "danger",
+          Fear: "warning",
+          Sadness: "info",
+          Confident: "success",
+          Analytical: "primary",
+          Tentative: "warning"
+        };
+        let editorText = text.replace(/[()]/g, ""); // Removes parentheses from text
+        tone_analysis.sentences_tone
+          .filter(({ tones }) => tones.length) // Ignore sentences with no tones
+          .forEach(({ text: sentence, tones }) => {
+            const re = new RegExp(sentence.trim()); // No leading or trailing whitespace in highlights. Replace removes parentheses from sentence
+            const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
+            const color = colors[tone.tone_name];
+            editorText = editorText.replace(re, match => {
+              return this.tonalSentence(color, match);
+            });
           });
-        });
-      this.setState({ editorText });
+        this.setState({ editorText });
+      }
+      this.setState({ editorText: text });
     }
   };
 
