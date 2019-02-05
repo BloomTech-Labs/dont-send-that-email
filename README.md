@@ -10,6 +10,7 @@ This puts a barrier between you and a bad email or messaging experience. We'll h
 ##### Set up instructions
 
 To clone the app to your local machine, follow these instructions.
+
 1.  Go to your command line and type `git clone https://github.com/Lambda-School-Labs/dont-send-that-email.git`
   This will clone the app onto your local machine.
 
@@ -37,6 +38,8 @@ To clone the app to your local machine, follow these instructions.
 Before you can run the app locally you need a couple of 
 
 Keys needed
+1. IBM Watson Tone Analysis API key
+2. Stripe API key.
 
 
 ##### Instructions for obtaining a Watson API key.
@@ -75,23 +78,11 @@ Keys needed
 9. Copy and paste this API key into your `.env` file located in the root of the `server` directory.
 
 
-Tech Used:
-    
-    Front End: React, React Router, Reactstrap, Axios
-
-    Back End : Express, Node, Passport, Knex, Bcrypt
-
-    APIs     : IBM Watson, Stripe, OAuth
-
-    Libraries: Paper Kit 2 (Bootstrap V4)
-
-    Services : Netlify, Heroku
 
 
 Live Page URL: https://dont-send-that-email.netlify.com/
 
 
-Local Deployment Instructions:
 
 Click 'Get Started' on the Landing Page.
 
@@ -104,6 +95,16 @@ We can click the 'Previous' or 'Next' arrow buttons to switch between versions o
 
 We can navigate to the Profile page to see user info and comparisons between free and paid services for the app. The 'Subscribe 30 Days' button can be clicked to add payment details and pay for a month of subscription.
 
+Tech Used:
+    Front End: React, React Router, Reactstrap, Axios
+
+    Back End : Express, Node, Passport, Knex, Bcrypt
+
+    APIs     : IBM Watson, Stripe, OAuth
+
+    Libraries: Paper Kit 2 (Bootstrap V4)
+
+    Services : Netlify, Heroku
 
 #Collaborators
 
