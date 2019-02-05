@@ -100,8 +100,8 @@ body {
 @media (min-width: 411px) {
   .bm-burger-button {
     position: absolute;
-    width: 36px;
-    height: 30px;
+    width: 24px;
+    height: 18px;
     right: 15px;
     top: 25px;
   }
@@ -140,6 +140,17 @@ body {
     top: 25px;
   }
 }
+
+/* Hamburger location beyond 1024px */
+/* @media (min-width: 1025px) {
+  .bm-burger-button {
+    position: absolute;
+    width: 24px;
+    height: 18px;
+    right: 10%;
+    top: 25px;
+  }
+} */
 
 
 
