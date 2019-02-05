@@ -31,7 +31,9 @@ To clone the app to your local machine, follow these instructions.
   You should see `something` in the `client` directory.
 
 7. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
-  Get it by typing `npm intall -g knex`. This will install 
+  Get it by typing `npm intal knex`. This will install knex so you can install the database.
+
+8. After you have Knex. In the `server` directory type `knex migrate:latest`.
 
 
 
