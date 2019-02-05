@@ -25,7 +25,7 @@ class NewEmail extends Component {
     title: "",
     addressee: "",
     versions: [{ text: "", tone_analysis: null }],
-    editorText: "",
+    editorText: "Enter text here",
     selected_version: 1,
     makingCall: false,
     error: false,
@@ -312,21 +312,23 @@ class NewEmail extends Component {
         <Row>
           <Col md={12} lg={{ order: 0, size: 8 }}>
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend">Title</InputGroupAddon>
+              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-caps-small" /></InputGroupAddon>
               <Input
                 name="title"
                 value={this.state.title}
                 onChange={this.handleInput}
                 spellCheck="false"
+                placeholder="Title"
               />
             </InputGroup>
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend">Addressee</InputGroupAddon>
+              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-email-85" /></InputGroupAddon>
               <Input
                 name="addressee"
                 value={this.state.addressee}
                 onChange={this.handleInput}
                 spellCheck="false"
+                placeholder="Addressee"
               />
             </InputGroup>
           </Col>
