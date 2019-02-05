@@ -1,17 +1,16 @@
 import React from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
-
+import "./email.css";
 const Analysis = ({ toneAnalysis, error }) => {
-
   let toneResult;
   const colors = {
-    Joy: "success",
+    Joy: "joy",
     Anger: "danger",
     Fear: "warning",
     Sadness: "info",
     Confident: "success",
     Analytical: "primary",
-    Tentative: "warning"
+    Tentative: "tentative"
   };
   if (error == "Error: Request failed with status code 429") {
     toneResult = "Free users are capped at 100 email analyses.";
@@ -33,13 +32,11 @@ const Analysis = ({ toneAnalysis, error }) => {
     toneResult = "The document does not have a tone to it.";
   }
 
-
   return (
     <Card className="no-transition">
       <CardHeader>Document Tone Analysis</CardHeader>
       <CardBody>{toneResult}</CardBody>
     </Card>
   );
-
 };
 export default Analysis;
