@@ -14,20 +14,20 @@ To clone the app to your local machine, follow these instructions.
 1. Go to your command line and type `git clone https://github.com/Lambda-School-Labs/dont-send-that-email.git`
    This will clone the app onto your local machine.
 
-2. `cd` into `dont-send-that-email`. You will find two directories. `client` and `server` 
-   In both directories you need to type `npm install` to get all the libraries that help run the app.
+2. `cd` into `dont-send-that-email`. You will find a list of files. The two you will be using are `client` and `server`.
+   In both `client` and `server` directories you need to type `npm install` to get all the libraries that help run the app.
 
-3. In both the `client` and `server` directories you need to create a file called `.env`. It has to have the period before `env`.
+3. In both the `client` and `server` directories you will find a file called `dotenv` change those files to `.env`.  It has to have the period before `env`.
 
-4. In the `.env` files you will need to copy and paste the secret keys we use in the app. Contact one of our team to get a partial list of 
+4. In the `.env` files you will need to copy and paste the secret keys we use in the app. See the next step on getting those secret keys.
 
 5. You will need to make three accounts for three keys. See below on how to get these keys.
-  * The Watson API key
+  * [IBM Watson Tone Analysis API key](docs/watson_instructions.md)
   * The Stripe key
-  * Auth0 key
+  * [Auth0 key](docs/auth0)
 
 6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
-  Get it by typing `npm intal knex`. This will install knex so you can install the database.
+  Get it by typing `npm install knex`. This will install knex so you can install the database.
 
 8. After you have Knex. In the `server` directory type `knex migrate:latest`.
 
@@ -41,7 +41,6 @@ To clone the app to your local machine, follow these instructions.
 Before you can run the app locally, you need some secret keys that make the run behind the scenes.
 
 Keys needed
-1. [IBM Watson Tone Analysis API key](/docs/watson_instructions.md)
 2. Stripe API key
 3. Auth-Zero or Auth0 key
 
