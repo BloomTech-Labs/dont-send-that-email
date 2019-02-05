@@ -41,42 +41,34 @@ Keys needed
 1. IBM Watson Tone Analysis API key
 2. Stripe API key.
 
-
 ##### Instructions for obtaining a Watson API key.
 
+1. You have to create an account, confirm it via email then log in. [Go to the IBM site and make an account](https://cloud.ibm.com/registration?target=%2Fcatalog%2Fservices%2Ftone-analyzer%3FhideTours%3Dtrue%26?cm_sp=WatsonPlatform-WatsonPlatform-_-OnPageNavCTA-IBMWatson_ToneAnalyzer-_-Watson_Developer_Website)
 
-1. You have to create an account, confirm it via email then log in. [Go to the IBM site and make an account](https://www.ibm.com/watson/services/tone-analyzer/)
+2. After you have created an account and logged in [visit this link](https://cloud.ibm.com/catalog/services/tone-analyzer?hideTours=true&?cm_sp=WatsonPlatform-WatsonPlatform-_-OnPageNavCTA-IBMWatson_ToneAnalyzer-_-Watson_Developer_Website).
 
-2. After you have created an account and logged in you will see the dashboard.
-  In the upper right corner, click the button that says `Create a resource`
+  In the lower right corner there is a `create resource` button. Click it to create your Watson Tone Analyzer resource.
 
-  ![Create a resource button](create_a_resource.png)
+  ![create a resource](lower_right_button.png)
 
-3. From the list of resources on the left-hand side click `AI` 
 
-  ![list of resources](list_of_resources.png)
-
-4. Find Tone Analyzer in the group of tiles.
-  
-    After you click the Tone Analyzer card. You will see a list a page that offers options. You can choose a region that is closest to you. You will also see the limitations of the free version of the IBM Watson service. In this case, you will get 2500 API calls a month.
-
-5. At the bottom of the screen there is a `create` button. Click it.
-   This will bring you to a `Getting started` tutorial. On the left hand side you will see a sidebar menu.  
-
+3. After you create the resource you will see a menu on the left. It looks like this.
 
   ![Sidebar menu](sidebar_menu.png)
 
-6. Click on the `Service Credentials` option.
 
-7. On this page you will see a `New Credential` button. Click it. 
+4. Click on the `Service Credentials` option.
+
+5. On this page you will see a `New Credential` button. Click it. 
   You'll be given a pop-out window for options. You won't need to do anything but click `Add`.
 
-8. After that you will see a screen that lists your credentials. You have to click the `view credentials` button to see your API key.
+6. After that you will see a screen that lists your credentials. You have to click the `view credentials` button to see your API key.
    The API key data will look like this:
-   ![api key data](api_key_data.png)
+   
 
-9. Copy and paste this API key into your `.env` file located in the root of the `server` directory.
+![api key data](api_key_data.png)
 
+7. Copy and paste this API key into your `.env` file located in the root of the `server` directory.
 
 
 
