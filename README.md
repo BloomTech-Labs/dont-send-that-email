@@ -50,8 +50,8 @@ To clone the app to your local machine, follow these instructions.
 
 5. You will need to make three accounts for three keys. See below on how to get these keys.
   * [IBM Watson Tone Analysis API key](docs/watson_key_instructions.md)
-  * [The Stripe key](stripe_instructions.md)
-  * [Auth0 key](docs/auth0.md)
+  * [The Stripe key](docs/stripe.md)
+  * [Auth0 key](docs/Auth0/README.md)
 
 6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
   Get it by typing `npm install knex`. This will install knex so you can install the database.
