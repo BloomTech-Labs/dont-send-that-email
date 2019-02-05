@@ -3,69 +3,72 @@ Don't Send That Email!
 
 
 *Don’t Send That Email* helps users send messages to coworkers, family or friends that convey the right tone. Sometimes it's hard to intepret the emotional message of an email or text.
-DSTE uses an AI to preview the emotional tone of a message. Users can avoid sending a work email that sounds too casual. They can send personal messages that avoid negativity or hostility.
+*DSTE* uses an AI to preview the emotional tone of a message. Users can avoid sending a work email that sounds too casual. They can send personal messages that avoid negativity or hostility.
 This puts a barrier between you and a bad email or messaging experience. We'll help you send a good email that conveys the right emotional tone.
 
 
 ##### Set up instructions
 
-Keys needed
+To clone the app to your local machine, follow these instructions.
+
+1. Go to your command line and type `git clone https://github.com/Lambda-School-Labs/dont-send-that-email.git`
+   This will clone the app onto your local machine.
+
+2. `cd` into `dont-send-that-email`. You will find a list of files. The two you will be using are `client` and `server`.
+   In both `client` and `server` directories you need to type `npm install` to get all the libraries that help run the app.
+
+3. In both the `client` and `server` directories you will find a file called `dotenv` change those files to `.env`.  It has to have the period before `env`.
+
+4. In the `.env` files you will see a list of the secret keys we use. Some of them are missing. You will need to get your own versions of those keys.  See the next step on getting those secret keys.
+
+*An example of the server .env file*
+
+``` STRIPE\_API\_KEY=paste your own key here
+    AUTH0\_CLIENT\_ID=paste your own key here
+    AUTH0\_DOMAIN=dont-send-that-email.auth0.com
+    AUTH0\_CLIENT\_SECRET=paste your own key here
+    AUTH0\_CALLBACK\_URL=http://localhost:5000/auth/callback
+    API\_KEY=paste your own Watson key here
+    REACT\_APP\_BACKEND\_URL="http://localhost:5000"
+    FRONT\_END\_URL="http://localhost:3000" 
+```
 
 
-This is how you get an API key for Watson.
+*An example of the client .env file*
+
+```
+    REACT\_APP\_LOGIN\_URL="http://localhost:5000/auth/login"
+    REACT\_APP\_PROFILE_URL="http://localhost:5000/auth/profile"
+    REACT\_APP\_EMAILS_URL="http://localhost:5000/emails/"
+    REACT\_APP\_PAYMENT_SERVER_URL="http://localhost:5000/billing"
+    REACT\_APP\_STRIPE\_API\_PUBLISH\_KEY="paste your own key here"
+    REACT\_APP\_BACKEND\_URL="http://localhost:5000"
+    FRONT\_END\_URL="http://localhost:3000" 
+```
 
 
 
-1. You have to create an account, confirm it via email then log in. [Go to the IBM site and make an account](https://www.ibm.com/watson/services/tone-analyzer/)
+5. You will need to make three accounts for three keys. See below on how to get these keys.
+  * [IBM Watson Tone Analysis API key](docs/watson_key_instructions.md)
+  * [The Stripe key](stripe_instructions.md)
+  * [Auth0 key](docs/auth0.md)
 
-2. After you have created an account and logged in you will see the dashboard.
-  In the upper right corner, click the button that says `Create a resource`
+6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
+  Get it by typing `npm install knex`. This will install knex so you can install the database.
 
-  ![Create a resource button](create_a_resource.png)
+8. After you have Knex. In the `server` directory type `knex migrate:latest`.
 
-3. From the list of resources on the left-hand side click `AI` 
-
-  ![list of resources](list_of_resources.png)
-
-4. Find Tone Analyzer in the group of tiles.
-  
-    After you click the Tone Analyzer card. You will see a list a page that offers options. You can choose a region that is closest to you. You will also see the limitations of the free version of the IBM Watson service. In this case, you will get 2500 API calls a month.
-
-5. At the bottom of the screen there is a `create` button. Click it.
-   This will bring you to a `Getting started` tutorial. On the left hand side you will see a sidebar menu.  
+7. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
+  You should see `Server running on port: 5000` in the `server` directory.
+  You should see `something` in the `client` directory.
 
 
-  ![Sidebar menu](sidebar_menu.png)
 
-6. Click on the `Service Credentials` option.
-
-7. On this page you will see a `New Credential` button. Click it. 
-  You'll be given a pop-out window for options. You won't need to do anything but click `Add`.
-
-8. After that you will see a screen that lists your credentials. You have to click the `view credentials` button to see your API key.
-   The API key data will look like this:
-   ![api key data](api_key_data.png)
-
-9. Copy and paste this API key into your `.env` file located in the root of the `server` directory.
-
-
-Tech Used:
-    
-    Front End: React, React Router, Reactstrap, Axios
-
-    Back End : Express, Node, Passport, Knex, Bcrypt
-
-    APIs     : IBM Watson, Stripe, OAuth
-
-    Libraries: Paper Kit 2 (Bootstrap V4)
-
-    Services : Netlify, Heroku
 
 
 Live Page URL: https://dont-send-that-email.netlify.com/
 
 
-Local Deployment Instructions:
 
 Click 'Get Started' on the Landing Page.
 
@@ -78,6 +81,16 @@ We can click the 'Previous' or 'Next' arrow buttons to switch between versions o
 
 We can navigate to the Profile page to see user info and comparisons between free and paid services for the app. The 'Subscribe 30 Days' button can be clicked to add payment details and pay for a month of subscription.
 
+Tech Used:
+    Front End: React, React Router, Reactstrap, Axios
+
+    Back End : Express, Node, Passport, Knex, Bcrypt
+
+    APIs     : IBM Watson, Stripe, OAuth
+
+    Libraries: Paper Kit 2 (Bootstrap V4)
+
+    Services : Netlify, Heroku
 
 #Collaborators
 
