@@ -30,18 +30,23 @@ AUTH0\_CLIENT\_SECRET=paste your own key here
 AUTH0\_CALLBACK\_URL=http://localhost:5000/auth/callback
 API\_KEY=paste your own Watson key here
 REACT\_APP\_BACKEND\_URL="http://localhost:5000"
-FRONT\_END\_URL="http://localhost:3000"`` 
+FRONT\_END\_URL="http://localhost:3000" 
+
+```
 
 
 *An example of the client .env file*
 
-```REACT\_APP\_LOGIN\_URL="http://localhost:5000/auth/login"
-REACT\_APP\_PROFILE_URL="http://localhost:5000/auth/profile"
-REACT\_APP\_EMAILS_URL="http://localhost:5000/emails/"
-REACT\_APP\_PAYMENT_SERVER_URL="http://localhost:5000/billing"
-REACT\_APP\_STRIPE\_API\_PUBLISH\_KEY="paste your own key here"
-REACT\_APP\_BACKEND\_URL="http://localhost:5000"
-FRONT\_END\_URL="http://localhost:3000" ```
+```
+    REACT\_APP\_LOGIN\_URL="http://localhost:5000/auth/login"
+    REACT\_APP\_PROFILE_URL="http://localhost:5000/auth/profile"
+    REACT\_APP\_EMAILS_URL="http://localhost:5000/emails/"
+    REACT\_APP\_PAYMENT_SERVER_URL="http://localhost:5000/billing"
+    REACT\_APP\_STRIPE\_API\_PUBLISH\_KEY="paste your own key here"
+    REACT\_APP\_BACKEND\_URL="http://localhost:5000"
+    FRONT\_END\_URL="http://localhost:3000" 
+
+```
 
 
 
