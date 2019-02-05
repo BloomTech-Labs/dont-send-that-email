@@ -115,7 +115,9 @@ class NewEmail extends Component {
   processTone = () => {
     let { text, tone_analysis } = this.selectedVersion();
     if (text) {
+      console.log("text available");
       if (tone_analysis && tone_analysis.sentences_tone) {
+        console.log("tone analysis available");
         const colors = {
           Joy: "success",
           Anger: "danger",
@@ -133,12 +135,14 @@ class NewEmail extends Component {
             const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
             const color = colors[tone.tone_name];
             editorText = editorText.replace(re, match => {
+              console.log("matched, ", match);
               return this.tonalSentence(color, match);
             });
           });
         this.setState({ editorText });
+      } else {
+        this.setState({ editorText: text });
       }
-      this.setState({ editorText: text });
     }
   };
 
@@ -209,7 +213,9 @@ class NewEmail extends Component {
       };
 
       try {
-        const { data: { id } } = await axios.post(
+        const {
+          data: { id }
+        } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
@@ -314,7 +320,12 @@ class NewEmail extends Component {
         <Row className="top-row">
           <Col md={12} lg={{ order: 0, size: 8 }} className="fields">
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-caps-small" /></InputGroupAddon>
+              <InputGroupAddon
+                addOnType="prepend"
+                className="input-group-addon"
+              >
+                <i className="nc-icon nc-caps-small" />
+              </InputGroupAddon>
               <Input
                 name="title"
                 value={this.state.title}
@@ -324,7 +335,12 @@ class NewEmail extends Component {
               />
             </InputGroup>
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-email-85" /></InputGroupAddon>
+              <InputGroupAddon
+                addOnType="prepend"
+                className="input-group-addon"
+              >
+                <i className="nc-icon nc-email-85" />
+              </InputGroupAddon>
               <Input
                 name="addressee"
                 value={this.state.addressee}
