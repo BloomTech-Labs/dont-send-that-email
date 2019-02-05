@@ -540,7 +540,7 @@ class LandingPage extends Component {
               <div className="card-body">
                 <h6 className="card-category">Premium</h6>
                 <h1 className="card-title">
-                  <small>$</small>9
+                  <small>$</small>10
                   <small>/mo</small>
                 </h1>
                 <ul>
