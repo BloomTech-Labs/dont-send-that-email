@@ -312,7 +312,7 @@ class NewEmail extends Component {
         {this.sendEmailAlert()}
         {this.saveEmailAlert()}
         <Row>
-          <Col md={12} lg={{ order: 0, size: 8 }}>
+          <Col md={12} lg={{ order: 0, size: 8 }} className="fields">
             <InputGroup className="email-fields">
               <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-caps-small" /></InputGroupAddon>
               <Input
@@ -353,7 +353,7 @@ class NewEmail extends Component {
               style={{ height: "auto", minHeight: "150px" }}
             />
           </Col>
-          <Col xs={{ order: 1 }} lg={{ size: 4 }} style={{ marginBottom: 10 }}>
+          <Col xs={{ order: 1 }} lg={{ size: 4 }} className="analysis">
             <Analysis
               error={this.state.error}
               toneAnalysis={this.selectedVersion().tone_analysis}

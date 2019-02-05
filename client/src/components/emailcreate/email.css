@@ -24,7 +24,7 @@
 }
 
 .email-fields {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .controls {
   display: flex;
@@ -43,6 +43,10 @@
 
 .version-icon:hover {
   cursor: pointer;
+}
+
+.fields {
+  margin-top: 20px;
 }
 
   /* Form Icons CSS */
@@ -82,3 +86,9 @@ footer {
   padding: 15px;
 }
 
+@media (min-width: 1024px) {
+  .analysis {
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+}
