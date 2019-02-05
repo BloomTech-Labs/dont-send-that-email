@@ -19,11 +19,32 @@ To clone the app to your local machine, follow these instructions.
 
 3. In both the `client` and `server` directories you will find a file called `dotenv` change those files to `.env`.  It has to have the period before `env`.
 
-4. In the `.env` files you will need to copy and paste the secret keys we use in the app. See the next step on getting those secret keys.
+4. In the `.env` files you will see a list of the secret keys we use. Some of them are missing. You will need to get your own versions of those keys.  See the next step on getting those secret keys.
+
+*An example of the server .env file*
+
+> STRIPE_API_KEY=paste your own key here
+AUTH0_CLIENT_ID=paste your own key here
+AUTH0_DOMAIN=dont-send-that-email.auth0.com
+AUTH0_CLIENT_SECRET=paste your own key here
+AUTH0_CALLBACK_URL=http://localhost:5000/auth/callback
+API_KEY=paste your own Watson key here
+REACT_APP_BACKEND_URL="http://localhost:5000"
+FRONT_END_URL="http://localhost:3000"
+
+*An example of the client .env file*
+>REACT_APP_LOGIN_URL="http://localhost:5000/auth/login"
+REACT_APP_PROFILE_URL="http://localhost:5000/auth/profile"
+REACT_APP_EMAILS_URL="http://localhost:5000/emails/"
+REACT_APP_PAYMENT_SERVER_URL="http://localhost:5000/billing"
+REACT_APP_STRIPE_API_PUBLISH_KEY="paste your own key here"
+REACT_APP_BACKEND_URL="http://localhost:5000"
+FRONT_END_URL="http://localhost:3000"
+
 
 5. You will need to make three accounts for three keys. See below on how to get these keys.
   * [IBM Watson Tone Analysis API key](docs/watson_instructions.md)
-  * The Stripe key
+  * [The Stripe key]()
   * [Auth0 key](docs/auth0)
 
 6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
