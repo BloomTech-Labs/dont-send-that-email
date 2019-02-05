@@ -9,11 +9,37 @@ This puts a barrier between you and a bad email or messaging experience. We'll h
 
 ##### Set up instructions
 
+To clone the app to your local machine, follow these instructions.
+1.  Go to your command line and type `git clone https://github.com/Lambda-School-Labs/dont-send-that-email.git`
+  This will clone the app onto your local machine.
+
+2. `cd` into the app. You will find two directories. `client` and `server` 
+  In both directories you need to type `npm install` to get all the libraries that help run the app.
+
+3. In both the `client` and `server` directories you need to create a file called `.env`. It has to have the period before `env`.
+
+4. In the `.env` files you will need to copy and paste the secret keys we use in the app.
+
+5. You will need to make three accounts for three keys. See below on how to get these keys.
+  * The Watson API key
+  * The Stripe key
+  * Auth0 key
+
+6. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
+  You should see `Server running on port: 5000` in the `server` directory.
+  You should see `something` in the `client` directory.
+
+7. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
+  Get it by typing `npm intall -g knex`. This will install 
+
+
+
+Before you can run the app locally you need a couple of 
+
 Keys needed
 
 
-This is how you get an API key for Watson.
-
+##### Instructions for obtaining a Watson API key.
 
 
 1. You have to create an account, confirm it via email then log in. [Go to the IBM site and make an account](https://www.ibm.com/watson/services/tone-analyzer/)
