@@ -14,7 +14,7 @@ To clone the app to your local machine, follow these instructions.
 1.  Go to your command line and type `git clone https://github.com/Lambda-School-Labs/dont-send-that-email.git`
   This will clone the app onto your local machine.
 
-2. `cd` into the app. You will find two directories. `client` and `server` 
+2. `cd` into `dont-send-that-email`. You will find two directories. `client` and `server` 
   In both directories you need to type `npm install` to get all the libraries that help run the app.
 
 3. In both the `client` and `server` directories you need to create a file called `.env`. It has to have the period before `env`.
@@ -26,18 +26,19 @@ To clone the app to your local machine, follow these instructions.
   * The Stripe key
   * Auth0 key
 
-6. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
-  You should see `Server running on port: 5000` in the `server` directory.
-  You should see `something` in the `client` directory.
-
-7. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
+6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
   Get it by typing `npm intal knex`. This will install knex so you can install the database.
 
 8. After you have Knex. In the `server` directory type `knex migrate:latest`.
 
+7. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
+  You should see `Server running on port: 5000` in the `server` directory.
+  You should see `something` in the `client` directory.
 
 
-Before you can run the app locally you need a couple of 
+
+
+Before you can run the app locally, you need some secret keys that make the run behind the scenes.
 
 Keys needed
 1. IBM Watson Tone Analysis API key
@@ -49,7 +50,7 @@ Keys needed
 
 2. After you have created an account and logged in [visit this link](https://cloud.ibm.com/catalog/services/tone-analyzer?hideTours=true&?cm_sp=WatsonPlatform-WatsonPlatform-_-OnPageNavCTA-IBMWatson_ToneAnalyzer-_-Watson_Developer_Website).
 
-  In the lower right corner there is a `create resource` button. Click it to create your Watson Tone Analyzer resource.
+  In the lower right corner there is a `create` button. Click it to create your Watson Tone Analyzer resource.
 
   ![create a resource](lower_right_button.png)
 
