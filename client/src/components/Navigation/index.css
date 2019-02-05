@@ -20,7 +20,12 @@
     }
 }
 
-
+/* Spacing between Brand Logo and Brand */
+.navbar-brand .space {
+    padding-right: 3px;
+    width: 20px;
+    vertical-align: text-bottom;
+}
 
 nav ul li .nav-item {
     color: null;
