@@ -67,7 +67,7 @@ To clone the app to your local machine, follow these instructions.
 
 
 *Don't send that email Landing page*
-![Don't send that email landing page](landing_page.png)
+![Don't send that email landing page](docs/landing_page.png)
 
 To use the app:
 ##### Landing Page
