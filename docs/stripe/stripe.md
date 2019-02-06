@@ -3,7 +3,7 @@
 1. You have to create an account, confirm it via email then log in. [Go to the Stripe site and make an account](https://dashboard.stripe.com/register)
 
 
-    ![Stripe Register](Stripe_Reg.png)
+    ![Stripe Register](Stripe_Reg.PNG)
 
      *The filled out form above is only for **example**, please provide the appropriaate entries for your organization*
 
@@ -11,7 +11,7 @@
 
 3. Finishing Obtaining the API keys.
 
-    ![Choose_Stripe_API](Choose_Stripe_API.png)
+    ![Choose_Stripe_API](Choose_Stripe_API.PNG)
 
     *   Please select Integrate with Stripes API
 
@@ -21,7 +21,7 @@
 
     * Select Developer as shown in the lower left side menu
 
-    ![reveal_dev_api_keys](reveal_dev_api_keys.png)
+    ![reveal_dev_api_keys](Reveal_dev_api_keys.png)
 
     * On the above page where you see **"Standard Keys"** in the center of the page:
 
