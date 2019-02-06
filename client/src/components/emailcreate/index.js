@@ -213,9 +213,7 @@ class NewEmail extends Component {
       };
 
       try {
-        const {
-          data: { id }
-        } = await axios.post(
+        const { data: { id } } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
@@ -271,7 +269,7 @@ class NewEmail extends Component {
       if (this.state.componentState === 1) {
         response = "Email sent.";
       } else if (this.state.componentState === 2) {
-        response = "To send an email you need a title, addressee, and text.";
+        response = "To send an email you need a title, addressee, and message.";
       } else if (this.state.componentState === 3) {
         response = "Free users cannot send emails.";
       } else {
@@ -296,7 +294,7 @@ class NewEmail extends Component {
         response = "Saved email.";
       } else if (this.state.componentState === 6) {
         response =
-          "To save an email, one must include a title, addressee, and text.";
+          "To save an email, one must include a title, addressee, and message.";
       } else {
         response = "Something went wrong trying to save email.";
       }
@@ -351,7 +349,7 @@ class NewEmail extends Component {
             </InputGroup>
           </Col>
           <Col md={12} lg={{ size: 4 }}>
-            <Card className="no-transition" body>
+            <Card className="no-transition emailCard" body>
               <ButtonGroup vertical>
                 {this.navigationButtons()}
                 {this.actionButtons()}
