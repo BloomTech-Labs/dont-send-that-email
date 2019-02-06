@@ -51,8 +51,9 @@ class DocumentList extends Component {
       />
     ));
 
-  emailCreateButton = () => (
+  emailCreateButton = param => (
     <Card
+      className={param !== "single" ? "documentCard" : null}
       onClick={this.redirectToCreateEmailPage}
       style={{ width: "100%", height: 188.5 }}
     >
@@ -131,7 +132,7 @@ class DocumentList extends Component {
     if (this.state.emails.length === 0) {
       return (
         <Container fluid className="button-center">
-          <div>{this.emailCreateButton()}</div>
+          <div>{this.emailCreateButton("single")}</div>
         </Container>
       );
     }
