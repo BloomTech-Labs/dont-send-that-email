@@ -11,7 +11,7 @@
 
 3. Finishing Obtaining the API keys.
 
-    ![Choose_Stripe_API](Choose_Stripe_API.png)
+    ![Choose_Stripe_API](Choose_Stripe_API.PNG)
 
     *   Please select Integrate with Stripes API
 
@@ -21,7 +21,7 @@
 
     * Select Developer as shown in the lower left side menu
 
-    ![reveal_dev_api_keys](reveal_dev_api_keys.png)
+    ![reveal_dev_api_keys](Reveal_dev_api_keys.png)
 
     * On the above page where you see **"Standard Keys"** in the center of the page:
 
