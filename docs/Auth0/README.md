@@ -26,7 +26,7 @@ Auth0 is the service used for authenticating our application's users. To use thi
 
 ![app-type](./app-type.png)
 
-7. Once the app has been created, locate the API keys in the top fields of the `Settings` tab, and copy them into the `.env` file located in the `server/` directory.
+7. Once you've created the app, locate the API keys in the top fields of the `Settings` tab, and copy them into the `.env` file located in the `server/` directory.
 
 ![app-keys](./app-keys.png)
 
