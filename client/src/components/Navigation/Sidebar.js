@@ -36,6 +36,7 @@ export default class Sidebar extends Component {
       <div>
         <Menu
           customBurgerIcon={ false }
+          customCrossIcon={ false }
           isOpen={this.state.menuOpen}
           onStateChange={state => this.handleStateChange(state)}
           right
@@ -50,7 +51,7 @@ export default class Sidebar extends Component {
           <Link to="/profile">
             <Button color="danger">
               <FontAwesomeIcon icon="user" />
-              <span>Profile</span>
+              <span className="middle-button">Profile</span>
             </Button>
           </Link>
           <a href={this.logoutUrl}>
