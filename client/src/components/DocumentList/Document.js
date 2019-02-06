@@ -25,7 +25,7 @@ class Document extends Component {
     updated = moment(updated).calendar();
 
     return (
-      <Card onClick={this.navigate}>
+      <Card onClick={this.navigate} className="documentCard">
         <CardBody>
           <CardTitle>
             <Row>
