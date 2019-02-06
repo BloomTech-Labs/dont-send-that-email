@@ -46,7 +46,7 @@ class Document extends Component {
                 style={{ marginTop: 3, marginBottom: 3 }}
                 className="text-truncate"
               >
-                <Badge className="textBadge">Text</Badge> {text}
+                <Badge className="textBadge">Message</Badge> {text}
               </Col>
             </Row>
           </CardTitle>
