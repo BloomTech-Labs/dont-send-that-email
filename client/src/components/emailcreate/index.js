@@ -349,7 +349,7 @@ class NewEmail extends Component {
             </InputGroup>
           </Col>
           <Col md={12} lg={{ size: 4 }}>
-            <Card className="no-transition" body>
+            <Card className="no-transition emailCard" body>
               <ButtonGroup vertical>
                 {this.navigationButtons()}
                 {this.actionButtons()}
