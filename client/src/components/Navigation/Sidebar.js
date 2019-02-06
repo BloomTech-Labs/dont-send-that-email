@@ -60,7 +60,7 @@ export default class Sidebar extends Component {
             </Button>
           </a>
         </Menu>
-        {/* <FontAwesomeIcon onClick={() => this.toggleMenu()} icon="times" /> */}
+        {/* Hamburger */}
         <button className={classes} onClick={this.toggleMenu} type="button">
           <span className="hamburger-box">
             <span className="hamburger-inner" />
