@@ -55,7 +55,7 @@ class DocumentList extends Component {
     <Card
       className={param !== "single" ? "documentCard" : null}
       onClick={this.redirectToCreateEmailPage}
-      style={{ width: "100%", height: 188.5 }}
+      style={{ width: "100%", height: 193 }}
     >
       <CardBody style={{ textAlign: "center" }}>
         <CardTitle style={{ marginTop: 5, marginBottom: 20 }}>
