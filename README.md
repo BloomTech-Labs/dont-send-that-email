@@ -3,7 +3,7 @@ Don't Send That Email!
 
 
 *Don’t Send That Email* helps users send messages to coworkers, family or friends that convey the right tone. Sometimes it's hard to intepret the emotional message of an email or text.
-*DSTE* uses an AI to preview the emotional tone of a message. Users can avoid sending a work email that sounds too casual. They can send personal messages that avoid negativity or hostility.
+*DSTE* uses an AI to preview the emotional tone of a message. Users can avoid sending a work email that sounds too casual. They can send personal messages that avoids negativity or hostility.
 This puts a barrier between you and a bad email or messaging experience. We'll help you send a good email that conveys the right emotional tone.
 
 
@@ -48,38 +48,57 @@ To clone the app to your local machine, follow these instructions.
 
 
 
-5. You will need to make three accounts for three keys. See below on how to get these keys.
+5. You will need to make three accounts for three keys. Follow the links below to get those keys.
+
   * [IBM Watson Tone Analysis API key](docs/watson/README.md)
   * [The Stripe key](docs/stripe/README.md)
   * [Auth0 key](docs/Auth0/README.md)
 
 6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
-  Get it by typing `npm install knex`. This will install knex so you can install the database.
+  Get it by typing `npm install knex`. This will install knex so you can use the database.
 
 8. After you have Knex. In the `server` directory type `knex migrate:latest`.
 
 7. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
   You should see `Server running on port: 5000` in the `server` directory.
-  You should see `something` in the `client` directory.
+  After running `npm start` in the `client` directory you should see the app open automatically in your browser.
+
+8. You will see the working app in your browser. You should see the image on our landing page.
+
+
+*Don't send that email Landing page*
+![Don't send that email landing page](landing_page.png)
+
+To use the app:
+##### Landing Page
+  1. Click **Get Started** on the landing page.
+  2. Log in with your google account.
+
+##### A list of the user's documents
+  1. This takes you to the home page. You will see a **create email** button.
+  2. Clicking the **create email** brings you to the email editing page.
+  3. Use the hamburger menu icon to navigate to **Home** **Profile** or to **Sign Out**.
+
+##### Edit a message page
+  1. You can fill in the fields with your addressee, subject and email body.
+  2. At any time you can click **save** or **analyze**
+  3. If you change the message you can save again. 
+  4. Use the **left** and **right** arrow buttons to navigate between older and newer versions of your message.
+  5. At anytime you can click **save** to save a new version or **analyze** to update the analysis of your message.
+
+
+##### Profile Page
+  1. Here you can view your user privleges.
+  2. You can **Subscribe** by clicking the button.
 
 
 
-
+##### Visit our live site by clicking the link below
 
 Live Page URL: https://dont-send-that-email.netlify.com/
 
 
 
-Click 'Get Started' on the Landing Page.
-
-Log in with a google account.
-
-This takes us to the home page, where documents are displayed. We can navigate to the create email page by clicking the 'Create Email' button. 
-
-On the create email page, there are three input fields. From top to bottom, they are: the title of the email; the addressee of the email; and the body of the email.
-We can click the 'Previous' or 'Next' arrow buttons to switch between versions of emails we have written. We can click on the 'Analyze' button to have our email analyzed for emotion analysis. We can click on the 'Save' button to save any changes made to their email. Lastly, we can send an email using the 'Send' button.
-
-We can navigate to the Profile page to see user info and comparisons between free and paid services for the app. The 'Subscribe 30 Days' button can be clicked to add payment details and pay for a month of subscription.
 
 Tech Used:
     Front End: React, React Router, Reactstrap, Axios
