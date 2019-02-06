@@ -23,27 +23,27 @@ To clone the app to your local machine, follow these instructions.
 
 *An example of the server .env file*
 
-``` STRIPE\_API\_KEY=paste your own key here
-    AUTH0\_CLIENT\_ID=paste your own key here
-    AUTH0\_DOMAIN=dont-send-that-email.auth0.com
-    AUTH0\_CLIENT\_SECRET=paste your own key here
-    AUTH0\_CALLBACK\_URL=http://localhost:5000/auth/callback
-    API\_KEY=paste your own Watson key here
-    REACT\_APP\_BACKEND\_URL="http://localhost:5000"
-    FRONT\_END\_URL="http://localhost:3000" 
+``` STRIPE_API_KEY=paste your own key here
+    AUTH0_CLIENT_ID=paste your own key here
+    AUTH0_DOMAIN=dont-send-that-email.auth0.com
+    AUTH0_CLIENT_SECRET=paste your own key here
+    AUTH0_CALLBACK_URL=http://localhost:5000/auth/callback
+    API_KEY=paste your own Watson key here
+    REACT_APP_BACKEND_URL="http://localhost:5000"
+    FRONT_END_URL="http://localhost:3000" 
 ```
 
 
 *An example of the client .env file*
 
 ```
-    REACT\_APP\_LOGIN\_URL="http://localhost:5000/auth/login"
-    REACT\_APP\_PROFILE_URL="http://localhost:5000/auth/profile"
-    REACT\_APP\_EMAILS_URL="http://localhost:5000/emails/"
-    REACT\_APP\_PAYMENT_SERVER_URL="http://localhost:5000/billing"
-    REACT\_APP\_STRIPE\_API\_PUBLISH\_KEY="paste your own key here"
-    REACT\_APP\_BACKEND\_URL="http://localhost:5000"
-    FRONT\_END\_URL="http://localhost:3000" 
+    REACT_APP_LOGIN_URL="http://localhost:5000/auth/login"
+    REACT_APP_PROFILE_URL="http://localhost:5000/auth/profile"
+    REACT_APP_EMAILS_URL="http://localhost:5000/emails/"
+    REACT_APP_PAYMENT_SERVER_URL="http://localhost:5000/billing"
+    REACT_APP_STRIPE_API_PUBLISH_KEY="paste your own key here"
+    REACT_APP_BACKEND_URL="http://localhost:5000"
+    FRONT_END_URL="http://localhost:3000" 
 ```
 
 
