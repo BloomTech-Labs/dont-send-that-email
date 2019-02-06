@@ -70,8 +70,8 @@
   @media (min-width: 411px) {
     .hamburger {
       position: absolute;
-      width: 36px;
-      height: 30px;
+      width: 24px;
+      height: 18px;
       right: 15px;
       top: 25px;
     }
