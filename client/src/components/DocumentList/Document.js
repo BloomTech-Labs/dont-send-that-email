@@ -28,10 +28,14 @@ class Document extends Component {
         <CardBody>
           <CardTitle>
             <Row>
-              <Col xs={12} style={{ marginBottom: 3 }}>
+              <Col
+                xs={12}
+                style={{ marginBottom: 3 }}
+                className="text-truncate"
+              >
                 <Badge className="titleBadge">Title</Badge> {title}
               </Col>
-              <Col xs={12}>
+              <Col xs={12} className="text-truncate">
                 <Badge className="addresseeBadge">Addressee</Badge> {addressee}
               </Col>
               {updated !== "No versions." && (
@@ -60,7 +64,6 @@ class Document extends Component {
                 }}
               >
                 <FontAwesomeIcon icon="copy" />
-
               </Button>
               <Button
                 color="danger"
