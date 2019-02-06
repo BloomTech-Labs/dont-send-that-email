@@ -28,6 +28,10 @@ const Settings = props => {
                   {props.user.username}
                 </Col>
                 <Col xs={12} style={{ marginBottom: 3 }}>
+                  <Badge className="emailBadge">Email</Badge>{" "}
+                  {props.user.emailaddress}
+                </Col>
+                <Col xs={12} style={{ marginBottom: 3 }}>
                   <Badge className="tierBadge">Tier</Badge>{" "}
                   {props.user.subscribed ? "Paid" : "Free"}
                 </Col>
