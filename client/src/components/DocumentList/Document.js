@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { UncontrolledTooltip } from "reactstrap";
 import moment from "moment-timezone";
 import {
   Badge,
@@ -23,7 +22,10 @@ class Document extends Component {
   render() {
     let { title, addressee, updated, text } = this.props.email;
     updated = moment(updated).calendar();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c468277c58db73752bf0c12d117e5c99b6e9b0a
     return (
       <Card onClick={this.navigate} className="documentCard">
         <CardBody>
@@ -52,21 +54,31 @@ class Document extends Component {
           </CardTitle>
           <Row>
             <Col xs={12}>
+<<<<<<< HEAD
               <Button
                 id="copy"
                 color="secondary"
+=======
+              <Button className="copyBtn" id="copy"
+                 color="secondary"
+>>>>>>> 6c468277c58db73752bf0c12d117e5c99b6e9b0a
                 onClick={e => {
                   e.stopPropagation();
                   this.props.copy();
                 }}
               >
-                <FontAwesomeIcon icon="copy" />
-                <UncontrolledTooltip placement="left" target="copy">
-                  Copy
-                </UncontrolledTooltip>
+                <FontAwesomeIcon icon="copy" size="2x" />
+                  
               </Button>
+<<<<<<< HEAD
               <Button
                 id="Trash"
+=======
+             
+            
+
+              <Button className="trashBtn" id='Trash'
+>>>>>>> 6c468277c58db73752bf0c12d117e5c99b6e9b0a
                 color="danger"
                 onClick={e => {
                   e.stopPropagation();
@@ -74,11 +86,10 @@ class Document extends Component {
                 }}
                 style={{ marginLeft: 7 }}
               >
-                <FontAwesomeIcon icon="trash" />
-                <UncontrolledTooltip placement="right" target="Trash">
-                  Trash
-                </UncontrolledTooltip>
+                <FontAwesomeIcon icon="trash" size="2x" />
+                
               </Button>
+           
             </Col>
           </Row>
         </CardBody>

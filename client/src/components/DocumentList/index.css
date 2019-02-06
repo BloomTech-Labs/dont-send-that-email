@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .btn {
   align-content: center;
 }
@@ -22,6 +23,21 @@
     text-align: center;
   }
 }
+=======
+/* .copyBtn {
+    align-content: center;
+    background-color: #FFFFFF;
+    border-color: #66615B;
+    color: #4d4141;
+}
+
+.trashBtn {
+    background-color: #FFFFFF;
+     border-color: #f5593d; 
+    color: #f5593d;
+} */
+
+>>>>>>> 6c468277c58db73752bf0c12d117e5c99b6e9b0a
 /* Center button when there's no emails */
 .container-fluid .button-center {
   display: flex;
