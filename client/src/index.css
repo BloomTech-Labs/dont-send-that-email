@@ -28,6 +28,9 @@ body {
 .emailCard {
   margin-top: 20px;
 }
+.card {
+  border: 1px solid #ddd !important;
+}
 .email-card h2 {
   font-style: italic;
 }
