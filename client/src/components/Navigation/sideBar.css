@@ -44,6 +44,11 @@ body {
 .bm-item button span {
   width: 70%;
   text-align: left;
+  margin-left: 6em;
+}
+
+.bm-item button .middle-button {
+  margin-left: 6.25em;
 }
 
 /* Change color on hover */
@@ -179,7 +184,7 @@ body {
 /* General sidebar styles */
 .bm-menu {
   background: #fff;
-  padding: 2.5em 1.5em 0;
+  padding: 1em 1em 0;
   font-size: 1.15em;
   overflow: hidden !important;
 }
@@ -192,6 +197,7 @@ body {
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
+  margin-left: 0.35em;
 }
 
 /* Styling of overlay */
