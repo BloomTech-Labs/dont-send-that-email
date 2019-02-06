@@ -111,7 +111,7 @@ Tech Used:
 
     Services : Netlify, Heroku
 
-#Collaborators
+## Collaborators
 
 [Tai Le](https://github.com/Ta1grr)
 
