@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './assets/css/index.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Component } from "react";
+import "./assets/css/index.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tai from "./assets/img/faces/tai.png";
 import Chad from "./assets/img/faces/chad.jpg";
 import Richard from "./assets/img/faces/richard.jpeg";
@@ -13,13 +13,11 @@ import Jared from "./assets/img/faces/jared.jpg";
 import Nightsky1 from "./assets/img/gabriele.jpg";
 import Nightsky from "./assets/img/timothee.jpg";
 
-
 class LandingPage extends Component {
-
   render() {
     return (
       <div>
-        {/* Navbar */}  
+        {/* Navbar */}
         <nav
           className="navbar navbar-expand-lg fixed-top navbar-transparent"
           color-on-scroll="300"
@@ -27,10 +25,7 @@ class LandingPage extends Component {
           <div className="container">
             <div className="navbar-translate">
               <a className="navbar-brand" href={"#"}>
-              <FontAwesomeIcon 
-                icon={['fas', 'at']}
-                class="space"
-                />
+                <FontAwesomeIcon icon={["fas", "at"]} class="space" />
                 Don't send that email
               </a>
               <button
@@ -52,7 +47,7 @@ class LandingPage extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <a
-                    href={process.env.REACT_APP_BACKEND_URL + '/auth/login'}
+                    href={process.env.REACT_APP_BACKEND_URL + "/auth/login"}
                     className="nav-link"
                   >
                     <i className="nc-icon nc-button-power" />Let's get started
@@ -67,7 +62,7 @@ class LandingPage extends Component {
                     href="#"
                   >
                     <FontAwesomeIcon
-                      icon={['fab', 'twitter']}
+                      icon={["fab", "twitter"]}
                       className="fa fa-twitter"
                     />
                     <p className="d-lg-none">Twitter</p>
@@ -82,7 +77,7 @@ class LandingPage extends Component {
                     href="https://www.facebook.com"
                   >
                     <FontAwesomeIcon
-                      icon={['fab', 'facebook']}
+                      icon={["fab", "facebook"]}
                       className="fa fa-facebook-square"
                     />
                     <p className="d-lg-none">Facebook</p>
@@ -97,7 +92,7 @@ class LandingPage extends Component {
                     href="https://www.instagram.com"
                   >
                     <FontAwesomeIcon
-                      icon={['fab', 'instagram']}
+                      icon={["fab", "instagram"]}
                       className="fa fa-instagram"
                     />
                     <p className="d-lg-none">Instagram</p>
@@ -112,7 +107,7 @@ class LandingPage extends Component {
                     href="https://github.com/Lambda-School-Labs/dont-send-that-email"
                   >
                     <FontAwesomeIcon
-                      icon={['fab', 'github']}
+                      icon={["fab", "github"]}
                       className="fa fa-github"
                     />
                     <p className="d-lg-none">GitHub</p>
@@ -133,7 +128,12 @@ class LandingPage extends Component {
                 emails.
               </h3>
               <br />
-              <a href={process.env.REACT_APP_BACKEND_URL + '/auth/login'} className="btn btn-outline-neutral btn-round"><i className="fa fa-play"></i>Let's Get Started</a>
+              <a
+                href={process.env.REACT_APP_BACKEND_URL + "/auth/login"}
+                className="btn btn-outline-neutral btn-round"
+              >
+                <i className="fa fa-play" />Let's Get Started
+              </a>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ class LandingPage extends Component {
                   <h5 className="description">
                     Our product can help you in many situations, want that job
                     and need someone to ensure you give the proper tone or
-                    convey the right emotions? We got you covered. 
+                    convey the right emotions? We got you covered.
                   </h5>
                   <br />
                   <a href="#paper-kit" className="btn btn-danger btn-round">
@@ -202,7 +202,10 @@ class LandingPage extends Component {
                     </div>
                     <div className="description">
                       <h4 className="info-title">Promotions</h4>
-                      <p>Sometime knowing the proper tone can help reach new potential customers.</p>
+                      <p>
+                        Sometime knowing the proper tone can help reach new
+                        potential customers.
+                      </p>
                       <a href="#pkp" className="btn btn-link btn-danger">
                         See more
                       </a>
@@ -218,7 +221,8 @@ class LandingPage extends Component {
                     <div className="description">
                       <h4 className="info-title">Efficiency</h4>
                       <p>
-                        Our product utilize IBM Tone analyzer to ensure you get proper and accurate details.
+                        Our product utilize IBM Tone analyzer to ensure you get
+                        proper and accurate details.
                       </p>
                       <a href="#pkp" className="btn btn-link btn-danger">
                         See more
@@ -230,422 +234,533 @@ class LandingPage extends Component {
             </div>
           </div>
 
-    {/* Let's talk about us Section */}
-    <div className="section section-dark text-center team-3">
-        <div className="container">
-            <div className="row">
-            <div className="col-md-8 ml-auto mr-auto text-center">
-                <h2 className="title">Let's talk about us</h2>
-                <h5 className="description">Six Web Developers from variety of background, met each other for the first time to create a full scale application together.</h5>
-            </div>
-            </div>
-            <div className="space-top"></div>
-            <div className="row">
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Richard} alt={"Richard Pryor"} />
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Richard Verdier</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                          I think we did well.
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
+          {/* Let's talk about us Section */}
+          <div className="section section-dark text-center team-3">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-8 ml-auto mr-auto text-center">
+                  <h2 className="title">Let's talk about us</h2>
+                  <h5 className="description">
+                    Six Web Developers from variety of background, met each
+                    other for the first time to create a full scale application
+                    together.
+                  </h5>
+                </div>
+              </div>
+              <div className="space-top" />
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img
+                              className="img"
+                              src={Richard}
+                              alt={"Richard Pryor"}
                             />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
-                                className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
-                                className="fa fa-google-plus"
-                            />
-                        </a>
+                          </a>
                         </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Fred} alt={"Fred"}/>
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Fred Kohn</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                          Hello darkness my old friend.
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Richard Verdier</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            I think we did well.
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
                                 className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
                                 className="fa fa-google-plus"
-                            />
-                        </a>
+                              />
+                            </a>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Will} alt={"Will Kwon"} />
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Will Kwon</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                          Wait is the timezone issue related to stripe?
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img className="img" src={Fred} alt={"Fred"} />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Fred Kohn</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            Hello darkness my old friend.
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
                                 className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
                                 className="fa fa-google-plus"
-                            />
-                        </a>
+                              />
+                            </a>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Jared} alt={"Jared"}/>
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Jared Cuffe</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                        Debugging timezones with Richard. Almost, but not quite
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img className="img" src={Will} alt={"Will Kwon"} />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Will Kwon</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            Wait is the timezone issue related to stripe?
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
                                 className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
                                 className="fa fa-google-plus"
-                            />
-                        </a>
+                              />
+                            </a>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Tai} alt={"me"}/>
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Tai Le</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                          I love you like Kanye loves Kanye. Don't be scared of the truth. Kanye loves himself like Kanye loves Kanye.
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img className="img" src={Jared} alt={"Jared"} />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Jared Cuffe</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            Debugging timezones with Richard. Almost, but not
+                            quite
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
                                 className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
                                 className="fa fa-google-plus"
-                            />
-                        </a>
+                              />
+                            </a>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
-            </div>
-            <div className="col-md-6">
-                <div className="card card-profile card-plain">
-                <div className="row">
-                    <div className="col-md-5">
-                    <div className="card-img-top">
-                        <a href="#pablo">
-                        <img className="img" src={Chad} alt={"Chad"}/>
-                        </a>
-                    </div>
-                    </div>
-                    <div className="col-md-7">
-                    <div className="card-body text-left">
-                        <h4 className="card-title">Chad Jemmet</h4>
-                        <h6 className="card-category">Full Stack Web Developer</h6>
-                        <p className="card-description">
-                          I don't have any signal out here.
-                        </p>
-                        <div className="card-footer pull-left">
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-twitter">
-                            <FontAwesomeIcon
-                            icon={['fab', 'twitter']}
-                            className="fa fa-twitter"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-facebook">
-                            <FontAwesomeIcon
-                                icon={['fab', 'linkedin-in']}
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img className="img" src={Tai} alt={"me"} />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Tai Le</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            I love you like Kanye loves Kanye. Don't be scared
+                            of the truth. Kanye loves himself like Kanye loves
+                            Kanye.
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
                                 className="fa fa-linkedin"
-                            />
-                        </a>
-                        <a href="#pablo" className="btn btn-just-icon btn-link btn-google">
-                            <FontAwesomeIcon 
-                                icon={['fab', 'google-plus-g']}
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
                                 className="fa fa-google-plus"
-                            />
-                        </a>
+                              />
+                            </a>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="card-img-top">
+                          <a href="#pablo">
+                            <img className="img" src={Chad} alt={"Chad"} />
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-md-7">
+                        <div className="card-body text-left">
+                          <h4 className="card-title">Chad Jemmet</h4>
+                          <h6 className="card-category">
+                            Full Stack Web Developer
+                          </h6>
+                          <p className="card-description">
+                            I don't have any signal out here.
+                          </p>
+                          <div className="card-footer pull-left">
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-twitter"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "twitter"]}
+                                className="fa fa-twitter"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-facebook"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "linkedin-in"]}
+                                className="fa fa-linkedin"
+                              />
+                            </a>
+                            <a
+                              href="#pablo"
+                              className="btn btn-just-icon btn-link btn-google"
+                            >
+                              <FontAwesomeIcon
+                                icon={["fab", "google-plus-g"]}
+                                className="fa fa-google-plus"
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-        </div>
-        </div>
-        {/* Pricing Section */}
-        <div className="pricing-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 ml-auto mr-auto text-center">
-                <h2 className="title">Pick the best plan for you</h2>
-                <h5 className="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
-                <br/>
           </div>
-        </div>
-        <div className="space-top"></div>
-        <div className="row">
-          <div className="col-md-4">
-            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky})`}}>
-              <div className="card-body">
-                <h6 className="card-category">Free</h6>
-                <h1 className="card-title">
-                  <small>$</small>0
-                  <small>/mo</small>
-                </h1>
-                <ul>
-                  <li>
-                    <b>100</b> email analyses per 30 days
-                  </li>
-                  <li>
-                    <b>5</b> emails in storage at one time.</li>
-                  <li>
-                    <b>No</b> Sending Emails</li>
-                  {/* <li>
+          {/* Pricing Section */}
+          <div className="pricing-2">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 ml-auto mr-auto text-center">
+                  <h2 className="title">Pick the best plan for you</h2>
+                  <h5 className="description">
+                    You have Free Unlimited Updates and Premium Support on each
+                    package.
+                  </h5>
+                  <br />
+                </div>
+              </div>
+              <div className="space-top" />
+              <div className="row">
+                <div className="col-md-4">
+                  <div
+                    className="card card-pricing"
+                    data-background="image"
+                    style={{ backgroundImage: `url(${Nightsky})` }}
+                  >
+                    <div className="card-body">
+                      <h6 className="card-category">Free</h6>
+                      <h1 className="card-title">
+                        <small>$</small>0
+                        <small>/mo</small>
+                      </h1>
+                      <ul>
+                        <li>
+                          <b>100</b> email analyses per 30 days
+                        </li>
+                        <li>
+                          <b>5</b> emails in storage at one time.
+                        </li>
+                        <li>
+                          <b>No</b> Sending Emails
+                        </li>
+                        {/* <li>
                     <b>2</b> Personal Brand
                   </li> */}
-                </ul>
-                <a href="#pablo" className="btn btn-danger btn-round ">
-                  Get Started
-                </a>
-              </div>
-            </div>
-          </div>
+                      </ul>
+                      <a href="#pablo" className="btn btn-danger btn-round ">
+                        Get Started
+                      </a>
+                    </div>
+                  </div>
+                </div>
 
-          <div className="col-md-4">
-            <div className="card card-pricing" data-background="image" style={{backgroundImage: `url(${Nightsky1})`}}>
-              <div className="card-body">
-                <h6 className="card-category">Premium</h6>
-                <h1 className="card-title">
-                  <small>$</small>10
-                  <small>/mo</small>
-                </h1>
-                <ul>
-                  <li>
-                    <b>Unlimited</b> Email analysis</li>
-                  <li>
-                    <b>Unlimited</b> Email storage</li>
-                  <li>
-                    <b>Unlimited</b> Sending Emails</li>
-                </ul>
-                <a href="#pablo" className="btn btn-danger btn-round">
-                  Get Started
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {/* Testimonials */}
-    <div className="testimonials-1 section-image" style={{backgroundImage: `url(${Nightsky1})`}}>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 ml-auto mr-auto text-center">
-            <h2 className="title">Our Clients Love Us</h2>
-            <h5 className="description">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</h5>
-          </div>
-        </div>
-        <div className="space-top"></div>
-        <div className="row">
-          <div className="col-md-4">
-            <div className="card card-testimonial">
-              <div className="card-icon">
-                <FontAwesomeIcon
-                icon={['fas', 'quote-right']}
-                className="fa fa-quote-right" aria-hidden="true"
-                />
-              </div>
-              <div className="card-body">
-                <p className="card-description">
-                "Best product ever! I use 'Don't Send Your Email' everytime I check my students weekly sprint for their emotional tones."
-                </p>
-                <div className="card-footer">
-                  <h4 className="card-title">Thomas Greenhalgh</h4>
-                  <h6 className="card-category">@BestPMEver</h6>
-                  <div className="card-avatar">
-                    <a href="#pablo">
-                      <img className="img" src={Thomas} alt={"Thomas"}/>
-                    </a>
+                <div className="col-md-4">
+                  <div
+                    className="card card-pricing"
+                    data-background="image"
+                    style={{ backgroundImage: `url(${Nightsky1})` }}
+                  >
+                    <div className="card-body">
+                      <h6 className="card-category">Premium</h6>
+                      <h1 className="card-title">
+                        <small>$</small>10
+                        <small>/mo</small>
+                      </h1>
+                      <ul>
+                        <li>
+                          <b>Unlimited</b> Email analyses
+                        </li>
+                        <li>
+                          <b>Unlimited</b> Email storage
+                        </li>
+                        <li>
+                          <b>Unlimited</b> Sending Emails
+                        </li>
+                      </ul>
+                      <a href="#pablo" className="btn btn-danger btn-round">
+                        Get Started
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card card-testimonial">
-              <div className="card-icon">
-              <FontAwesomeIcon
-                icon={['fas', 'quote-right']}
-                className="fa fa-quote-right" aria-hidden="true"
-                />
+          {/* Testimonials */}
+          <div
+            className="testimonials-1 section-image"
+            style={{ backgroundImage: `url(${Nightsky1})` }}
+          >
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 ml-auto mr-auto text-center">
+                  <h2 className="title">Our Clients Love Us</h2>
+                  <h5 className="description">
+                    You need more information? Check what other persons are
+                    saying about our product. They are very happy with their
+                    purchase.
+                  </h5>
+                </div>
               </div>
-              <div className="card-body">
-                <p className="card-description">
-                  "This is the best team ever, three stars across the board!"
-                </p>
-                <div className="card-footer">
-                  <h4 className="card-title">Joshua Howland</h4>
-                  <h6 className="card-category">@JHowler</h6>
-                  <div className="card-avatar">
-                    <a href="#pablo">
-                      <img className="img" src={Joshua} alt={"Joshua Howland"}/>
-                    </a>
+              <div className="space-top" />
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="card card-testimonial">
+                    <div className="card-icon">
+                      <FontAwesomeIcon
+                        icon={["fas", "quote-right"]}
+                        className="fa fa-quote-right"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="card-body">
+                      <p className="card-description">
+                        "Best product ever! I use 'Don't Send Your Email'
+                        everytime I check my students weekly sprint for their
+                        emotional tones."
+                      </p>
+                      <div className="card-footer">
+                        <h4 className="card-title">Thomas Greenhalgh</h4>
+                        <h6 className="card-category">@BestPMEver</h6>
+                        <div className="card-avatar">
+                          <a href="#pablo">
+                            <img className="img" src={Thomas} alt={"Thomas"} />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="card card-testimonial">
+                    <div className="card-icon">
+                      <FontAwesomeIcon
+                        icon={["fas", "quote-right"]}
+                        className="fa fa-quote-right"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="card-body">
+                      <p className="card-description">
+                        "This is the best team ever, three stars across the
+                        board!"
+                      </p>
+                      <div className="card-footer">
+                        <h4 className="card-title">Joshua Howland</h4>
+                        <h6 className="card-category">@JHowler</h6>
+                        <div className="card-avatar">
+                          <a href="#pablo">
+                            <img
+                              className="img"
+                              src={Joshua}
+                              alt={"Joshua Howland"}
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="card card-testimonial">
+                    <div className="card-icon">
+                      <FontAwesomeIcon
+                        icon={["fas", "quote-right"]}
+                        className="fa fa-quote-right"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="card-body">
+                      <p className="card-description">
+                        "This product is the embodient of Lambda School's heart,
+                        mind, body and soul."
+                      </p>
+                      <div className="card-footer">
+                        <h4 className="card-title">Brian Doyle</h4>
+                        <h6 className="card-category">@Bdoy</h6>
+                        <div className="card-avatar">
+                          <a href="#pablo">
+                            <img className="img" src={Brian} alt={"Brian"} />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card card-testimonial">
-              <div className="card-icon">
-              <FontAwesomeIcon
-                icon={['fas', 'quote-right']}
-                className="fa fa-quote-right" aria-hidden="true"
-                />
-              </div>
-              <div className="card-body">
-                <p className="card-description">
-                  "This product is the embodient of Lambda School's heart, mind, body and soul."
-                </p>
-                <div className="card-footer">
-                  <h4 className="card-title">Brian Doyle</h4>
-                  <h6 className="card-category">@Bdoy</h6>
-                  <div className="card-avatar">
-                    <a href="#pablo">
-                      <img className="img" src={Brian} alt={"Brian"}/>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
           {/* Contact Us */}
           <div className="section landing-section">
