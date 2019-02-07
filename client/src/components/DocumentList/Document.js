@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { UncontrolledTooltip } from "reactstrap";
 import moment from "moment-timezone";
 import {
   Badge,
@@ -25,14 +24,18 @@ class Document extends Component {
     updated = moment(updated).calendar();
 
     return (
-      <Card onClick={this.navigate}>
+      <Card onClick={this.navigate} className="documentCard">
         <CardBody>
           <CardTitle>
             <Row>
-              <Col xs={12} style={{ marginBottom: 3 }}>
+              <Col
+                xs={12}
+                style={{ marginBottom: 3 }}
+                className="text-truncate"
+              >
                 <Badge className="titleBadge">Title</Badge> {title}
               </Col>
-              <Col xs={12}>
+              <Col xs={12} className="text-truncate">
                 <Badge className="addresseeBadge">Addressee</Badge> {addressee}
               </Col>
               {updated !== "No versions." && (
@@ -46,7 +49,7 @@ class Document extends Component {
                 style={{ marginTop: 3, marginBottom: 3 }}
                 className="text-truncate"
               >
-                <Badge className="textBadge">Text</Badge> {text}
+                <Badge className="textBadge">Message</Badge> {text}
               </Col>
             </Row>
           </CardTitle>
@@ -61,12 +64,8 @@ class Document extends Component {
                 }}
               >
                 <FontAwesomeIcon icon="copy" />
-                <UncontrolledTooltip placement="left" target="copy">
-                  Copy
-                </UncontrolledTooltip>
               </Button>
               <Button
-                id="Trash"
                 color="danger"
                 onClick={e => {
                   e.stopPropagation();
@@ -75,9 +74,6 @@ class Document extends Component {
                 style={{ marginLeft: 7 }}
               >
                 <FontAwesomeIcon icon="trash" />
-                <UncontrolledTooltip placement="right" target="Trash">
-                  Trash
-                </UncontrolledTooltip>
               </Button>
             </Col>
           </Row>

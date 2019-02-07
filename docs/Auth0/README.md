@@ -10,23 +10,23 @@ Auth0 is the service used for authenticating our application's users. To use thi
 
 2. Create an account using your email or an OAuth provider.
 
-3. Choose a personal account, and skip the onboarding tutorial.
-
-![account-type](./account-type.png)
-
-4. Create a new `tenant` with a unique name.
+3. Create a new `tenant` with a unique name.
 
 ![tenant](./tenant.png)
+
+4. Choose a personal account, and skip the onboarding tutorial.
+
+![account-type](./account-type.png)
 
 5. Upon reaching your dashboard, click the `New Application` button.
 
 ![new-app](./new-app.png)
 
-6. Choose the type `Regular Web App`.
+6. Choose the type `Regular Web App`, and skip the section asking you to choose your tech stack.
 
 ![app-type](./app-type.png)
 
-7. Once the app has been created, locate the API keys in the top fields of the `Settings` tab, and copy them into the `.env` file located in the `server/` directory.
+7. Once you've created the app, locate the API keys in the top fields of the `Settings` tab, and copy them into the `.env` file located in the `server/` directory.
 
 ![app-keys](./app-keys.png)
 

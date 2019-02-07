@@ -3,7 +3,8 @@
 1. You have to create an account, confirm it via email then log in. [Go to the Stripe site and make an account](https://dashboard.stripe.com/register)
 
 
-    ![Stripe_Register](Stripe_Register.PNG)
+
+    ![Stripe_Register](Stripe_Reg.PNG)
 
      *The filled out form above is only for **example**, please provide the appropriate entries for your organization*
 

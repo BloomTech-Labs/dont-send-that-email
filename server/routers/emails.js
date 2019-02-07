@@ -18,12 +18,10 @@ router.post("/", async (req, res) => {
       await db("emails")
         .where({ id })
         .update({ title, addressee });
-      console.log("had an id", id);
     } else {
       email.id = (await db("emails")
         .insert(email)
         .returning("id"))[0];
-      console.log("made a new id", email.id);
     }
 
     if (version) {
@@ -31,7 +29,6 @@ router.post("/", async (req, res) => {
       delete version.id;
       delete version.date_created;
       version.email_id = email.id;
-      console.log("inserting version with email_id: ", version.email_id);
       version.tone_analysis = JSON.stringify(version.tone_analysis);
       await db("versions").insert(version);
     }
@@ -63,10 +60,7 @@ router.get("/:id", async (req, res) => {
   email.versions = await db("versions")
     .where({ email_id: id })
     .then(vs => {
-      console.log(`versions for email ${id}`);
       return vs.map(v => {
-        console.log("versiondata:");
-        console.log(v.tone_analysis);
         // Postgres will give us an already-parsed JSON object, but SQLite will not
         try {
           v.tone_analysis = JSON.parse(v.tone_analysis);
@@ -94,14 +88,12 @@ router.get("/", async (req, res) => {
       // Convert the list of emails into a hashtable indexed by email ID
       const hashed = {};
       emails.forEach(email => {
-        console.log(email);
         if (!hashed[email.id]) {
           hashed[email.id] = email;
         } else {
           // Replace the existing entry if the associated version is newer
           const updated = moment(email.updated);
           const hashed_updated = moment(hashed[email.id].updated);
-          // console.log(hashed_updated, updated, email.text);
           if (updated.isAfter(hashed_updated)) {
             hashed[email.id] = email;
           }

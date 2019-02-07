@@ -21,6 +21,7 @@ import {
   faArrowLeft,
   faArrowRight,
   faQuoteRight,
+  faAt,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -34,6 +35,7 @@ library.add(
   faArrowLeft,
   faArrowRight,
   faQuoteRight,
+  faAt,
   fab
 );
 

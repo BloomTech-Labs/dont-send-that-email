@@ -25,7 +25,7 @@ class NewEmail extends Component {
     title: "",
     addressee: "",
     versions: [{ text: "", tone_analysis: null }],
-    editorText: "Enter text here",
+    editorText: "",
     selected_version: 1,
     makingCall: false,
     error: false,
@@ -137,8 +137,9 @@ class NewEmail extends Component {
             });
           });
         this.setState({ editorText });
+      } else {
+        this.setState({ editorText: text });
       }
-      this.setState({ editorText: text });
     }
   };
 
@@ -209,7 +210,9 @@ class NewEmail extends Component {
       };
 
       try {
-        const { data: { id } } = await axios.post(
+        const {
+          data: { id }
+        } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
@@ -265,7 +268,7 @@ class NewEmail extends Component {
       if (this.state.componentState === 1) {
         response = "Email sent.";
       } else if (this.state.componentState === 2) {
-        response = "To send an email you need a title, addressee, and text.";
+        response = "To send an email you need a title, addressee, and message.";
       } else if (this.state.componentState === 3) {
         response = "Free users cannot send emails.";
       } else {
@@ -290,7 +293,7 @@ class NewEmail extends Component {
         response = "Saved email.";
       } else if (this.state.componentState === 6) {
         response =
-          "To save an email, one must include a title, addressee, and text.";
+          "To save an email, one must include a title, addressee, and message.";
       } else {
         response = "Something went wrong trying to save email.";
       }
@@ -311,10 +314,15 @@ class NewEmail extends Component {
       <Container className="mt-3">
         {this.sendEmailAlert()}
         {this.saveEmailAlert()}
-        <Row>
-          <Col md={12} lg={{ order: 0, size: 8 }}>
+        <Row className="top-row">
+          <Col md={12} lg={{ order: 0, size: 8 }} className="fields">
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-caps-small" /></InputGroupAddon>
+              <InputGroupAddon
+                addOnType="prepend"
+                className="input-group-addon"
+              >
+                <i className="nc-icon nc-caps-small" />
+              </InputGroupAddon>
               <Input
                 name="title"
                 value={this.state.title}
@@ -324,7 +332,12 @@ class NewEmail extends Component {
               />
             </InputGroup>
             <InputGroup className="email-fields">
-              <InputGroupAddon addOnType="prepend" className="input-group-addon"><i className="nc-icon nc-email-85" /></InputGroupAddon>
+              <InputGroupAddon
+                addOnType="prepend"
+                className="input-group-addon"
+              >
+                <i className="nc-icon nc-email-85" />
+              </InputGroupAddon>
               <Input
                 name="addressee"
                 value={this.state.addressee}
@@ -335,7 +348,7 @@ class NewEmail extends Component {
             </InputGroup>
           </Col>
           <Col md={12} lg={{ size: 4 }}>
-            <Card className="no-transition" body>
+            <Card className="no-transition emailCard" body>
               <ButtonGroup vertical>
                 {this.navigationButtons()}
                 {this.actionButtons()}
@@ -345,7 +358,7 @@ class NewEmail extends Component {
         </Row>
         <Row>
           <Col xs={{ order: 2 }} lg={{ order: 0, size: 8 }}>
-            <Label>Text</Label>
+            <Label>Message</Label>
             <ContentEditable
               html={this.state.editorText}
               onChange={this.editorInput}
@@ -353,7 +366,7 @@ class NewEmail extends Component {
               style={{ height: "auto", minHeight: "150px" }}
             />
           </Col>
-          <Col xs={{ order: 1 }} lg={{ size: 4 }} style={{ marginBottom: 10 }}>
+          <Col xs={{ order: 1 }} lg={{ size: 4 }} className="analysis">
             <Analysis
               error={this.state.error}
               toneAnalysis={this.selectedVersion().tone_analysis}

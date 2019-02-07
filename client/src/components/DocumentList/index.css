@@ -7,8 +7,8 @@
   .textBadge,
   .updatedBadge,
   .addresseeBadge {
-    width: 18%;
-    margin-right: 2%;
+    width: 25%;
+    margin-right: 3%;
     text-align: center;
   }
 }
@@ -17,8 +17,8 @@
   .textBadge,
   .updatedBadge,
   .addresseeBadge {
-    width: 12.5%;
-    margin-right: 2%;
+    width: 15%;
+    margin-right: 3%;
     text-align: center;
   }
 }
@@ -41,13 +41,6 @@
 @media (min-width: 1200px) {
   .card-columns {
     column-count: 2 !important;
-  }
-  .titleBadge,
-  .textBadge,
-  .updatedBadge,
-  .addresseeBadge {
-    width: 13%;
-    text-align: center;
   }
 }
 

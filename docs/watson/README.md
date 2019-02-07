@@ -6,12 +6,12 @@
 
   In the lower right corner there is a `create` button. Click it to create your Watson Tone Analyzer resource.
 
-  ![create a resource](./lower_right_button.png)
+  ![create a resource](lower_right_button.png)
 
 
 3. After you create the resource you will see a menu on the left. It looks like this.
 
-  ![Sidebar menu](./sidebar_menu.png)
+ ![Sidebar menu](sidebar_menu.png)
 
 
 4. Click on the `Service Credentials` option.
@@ -23,6 +23,6 @@
    The API key data will look like this:
  
 
-![api key data](./api_key_data.png)
+![api key data](api_key_data.png)
 
 7. Copy and paste this API key into your `.env` file located in the root of the `server` directory.

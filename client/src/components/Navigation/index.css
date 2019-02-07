@@ -16,12 +16,24 @@
 @media (max-width: 1024px) {
     .nav {
         margin-left: auto;
-        margin-right: 45px;
+        margin-right: 60px;
     }
 }
 
+@media (max-width: 1290px) {
+    .nav {
+        margin-right: 30px;
+    }
+}
 
+/* Spacing between Brand Logo and Brand */
+.navbar-brand .space {
+    padding-right: 3px;
+    width: 20px;
+    vertical-align: text-bottom;
+}
 
-nav ul li .nav-item {
+nav .nav-item {
     color: null;
+    margin-right: 20px;
 }
