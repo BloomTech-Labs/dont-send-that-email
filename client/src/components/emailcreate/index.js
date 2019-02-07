@@ -275,7 +275,7 @@ class NewEmail extends Component {
     if (this.state.componentState === 9) {
       return (
         <UncontrolledAlert
-          color="danger"
+          color="info"
           onClick={this.resetComponentState}
           className="mt-2"
         >
