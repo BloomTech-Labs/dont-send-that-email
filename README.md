@@ -54,10 +54,10 @@ To clone the app to your local machine, follow these instructions.
   * [The Stripe key](docs/stripe/stripe.md)
   * [Auth0 key](docs/Auth0/README.md)
 
-6. In the `server` directory you need to get Knex. It's a library we use to manage our databases.
-  Get it by typing `npm install knex`. This will install knex so you can use the database.
+6. In the `server` directory you need to get Knex and SQLite. These are libraries that we use to manage our database.
+  Get both of these software libraries by typing `npm install knex sqlite3` into the command line while in the `server` directory.
 
-8. After you have Knex. In the `server` directory type `knex migrate:latest`.
+8. After you have Knex and SQLite. In the `server` directory type `knex migrate:latest`.
 
 7. Once you have your keys copied into the `.env` file in both `client` and `server` directories, you can run `npm start` in both directories.
   You should see `Server running on port: 5000` in the `server` directory.
