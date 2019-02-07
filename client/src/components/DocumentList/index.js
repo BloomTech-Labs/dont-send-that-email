@@ -130,7 +130,12 @@ class DocumentList extends Component {
     }
     return null;
   };
-  onChangeHandler = () => {};
+  onChangeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      this.filterEmails()
+    );
+  };
+  filterEmails = () => {};
   emailCards = () => {
     if (this.state.emails.length === 0) {
       return (
@@ -158,6 +163,7 @@ class DocumentList extends Component {
         {this.state.emails.length > 0 ? (
           <Input
             type="text"
+            name="filterParam"
             placeholder="Enter search term"
             value={this.state.filterParam}
             onChange={this.onChangeHandler}
