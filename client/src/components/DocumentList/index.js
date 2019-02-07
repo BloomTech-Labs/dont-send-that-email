@@ -177,14 +177,20 @@ class DocumentList extends Component {
     } else {
       return (
         <Col>
-          <p className="mt-2 mb-2 text-left">
+          <p className="mt-2 mb-2">
             {this.state.filteredEmails.length} results for emails containing{" "}
             {this.state.filterParam}
           </p>
+          <Button onClick={() => this.clearFilter()} color="primary mt-2 mb-2">
+            Clear Search Filter
+          </Button>
           <CardColumns>{this.emailElements()}</CardColumns>
         </Col>
       );
     }
+  };
+  clearFilter = () => {
+    this.setState({ filterParam: "", filteredEmails: [] });
   };
   emailInput = () => {
     if (this.state.emails.length > 0) {
@@ -208,9 +214,7 @@ class DocumentList extends Component {
           <Col xs={12}>{this.emailCountAlert()}</Col>
         </Row>
         <Row>
-          <Col xs={12} md={{ size: 8, offset: 2 }}>
-            {this.emailInput()}
-          </Col>
+          <Col xs={12}>{this.emailInput()}</Col>
         </Row>
         <Row>{this.emailCards()}</Row>
       </Container>
