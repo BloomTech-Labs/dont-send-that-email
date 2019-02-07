@@ -24,7 +24,7 @@ const Settings = props => {
             <CardBody>
               <Row>
                 <Col xs={12} style={{ marginBottom: 3 }}>
-                  <Badge className="userBadge">Username</Badge>{" "}
+                  <Badge className="userBadge">Name</Badge>{" "}
                   {props.user.username}
                 </Col>
                 <Col xs={12} style={{ marginBottom: 3 }}>
@@ -33,7 +33,7 @@ const Settings = props => {
                 </Col>
                 {props.user.subscribed ? (
                   <Col xs={12} style={{ marginBottom: 3 }}>
-                    <Badge className="expireBadge">Expiration</Badge>
+                    <Badge className="expireBadge">Ends</Badge>
                     {" " + dateFormat(props.user.subscriptionEnd)}
                   </Col>
                 ) : null}

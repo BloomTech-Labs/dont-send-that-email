@@ -1,8 +1,7 @@
 .userBadge,
 .tierBadge,
-.expireBadge,
-.emailBadge {
-  width: 25%;
+.expireBadge {
+  width: 17%;
   margin-right: 3%;
   text-align: center;
 }
