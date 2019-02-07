@@ -9,7 +9,8 @@ import {
   Col,
   Container,
   Row,
-  Button
+  Button,
+  Input
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import Document from "./Document";
@@ -19,7 +20,9 @@ import "./index.css";
 class DocumentList extends Component {
   state = {
     emails: [],
-    componentState: 0
+    componentState: 0,
+    filterParam: "",
+    filteredEmails: []
   };
 
   componentDidMount = async () => {
@@ -127,7 +130,7 @@ class DocumentList extends Component {
     }
     return null;
   };
-
+  onChangeHandler = () => {};
   emailCards = () => {
     if (this.state.emails.length === 0) {
       return (
@@ -152,6 +155,14 @@ class DocumentList extends Component {
         <Row>
           <Col xs={12}>{this.emailCountAlert()}</Col>
         </Row>
+        {this.state.emails.length > 0 ? (
+          <Input
+            type="text"
+            placeholder="Enter search term"
+            value={this.state.filterParam}
+            onChange={this.onChangeHandler}
+          />
+        ) : null}
         <Row>{this.emailCards()}</Row>
       </Container>
     );
