@@ -178,8 +178,15 @@ class DocumentList extends Component {
       return (
         <Col>
           <p className="mt-2 mb-2">
-            {this.state.filteredEmails.length} results for emails containing{" "}
-            {this.state.filterParam}
+            {this.state.filteredEmails.length !== 1 ? (
+              `${this.state.filteredEmails
+                .length} results for emails containing${" "}
+            ${this.state.filterParam}`
+            ) : (
+              `${this.state.filteredEmails
+                .length} result for emails containing${" "}
+              ${this.state.filterParam}`
+            )}
           </p>
           <Button onClick={() => this.clearFilter()} color="primary mt-2 mb-2">
             Clear Search Filter
