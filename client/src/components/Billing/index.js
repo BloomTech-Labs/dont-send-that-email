@@ -25,7 +25,7 @@ class Billing extends Component {
           </Col>
           <Col xs={12}>
             <Card className="no-transition">
-              <CardHeader>Paid User Privileges</CardHeader>
+              <CardHeader>Premium User Privileges</CardHeader>
               <CardBody>
                 <ul>
                   <li>
