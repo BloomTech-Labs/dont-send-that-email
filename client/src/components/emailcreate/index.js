@@ -174,10 +174,15 @@ class NewEmail extends Component {
             { withCredentials: true }
           )
           .then(res => {
+            const tone_analysis = res.data;
+            let componentState = 0;
+            if (tone_analysis.document_tone && !tone_analysis.sentences_tone) {
+              componentState = 9;
+            }
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState(
-              { versions, error: false, makingCall: false },
+              { versions, error: false, makingCall: false, componentState },
               this.processTone
             );
           })
@@ -213,7 +218,9 @@ class NewEmail extends Component {
       };
 
       try {
-        const { data: { id } } = await axios.post(
+        const {
+          data: { id }
+        } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
@@ -263,6 +270,21 @@ class NewEmail extends Component {
       <Button onClick={this.sendEmail}>Send</Button>
     </ButtonGroup>
   );
+
+  toneAlert = () => {
+    if (this.state.componentState === 9) {
+      return (
+        <UncontrolledAlert
+          color="danger"
+          onClick={this.resetComponentState}
+          className="mt-2"
+        >
+          Document is too short for sentence-level analysis.
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
   sendEmailAlert = () => {
     if (this.state.componentState >= 1 && this.state.componentState <= 4) {
       let response;
@@ -315,11 +337,12 @@ class NewEmail extends Component {
       <Container className="mt-3">
         {this.sendEmailAlert()}
         {this.saveEmailAlert()}
+        {this.toneAlert()}
         <Row className="top-row">
           <Col md={12} lg={{ order: 0, size: 8 }} className="fields">
             <InputGroup className="email-fields">
               <InputGroupAddon
-                addOnType="prepend"
+                addonType="prepend"
                 className="input-group-addon"
               >
                 <i className="nc-icon nc-caps-small" />
@@ -334,7 +357,7 @@ class NewEmail extends Component {
             </InputGroup>
             <InputGroup className="email-fields">
               <InputGroupAddon
-                addOnType="prepend"
+                addonType="prepend"
                 className="input-group-addon"
               >
                 <i className="nc-icon nc-email-85" />
