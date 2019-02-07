@@ -136,9 +136,11 @@ class DocumentList extends Component {
     );
   };
   filterEmails = () => {
-    let filteredEmails = this.state.emails.slice();
-    const filterParam = this.state.filterParam.toLowerCase();
+    //slow function 3n^2 runtime
+    let filteredEmails = this.state.emails.slice(); //copy over the emails array
+    const filterParam = this.state.filterParam.toLowerCase(); //make filteParam lowercase
     filteredEmails = filteredEmails.filter(
+      //filter the copied emails array to find emails with matching terms
       e =>
         e.text.toLowerCase().includes(filterParam) ||
         e.title.toLowerCase().includes(filterParam) ||
@@ -163,22 +165,32 @@ class DocumentList extends Component {
       </Col>
     );
   };
-
+  emailInput = () => {
+    if (this.state.emails.length > 0) {
+      return (
+        <Input
+          type="text"
+          name="filterParam"
+          placeholder="Enter search term"
+          value={this.state.filterParam}
+          onChange={this.onChangeHandler}
+        />
+      );
+    } else {
+      return null;
+    }
+  };
   render() {
     return (
       <Container className="mt-3">
         <Row>
           <Col xs={12}>{this.emailCountAlert()}</Col>
         </Row>
-        {this.state.emails.length > 0 ? (
-          <Input
-            type="text"
-            name="filterParam"
-            placeholder="Enter search term"
-            value={this.state.filterParam}
-            onChange={this.onChangeHandler}
-          />
-        ) : null}
+        <Row>
+          <Col xs={12} md={{ size: 8, offset: 2 }}>
+            {this.emailInput()}
+          </Col>
+        </Row>
         <Row>{this.emailCards()}</Row>
       </Container>
     );
