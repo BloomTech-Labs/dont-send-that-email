@@ -115,9 +115,7 @@ class NewEmail extends Component {
   processTone = () => {
     let { text, tone_analysis } = this.selectedVersion();
     if (text) {
-      console.log("text available");
       if (tone_analysis && tone_analysis.sentences_tone) {
-        console.log("tone analysis available");
         const colors = {
           Joy: "success",
           Anger: "danger",
@@ -135,7 +133,6 @@ class NewEmail extends Component {
             const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
             const color = colors[tone.tone_name];
             editorText = editorText.replace(re, match => {
-              console.log("matched, ", match);
               return this.tonalSentence(color, match);
             });
           });
@@ -213,7 +210,9 @@ class NewEmail extends Component {
       };
 
       try {
-        const { data: { id } } = await axios.post(
+        const {
+          data: { id }
+        } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers
