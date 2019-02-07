@@ -27,7 +27,7 @@ class NewEmail extends Component {
     versions: [{ text: "", tone_analysis: null }],
     editorText: "",
     selected_version: 1,
-    makingCall: false,
+    analyzingEmail: false,
     error: false,
     componentState: 0
   };
@@ -159,8 +159,8 @@ class NewEmail extends Component {
   };
 
   analyzeText = () => {
-    if (!this.state.makingCall) {
-      this.setState({ makingCall: true }, () => {
+    if (!this.state.analyzingEmail) {
+      this.setState({ analyzingEmail: true }, () => {
         axios
           .post(
             process.env.REACT_APP_BACKEND_URL + "/api/watson",
@@ -179,11 +179,11 @@ class NewEmail extends Component {
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState(
-              { versions, error: false, makingCall: false, componentState },
+              { versions, error: false, analyzingEmail: false, componentState },
               this.processTone
             );
           })
-          .catch(err => this.setState({ error: err, makingCall: false }));
+          .catch(err => this.setState({ error: err, analyzingEmail: false }));
       });
     }
   };
@@ -215,9 +215,7 @@ class NewEmail extends Component {
       };
 
       try {
-        const {
-          data: { id }
-        } = await axios.post(
+        const { data: { id } } = await axios.post(
           process.env.REACT_APP_BACKEND_URL + "/emails",
           body,
           headers

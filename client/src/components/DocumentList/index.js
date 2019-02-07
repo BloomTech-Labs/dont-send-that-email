@@ -22,7 +22,8 @@ class DocumentList extends Component {
     emails: [],
     componentState: 0,
     filterParam: "",
-    filteredEmails: []
+    filteredEmails: [],
+    makingCopy: 0
   };
 
   componentDidMount = async () => {
@@ -103,21 +104,26 @@ class DocumentList extends Component {
   };
 
   copyEmail = ({ title, addressee, text }) => e => {
-    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-      text = text || "";
-      const version = { text };
-      const body = { email: { title, addressee }, version: version };
-      axios
-        .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
-          withCredentials: true
-        })
-        .then(({ data }) => {
-          if (data.id) {
-            this.fetchEmails();
-          }
-        });
-    } else {
+    if (this.state.emails.length === 5 && !this.props.user.subscribed) {
       this.setState({ componentState: 1 });
+    }
+    if (this.state.makingCopy === 0) {
+      if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+        this.setState({ makingCopy: 1 }, () => {
+          text = text || "";
+          const version = { text };
+          const body = { email: { title, addressee }, version: version };
+          axios
+            .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
+              withCredentials: true
+            })
+            .then(({ data }) => {
+              if (data.id) {
+                this.setState({ makingCopy: 0 }, () => this.fetchEmails());
+              }
+            });
+        });
+      }
     }
   };
 
