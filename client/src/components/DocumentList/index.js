@@ -45,14 +45,23 @@ class DocumentList extends Component {
 
   emailElements = () =>
     /* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
-    this.state.emails.map((e, i) => (
-      <Document
-        key={i}
-        email={e}
-        copy={this.copyEmail(e)}
-        delete={() => this.deleteEmail(e)}
-      />
-    ));
+    this.state.filterParam === ""
+      ? this.state.emails.map((e, i) => (
+          <Document
+            key={i}
+            email={e}
+            copy={this.copyEmail(e)}
+            delete={() => this.deleteEmail(e)}
+          />
+        ))
+      : this.state.filteredEmails.map((e, i) => (
+          <Document
+            key={i}
+            email={e}
+            copy={this.copyEmail(e)}
+            delete={() => this.deleteEmail(e)}
+          />
+        ));
 
   emailCreateButton = param => (
     <Card
@@ -156,14 +165,16 @@ class DocumentList extends Component {
         </Container>
       );
     }
-    return (
-      <Col>
-        <CardColumns>
-          {this.emailCreateButton()}
-          {this.emailElements()}
-        </CardColumns>
-      </Col>
-    );
+    if (this.state.filterParam === "") {
+      return (
+        <Col>
+          <CardColumns>
+            {this.emailCreateButton()}
+            {this.emailElements()}
+          </CardColumns>
+        </Col>
+      );
+    }
   };
   emailInput = () => {
     if (this.state.emails.length > 0) {
