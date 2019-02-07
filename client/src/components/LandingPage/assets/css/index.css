@@ -425,3 +425,7 @@ p {
     width: 20px;
     vertical-align: text-bottom;
 }
+
+.card-profile {
+    border: 0 none !important;
+}
