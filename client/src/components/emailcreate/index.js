@@ -28,6 +28,7 @@ class NewEmail extends Component {
     editorText: "",
     selected_version: 1,
     analyzingEmail: false,
+    sendingEmail: false,
     error: false,
     componentState: 0
   };
@@ -87,23 +88,29 @@ class NewEmail extends Component {
     ) {
       this.setState({ componentState: 2 });
     } else {
-      axios
-        .post(
-          process.env.REACT_APP_BACKEND_URL + "/sendemail",
-          {
-            title: this.state.title,
-            text: this.selectedVersion().text,
-            addressee: this.state.addressee,
-            reqType: "send"
-          },
-          { withCredentials: true }
-        )
-        .then(res => this.setState({ componentState: 1 }))
-        .catch(err => {
-          err == "Error: Request failed with status code 429"
-            ? this.setState({ componentState: 3 })
-            : this.setState({ componentState: 4 });
+      if (this.state.sendingEmail === false) {
+        this.setState({ sendingEmail: true }, () => {
+          axios
+            .post(
+              process.env.REACT_APP_BACKEND_URL + "/sendemail",
+              {
+                title: this.state.title,
+                text: this.selectedVersion().text,
+                addressee: this.state.addressee,
+                reqType: "send"
+              },
+              { withCredentials: true }
+            )
+            .then(res =>
+              this.setState({ sendingEmail: false, componentState: 1 })
+            )
+            .catch(err => {
+              err == "Error: Request failed with status code 429"
+                ? this.setState({ sendingEmail: false, componentState: 3 })
+                : this.setState({ sendingEmail: false, componentState: 4 });
+            });
         });
+      }
     }
   };
 
