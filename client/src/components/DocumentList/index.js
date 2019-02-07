@@ -135,7 +135,17 @@ class DocumentList extends Component {
       this.filterEmails()
     );
   };
-  filterEmails = () => {};
+  filterEmails = () => {
+    let filteredEmails = this.state.emails.slice();
+    const filterParam = this.state.filterParam.toLowerCase();
+    filteredEmails = filteredEmails.filter(
+      e =>
+        e.text.toLowerCase().includes(filterParam) ||
+        e.title.toLowerCase().includes(filterParam) ||
+        e.addressee.toLowerCase().includes(filterParam)
+    );
+    return this.setState({ filteredEmails: filteredEmails });
+  };
   emailCards = () => {
     if (this.state.emails.length === 0) {
       return (
