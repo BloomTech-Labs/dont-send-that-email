@@ -174,6 +174,16 @@ class DocumentList extends Component {
           </CardColumns>
         </Col>
       );
+    } else {
+      return (
+        <Col>
+          <p className="mt-2 mb-2 text-left">
+            {this.state.filteredEmails.length} results for emails containing{" "}
+            {this.state.filterParam}
+          </p>
+          <CardColumns>{this.emailElements()}</CardColumns>
+        </Col>
+      );
     }
   };
   emailInput = () => {
