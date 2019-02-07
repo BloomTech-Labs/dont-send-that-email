@@ -9,7 +9,8 @@ import {
   Col,
   Container,
   Row,
-  Button
+  Button,
+  Input
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import Document from "./Document";
@@ -19,7 +20,9 @@ import "./index.css";
 class DocumentList extends Component {
   state = {
     emails: [],
-    componentState: 0
+    componentState: 0,
+    filterParam: "",
+    filteredEmails: []
   };
 
   componentDidMount = async () => {
@@ -42,14 +45,23 @@ class DocumentList extends Component {
 
   emailElements = () =>
     /* I think we have to check for message ID. If it is already being mapped. Then skip others with the same ID*/
-    this.state.emails.map((e, i) => (
-      <Document
-        key={i}
-        email={e}
-        copy={this.copyEmail(e)}
-        delete={() => this.deleteEmail(e)}
-      />
-    ));
+    this.state.filterParam === ""
+      ? this.state.emails.map((e, i) => (
+          <Document
+            key={i}
+            email={e}
+            copy={this.copyEmail(e)}
+            delete={() => this.deleteEmail(e)}
+          />
+        ))
+      : this.state.filteredEmails.map((e, i) => (
+          <Document
+            key={i}
+            email={e}
+            copy={this.copyEmail(e)}
+            delete={() => this.deleteEmail(e)}
+          />
+        ));
 
   emailCreateButton = param => (
     <Card
@@ -127,7 +139,24 @@ class DocumentList extends Component {
     }
     return null;
   };
-
+  onChangeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      this.filterEmails()
+    );
+  };
+  filterEmails = () => {
+    //slow function 3n^2 runtime
+    let filteredEmails = this.state.emails.slice(); //copy over the emails array
+    const filterParam = this.state.filterParam.toLowerCase(); //make filteParam lowercase
+    filteredEmails = filteredEmails.filter(
+      //filter the copied emails array to find emails with matching terms
+      e =>
+        e.text.toLowerCase().includes(filterParam) ||
+        e.title.toLowerCase().includes(filterParam) ||
+        e.addressee.toLowerCase().includes(filterParam)
+    );
+    return this.setState({ filteredEmails: filteredEmails });
+  };
   emailCards = () => {
     if (this.state.emails.length === 0) {
       return (
@@ -136,21 +165,65 @@ class DocumentList extends Component {
         </Container>
       );
     }
-    return (
-      <Col>
-        <CardColumns>
-          {this.emailCreateButton()}
-          {this.emailElements()}
-        </CardColumns>
-      </Col>
-    );
+    if (this.state.filterParam === "") {
+      return (
+        <Col>
+          <CardColumns>
+            {this.emailCreateButton()}
+            {this.emailElements()}
+          </CardColumns>
+        </Col>
+      );
+    } else {
+      return (
+        <Col>
+          <p className="mt-2 mb-2">
+            {this.state.filteredEmails.length !== 1 ? (
+              `${this.state.filteredEmails
+                .length} results for emails containing${" "}
+            ${this.state.filterParam}`
+            ) : (
+              `${this.state.filteredEmails
+                .length} result for emails containing${" "}
+              ${this.state.filterParam}`
+            )}
+          </p>
+          <Button onClick={() => this.clearFilter()} color="primary mt-2 mb-2">
+            Clear Search Filter
+          </Button>
+          <CardColumns>{this.emailElements()}</CardColumns>
+        </Col>
+      );
+    }
   };
-
+  clearFilter = () => {
+    this.setState({ filterParam: "", filteredEmails: [] });
+  };
+  emailInput = () => {
+    if (this.state.emails.length > 0) {
+      return (
+        <Input
+          type="text"
+          name="filterParam"
+          placeholder="Enter search term"
+          value={this.state.filterParam}
+          onChange={this.onChangeHandler}
+        />
+      );
+    } else {
+      return null;
+    }
+  };
   render() {
     return (
       <Container className="mt-3">
         <Row>
           <Col xs={12}>{this.emailCountAlert()}</Col>
+        </Row>
+        <Row>
+          <Col xs={12} xl={6}>
+            {this.emailInput()}
+          </Col>
         </Row>
         <Row>{this.emailCards()}</Row>
       </Container>
