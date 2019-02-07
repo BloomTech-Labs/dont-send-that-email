@@ -29,7 +29,7 @@ const Settings = props => {
                 </Col>
                 <Col xs={12} style={{ marginBottom: 3 }}>
                   <Badge className="tierBadge">Tier</Badge>{" "}
-                  {props.user.subscribed ? "Paid" : "Free"}
+                  {props.user.subscribed ? "Premium" : "Free"}
                 </Col>
                 {props.user.subscribed ? (
                   <Col xs={12} style={{ marginBottom: 3 }}>
