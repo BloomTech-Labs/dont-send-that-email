@@ -2,17 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment-timezone";
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardText,
-  CardTitle,
-  CardSubtitle,
-  Row,
-  Col
-} from "reactstrap";
+import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from "reactstrap";
 
 class Document extends Component {
   navigate = () => {

@@ -8,7 +8,7 @@ import {
   Container
 } from "reactstrap";
 import "./index.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -30,11 +30,8 @@ export default class Example extends React.Component {
         <Navbar color="dark" light expand="md">
           <Container>
             <NavbarBrand href="/">
-            <FontAwesomeIcon 
-                icon={['fas', 'at']}
-                class="space"
-            />
-            Don't Send That Email!
+              <FontAwesomeIcon icon={["fas", "at"]} className="space" />
+              Don't Send That Email!
             </NavbarBrand>
             <Nav>
               <NavItem>

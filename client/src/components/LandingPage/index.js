@@ -12,7 +12,7 @@ import Thomas from "./assets/img/faces/thomas.jpg";
 import Jared from "./assets/img/faces/jared.jpg";
 import Nightsky1 from "./assets/img/gabriele.jpg";
 import Nightsky from "./assets/img/timothee.jpg";
-import Infomercial from '../Infomercial/index';
+import Infomercial from "../Infomercial/index";
 
 class LandingPage extends Component {
   render() {
@@ -25,8 +25,8 @@ class LandingPage extends Component {
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href={"#"}>
-                <FontAwesomeIcon icon={["fas", "at"]} class="space" />
+              <a className="navbar-brand" href={"/"}>
+                <FontAwesomeIcon icon={["fas", "at"]} className="space" />
                 Don't send that email
               </a>
               <button
@@ -60,7 +60,7 @@ class LandingPage extends Component {
                     rel="tooltip"
                     title="Follow us on Twitter"
                     data-placement="bottom"
-                    href="#"
+                    href="https://www.twitter.com"
                   >
                     <FontAwesomeIcon
                       icon={["fab", "twitter"]}

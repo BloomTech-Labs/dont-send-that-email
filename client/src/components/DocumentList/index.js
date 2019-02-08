@@ -36,7 +36,7 @@ class DocumentList extends Component {
         withCredentials: true
       })
       .then(({ data }) => {
-        const { emails, err } = data;
+        const { emails } = data;
 
         if (emails) {
           this.setState({ emails, makingCopy: 0 });

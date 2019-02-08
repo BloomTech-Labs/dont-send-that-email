@@ -110,6 +110,7 @@ class NewEmail extends Component {
             )
             .catch(err => {
               //else we set sendingemail to false and componentstate to an error state
+              // eslint-disable-next-line
               err == "Error: Request failed with status code 429"
                 ? this.setState({ sendingEmail: false, componentState: 3 })
                 : this.setState({ sendingEmail: false, componentState: 4 });

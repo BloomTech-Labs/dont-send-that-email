@@ -21,7 +21,7 @@ import {
   faArrowLeft,
   faArrowRight,
   faQuoteRight,
-  faAt,
+  faAt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -41,20 +41,27 @@ library.add(
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
+    loading: false,
+    loaded: false
   };
 
   updateUser = () => {
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/auth/profile", {
-        withCredentials: true
-      })
-      .then(response => {
-        const { user, err } = response.data;
-        if (user) {
-          this.setState({ user });
-        }
+    if (this.state.loading === false) {
+      this.setState({ loading: true, loaded: false }, () => {
+        axios
+          .get(process.env.REACT_APP_BACKEND_URL + "/auth/profile", {
+            withCredentials: true
+          })
+          .then(response => {
+            const { user } = response.data;
+            if (user) {
+              this.setState({ user, loading: false, loaded: true });
+            }
+          })
+          .catch(err => this.setState({ loaded: true, loading: false }));
       });
+    }
   };
 
   handleClick = e => {
@@ -74,12 +81,19 @@ class App extends Component {
           <MainContent user={this.state.user} />
         </Container>
       );
+    } else if (
+      this.state.loading === false &&
+      this.state.loaded === true &&
+      this.state.user === null
+    ) {
+      return (
+        <div>
+          <LandingPage handleClick={this.handleClick} />
+        </div>
+      );
+    } else {
+      return <div />;
     }
-    return (
-      <div>
-        <LandingPage handleClick={this.handleClick} />
-      </div>
-    );
   }
 }
 
