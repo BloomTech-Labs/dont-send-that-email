@@ -426,6 +426,8 @@ p {
     vertical-align: text-bottom;
 }
 
+/* Fixing border around profile cards */
 .card-profile {
-    border: 0 none !important;
-}
+    border: none !important;
+  }
+

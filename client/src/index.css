@@ -25,12 +25,15 @@ body {
   justify-content: space-between;
   padding: 20px;
 }
+
 .emailCard {
   margin-top: 20px;
 }
+
 .card {
   border: 1px solid #ddd !important;
 }
+
 .documentCard {
   margin-top: 9.5px;
 }
@@ -48,4 +51,10 @@ body {
 
 .navbar {
   margin-bottom: 15px;
+}
+
+.modal-open {
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-right:0 !important;
 }
