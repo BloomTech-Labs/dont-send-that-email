@@ -20,7 +20,7 @@ class LandingPage extends Component {
       <div>
         {/* Navbar */}
         <nav
-          className="navbar navbar-expand-lg fixed-top navbar-transparent modal-nav"
+          className="navbar navbar-expand-lg fixed-top modal-nav"
           color-on-scroll="300"
         >
           <div className="container">
@@ -235,7 +235,6 @@ class LandingPage extends Component {
               </div>
             </div>
           </div>
-
           {/* Let's talk about us Section */}
           <div className="section section-dark text-center team-3">
             <div className="container">
@@ -320,7 +319,7 @@ class LandingPage extends Component {
                       </div>
                       <div className="col-md-7">
                         <div className="card-body text-left">
-                          <h4 className="card-title">Fred Kohn</h4>
+                          <h4 className="card-title">Fred Sohn</h4>
                           <h6 className="card-category">
                             Full Stack Web Developer
                           </h6>
@@ -626,7 +625,6 @@ class LandingPage extends Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="col-md-4">
                   <div
                     className="card card-pricing"
@@ -763,7 +761,6 @@ class LandingPage extends Component {
               </div>
             </div>
           </div>
-
           {/* Contact Us */}
           <div className="section landing-section">
             <div className="container">
@@ -822,5 +819,4 @@ class LandingPage extends Component {
     );
   }
 }
-
 export default LandingPage;
