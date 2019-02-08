@@ -15,17 +15,18 @@ import Nightsky from "./assets/img/timothee.jpg";
 import Infomercial from "../Infomercial/index";
 
 class LandingPage extends Component {
+
   render() {
     return (
       <div>
         {/* Navbar */}
         <nav
-          className="navbar navbar-expand-lg fixed-top"
+          className="navbar navbar-expand-lg fixed-top navbar-transparent"
           color-on-scroll="300"
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href={"#"}>
+              <a className="navbar-brand" href={"/"}>
                 <FontAwesomeIcon icon={["fas", "at"]} className="space" />
                 Don't send that email
               </a>
@@ -320,7 +321,7 @@ class LandingPage extends Component {
                       </div>
                       <div className="col-md-7">
                         <div className="card-body text-left">
-                          <h4 className="card-title">Fred Kohn</h4>
+                          <h4 className="card-title">Fred Sohn</h4>
                           <h6 className="card-category">
                             Full Stack Web Developer
                           </h6>
@@ -535,7 +536,7 @@ class LandingPage extends Component {
                       </div>
                       <div className="col-md-7">
                         <div className="card-body text-left">
-                          <h4 className="card-title">Chad Jemmet</h4>
+                          <h4 className="card-title">Chad Jemmett</h4>
                           <h6 className="card-category">
                             Full Stack Web Developer
                           </h6>
