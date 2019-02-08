@@ -12,8 +12,10 @@ const Analysis = ({ toneAnalysis, error }) => {
     Analytical: "primary",
     Tentative: "tentative"
   };
+  // eslint-disable-next-line
   if (error == "Error: Request failed with status code 429") {
     toneResult = "Free users are capped at 100 email analyses.";
+    // eslint-disable-next-line
   } else if (error == "Error: Request failed with status code 500") {
     toneResult = "The document does not have a tone to it.";
   } else if (toneAnalysis === null) {

@@ -21,7 +21,7 @@ import {
   faArrowLeft,
   faArrowRight,
   faQuoteRight,
-  faAt,
+  faAt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -50,7 +50,7 @@ class App extends Component {
         withCredentials: true
       })
       .then(response => {
-        const { user, err } = response.data;
+        const { user } = response.data;
         if (user) {
           this.setState({ user });
         }
