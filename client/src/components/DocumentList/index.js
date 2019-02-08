@@ -39,7 +39,7 @@ class DocumentList extends Component {
         const { emails, err } = data;
 
         if (emails) {
-          this.setState({ emails });
+          this.setState({ emails, makingCopy: 0 });
         }
       });
   };
@@ -104,12 +104,12 @@ class DocumentList extends Component {
   };
 
   copyEmail = ({ title, addressee, text }) => e => {
-    if (this.state.emails.length === 5 && !this.props.user.subscribed) {
-      this.setState({ componentState: 1 });
-    }
     if (this.state.makingCopy === 0) {
+      //check to see if we're already making a copy before making a copy
       if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+        //check to see if the user meets requirements to make a copy
         this.setState({ makingCopy: 1 }, () => {
+          //if so then the user is making a copy
           text = text || "";
           const version = { text };
           const body = { email: { title, addressee }, version: version };
@@ -119,10 +119,12 @@ class DocumentList extends Component {
             })
             .then(({ data }) => {
               if (data.id) {
-                this.setState({ makingCopy: 0 }, () => this.fetchEmails());
+                this.fetchEmails(); //once user makes copies we fetch his emails in that function we reset makingCopy to 0
               }
             });
         });
+      } else {
+        this.setState({ componentState: 1 }); //if user can't make a copy we notifiy him
       }
     }
   };

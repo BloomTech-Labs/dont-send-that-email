@@ -29,6 +29,7 @@ class NewEmail extends Component {
     selected_version: 1,
     analyzingEmail: false,
     sendingEmail: false,
+    savingEmail: false,
     error: false,
     componentState: 0
   };
@@ -82,6 +83,7 @@ class NewEmail extends Component {
 
   sendEmail = () => {
     if (
+      //check to make sure user meets requirements to svae email
       this.state.title.trim() === "" ||
       this.selectedVersion().text.trim() === "" ||
       this.state.addressee.trim() === ""
@@ -89,7 +91,9 @@ class NewEmail extends Component {
       this.setState({ componentState: 2 });
     } else {
       if (this.state.sendingEmail === false) {
+        //if user is not already sending email
         this.setState({ sendingEmail: true }, () => {
+          //then we start sending an email
           axios
             .post(
               process.env.REACT_APP_BACKEND_URL + "/sendemail",
@@ -101,10 +105,11 @@ class NewEmail extends Component {
               },
               { withCredentials: true }
             )
-            .then(res =>
-              this.setState({ sendingEmail: false, componentState: 1 })
+            .then(
+              res => this.setState({ sendingEmail: false, componentState: 1 }) //on success we set sending email to false and componentstate to 1
             )
             .catch(err => {
+              //else we set sendingemail to false and componentstate to an error state
               err == "Error: Request failed with status code 429"
                 ? this.setState({ sendingEmail: false, componentState: 3 })
                 : this.setState({ sendingEmail: false, componentState: 4 });
@@ -167,7 +172,9 @@ class NewEmail extends Component {
 
   analyzeText = () => {
     if (!this.state.analyzingEmail) {
+      //if user is not analyzing email
       this.setState({ analyzingEmail: true }, () => {
+        //he now analyzes email
         axios
           .post(
             process.env.REACT_APP_BACKEND_URL + "/api/watson",
@@ -186,7 +193,7 @@ class NewEmail extends Component {
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState(
-              { versions, error: false, analyzingEmail: false, componentState },
+              { versions, error: false, analyzingEmail: false, componentState }, //when done set analyzing email to false
               this.processTone
             );
           })
@@ -195,46 +202,50 @@ class NewEmail extends Component {
     }
   };
 
-  handleSave = async e => {
+  handleSave = e => {
     e.preventDefault();
     if (
       this.state.title.trim() === "" ||
       this.state.addressee.trim() === "" ||
       this.selectedVersion().text.trim() === ""
     ) {
+      //check to see if user email meets requirements to be saved
       this.setState({ componentState: 6 });
     } else {
-      const body = {
-        email: {
-          title: this.state.title,
-          addressee: this.state.addressee
-        },
-        version: this.selectedVersion()
-      };
+      if (this.state.savingEmail === false) {
+        //if user is not  saving email already
+        this.setState({ savingEmail: true }, () => {
+          //he is not saaving an email
+          const body = {
+            email: {
+              title: this.state.title,
+              addressee: this.state.addressee
+            },
+            version: this.selectedVersion()
+          };
 
-      if (this.props.match.params.id) {
-        body.email.id = this.props.match.params.id;
-      }
+          if (this.props.match.params.id) {
+            body.email.id = this.props.match.params.id;
+          }
 
-      let headers = {
-        withCredentials: true,
-        headers: { Authorization: process.env.USER_COOKIE }
-      };
-
-      try {
-        const { data: { id } } = await axios.post(
-          process.env.REACT_APP_BACKEND_URL + "/emails",
-          body,
-          headers
-        );
-        if (!this.props.match.params.id) {
-          this.props.history.push(`/email/${id}`);
-        } else {
-          this.fetchEmail(id);
-        }
-        this.setState({ componentState: 5 });
-      } catch (err) {
-        this.setState({ componentState: 7 });
+          let headers = {
+            withCredentials: true,
+            headers: { Authorization: process.env.USER_COOKIE }
+          };
+          axios
+            .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, headers)
+            .then(res => {
+              if (!this.props.match.params.id) {
+                this.props.history.push(`/email/${res.data.id}`);
+              } else {
+                this.fetchEmail(res.data.id);
+              }
+              this.setState({ componentState: 5, savingEmail: false });
+            })
+            .catch(err =>
+              this.setState({ componentState: 7, savingEmail: false })
+            );
+        });
       }
     }
   };
