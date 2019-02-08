@@ -27,7 +27,9 @@ class NewEmail extends Component {
     versions: [{ text: "", tone_analysis: null }],
     editorText: "",
     selected_version: 1,
-    makingCall: false,
+    analyzingEmail: false,
+    sendingEmail: false,
+    savingEmail: false,
     error: false,
     componentState: 0
   };
@@ -81,29 +83,39 @@ class NewEmail extends Component {
 
   sendEmail = () => {
     if (
+      //check to make sure user meets requirements to svae email
       this.state.title.trim() === "" ||
       this.selectedVersion().text.trim() === "" ||
       this.state.addressee.trim() === ""
     ) {
       this.setState({ componentState: 2 });
     } else {
-      axios
-        .post(
-          process.env.REACT_APP_BACKEND_URL + "/sendemail",
-          {
-            title: this.state.title,
-            text: this.selectedVersion().text,
-            addressee: this.state.addressee,
-            reqType: "send"
-          },
-          { withCredentials: true }
-        )
-        .then(res => this.setState({ componentState: 1 }))
-        .catch(err => {
-          err == "Error: Request failed with status code 429"
-            ? this.setState({ componentState: 3 })
-            : this.setState({ componentState: 4 });
+      if (this.state.sendingEmail === false) {
+        //if user is not already sending email
+        this.setState({ sendingEmail: true }, () => {
+          //then we start sending an email
+          axios
+            .post(
+              process.env.REACT_APP_BACKEND_URL + "/sendemail",
+              {
+                title: this.state.title,
+                text: this.selectedVersion().text,
+                addressee: this.state.addressee,
+                reqType: "send"
+              },
+              { withCredentials: true }
+            )
+            .then(
+              res => this.setState({ sendingEmail: false, componentState: 1 }) //on success we set sending email to false and componentstate to 1
+            )
+            .catch(err => {
+              //else we set sendingemail to false and componentstate to an error state
+              err == "Error: Request failed with status code 429"
+                ? this.setState({ sendingEmail: false, componentState: 3 })
+                : this.setState({ sendingEmail: false, componentState: 4 });
+            });
         });
+      }
     }
   };
 
@@ -115,9 +127,7 @@ class NewEmail extends Component {
   processTone = () => {
     let { text, tone_analysis } = this.selectedVersion();
     if (text) {
-      console.log("text available");
       if (tone_analysis && tone_analysis.sentences_tone) {
-        console.log("tone analysis available");
         const colors = {
           Joy: "success",
           Anger: "danger",
@@ -135,7 +145,6 @@ class NewEmail extends Component {
             const tone = tones.sort((a, b) => b.score - a.score)[0]; // Pull the strongest tone from the list
             const color = colors[tone.tone_name];
             editorText = editorText.replace(re, match => {
-              console.log("matched, ", match);
               return this.tonalSentence(color, match);
             });
           });
@@ -162,8 +171,10 @@ class NewEmail extends Component {
   };
 
   analyzeText = () => {
-    if (!this.state.makingCall) {
-      this.setState({ makingCall: true }, () => {
+    if (!this.state.analyzingEmail) {
+      //if user is not analyzing email
+      this.setState({ analyzingEmail: true }, () => {
+        //he now analyzes email
         axios
           .post(
             process.env.REACT_APP_BACKEND_URL + "/api/watson",
@@ -174,58 +185,67 @@ class NewEmail extends Component {
             { withCredentials: true }
           )
           .then(res => {
+            const tone_analysis = res.data;
+            let componentState = 0;
+            if (tone_analysis.document_tone && !tone_analysis.sentences_tone) {
+              componentState = 9;
+            }
             const { versions } = this.state;
             versions[this.state.selected_version - 1].tone_analysis = res.data;
             this.setState(
-              { versions, error: false, makingCall: false },
+              { versions, error: false, analyzingEmail: false, componentState }, //when done set analyzing email to false
               this.processTone
             );
           })
-          .catch(err => this.setState({ error: err, makingCall: false }));
+          .catch(err => this.setState({ error: err, analyzingEmail: false }));
       });
     }
   };
 
-  handleSave = async e => {
+  handleSave = e => {
     e.preventDefault();
     if (
       this.state.title.trim() === "" ||
       this.state.addressee.trim() === "" ||
       this.selectedVersion().text.trim() === ""
     ) {
+      //check to see if user email meets requirements to be saved
       this.setState({ componentState: 6 });
     } else {
-      const body = {
-        email: {
-          title: this.state.title,
-          addressee: this.state.addressee
-        },
-        version: this.selectedVersion()
-      };
+      if (this.state.savingEmail === false) {
+        //if user is not  saving email already
+        this.setState({ savingEmail: true }, () => {
+          //he is not saaving an email
+          const body = {
+            email: {
+              title: this.state.title,
+              addressee: this.state.addressee
+            },
+            version: this.selectedVersion()
+          };
 
-      if (this.props.match.params.id) {
-        body.email.id = this.props.match.params.id;
-      }
+          if (this.props.match.params.id) {
+            body.email.id = this.props.match.params.id;
+          }
 
-      let headers = {
-        withCredentials: true,
-        headers: { Authorization: process.env.USER_COOKIE }
-      };
-
-      try {
-        const { data: { id } } = await axios.post(
-          process.env.REACT_APP_BACKEND_URL + "/emails",
-          body,
-          headers
-        );
-        if (!this.props.match.params.id) {
-          this.props.history.push(`/email/${id}`);
-        } else {
-          this.fetchEmail(id);
-        }
-        this.setState({ componentState: 5 });
-      } catch (err) {
-        this.setState({ componentState: 7 });
+          let headers = {
+            withCredentials: true,
+            headers: { Authorization: process.env.USER_COOKIE }
+          };
+          axios
+            .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, headers)
+            .then(res => {
+              if (!this.props.match.params.id) {
+                this.props.history.push(`/email/${res.data.id}`);
+              } else {
+                this.fetchEmail(res.data.id);
+              }
+              this.setState({ componentState: 5, savingEmail: false });
+            })
+            .catch(err =>
+              this.setState({ componentState: 7, savingEmail: false })
+            );
+        });
       }
     }
   };
@@ -263,6 +283,21 @@ class NewEmail extends Component {
       <Button onClick={this.sendEmail}>Send</Button>
     </ButtonGroup>
   );
+
+  toneAlert = () => {
+    if (this.state.componentState === 9) {
+      return (
+        <UncontrolledAlert
+          color="info"
+          onClick={this.resetComponentState}
+          className="mt-2"
+        >
+          Document is too short for sentence-level analysis.
+        </UncontrolledAlert>
+      );
+    }
+    return null;
+  };
   sendEmailAlert = () => {
     if (this.state.componentState >= 1 && this.state.componentState <= 4) {
       let response;
@@ -315,11 +350,12 @@ class NewEmail extends Component {
       <Container className="mt-3">
         {this.sendEmailAlert()}
         {this.saveEmailAlert()}
+        {this.toneAlert()}
         <Row className="top-row">
           <Col md={12} lg={{ order: 0, size: 8 }} className="fields">
             <InputGroup className="email-fields">
               <InputGroupAddon
-                addOnType="prepend"
+                addonType="prepend"
                 className="input-group-addon"
               >
                 <i className="nc-icon nc-caps-small" />
@@ -334,7 +370,7 @@ class NewEmail extends Component {
             </InputGroup>
             <InputGroup className="email-fields">
               <InputGroupAddon
-                addOnType="prepend"
+                addonType="prepend"
                 className="input-group-addon"
               >
                 <i className="nc-icon nc-email-85" />

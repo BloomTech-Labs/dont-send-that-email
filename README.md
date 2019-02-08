@@ -23,12 +23,12 @@ To clone the app to your local machine, follow these instructions.
 
 *An example of the server .env file*
 
-``` STRIPE_API_KEY=paste your own key here
-    AUTH0_CLIENT_ID=paste your own key here
-    AUTH0_DOMAIN=dont-send-that-email.auth0.com
-    AUTH0_CLIENT_SECRET=paste your own key here
-    AUTH0_CALLBACK_URL=http://localhost:5000/auth/callback
-    API_KEY=paste your own Watson key here
+``` STRIPE_API_KEY="paste your own key here"
+    AUTH0_CLIENT_ID="paste your own key here"
+    AUTH0_DOMAIN="dont-send-that-email.auth0.com"
+    AUTH0_CLIENT_SECRET="paste your own key here"
+    AUTH0_CALLBACK_URL="http://localhost:5000/auth/callback"
+    API_KEY="paste your own Watson key here"
     REACT_APP_BACKEND_URL="http://localhost:5000"
     FRONT_END_URL="http://localhost:3000" 
 ```

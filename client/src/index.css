@@ -45,8 +45,8 @@ body {
   font-weight: 300;
 }
 
-.card {
-  border: 1px solid rgba(0, 0, 0, .125);
+.card-profile {
+  border: none !important;
 }
 
 .navbar {
