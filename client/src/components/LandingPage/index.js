@@ -12,6 +12,7 @@ import Thomas from "./assets/img/faces/thomas.jpg";
 import Jared from "./assets/img/faces/jared.jpg";
 import Nightsky1 from "./assets/img/gabriele.jpg";
 import Nightsky from "./assets/img/timothee.jpg";
+import Infomercial from '../Infomercial/index';
 
 class LandingPage extends Component {
   render() {
@@ -19,7 +20,7 @@ class LandingPage extends Component {
       <div>
         {/* Navbar */}
         <nav
-          className="navbar navbar-expand-lg fixed-top navbar-transparent"
+          className="navbar navbar-expand-lg fixed-top navbar-transparent modal-nav"
           color-on-scroll="300"
         >
           <div className="container">
@@ -150,9 +151,10 @@ class LandingPage extends Component {
                     convey the right emotions? We got you covered.
                   </h5>
                   <br />
-                  <a href="#paper-kit" className="btn btn-danger btn-round">
+                  {/* <a href="#paper-kit" className="btn btn-danger btn-round">
                     See Details
-                  </a>
+                  </a> */}
+                  <Infomercial />
                 </div>
               </div>
               <br />

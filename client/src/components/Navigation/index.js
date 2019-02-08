@@ -38,8 +38,8 @@ export default class Example extends React.Component {
             </NavbarBrand>
             <Nav>
               <NavItem>
-                <NavLink disabled href="#">
-                  <p className="greeting">Hello! {this.props.user.username}</p>
+                <NavLink disabled href="#" className="greeting">
+                  <p>Hello! {this.props.user.username}</p>
                 </NavLink>
               </NavItem>
             </Nav>

@@ -425,3 +425,8 @@ p {
     width: 20px;
     vertical-align: text-bottom;
 }
+
+/* Fixing border around profile cards */
+.card-profile {
+    border: none !important;
+  }
