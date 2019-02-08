@@ -42,24 +42,21 @@ library.add(
 class App extends Component {
   state = {
     user: null,
-    loading: false
+    loading: true
   };
 
   updateUser = () => {
-    if (this.state.loading === false) {
-      this.setState({ loading: true });
-      axios
-        .get(process.env.REACT_APP_BACKEND_URL + "/auth/profile", {
-          withCredentials: true
-        })
-        .then(response => {
-          const { user } = response.data;
-          if (user) {
-            this.setState({ user, loading: false });
-          }
-        })
-        .catch(err => this.setState({ loading: false }));
-    }
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/auth/profile", {
+        withCredentials: true
+      })
+      .then(response => {
+        const { user } = response.data;
+        if (user) {
+          this.setState({ user, loading: false });
+        }
+      })
+      .catch(err => this.setState({ loading: false }));
   };
 
   handleClick = e => {
