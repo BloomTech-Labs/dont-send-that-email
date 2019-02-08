@@ -29,7 +29,7 @@ class ModalExample extends React.Component {
     };
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>See Details</Button>
+        <Button color="danger" className="btn btn-danger btn-round" onClick={this.toggle}>See Details</Button>
         <Modal autoFocus isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalBody>
           <YouTube
