@@ -22,7 +22,8 @@ class DocumentList extends Component {
     emails: [],
     componentState: 0,
     filterParam: "",
-    filteredEmails: []
+    filteredEmails: [],
+    makingCopy: 0
   };
 
   componentDidMount = async () => {
@@ -38,7 +39,7 @@ class DocumentList extends Component {
         const { emails, err } = data;
 
         if (emails) {
-          this.setState({ emails });
+          this.setState({ emails, makingCopy: 0 });
         }
       });
   };
@@ -103,21 +104,28 @@ class DocumentList extends Component {
   };
 
   copyEmail = ({ title, addressee, text }) => e => {
-    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
-      text = text || "";
-      const version = { text };
-      const body = { email: { title, addressee }, version: version };
-      axios
-        .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
-          withCredentials: true
-        })
-        .then(({ data }) => {
-          if (data.id) {
-            this.fetchEmails();
-          }
+    if (this.state.makingCopy === 0) {
+      //check to see if we're already making a copy before making a copy
+      if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+        //check to see if the user meets requirements to make a copy
+        this.setState({ makingCopy: 1 }, () => {
+          //if so then the user is making a copy
+          text = text || "";
+          const version = { text };
+          const body = { email: { title, addressee }, version: version };
+          axios
+            .post(process.env.REACT_APP_BACKEND_URL + "/emails", body, {
+              withCredentials: true
+            })
+            .then(({ data }) => {
+              if (data.id) {
+                this.fetchEmails(); //once user makes copies we fetch his emails in that function we reset makingCopy to 0
+              }
+            });
         });
-    } else {
-      this.setState({ componentState: 1 });
+      } else {
+        this.setState({ componentState: 1 }); //if user can't make a copy we notifiy him
+      }
     }
   };
 
