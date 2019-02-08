@@ -3,7 +3,7 @@ import "./assets/css/index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tai from "./assets/img/faces/tai.png";
 import Chad from "./assets/img/faces/chad.jpg";
-import Richard from "./assets/img/faces/richard.jpeg";
+import Richard from "./assets/img/faces/richard.jpg";
 import Will from "./assets/img/faces/willkwon.png";
 import Fred from "./assets/img/faces/Fred.jpg";
 import Joshua from "./assets/img/faces/Joshua.png";
@@ -20,12 +20,16 @@ class LandingPage extends Component {
       <div>
         {/* Navbar */}
         <nav
+<<<<<<< HEAD
           className="navbar navbar-expand-lg fixed-top modal-nav"
+=======
+          className="navbar navbar-expand-lg fixed-top"
+>>>>>>> eac4084d3670611dc3aefafe6e03c58178cb822a
           color-on-scroll="300"
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href={"/"}>
+              <a className="navbar-brand" href={"#"}>
                 <FontAwesomeIcon icon={["fas", "at"]} className="space" />
                 Don't send that email
               </a>
