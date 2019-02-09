@@ -20,16 +20,12 @@ class LandingPage extends Component {
       <div>
         {/* Navbar */}
         <nav
-<<<<<<< HEAD
-          className="navbar navbar-expand-lg fixed-top modal-nav"
-=======
-          className="navbar navbar-expand-lg fixed-top"
->>>>>>> eac4084d3670611dc3aefafe6e03c58178cb822a
+          className="navbar navbar-expand-lg fixed-top navbar-transparent"
           color-on-scroll="300"
         >
           <div className="container">
             <div className="navbar-translate">
-              <a className="navbar-brand" href={"#"}>
+              <a className="navbar-brand" href={"/"}>
                 <FontAwesomeIcon icon={["fas", "at"]} className="space" />
                 Don't send that email
               </a>
@@ -538,7 +534,7 @@ class LandingPage extends Component {
                       </div>
                       <div className="col-md-7">
                         <div className="card-body text-left">
-                          <h4 className="card-title">Chad Jemmet</h4>
+                          <h4 className="card-title">Chad Jemmett</h4>
                           <h6 className="card-category">
                             Full Stack Web Developer
                           </h6>
