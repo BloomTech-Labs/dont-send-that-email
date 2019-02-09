@@ -51,6 +51,7 @@ class DocumentList extends Component {
           <Document
             key={i}
             email={e}
+            param={"buttons"}
             copy={this.copyEmail(e)}
             delete={() => this.deleteEmail(e)}
           />
@@ -59,6 +60,7 @@ class DocumentList extends Component {
           <Document
             key={i}
             email={e}
+            param={null}
             copy={this.copyEmail(e)}
             delete={() => this.deleteEmail(e)}
           />
