@@ -5,6 +5,7 @@ import moment from "moment-timezone";
 import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from "reactstrap";
 
 class Document extends Component {
+  // eslint-disable-next-line
   constructor(props) {
     super(props);
   }

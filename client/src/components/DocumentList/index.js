@@ -231,7 +231,7 @@ class DocumentList extends Component {
           <Col xs={12}>{this.emailCountAlert()}</Col>
         </Row>
         <Row>
-          <Col xs={12} xl={6}>
+          <Col xs={12} md={6}>
             {this.emailInput()}
           </Col>
         </Row>

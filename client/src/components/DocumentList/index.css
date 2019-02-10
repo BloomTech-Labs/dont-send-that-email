@@ -10,8 +10,38 @@
   margin-right: 3%;
   text-align: center;
 }
-
-/* Center button when there's no emails */
+@media (min-width: 400px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 18%;
+  }
+}
+@media (min-width: 500px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 14%;
+  }
+}
+@media (min-width: 768px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 23%;
+  }
+}
+@media (min-width: 1000px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 18%;
+  }
+}
 .container-fluid .button-center {
   display: flex;
   justify-content: center;
