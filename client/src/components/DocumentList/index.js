@@ -187,7 +187,7 @@ class DocumentList extends Component {
     } else {
       return (
         <Col>
-          <p className="mt-2 mb-2">
+          <p className="searchText mt-2 mb-2">
             {this.state.filteredEmails.length !== 1 ? (
               `${this.state.filteredEmails
                 .length} results for emails containing${" "}

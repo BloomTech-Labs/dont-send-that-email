@@ -7,7 +7,7 @@
 .updatedBadge,
 .addresseeBadge {
   width: 23%;
-  margin-right: 3%;
+  margin-right: 2%;
   text-align: center;
 }
 @media (min-width: 400px) {
@@ -72,4 +72,7 @@
   .nav .nav-item {
     display: none;
   }
+}
+.searchText {
+  word-wrap: break-word;
 }
