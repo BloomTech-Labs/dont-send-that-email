@@ -2,27 +2,46 @@
   align-content: center;
 }
 
-@media (max-width: 500px) {
+.titleBadge,
+.textBadge,
+.updatedBadge,
+.addresseeBadge {
+  width: 23%;
+  margin-right: 2%;
+  text-align: center;
+}
+@media (min-width: 400px) {
   .titleBadge,
   .textBadge,
   .updatedBadge,
   .addresseeBadge {
-    width: 25%;
-    margin-right: 3%;
-    text-align: center;
+    width: 18%;
   }
 }
-@media (min-width: 501px) {
+@media (min-width: 500px) {
   .titleBadge,
   .textBadge,
   .updatedBadge,
   .addresseeBadge {
-    width: 15%;
-    margin-right: 3%;
-    text-align: center;
+    width: 14%;
   }
 }
-/* Center button when there's no emails */
+@media (min-width: 768px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 23%;
+  }
+}
+@media (min-width: 1000px) {
+  .titleBadge,
+  .textBadge,
+  .updatedBadge,
+  .addresseeBadge {
+    width: 18%;
+  }
+}
 .container-fluid .button-center {
   display: flex;
   justify-content: center;
@@ -38,7 +57,7 @@
   column-count: 1 !important;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .card-columns {
     column-count: 2 !important;
   }
@@ -53,4 +72,7 @@
   .nav .nav-item {
     display: none;
   }
+}
+.searchText {
+  word-wrap: break-word;
 }

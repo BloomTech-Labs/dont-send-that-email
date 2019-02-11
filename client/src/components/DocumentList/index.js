@@ -51,6 +51,7 @@ class DocumentList extends Component {
           <Document
             key={i}
             email={e}
+            param={"buttons"}
             copy={this.copyEmail(e)}
             delete={() => this.deleteEmail(e)}
           />
@@ -59,6 +60,7 @@ class DocumentList extends Component {
           <Document
             key={i}
             email={e}
+            param={null}
             copy={this.copyEmail(e)}
             delete={() => this.deleteEmail(e)}
           />
@@ -185,7 +187,7 @@ class DocumentList extends Component {
     } else {
       return (
         <Col>
-          <p className="mt-2 mb-2">
+          <p className="searchText mt-2 mb-2">
             {this.state.filteredEmails.length !== 1 ? (
               `${this.state.filteredEmails
                 .length} results for emails containing${" "}
@@ -229,7 +231,7 @@ class DocumentList extends Component {
           <Col xs={12}>{this.emailCountAlert()}</Col>
         </Row>
         <Row>
-          <Col xs={12} xl={6}>
+          <Col xs={12} md={6}>
             {this.emailInput()}
           </Col>
         </Row>

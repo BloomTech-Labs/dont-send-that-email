@@ -259,7 +259,6 @@ class LandingPage extends Component {
               </div>
             </div>
           </div>
-
           {/* Let's talk about us Section */}
           <div className="section section-dark text-center team-3">
             <div className="container">
@@ -650,7 +649,6 @@ class LandingPage extends Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="col-md-4">
                   <div
                     className="card card-pricing"
@@ -787,7 +785,6 @@ class LandingPage extends Component {
               </div>
             </div>
           </div>
-
           {/* Contact Us */}
           <div className="section landing-section">
             <div className="container">
@@ -846,5 +843,4 @@ class LandingPage extends Component {
     );
   }
 }
-
 export default LandingPage;

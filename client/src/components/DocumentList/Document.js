@@ -5,6 +5,10 @@ import moment from "moment-timezone";
 import { Badge, Button, Card, CardBody, CardTitle, Row, Col } from "reactstrap";
 
 class Document extends Component {
+  // eslint-disable-next-line
+  constructor(props) {
+    super(props);
+  }
   navigate = () => {
     this.props.history.push(`/email/${this.props.email.id}`);
   };
@@ -43,30 +47,32 @@ class Document extends Component {
               </Col>
             </Row>
           </CardTitle>
-          <Row>
-            <Col xs={12}>
-              <Button
-                id="copy"
-                color="secondary"
-                onClick={e => {
-                  e.stopPropagation();
-                  this.props.copy();
-                }}
-              >
-                <FontAwesomeIcon icon="copy" />
-              </Button>
-              <Button
-                color="danger"
-                onClick={e => {
-                  e.stopPropagation();
-                  this.props.delete();
-                }}
-                style={{ marginLeft: 7 }}
-              >
-                <FontAwesomeIcon icon="trash" />
-              </Button>
-            </Col>
-          </Row>
+          {this.props.param === "buttons" ? (
+            <Row>
+              <Col xs={12}>
+                <Button
+                  id="copy"
+                  color="secondary"
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.props.copy();
+                  }}
+                >
+                  <FontAwesomeIcon icon="copy" />
+                </Button>
+                <Button
+                  color="danger"
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.props.delete();
+                  }}
+                  style={{ marginLeft: 7 }}
+                >
+                  <FontAwesomeIcon icon="trash" />
+                </Button>
+              </Col>
+            </Row>
+          ) : null}
         </CardBody>
       </Card>
     );
