@@ -15,14 +15,37 @@ import Nightsky from "./assets/img/timothee.jpg";
 import Infomercial from "../Infomercial/index";
 
 class LandingPage extends Component {
+  state = {
+    isTop: true
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll');
+  }
+
+  onScroll = (isTop) => {
+    this.setState({ isTop });
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY < 500;
+      if (isTop !== this.state.isTop) {
+        this.onScroll(isTop);
+      }
+    });
+  }
+
+
+
 
   render() {
     return (
       <div>
         {/* Navbar */}
         <nav
-          className="navbar navbar-expand-lg fixed-top navbar-transparent"
-          color-on-scroll="300"
+          className={`navbar navbar-expand-lg fixed-top ${this.state.isTop ? 'navbar-transparent' : 'nothing'}`}
+          color-on-scroll={`300`}
         >
           <div className="container">
             <div className="navbar-translate">
