@@ -23,7 +23,8 @@ class DocumentList extends Component {
     componentState: 0,
     filterParam: "",
     filteredEmails: [],
-    makingCopy: 0
+    makingCopy: 0,
+    loading: true
   };
 
   componentDidMount = async () => {
@@ -39,7 +40,7 @@ class DocumentList extends Component {
         const { emails } = data;
 
         if (emails) {
-          this.setState({ emails, makingCopy: 0 });
+          this.setState({ emails, makingCopy: 0, loading: false });
         }
       });
   };
@@ -225,19 +226,23 @@ class DocumentList extends Component {
     }
   };
   render() {
-    return (
-      <Container className="mt-3">
-        <Row>
-          <Col xs={12}>{this.emailCountAlert()}</Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
-            {this.emailInput()}
-          </Col>
-        </Row>
-        <Row>{this.emailCards()}</Row>
-      </Container>
-    );
+    if (this.state.loading === false) {
+      return (
+        <Container className="mt-3">
+          <Row>
+            <Col xs={12}>{this.emailCountAlert()}</Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={6}>
+              {this.emailInput()}
+            </Col>
+          </Row>
+          <Row>{this.emailCards()}</Row>
+        </Container>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 export default withRouter(DocumentList);
