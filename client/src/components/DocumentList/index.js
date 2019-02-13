@@ -23,7 +23,8 @@ class DocumentList extends Component {
     componentState: 0,
     filterParam: "",
     filteredEmails: [],
-    makingCopy: 0
+    cloningEmail: false,
+    loading: true
   };
 
   componentDidMount = async () => {
@@ -39,7 +40,7 @@ class DocumentList extends Component {
         const { emails } = data;
 
         if (emails) {
-          this.setState({ emails, makingCopy: 0 });
+          this.setState({ emails, cloningEmail: false, loading: false });
         }
       });
   };
@@ -84,10 +85,22 @@ class DocumentList extends Component {
   );
 
   redirectToCreateEmailPage = () => {
-    if (this.props.user.subscribed === true || this.state.emails.length < 5) {
+    if (this.props.user.subscribed) {
+      /*if user is subscribed then they have no limits 
+      and can center email create page*/
       this.props.history.push("/email");
+    } else if (!this.state.cloningEmail) {
+      /*if user not subscribed and are not cloningEmail and 
+      length of emails is less than 5 can enter email create page*/
+      this.state.emails.length < 5
+        ? this.props.history.push("/email")
+        : this.setState({ componentState: 1 });
     } else {
-      this.setState({ componentState: 1 });
+      /*else if user is not subscribed and are cloningEmail then the length of emails 
+      should be less than 4 to enter email create page*/
+      this.state.emails.length < 4
+        ? this.props.history.push("/email")
+        : this.setState({ componentState: 1 });
     }
   };
   deleteEmail = e => {
@@ -106,11 +119,11 @@ class DocumentList extends Component {
   };
 
   copyEmail = ({ title, addressee, text }) => e => {
-    if (this.state.makingCopy === 0) {
+    if (this.state.cloningEmail === false) {
       //check to see if we're already making a copy before making a copy
       if (this.props.user.subscribed === true || this.state.emails.length < 5) {
         //check to see if the user meets requirements to make a copy
-        this.setState({ makingCopy: 1 }, () => {
+        this.setState({ cloningEmail: true }, () => {
           //if so then the user is making a copy
           text = text || "";
           const version = { text };
@@ -225,19 +238,23 @@ class DocumentList extends Component {
     }
   };
   render() {
-    return (
-      <Container className="mt-3">
-        <Row>
-          <Col xs={12}>{this.emailCountAlert()}</Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
-            {this.emailInput()}
-          </Col>
-        </Row>
-        <Row>{this.emailCards()}</Row>
-      </Container>
-    );
+    if (this.state.loading === false) {
+      return (
+        <Container className="mt-3">
+          <Row>
+            <Col xs={12}>{this.emailCountAlert()}</Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={6}>
+              {this.emailInput()}
+            </Col>
+          </Row>
+          <Row>{this.emailCards()}</Row>
+        </Container>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 export default withRouter(DocumentList);
